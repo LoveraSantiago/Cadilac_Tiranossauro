@@ -1,0 +1,158 @@
+package lovera.cadilac.tiranossauro.telas;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import lovera.cadilac.tiranossauro.atores.Corredor;
+import lovera.cadilac.tiranossauro.atores.PistaDeCorrida;
+import lovera.cadilac.tiranossauro.atores.VoltarOrigem;
+import lovera.cadilac.tiranossauro.atores.graficos.Grafico;
+import lovera.cadilac.tiranossauro.atores.graficos.tipos.exp_log.ExpLog_ProjetorPtFuturo;
+import lovera.cadilac.tiranossauro.atores.graficos.tipos.exponencial.Exponencial_Manager;
+import lovera.cadilac.tiranossauro.atores.graficos.tipos.logaritmo.Logaritmo_Manager;
+import lovera.cadilac.tiranossauro.atores.graficos.tipos.paraboloide.Paraboloide_Manager;
+import lovera.cadilac.tiranossauro.atores.graficos.tipos.vetor.Vetor_Manager;
+import lovera.cadilac.tiranossauro.atores.graficos.utils.GraficosEnum;
+import lovera.cadilac.tiranossauro.contratos.MensagemDeMenus;
+import lovera.cadilac.tiranossauro.controladores.CameraManipulador;
+import lovera.cadilac.tiranossauro.controladores.ControleManager;
+import lovera.cadilac.tiranossauro.controladores.Fase;
+import lovera.cadilac.tiranossauro.controladores.FaseManager;
+import lovera.cadilac.tiranossauro.controladores.GraficoManager;
+import lovera.cadilac.tiranossauro.telas.menus.MenuManager;
+
+public final class TelaJogo implements MensagemDeMenus, Screen {
+
+    private final SpriteBatch spriteBatch;
+
+    private final ControleManager controleManager;
+    private final GraficoManager graficoManager;
+    private final FaseManager faseManager;
+    private final MenuManager menuManager;
+
+    private final CameraManipulador cameraManipulador;
+
+    private final PistaDeCorrida pista;
+    private final Corredor corredor;
+
+    private final VoltarOrigem voltarOrigem;
+
+    public TelaJogo() {
+
+        //COMPONENTES NECESSARIOS
+        this.faseManager = new FaseManager();
+        this.spriteBatch = new SpriteBatch();
+        this.cameraManipulador = new CameraManipulador();
+
+        //COMPONENTES DE JOGO
+        this.corredor = new Corredor(this.cameraManipulador, this.faseManager);
+        this.pista    = new PistaDeCorrida(this.cameraManipulador.getCameraJogo());
+
+        this.menuManager = new MenuManager(this, this.spriteBatch);
+
+        Map<GraficosEnum, Grafico> mapaGraficos = inicializarGraficos();
+
+        //INICIAR GERENCIADORES APOS COMPONENTES DO JOGO
+        this.graficoManager = new GraficoManager(mapaGraficos);
+        this.controleManager = new ControleManager(this.menuManager, mapaGraficos);
+
+        //INICIAR COMPONENTE RESPONSAVEL POR VOLTAR A TELA AO PONTO DE ORIGEM
+        this.voltarOrigem = new VoltarOrigem(this.faseManager, this.controleManager, this.corredor, null);
+    }
+
+    private Map<GraficosEnum, Grafico> inicializarGraficos(){
+        ExpLog_ProjetorPtFuturo projetorPt = new ExpLog_ProjetorPtFuturo();
+
+        Map<GraficosEnum, Grafico> mapaGraficos = new HashMap<GraficosEnum, Grafico>(GraficosEnum.values().length);
+        mapaGraficos.put(GraficosEnum.VETOR,       new Vetor_Manager      (this.corredor, this.faseManager));
+        mapaGraficos.put(GraficosEnum.EXPONENCIAL, new Exponencial_Manager(this.corredor, this.faseManager, projetorPt));
+        mapaGraficos.put(GraficosEnum.LOGARITMO,   new Logaritmo_Manager  (this.corredor, this.faseManager, projetorPt));
+        mapaGraficos.put(GraficosEnum.PARABOLOIDE, new Paraboloide_Manager(this.corredor, this.faseManager));
+        return mapaGraficos;
+    }
+
+    @Override
+    public void show() {
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        this.cameraManipulador.update();
+
+        //MAPA EM LAYER DIFERENTE
+        this.spriteBatch.setProjectionMatrix(this.cameraManipulador.getProjectionMatrix_Jogo());
+        this.pista.meDesenhar(this.spriteBatch);
+
+        this.spriteBatch.setProjectionMatrix(this.cameraManipulador.getProjectionMatrix_Projecao());
+        this.graficoManager.meDesenhar(this.spriteBatch);
+
+        this.corredor    .meDesenhar(this.spriteBatch);
+        this.menuManager .meDesenhar(this.spriteBatch);
+        this.voltarOrigem.meDesenhar(null);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        this.cameraManipulador.resize(width, height);
+    }
+
+    @Override
+    public void pause() {
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+    }
+
+    @Override
+    public void dispose() {
+        this.spriteBatch   .dispose();
+        this.graficoManager.dispose();
+        this.menuManager   .dispose();
+    }
+
+    @Override
+    public void graficoEscolhido(GraficosEnum graficoEnum) {
+        this.graficoManager.setarGraficoAtual(graficoEnum);
+        this.controleManager.setarControlavelAtual(graficoEnum);
+    }
+
+    @Override
+    public void helperEscolhido(byte btn) {
+        if(btn == MenuManager.BTN_VOLTAR){
+            this.faseManager.setFaseAtual(Fase.ESCOLHENDO_GRAFICO);
+            this.controleManager.voltarMenuGrafico();
+        }
+    }
+
+    @Override
+    public void rotacionandoCamera(float angulo) {
+        this.cameraManipulador.rotacionarCameraEmVoltaDoPonto(this.corredor.getPosicaoAng(), angulo);
+    }
+
+    @Override
+    public void normatizarAngulo() {
+        this.cameraManipulador.normatizarAngulo();
+    }
+
+    @Override
+    public Fase getFaseFromFaseManager() {
+        return this.faseManager.getFaseAtual();
+    }
+
+    @Override
+    public void setFaseToFaseManager(Fase faseAtual) {
+        this.faseManager.setFaseAtual(faseAtual);
+    }
+}
