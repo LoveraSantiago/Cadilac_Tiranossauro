@@ -31,8 +31,8 @@ public final class Vetor_Manager extends Grafico{
                 super.areaJogavel.setarTamanhoEDesenhar(spriteBatch, 0, this.corredor.getPosicaoProjY(), AjustadorDeTela.LARGURA_TELA, AjustadorDeTela.ALTURA_TELA - this.corredor.getPosicaoProjY());
                 break;
             case JOGANDO:
-                this.grafico.desenharGrafico(super.entrada.getPtSuperior(), super.entrada.getPtLateral());
                 super.areaJogavel.setarTamanhoEDesenhar(spriteBatch, 0, this.corredor.getPosicaoProjY(), AjustadorDeTela.LARGURA_TELA, AjustadorDeTela.ALTURA_TELA - this.corredor.getPosicaoProjY());
+                this.grafico.desenharGrafico(super.entrada.getPtSuperior(), super.entrada.getPtLateral());
                 break;
             case ACAO:
                 realizarAcao();
