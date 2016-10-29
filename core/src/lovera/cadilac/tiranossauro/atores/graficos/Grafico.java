@@ -3,6 +3,7 @@ package lovera.cadilac.tiranossauro.atores.graficos;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Disposable;
 
+import lovera.cadilac.tiranossauro.atores.graficos.utils.AreaJogavel;
 import lovera.cadilac.tiranossauro.atores.graficos.utils.contratos.MensagemGraficos;
 import lovera.cadilac.tiranossauro.atores.graficos.utils.entradas.Entrada;
 import lovera.cadilac.tiranossauro.contratos.Controlavel;
@@ -15,12 +16,14 @@ public abstract class Grafico implements Controlavel, Desenhavel, Disposable, Me
 
     protected final FaseManager faseManager;
     protected final Entrada entrada;
+    protected final AreaJogavel areaJogavel;
 
-    public Grafico(Entrada entrada, FaseManager faseManager) {
+    public Grafico(Entrada entrada, FaseManager faseManager, AreaJogavel areaJogavel) {
         this.faseManager = faseManager;
 
         this.entrada = entrada;
         this.entrada.setMensageiro(this);
+        this.areaJogavel = areaJogavel;
     }
 
     protected abstract void realizarAcao();
@@ -39,4 +42,6 @@ public abstract class Grafico implements Controlavel, Desenhavel, Disposable, Me
     public InputProcessor passarInputProcessor() {
         return this.entrada.passarInputProcessor();
     }
+
+
 }

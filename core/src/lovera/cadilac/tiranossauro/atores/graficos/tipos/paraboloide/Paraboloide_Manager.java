@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import lovera.cadilac.tiranossauro.atores.Corredor;
 import lovera.cadilac.tiranossauro.atores.graficos.Grafico;
 import lovera.cadilac.tiranossauro.atores.graficos.equacoes.EquacaoQuadratica;
+import lovera.cadilac.tiranossauro.atores.graficos.utils.AreaJogavel;
 import lovera.cadilac.tiranossauro.atores.graficos.utils.entradas.Pinca_Entrada;
 import lovera.cadilac.tiranossauro.controladores.FaseManager;
 
@@ -14,8 +15,8 @@ public class Paraboloide_Manager extends Grafico {
     private final Paraboloide_Graf grafico;
     private final Paraboloide_Acao acao;
 
-    public Paraboloide_Manager(Corredor corredor, FaseManager faseManager) {
-        super(new Pinca_Entrada(corredor), faseManager);
+    public Paraboloide_Manager(Corredor corredor, FaseManager faseManager, AreaJogavel areaJogavel) {
+        super(new Pinca_Entrada(corredor), faseManager, areaJogavel);
 
         EquacaoQuadratica quadratica = new EquacaoQuadratica();
         Paraboloide_ProjetorPtFuturo projetorPt = new Paraboloide_ProjetorPtFuturo(quadratica);

@@ -7,6 +7,7 @@ import lovera.cadilac.tiranossauro.atores.graficos.Grafico;
 import lovera.cadilac.tiranossauro.atores.graficos.equacoes.EquacaoLog;
 import lovera.cadilac.tiranossauro.atores.graficos.tipos.exp_log.ExpLog_Acao;
 import lovera.cadilac.tiranossauro.atores.graficos.tipos.exp_log.ExpLog_ProjetorPtFuturo;
+import lovera.cadilac.tiranossauro.atores.graficos.utils.AreaJogavel;
 import lovera.cadilac.tiranossauro.atores.graficos.utils.entradas.Arrastar_Entrada;
 import lovera.cadilac.tiranossauro.controladores.FaseManager;
 
@@ -16,8 +17,8 @@ public final class Logaritmo_Manager extends Grafico {
     private final Logaritmo_Graf grafico;
     private final ExpLog_Acao acao;
 
-    public Logaritmo_Manager(Corredor corredor, FaseManager faseManager, ExpLog_ProjetorPtFuturo projetorPt) {
-        super(new Arrastar_Entrada(corredor), faseManager);
+    public Logaritmo_Manager(Corredor corredor, FaseManager faseManager, ExpLog_ProjetorPtFuturo projetorPt, AreaJogavel areaJogavel) {
+        super(new Arrastar_Entrada(corredor), faseManager, areaJogavel);
 
         EquacaoLog equacaoLog = new EquacaoLog();
         this.grafico = new Logaritmo_Graf(corredor, equacaoLog, projetorPt);

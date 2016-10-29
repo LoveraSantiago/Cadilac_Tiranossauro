@@ -17,6 +17,7 @@ import lovera.cadilac.tiranossauro.atores.graficos.tipos.exponencial.Exponencial
 import lovera.cadilac.tiranossauro.atores.graficos.tipos.logaritmo.Logaritmo_Manager;
 import lovera.cadilac.tiranossauro.atores.graficos.tipos.paraboloide.Paraboloide_Manager;
 import lovera.cadilac.tiranossauro.atores.graficos.tipos.vetor.Vetor_Manager;
+import lovera.cadilac.tiranossauro.atores.graficos.utils.AreaJogavel;
 import lovera.cadilac.tiranossauro.atores.graficos.utils.GraficosEnum;
 import lovera.cadilac.tiranossauro.contratos.MensagemDeMenus;
 import lovera.cadilac.tiranossauro.controladores.CameraManipulador;
@@ -67,12 +68,13 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
 
     private Map<GraficosEnum, Grafico> inicializarGraficos(){
         ExpLog_ProjetorPtFuturo projetorPt = new ExpLog_ProjetorPtFuturo();
+        AreaJogavel areaJogavel = new AreaJogavel();
 
         Map<GraficosEnum, Grafico> mapaGraficos = new HashMap<GraficosEnum, Grafico>(GraficosEnum.values().length);
-        mapaGraficos.put(GraficosEnum.VETOR,       new Vetor_Manager      (this.corredor, this.faseManager));
-        mapaGraficos.put(GraficosEnum.EXPONENCIAL, new Exponencial_Manager(this.corredor, this.faseManager, projetorPt));
-        mapaGraficos.put(GraficosEnum.LOGARITMO,   new Logaritmo_Manager  (this.corredor, this.faseManager, projetorPt));
-        mapaGraficos.put(GraficosEnum.PARABOLOIDE, new Paraboloide_Manager(this.corredor, this.faseManager));
+        mapaGraficos.put(GraficosEnum.VETOR,       new Vetor_Manager      (this.corredor, this.faseManager, areaJogavel));
+        mapaGraficos.put(GraficosEnum.EXPONENCIAL, new Exponencial_Manager(this.corredor, this.faseManager, projetorPt, areaJogavel));
+        mapaGraficos.put(GraficosEnum.LOGARITMO,   new Logaritmo_Manager  (this.corredor, this.faseManager, projetorPt, areaJogavel));
+        mapaGraficos.put(GraficosEnum.PARABOLOIDE, new Paraboloide_Manager(this.corredor, this.faseManager, areaJogavel));
         return mapaGraficos;
     }
 
