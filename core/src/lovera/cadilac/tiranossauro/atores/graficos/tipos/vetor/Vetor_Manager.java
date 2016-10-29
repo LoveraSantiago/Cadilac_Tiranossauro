@@ -27,7 +27,7 @@ public final class Vetor_Manager extends Grafico{
 
 
         this.textureAtlas = new TextureAtlas("ninepatches/ninepatches_areajogavel.atlas");
-        this.ninePatch = this.textureAtlas.createPatch("area_jogavel");
+        this.ninePatch = this.textureAtlas.createPatch("area_jogavel2");
         this.corredor = corredor;
     }
 
