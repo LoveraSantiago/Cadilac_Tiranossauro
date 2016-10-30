@@ -60,6 +60,7 @@ public final class Exponencial_Manager extends Grafico {
     public void finalizadoFromInput() {
         this.acao.setPtToque(this.grafico.getPtToqueProcessado());
         this.acao.setPosicaoFinal(this.grafico.getUltimpoPontoProcessado());
-        this.acao.calcularPontoFinal(this.grafico.getLado());
+        this.acao.setLado(this.grafico.getLado());
+        this.acao.calcularPontoFinal();
     }
 }

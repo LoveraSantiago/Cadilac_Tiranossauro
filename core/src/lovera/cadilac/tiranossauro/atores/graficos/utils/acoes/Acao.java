@@ -105,7 +105,7 @@ public abstract class Acao {
         return this.eixo;
     }
 
-    protected  void setLado(Direcao lado){
+    public  void setLado(Direcao lado){
         this.lado = lado;
     }
 

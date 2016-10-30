@@ -62,22 +62,8 @@ public class ExpLog_Acao extends Acao {
         super.corredor.setPosicaoProjY(super.corredor.getPosicaoInicial().y + super.contador);
     }
 
-    public void calcularPontoFinal(Direcao lado) {
-        setLado(lado);
-        calcularPontoFinal();
-        analiseDeEixo();
-    }
-
     @Override
-    protected void calcularPontoFinal() {
-        reajustePosicaoFinalParaDentroDaTela(this.corredor.getCameraManipulador().getMaiorPtYDaCameraProjecao());
-    }
-
-    private void reajustePosicaoFinalParaDentroDaTela(float yMaxTela) {
-        if(super.posicaoFinal.y > yMaxTela){
-            super.posicaoFinal.x = this.equacao.getX(yMaxTela - super.corredor.getPosicaoProjY());
-            super.posicaoFinal.y = this.equacao.getY(super.posicaoFinal.x) + super.corredor.getPosicaoProjY();
-            super.posicaoFinal.x += super.corredor.getPosicaoProjX();
-        }
+    public void calcularPontoFinal() {
+        analiseDeEixo();
     }
 }
