@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="20" tileheight="20" nextobjectid="9">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="20" tileheight="20" nextobjectid="16">
  <tileset firstgid="1" name="novotilecorrida" tilewidth="20" tileheight="20" tilecount="2499" columns="49">
   <image source="novotilecorridamaior.png" width="991" height="1032"/>
  </tileset>
@@ -58,7 +58,7 @@
 </data>
  </layer>
  <objectgroup name="colisao">
-  <object id="7" x="157.5" y="898.5">
+  <object id="7" name="contorno" x="157.5" y="898.5">
    <polyline points="0,0 1,91.5 -33.5,88.5 -78.5,71 -115,40 -139.5,2.5 -155.5,-58 -156.5,-203 -136.5,-237.5 -120,-252.5 -84.5,-271.5 -44,-274 -15,-267.5 12.5,-251.5 33.5,-229.5 50,-198 61,-166.5 68,-151 81.5,-132.5 99,-124 123,-121 123,-27 87,-31 54.5,-41.5 17.5,-66.5 -6.5,-95.5 -24,-130 -31,-163 -31.5,-178 -62.5,-179.5 -64,-126.5 -63.5,-75.5 -58,-49 -53,-30.5 -40.5,-16 -21,-3 -1,-0.5"/>
   </object>
  </objectgroup>
