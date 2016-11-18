@@ -44,4 +44,8 @@ public final class PistaDeCorrida implements Desenhavel, Contivel{
     public boolean isContido(Vector2 posicao) {
         return isDentroDaPista(posicao);
     }
+
+    public Polyline getContornoPista() {
+        return contornoPista;
+    }
 }

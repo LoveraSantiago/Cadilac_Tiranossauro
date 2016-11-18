@@ -71,6 +71,7 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
         //BOX2D
         this.meuBox2D = new MeuBox2D(this.cameraManipulador.getCameraJogo());
         this.meuBox2D.setCorredor(this.corredor);
+        this.meuBox2D.setPistaDeCorrida(this.pista);
     }
 
     private Map<GraficosEnum, Grafico> inicializarGraficos(){
