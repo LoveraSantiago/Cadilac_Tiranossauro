@@ -70,6 +70,7 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
 
         //BOX2D
         this.meuBox2D = new MeuBox2D(this.cameraManipulador.getCameraJogo());
+        this.meuBox2D.setCorredor(this.corredor);
     }
 
     private Map<GraficosEnum, Grafico> inicializarGraficos(){
@@ -147,7 +148,7 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
 
     @Override
     public void rotacionandoCamera(float angulo) {
-        this.cameraManipulador.rotacionarCameraEmVoltaDoPonto(this.corredor.getPosicaoAng(), angulo);
+        this.cameraManipulador.rotacionarCameraEmVoltaDoPonto(this.corredor.getPosicaoJogada(), angulo);
     }
 
     @Override

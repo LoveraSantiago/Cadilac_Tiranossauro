@@ -138,7 +138,7 @@ public final class Corredor implements Desenhavel, Resetavel {
         return this.posicaoProjetada;
     }
 
-    public final Vector3 getPosicaoAng(){
+    public final Vector3 getPosicaoJogada(){
         return this.copiaPosJogada.set(this.posicaoJogada,0);
     }
 
@@ -165,6 +165,14 @@ public final class Corredor implements Desenhavel, Resetavel {
         setPosicaoProjY(y);
     }
 
+    public final float getPosicaoJogX(){
+        return this.posicaoJogada.x;
+    }
+
+    public final float getPosicaoJogY(){
+        return this.posicaoJogada.y;
+    }
+
     public final Vector2 getPtFuturoProj(){
         return this.ptFuturo;
     }
@@ -179,5 +187,13 @@ public final class Corredor implements Desenhavel, Resetavel {
 
     public CameraManipulador getCameraManipulador(){
         return this.cameraManipulador;
+    }
+
+    public float getWidth(){
+        return this.spriteCVerm.getWidth();
+    }
+
+    public float getHeight(){
+        return this.spriteCVerm.getHeight();
     }
 }
