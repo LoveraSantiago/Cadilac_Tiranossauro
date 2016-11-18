@@ -20,6 +20,7 @@ import lovera.cadilac.tiranossauro.atores.graficos.tipos.vetor.Vetor_Manager;
 import lovera.cadilac.tiranossauro.atores.graficos.utils.AreaJogavel;
 import lovera.cadilac.tiranossauro.atores.graficos.utils.GraficosEnum;
 import lovera.cadilac.tiranossauro.contratos.MensagemDeMenus;
+import lovera.cadilac.tiranossauro.controladores.MeuBox2D;
 import lovera.cadilac.tiranossauro.controladores.CameraManipulador;
 import lovera.cadilac.tiranossauro.controladores.ControleManager;
 import lovera.cadilac.tiranossauro.controladores.Fase;
@@ -35,6 +36,8 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
     private final GraficoManager graficoManager;
     private final FaseManager faseManager;
     private final MenuManager menuManager;
+
+    private final MeuBox2D meuBox2D;
 
     private final CameraManipulador cameraManipulador;
 
@@ -64,6 +67,9 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
 
         //INICIAR COMPONENTE RESPONSAVEL POR VOLTAR A TELA AO PONTO DE ORIGEM
         this.voltarOrigem = new VoltarOrigem(this.faseManager, this.controleManager, this.corredor, null);
+
+        //BOX2D
+        this.meuBox2D = new MeuBox2D(this.cameraManipulador.getCameraJogo());
     }
 
     private Map<GraficosEnum, Grafico> inicializarGraficos(){
@@ -98,6 +104,7 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
         this.corredor    .meDesenhar(this.spriteBatch);
         this.menuManager .meDesenhar(this.spriteBatch);
         this.voltarOrigem.meDesenhar(null);
+        this.meuBox2D    .meDesenhar(null);
     }
 
     @Override
