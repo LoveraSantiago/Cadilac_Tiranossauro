@@ -56,10 +56,10 @@ public class MeuBox2D implements Desenhavel{
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
-        bodyDef.position.set(pista.getContornoPista().getOriginX(), pista.getContornoPista().getOriginY());
 
         Body body = this.world.createBody(bodyDef);
         body.createFixture(fixtureDef);
+        body.setTransform(pista.getPontoInicial(), 0);
 
         shape.dispose();
     }

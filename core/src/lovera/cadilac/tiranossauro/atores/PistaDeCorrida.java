@@ -2,6 +2,8 @@ package lovera.cadilac.tiranossauro.atores;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
@@ -22,12 +24,19 @@ public final class PistaDeCorrida implements Desenhavel, Contivel{
     private final TiledMapRenderer renderer;
     private final Polyline contornoPista;
 
+    private final Vector2 pontoInicial;
+
     public PistaDeCorrida(OrthographicCamera camerajogo) {
         this.cameraJogo = camerajogo;
 
         this.map = new TmxMapLoader().load("maps/mapacorrida.tmx");
         this.renderer = new OrthogonalTiledMapRendererFixed(this.map, 1f / AjustadorDeTela.ESCALA);
-        this.contornoPista = ((PolylineMapObject) map.getLayers().get("colisao").getObjects().get("contorno")).getPolyline();
+
+        MapObject mapObject = map.getLayers().get("colisao").getObjects().get("contorno");
+        MapProperties properties = mapObject.getProperties();
+        this.pontoInicial = new Vector2(Float.parseFloat(properties.get("x").toString()), Float.parseFloat(properties.get("y").toString()));
+
+        this.contornoPista = ((PolylineMapObject) mapObject).getPolyline();
     }
 
     private boolean isDentroDaPista(Vector2 posicao){
@@ -47,5 +56,9 @@ public final class PistaDeCorrida implements Desenhavel, Contivel{
 
     public Polyline getContornoPista() {
         return contornoPista;
+    }
+
+    public Vector2 getPontoInicial() {
+        return pontoInicial;
     }
 }
