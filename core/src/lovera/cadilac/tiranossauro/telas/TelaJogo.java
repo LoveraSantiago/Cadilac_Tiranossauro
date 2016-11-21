@@ -69,9 +69,9 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
         this.voltarOrigem = new VoltarOrigem(this.faseManager, this.controleManager, this.corredor, null);
 
         //BOX2D
-        this.meuBox2D = new MeuBox2D(this.cameraManipulador.getCameraJogo());
-        this.meuBox2D.setCorredor(this.corredor);
+        this.meuBox2D = new MeuBox2D(this.cameraManipulador.getCameraJogo(), this.corredor);
         this.meuBox2D.setPistaDeCorrida(this.pista);
+        this.corredor.setBox2dCoisas(this.meuBox2D.getCorredorBody(), this.meuBox2D.getWorld(), this.meuBox2D.getPistaBody());
     }
 
     private Map<GraficosEnum, Grafico> inicializarGraficos(){

@@ -68,6 +68,7 @@ public final class Pinca_Entrada extends Entrada {
         if(this.msg.getFaseFromFaseManager() != Fase.JOGANDO) return;
 
         if(isPtValidos()) {
+            this.corredor.criarMouseJoint();
             this.msg.finalizadoFromInput();
             this.msg.setFaseToFaseManager(Fase.ACAO);
         }

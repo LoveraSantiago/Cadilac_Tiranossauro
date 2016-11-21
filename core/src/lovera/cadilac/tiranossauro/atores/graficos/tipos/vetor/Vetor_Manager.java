@@ -1,6 +1,7 @@
 package lovera.cadilac.tiranossauro.atores.graficos.tipos.vetor;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro.atores.Corredor;
 import lovera.cadilac.tiranossauro.atores.graficos.Grafico;
@@ -35,7 +36,7 @@ public final class Vetor_Manager extends Grafico{
                 this.grafico.desenharGrafico(super.entrada.getPtSuperior(), super.entrada.getPtLateral());
                 break;
             case ACAO:
-                realizarAcao();
+//                realizarAcao();
                 break;
         }
     }
@@ -51,9 +52,12 @@ public final class Vetor_Manager extends Grafico{
         super.areaJogavel.dispose();
     }
 
+    Vector2 temp = new Vector2();
     @Override
     public void finalizadoFromInput() {
         this.acao.setPosicaoFinal(super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y);
         this.acao.calcularPontoFinal();
+
+        corredor.getMouseJoint().setTarget(temp.set(super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y));
     }
 }

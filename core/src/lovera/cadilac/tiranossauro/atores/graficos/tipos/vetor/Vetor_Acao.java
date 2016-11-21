@@ -37,6 +37,8 @@ final class Vetor_Acao extends Acao {
     private void calculoHorizontalADireita(float contador, Vector2 ptResult, Vector2 ptParametro){
         ptResult.x = ptParametro.x + contador;
         ptResult.y = this.equacaoDaReta.getY(ptParametro.x + contador);
+
+        this.corredor.getMouseJoint().setTarget(ptResult);
     }
 
     @Override
@@ -56,6 +58,8 @@ final class Vetor_Acao extends Acao {
     private void calculoHorizontalEsquerda(float contador, Vector2 ptResult, Vector2 ptParametro){
         ptResult.x = ptParametro.x + contador;
         ptResult.y = this.equacaoDaReta.getY(ptParametro.x + contador);
+
+        this.corredor.getMouseJoint().setTarget(ptResult);
     }
 
     @Override
@@ -84,6 +88,8 @@ final class Vetor_Acao extends Acao {
     private void calculoVerticalEmComum(float contador, Vector2 ptResult, Vector2 ptParametro){
         ptResult.x = this.equacaoDaReta.getX(ptParametro.y + contador);
         ptResult.y = ptParametro.y + contador;
+
+        this.corredor.getMouseJoint().setTarget(ptResult);
     }
 
     public void setPosicaoFinal(float x, float y) {

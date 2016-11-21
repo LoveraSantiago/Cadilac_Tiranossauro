@@ -69,6 +69,8 @@ public abstract class Acao {
         this.corredor.setPosicaoProj(this.posicaoFinal.x, this.posicaoFinal.y);
         this.msg.setFaseToFaseManager(Fase.CALCULAR_VOLTA);
         this.contador = 0;
+
+        this.corredor.destruirMouseJoint();
     }
 
     protected boolean caminhoPercorridoCompleto() {

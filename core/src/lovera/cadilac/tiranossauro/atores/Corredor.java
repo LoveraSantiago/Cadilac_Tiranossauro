@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
+import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 
 import lovera.cadilac.tiranossauro.contratos.Desenhavel;
 import lovera.cadilac.tiranossauro.contratos.Resetavel;
@@ -25,12 +29,18 @@ public final class Corredor implements Desenhavel, Resetavel {
     private final Vector2 ptPassado;
 
     private final Vector3 copiaPosJogada;
+    private final Vector2 copiaPosJogada2;
 
     private final Sprite spriteCVerm;
 
     private final CameraManipulador cameraManipulador;
 
     private final FaseManager faseManager;
+
+    private Body corredorBody;
+    private World world;
+    private Body pista;
+    private MouseJoint mouseJoint;
 
     public Corredor(CameraManipulador cameraManipulador, FaseManager faseManager) {
         this.faseManager = faseManager;
@@ -42,6 +52,7 @@ public final class Corredor implements Desenhavel, Resetavel {
         this.ptPassado        = new Vector2();
         this.posicaoJogada    = new Vector2();
         this.copiaPosJogada   = new Vector3();
+        this.copiaPosJogada2  = new Vector2();
 
         this.ptFuturo      .set(this.posicaoProjetada);
         this.ptPassado     .set(this.posicaoProjetada);
@@ -87,7 +98,7 @@ public final class Corredor implements Desenhavel, Resetavel {
 
     private void rotacionarDuranteJogada(){
         this.spriteCVerm.setRotation(-90);
-        this.spriteCVerm.rotate(getAngulo());
+        this.spriteCVerm.rotate(calcularAngulo());
     }
 
     private void rotacionarAposJogada(){
@@ -108,7 +119,7 @@ public final class Corredor implements Desenhavel, Resetavel {
         }
     }
 
-    private float getAngulo(){
+    private float calcularAngulo(){
         this.angulo = (float) Math.toDegrees(Math.atan2(this.ptFuturo.y - this.posicaoProjetada.y, this.ptFuturo.x - this.posicaoProjetada.x));
         if(this.angulo < 0 && this.angulo > -90){
             return this.angulo += 270;
@@ -134,12 +145,20 @@ public final class Corredor implements Desenhavel, Resetavel {
         this.cameraManipulador.resetMe();
     }
 
+    public float getAngulo() {
+        return angulo;
+    }
+
     public final Vector2 getPosicaoProjetada(){
         return this.posicaoProjetada;
     }
 
     public final Vector3 getPosicaoJogada(){
         return this.copiaPosJogada.set(this.posicaoJogada,0);
+    }
+
+    public final Vector2 getPosicaoJogada(Vector2 param){
+        return this.copiaPosJogada2.set(this.posicaoJogada.x, this.posicaoJogada.y);
     }
 
     public final Vector2 getPosicaoInicial(){ return this.posicaoInicial; }
@@ -195,5 +214,32 @@ public final class Corredor implements Desenhavel, Resetavel {
 
     public float getHeight(){
         return this.spriteCVerm.getHeight();
+    }
+
+    public void setBox2dCoisas(Body corredorBody, World world, Body pista) {
+        this.corredorBody = corredorBody;
+        this.world = world;
+        this.pista = pista;
+    }
+
+    public void criarMouseJoint(){
+        MouseJointDef def = new MouseJointDef();
+        def.bodyA = this.pista;
+        def.bodyB = this.corredorBody;
+        def.collideConnected = true;
+        def.target.set(this.corredorBody.getPosition());
+        def.maxForce = 1000.0f * this.corredorBody.getMass();
+
+        this.mouseJoint = (MouseJoint) world.createJoint(def);
+        this.corredorBody.setAwake(true);
+    }
+
+    public void destruirMouseJoint(){
+        this.corredorBody.setLinearVelocity(0,0);
+        this.world.destroyJoint(this.mouseJoint);
+    }
+
+    public MouseJoint getMouseJoint() {
+        return mouseJoint;
     }
 }
