@@ -21,6 +21,16 @@ final class Vetor_Acao extends Acao {
     }
 
     @Override
+    public void acao() {
+        if(!caminhoPercorridoCompleto()){
+            this.corredor.getPosicaoProjetada().set(this.corredor.getCorredorBody().getPosition());
+        }
+        else{
+            finalizarAcao();
+        }
+    }
+
+    @Override
     protected void acaoHorizontalADireita(){
         super.contador += VelocidadeAcao.PASSO * Math.min(Gdx.graphics.getDeltaTime(), 0.1f);
 

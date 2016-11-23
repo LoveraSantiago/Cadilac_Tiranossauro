@@ -242,4 +242,8 @@ public final class Corredor implements Desenhavel, Resetavel {
     public MouseJoint getMouseJoint() {
         return mouseJoint;
     }
+
+    public Body getCorredorBody() {
+        return corredorBody;
+    }
 }

@@ -36,7 +36,7 @@ public final class Vetor_Manager extends Grafico{
                 this.grafico.desenharGrafico(super.entrada.getPtSuperior(), super.entrada.getPtLateral());
                 break;
             case ACAO:
-//                realizarAcao();
+                realizarAcao();
                 break;
         }
     }
