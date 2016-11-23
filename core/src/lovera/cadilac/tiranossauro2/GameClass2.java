@@ -3,13 +3,13 @@ package lovera.cadilac.tiranossauro2;
 
 import com.badlogic.gdx.Game;
 
-import lovera.cadilac.tiranossauro.telas.TelaJogo;
+import lovera.cadilac.tiranossauro2.telas2.TelaJogo2;
 
 public final class GameClass2 extends Game {
 
     @Override
     public void create () {
-        setScreen(new TelaJogo());
+        setScreen(new TelaJogo2());
     }
 
     @Override
