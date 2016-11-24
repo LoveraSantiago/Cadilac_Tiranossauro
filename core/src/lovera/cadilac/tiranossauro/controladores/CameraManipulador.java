@@ -44,17 +44,17 @@ public class CameraManipulador implements Resetavel {
         this.ptRotacionadoTemp3 = new Vector3();
 
         //INICIO CONFIGURACAO VISUALIZACAO TELA
-        this.cameraProjecao = new OrthographicCamera();
-        this.viewportProjecao = new StretchViewport(AjustadorDeTela.LARGURA_TELA , AjustadorDeTela.ALTURA_TELA, this.cameraProjecao);
-        this.viewportProjecao.apply();
-        this.cameraProjecao.position.set(this.cameraProjecao.viewportWidth / 2, this.cameraProjecao.viewportHeight / 2, 0);
+        this.cameraProjecao = new OrthographicCamera();//ok
+        this.viewportProjecao = new StretchViewport(AjustadorDeTela.LARGURA_TELA , AjustadorDeTela.ALTURA_TELA, this.cameraProjecao);//ok
+        this.viewportProjecao.apply();//ok
+        this.cameraProjecao.position.set(this.cameraProjecao.viewportWidth / 2, this.cameraProjecao.viewportHeight / 2, 0);//ok
         this.posicaoInicial.set(this.cameraProjecao.position.x, this.cameraProjecao.position.y);
 
-        this.cameraJogo = new OrthographicCamera();
-        this.viewportJogo = new StretchViewport(AjustadorDeTela.LARGURA_TELA , AjustadorDeTela.ALTURA_TELA, this.cameraJogo);
-        this.viewportJogo.apply();
-        this.cameraJogo.position.set(this.cameraJogo.viewportWidth / 2, this.cameraJogo.viewportHeight / 2, 0);
-        update();
+        this.cameraJogo = new OrthographicCamera();//ok
+        this.viewportJogo = new StretchViewport(AjustadorDeTela.LARGURA_TELA , AjustadorDeTela.ALTURA_TELA, this.cameraJogo);//ok
+        this.viewportJogo.apply();//ok
+        this.cameraJogo.position.set(this.cameraJogo.viewportWidth / 2, this.cameraJogo.viewportHeight / 2, 0);//ok
+        update();//ok
     }
 
     @Override
@@ -105,14 +105,14 @@ public class CameraManipulador implements Resetavel {
         this.ptRotacionadoTemp2.set(this.ptRotacionadoTemp3.x, this.ptRotacionadoTemp3.y);
     }
 
-    public void update(){
-        this.cameraProjecao.update();
-        this.cameraJogo.update();
+    public void update(){//ok
+        this.cameraProjecao.update();//ok
+        this.cameraJogo.update();//ok
     }
 
-    public void resize(int width, int height){
-        this.viewportProjecao.update(width, height);
-        this.viewportJogo.update(width, height);
+    public void resize(int width, int height){//ok
+        this.viewportProjecao.update(width, height);//ok
+        this.viewportJogo.update(width, height);//ok
     }
 
     public float getMaiorPtYDaCameraProjecao(){

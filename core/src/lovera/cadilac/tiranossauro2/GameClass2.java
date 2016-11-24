@@ -3,7 +3,7 @@ package lovera.cadilac.tiranossauro2;
 
 import com.badlogic.gdx.Game;
 
-import lovera.cadilac.tiranossauro2.telas2.TelaJogo2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.TelaJogo2;
 
 public final class GameClass2 extends Game {
 

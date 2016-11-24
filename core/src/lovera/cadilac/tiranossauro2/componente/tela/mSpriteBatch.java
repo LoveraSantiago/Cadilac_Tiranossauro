@@ -6,19 +6,14 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 
 public class mSpriteBatch implements TipoSingleton{
 
-    private SpriteBatch spriteBatch;
+    private static SpriteBatch spriteBatch;
 
     @Override
     public void inicializar() {
-        this.spriteBatch = new SpriteBatch();
+        spriteBatch = new SpriteBatch();
     }
 
-    @Override
-    public SpriteBatch getInstancia() {
-        return this.spriteBatch;
-    }
-
-    public static mSpriteBatch getInstance() {
-        return mSpriteBatch;
+    public static SpriteBatch getInstance() {
+        return spriteBatch;
     }
 }

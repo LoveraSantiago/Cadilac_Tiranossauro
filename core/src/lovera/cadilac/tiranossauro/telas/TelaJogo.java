@@ -30,11 +30,11 @@ import lovera.cadilac.tiranossauro.telas.menus.MenuManager;
 
 public final class TelaJogo implements MensagemDeMenus, Screen {
 
-    private final SpriteBatch spriteBatch;
+    private final SpriteBatch spriteBatch;//ok
 
     private final ControleManager controleManager;
     private final GraficoManager graficoManager;
-    private final FaseManager faseManager;
+    private final FaseManager faseManager;//ok
     private final MenuManager menuManager;
 
     private final MeuBox2D meuBox2D;
@@ -49,8 +49,8 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
     public TelaJogo() {
 
         //COMPONENTES NECESSARIOS
-        this.faseManager = new FaseManager();
-        this.spriteBatch = new SpriteBatch();
+        this.faseManager = new FaseManager();//ok
+        this.spriteBatch = new SpriteBatch();//ok
         this.cameraManipulador = new CameraManipulador();
 
         //COMPONENTES DE JOGO
@@ -92,9 +92,9 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);//ok
 
-        this.cameraManipulador.update();
+        this.cameraManipulador.update();//ok
 
         //MAPA EM LAYER DIFERENTE
         this.spriteBatch.setProjectionMatrix(this.cameraManipulador.getProjectionMatrix_Jogo());
