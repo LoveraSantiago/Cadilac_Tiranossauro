@@ -4,9 +4,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
+//CAMERAJOGO E ROTACIONADA CONTEM AS POSICOES VERDADEIRA DO JOGO
 class CameraJogo implements TipoCamera{
 
     private final OrthographicCamera camera;
@@ -23,6 +25,11 @@ class CameraJogo implements TipoCamera{
     @Override
     public void update() {
         this.camera.update();
+    }
+
+    @Override
+    public void updateSpriteBatch(){
+        mSpriteBatch.getInstance().setProjectionMatrix(this.camera.combined);
     }
 
     @Override

@@ -97,10 +97,10 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
         this.cameraManipulador.update();//ok
 
         //MAPA EM LAYER DIFERENTE
-        this.spriteBatch.setProjectionMatrix(this.cameraManipulador.getProjectionMatrix_Jogo());
+        this.spriteBatch.setProjectionMatrix(this.cameraManipulador.getProjectionMatrix_Jogo());//ok
         this.pista.meDesenhar(this.spriteBatch);
 
-        this.spriteBatch.setProjectionMatrix(this.cameraManipulador.getProjectionMatrix_Projecao());
+        this.spriteBatch.setProjectionMatrix(this.cameraManipulador.getProjectionMatrix_Projecao());//ok
         this.graficoManager.meDesenhar(this.spriteBatch);
 
         this.corredor    .meDesenhar(this.spriteBatch);

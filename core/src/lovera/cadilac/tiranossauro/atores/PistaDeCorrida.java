@@ -27,13 +27,13 @@ public final class PistaDeCorrida implements Desenhavel, Contivel{
     private final Vector2 pontoInicial;
 
     public PistaDeCorrida(OrthographicCamera camerajogo) {
-        this.cameraJogo = camerajogo;
+        this.cameraJogo = camerajogo;//ok
 
-        this.map = new TmxMapLoader().load("maps/mapacorrida.tmx");
-        this.renderer = new OrthogonalTiledMapRendererFixed(this.map, 1f / AjustadorDeTela.ESCALA);
+        this.map = new TmxMapLoader().load("maps/mapacorrida.tmx");//ok
+        this.renderer = new OrthogonalTiledMapRendererFixed(this.map, 1f / AjustadorDeTela.ESCALA);//ok
 
-        MapObject mapObject = map.getLayers().get("colisao").getObjects().get("contorno");
-        MapProperties properties = mapObject.getProperties();
+        MapObject mapObject = map.getLayers().get("colisao").getObjects().get("contorno");//ok
+        MapProperties properties = mapObject.getProperties();//ok
         this.pontoInicial = new Vector2(Float.parseFloat(properties.get("x").toString()), Float.parseFloat(properties.get("y").toString()));
 
         this.contornoPista = ((PolylineMapObject) mapObject).getPolyline();
