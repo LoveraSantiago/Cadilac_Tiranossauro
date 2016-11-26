@@ -11,6 +11,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManag
 final class SingletonsManager_TelaJogo implements Disposable{
 
     private CameraManager cameraManagerTemp;
+    private MeuBox2D2 meuBox2DTemp;
 
     public void iniciliazarSingletons(){
         new mSpriteBatch().inicializar();
@@ -25,9 +26,10 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
     public void render(float delta){
         this.cameraManagerTemp = CameraManager.getInstance();
+        this.meuBox2DTemp = MeuBox2D2.getInstancia();
 
         this.cameraManagerTemp.atualizar();
-        MeuBox2D2.getInstancia().meDesenhar(null);
+        this.meuBox2DTemp.atualizar();
 
         //UPDATE DO SPRITEBATCH COM CAMERA JOGO PARA RENDERIZAR PISTA
         this.cameraManagerTemp.updateSpriteBatch_CamJogo();
@@ -35,6 +37,9 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
         //UPDATE DO SPRITEBATCH COM CAMERA NORMAL
 //        this.cameraManagerTemp.updateSpriteBatch_CamProj();
+
+        //SENDO CHAMADO POR ULTIMO PARA PODER SER VISUALIZADO POR CIMA DA TELA
+        this.meuBox2DTemp.meDesenhar(null);
     }
 
     @Override
