@@ -13,16 +13,14 @@ final class SingletonsManager_TelaJogo implements Disposable{
     private CameraManager cameraManagerTemp;
 
     public void iniciliazarSingletons(){
-        //CAMERA DEVE SER O PRIMEIRO! NUNCA MUDAR ESSA ORDEM
-        new CameraManager().inicializar();
         new mSpriteBatch().inicializar();
+        new CameraManager().inicializar();
 
         new FaseManager2().inicializar();
 
         //BOX2D DEVE SER INICIALIZADO ANTES DE CORREDOR E PISTA
         new MeuBox2D2().inicializar();
         new PistaDeCorrida2().inicializar();
-
     }
 
     public void render(float delta){
