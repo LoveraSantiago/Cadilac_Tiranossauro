@@ -1,5 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
+
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 
@@ -7,17 +9,14 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
 
     private static CameraManager cameraManager;
 
-    private final CameraJogo cameraJogo;
-    private final CameraProjecao cameraProjecao;
-
-    private CameraManager() {
-        this.cameraProjecao = new CameraProjecao();
-        this.cameraJogo = new CameraJogo();
-    }
+    private CameraJogo cameraJogo;
+    private CameraProjecao cameraProjecao;
 
     @Override
     public void inicializar() {
-        cameraManager = new CameraManager();
+        cameraManager = this;
+        this.cameraProjecao = new CameraProjecao();
+        this.cameraJogo = new CameraJogo();
     }
 
     public static CameraManager getInstance() {
@@ -25,9 +24,9 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
     }
 
     @Override
-    public void update() {
-        this.cameraJogo.update();
-        this.cameraProjecao.update();
+    public void atualizar() {
+        this.cameraJogo.atualizar();
+        this.cameraProjecao.atualizar();
     }
 
     //Não dá para realizar a operação nas duas classes cameras igual ao metodo update pq o spritebatch deve ser atualizado em tempos
@@ -51,11 +50,11 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
         this.cameraProjecao.resize(width, height);
     }
 
-    public CameraProjecao getCameraProjecao() {
-        return cameraProjecao;
+    public OrthographicCamera getCameraProjecao() {
+        return cameraProjecao.getCamera();
     }
 
-    public CameraJogo getCameraJogo() {
-        return cameraJogo;
+    public OrthographicCamera getCameraJogo() {
+        return cameraJogo.getCamera();
     }
 }

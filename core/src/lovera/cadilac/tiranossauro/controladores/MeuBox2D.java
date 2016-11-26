@@ -33,8 +33,8 @@ public class MeuBox2D implements Desenhavel{
         this.camera = camera;
         this.corredor = corredor;
 
-        this.world = new World(new Vector2(), true);
-        this.renderer = new Box2DDebugRenderer();
+        this.world = new World(new Vector2(), true);//ok
+        this.renderer = new Box2DDebugRenderer();//ok
 
         criarCorredorBody();
     }

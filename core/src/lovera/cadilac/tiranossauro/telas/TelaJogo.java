@@ -98,7 +98,7 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
 
         //MAPA EM LAYER DIFERENTE
         this.spriteBatch.setProjectionMatrix(this.cameraManipulador.getProjectionMatrix_Jogo());//ok
-        this.pista.meDesenhar(this.spriteBatch);
+        this.pista.meDesenhar(this.spriteBatch);//ok
 
         this.spriteBatch.setProjectionMatrix(this.cameraManipulador.getProjectionMatrix_Projecao());//ok
         this.graficoManager.meDesenhar(this.spriteBatch);
@@ -106,7 +106,7 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
         this.corredor    .meDesenhar(this.spriteBatch);
         this.menuManager .meDesenhar(this.spriteBatch);
         this.voltarOrigem.meDesenhar(null);
-        this.meuBox2D    .meDesenhar(null);
+        this.meuBox2D    .meDesenhar(null);//ok
     }
 
     @Override

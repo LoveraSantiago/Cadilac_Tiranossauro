@@ -22,12 +22,21 @@ public class CameraProjecao implements TipoCamera{
     }
 
     @Override
-    public void update() {
+    public void atualizar() {
         this.camera.update();
+    }
+
+    @Override
+    public void updateSpriteBatch() {
+
     }
 
     @Override
     public void resize(int width, int height) {
         this.viewport.update(width, height);
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
     }
 }
