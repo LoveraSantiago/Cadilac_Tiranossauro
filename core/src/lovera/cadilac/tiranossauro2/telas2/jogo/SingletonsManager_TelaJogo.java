@@ -4,6 +4,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeCorrida2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
@@ -22,6 +23,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
         //BOX2D DEVE SER INICIALIZADO ANTES DE CORREDOR E PISTA
         new MeuBox2D2().inicializar();
         new PistaDeCorrida2().inicializar();
+        new CorredorManager().inicializar();
     }
 
     public void render(float delta){
@@ -36,7 +38,8 @@ final class SingletonsManager_TelaJogo implements Disposable{
         PistaDeCorrida2.getInstancia().meDesenhar(null);
 
         //UPDATE DO SPRITEBATCH COM CAMERA NORMAL
-//        this.cameraManagerTemp.updateSpriteBatch_CamProj();
+        this.cameraManagerTemp.updateSpriteBatch_CamProj();
+        CorredorManager.getInstancia().meDesenhar(null);
 
         //SENDO CHAMADO POR ULTIMO PARA PODER SER VISUALIZADO POR CIMA DA TELA
         this.meuBox2DTemp.meDesenhar(null);

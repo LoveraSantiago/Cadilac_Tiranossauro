@@ -40,6 +40,6 @@ public class PistaDeCorrida2 implements TipoBody2D, TipoDesenhavel, TipoSingleto
 
     @Override
     public Body meTransformeEmBody(Object tiledMap) {
-        return new ParserToBody().meTransformeEmBody(tiledMap);
+        return new ParserToBody_Pista().meTransformeEmBody(tiledMap);
     }
 }
