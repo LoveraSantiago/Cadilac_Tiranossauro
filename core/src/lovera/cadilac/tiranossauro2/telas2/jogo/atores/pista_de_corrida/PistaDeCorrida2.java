@@ -6,13 +6,13 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro.utils.OrthogonalTiledMapRendererFixed;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoBody2D;
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
-public class PistaDeCorrida2 implements TipoBody2D, TipoDesenhavel, TipoSingleton{
+public class PistaDeCorrida2 implements TipoParseavel, TipoDesenhavel, TipoSingleton{
 
     private static PistaDeCorrida2 pista;
 
@@ -25,7 +25,7 @@ public class PistaDeCorrida2 implements TipoBody2D, TipoDesenhavel, TipoSingleto
         TiledMap map = new TmxMapLoader().load("maps/mapacorrida.tmx");
         this.renderer = new OrthogonalTiledMapRendererFixed(map, 1f / AjustadorDeTela2.ESCALA);
 
-        meTransformeEmBody(map);
+        meTransforme(map);
     }
 
     public static PistaDeCorrida2 getInstancia() {
@@ -39,7 +39,7 @@ public class PistaDeCorrida2 implements TipoBody2D, TipoDesenhavel, TipoSingleto
     }
 
     @Override
-    public Body meTransformeEmBody(Object tiledMap) {
-        return new ParserToBody_Pista().meTransformeEmBody(tiledMap);
+    public Body meTransforme(Object tiledMap) {
+        return new ParserToBody_Pista().meTransforme(tiledMap);
     }
 }

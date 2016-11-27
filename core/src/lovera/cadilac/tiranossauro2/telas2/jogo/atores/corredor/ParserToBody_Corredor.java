@@ -5,14 +5,14 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoBody2D;
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
-public class ParserToBody_Corredor implements TipoBody2D{
+public class ParserToBody_Corredor implements TipoParseavel {
 
     @Override
-    public Body meTransformeEmBody(Object objeto) {
+    public Body meTransforme(Object objeto) {
         Lataria lataria = (Lataria) objeto;
         CameraManager cameraManagerTemp = CameraManager.getInstance();
         float xInicial = cameraManagerTemp.getCameraProjecao().viewportWidth  / 2;

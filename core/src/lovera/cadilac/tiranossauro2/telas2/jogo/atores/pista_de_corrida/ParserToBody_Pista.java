@@ -11,13 +11,13 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoBody2D;
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 
-class ParserToBody_Pista implements TipoBody2D{
+class ParserToBody_Pista implements TipoParseavel {
 
     @Override
-    public Body meTransformeEmBody(Object tiledMap) {
+    public Body meTransforme(Object tiledMap) {
         //INFORMACOES DOS CONTIDOS EM TILED MAP PARA SEREM USADOS NO BOX2D
         MapObject mapObject = ((TiledMap)tiledMap).getLayers().get("colisao").getObjects().get("contorno");
         MapProperties properties = mapObject.getProperties();
