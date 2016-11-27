@@ -32,14 +32,22 @@ class Lataria implements TipoDesenhavel{
     }
 
     public void setPosicao(Vector2 posicao){
-        this.sprite.setPosition(posicao.x, posicao.y);
+        this.sprite.setPosition(posicao.x - getMetadeLargura(), posicao.y - getMetadeAltura());
     }
 
     public float getAltura(){
         return this.sprite.getHeight();
     }
 
+    private float getMetadeAltura(){
+        return getAltura() / 2;
+    }
+
     public float getLargura(){
         return this.sprite.getWidth();
+    }
+
+    private float getMetadeLargura(){
+        return getLargura() / 2;
     }
 }
