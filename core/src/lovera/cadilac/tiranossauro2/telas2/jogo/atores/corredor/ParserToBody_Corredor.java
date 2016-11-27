@@ -16,7 +16,7 @@ public class ParserToBody_Corredor implements TipoBody2D{
         Lataria lataria = (Lataria) objeto;
         CameraManager cameraManagerTemp = CameraManager.getInstance();
         float xInicial = cameraManagerTemp.getCameraProjecao().viewportWidth  / 2;
-        float yInicial = cameraManagerTemp.getCameraProjecao().viewportHeight / 2;
+        float yInicial = cameraManagerTemp.getCameraProjecao().viewportHeight / 6;
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(lataria.getLargura() / 2, lataria.getAltura() / 2);
