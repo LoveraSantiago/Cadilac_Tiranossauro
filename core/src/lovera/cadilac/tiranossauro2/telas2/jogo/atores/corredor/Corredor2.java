@@ -18,7 +18,8 @@ public final class Corredor2 implements TipoBody2D, TipoDesenhavel{
 
     @Override
     public void meDesenhar(Object objeto) {
-
+        this.lataria.setPosicao(corredor.getPosition());
+        this.lataria.meDesenhar(null);
     }
 
     @Override

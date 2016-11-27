@@ -7,12 +7,16 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoBody2D;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
 public class ParserToBody_Corredor implements TipoBody2D{
 
     @Override
     public Body meTransformeEmBody(Object objeto) {
         Lataria lataria = (Lataria) objeto;
+        CameraManager cameraManagerTemp = CameraManager.getInstance();
+        float xInicial = cameraManagerTemp.getCameraProjecao().viewportWidth  / 2;
+        float yInicial = cameraManagerTemp.getCameraProjecao().viewportHeight / 2;
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(lataria.getLargura() / 2, lataria.getAltura() / 2);
@@ -23,7 +27,7 @@ public class ParserToBody_Corredor implements TipoBody2D{
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(corredor.getPosicaoJogX(), corredor.getPosicaoJogY());
+        bodyDef.position.set(xInicial, yInicial);
 
         Body body = MeuBox2D2.getInstancia().getWorld().createBody(bodyDef);
         body.createFixture(fixtureDef);

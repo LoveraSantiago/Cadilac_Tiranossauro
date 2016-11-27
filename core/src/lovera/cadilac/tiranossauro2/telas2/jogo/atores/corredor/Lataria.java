@@ -3,15 +3,17 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro.telas.AjustadorDeTela;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
+import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 
-class Lataria implements TipoDesenhavel, TipoAtualizavel{
-
+class Lataria implements TipoDesenhavel{
 
     private Sprite sprite;
+    private SpriteBatch spriteBatchTemp;
 
     public Lataria() {
         this.sprite = new Sprite(new Texture(Gdx.files.internal("redcarpeq.png")));
@@ -21,13 +23,16 @@ class Lataria implements TipoDesenhavel, TipoAtualizavel{
     }
 
     @Override
-    public void atualizar() {
+    public void meDesenhar(Object objeto) {
+        this.spriteBatchTemp = mSpriteBatch.getInstance();
 
+        this.spriteBatchTemp.begin();
+        this.sprite.draw(this.spriteBatchTemp);
+        this.spriteBatchTemp.end();
     }
 
-    @Override
-    public void meDesenhar(Object objeto) {
-
+    public void setPosicao(Vector2 posicao){
+        this.sprite.setPosition(posicao.x, posicao.y);
     }
 
     public float getAltura(){
