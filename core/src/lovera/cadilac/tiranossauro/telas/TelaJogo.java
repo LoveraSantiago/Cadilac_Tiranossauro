@@ -135,8 +135,8 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
 
     @Override
     public void graficoEscolhido(GraficosEnum graficoEnum) {
-        this.graficoManager.setarGraficoAtual(graficoEnum);
-        this.controleManager.setarControlavelAtual(graficoEnum);
+        this.graficoManager.setarGraficoAtual(graficoEnum);//ok
+        this.controleManager.setarControlavelAtual(graficoEnum);//ok
     }
 
     @Override

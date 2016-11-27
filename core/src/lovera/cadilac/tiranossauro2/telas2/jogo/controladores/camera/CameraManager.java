@@ -1,6 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
@@ -52,6 +53,10 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
 
     public OrthographicCamera getCameraProjecao() {
         return cameraProjecao.getCamera();
+    }
+
+    public Viewport getViewPortCameraProjecao(){
+        return this.cameraProjecao.getViewport();
     }
 
     public OrthographicCamera getCameraJogo() {

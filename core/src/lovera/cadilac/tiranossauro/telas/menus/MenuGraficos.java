@@ -39,7 +39,7 @@ class MenuGraficos implements Desenhavel, Controlavel, Disposable, MensagemBusso
     private final MensagemDeMenus msg;
 
     private final Stage stage;
-    private final Actor table;
+    private final Actor table;//ok
 
     private final Bussola bussola;
 
@@ -48,65 +48,65 @@ class MenuGraficos implements Desenhavel, Controlavel, Disposable, MensagemBusso
     public MenuGraficos(MensagemDeMenus msg, SpriteBatch spriteBatch, Viewport viewport) {
         this.msg = msg;
 
-        this.stage = new Stage(viewport, spriteBatch);
-        this.atlas = new TextureAtlas("imgs_botoes_duplos/btn_img_dbl.atlas");
-        this.bussola = new Bussola(this);
+        this.stage = new Stage(viewport, spriteBatch);//ok
+        this.atlas = new TextureAtlas("imgs_botoes_duplos/btn_img_dbl.atlas");//ok
+        this.bussola = new Bussola(this);//ok
 
-        this.table = gerarTableBarraHud();
+        this.table = gerarTableBarraHud();//ok
         this.stage.addActor(this.table);
-        setBarraPosicao_Inicial();
+        setBarraPosicao_Inicial();//ok
     }
 
-    private Table gerarTableBarraHud(){
-        Skin skin = new Skin(Gdx.files.internal("skins/uiskin.json"));
-        skin.addRegions(this.atlas);
+    private Table gerarTableBarraHud(){//ok
+        Skin skin = new Skin(Gdx.files.internal("skins/uiskin.json"));//ok
+        skin.addRegions(this.atlas);//ok
 
-        final ImageButton btnVetor = gerarBotao("reta_duplo"       , skin, GraficosEnum.VETOR      );
-        final ImageButton btnExp   = gerarBotao("exponencial_duplo", skin, GraficosEnum.EXPONENCIAL);
-        final ImageButton btnLog   = gerarBotao("logaritmo_duplo"  , skin, GraficosEnum.LOGARITMO  );
-        final ImageButton btnParab = gerarBotao("paraboloide_duplo", skin, GraficosEnum.PARABOLOIDE);
+        final ImageButton btnVetor = gerarBotao("reta_duplo"       , skin, GraficosEnum.VETOR      );//ok
+        final ImageButton btnExp   = gerarBotao("exponencial_duplo", skin, GraficosEnum.EXPONENCIAL);//ok
+        final ImageButton btnLog   = gerarBotao("logaritmo_duplo"  , skin, GraficosEnum.LOGARITMO  );//ok
+        final ImageButton btnParab = gerarBotao("paraboloide_duplo", skin, GraficosEnum.PARABOLOIDE);//ok
 
-        Table tableResult =  new Table();
+        Table tableResult =  new Table();//ok
 //        tableResult.setDebug(true);
-        tableResult.bottom();
-        tableResult.setFillParent(true);
+        tableResult.bottom();//ok
+        tableResult.setFillParent(true);//ok
 
-        tableResult.add(bussola).width(MenuUtils.LARGURA_BTN * 4).height(MenuUtils.HALTURA_BTN * 2).colspan(4);
-        tableResult.row();
+        tableResult.add(bussola).width(MenuUtils.LARGURA_BTN * 4).height(MenuUtils.HALTURA_BTN * 2).colspan(4);//ok
+        tableResult.row();//ok
 
-        tableResult.add(btnVetor).width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);
-        tableResult.add(btnExp)  .width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);
-        tableResult.add(btnLog)  .width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);
-        tableResult.add(btnParab).width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padBottom(5);
-        return tableResult;
+        tableResult.add(btnVetor).width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);//ok
+        tableResult.add(btnExp)  .width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);//ok
+        tableResult.add(btnLog)  .width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);//ok
+        tableResult.add(btnParab).width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padBottom(5);//ok
+        return tableResult;//ok
     }
 
-    private ImageButton gerarBotao(String img, Skin skin, final GraficosEnum graficoEnum){
+    private ImageButton gerarBotao(String img, Skin skin, final GraficosEnum graficoEnum){//ok
 
-        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle(skin.get(Button.ButtonStyle.class));
-        style.imageUp = skin.getDrawable(img);
-        style.imageDown = skin.getDrawable(img);
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle(skin.get(Button.ButtonStyle.class));//ok
+        style.imageUp = skin.getDrawable(img);//ok
+        style.imageDown = skin.getDrawable(img);//ok
 
-        ImageButton btn = new ImageButton(style);
-        btn.addListener(new ClickListener(){
+        ImageButton btn = new ImageButton(style);//ok
+        btn.addListener(new ClickListener(){//ok
 
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
+            @Override//ok
+            public void clicked(InputEvent event, float x, float y) {//ok
 
-                if(estadoPosicaoBarra != FIXO) return;
-                msg.graficoEscolhido(graficoEnum);
-                setBarraPosicao_Saida();
+                if(estadoPosicaoBarra != FIXO) return;//ok
+                msg.graficoEscolhido(graficoEnum);//ok
+                setBarraPosicao_Saida();//ok
             }
         });
 
-        return btn;
+        return btn;//ok
     }
 
     @Override
     public void meDesenhar(SpriteBatch spriteBatch) {
-        analisarPosicaoDaBarra();
-        this.table.setPosition(this.posicaoBarra, 0);
-        this.stage.draw();
+        analisarPosicaoDaBarra();//ok
+        this.table.setPosition(this.posicaoBarra, 0);//ok
+        this.stage.draw();//ok
     }
 
     @Override
@@ -114,52 +114,52 @@ class MenuGraficos implements Desenhavel, Controlavel, Disposable, MensagemBusso
         return this.stage;
     }
 
-    private void analisarPosicaoDaBarra() {
-        switch (this.estadoPosicaoBarra){
-            case FIXO:
-                return;
-            case ENTRADA:
-                procedimentoEntradaBarra();
-                break;
-            case SAIDA:
-                procedimentoSaidaBarra();
-                break;
+    private void analisarPosicaoDaBarra() {//ok
+        switch (this.estadoPosicaoBarra){//ok
+            case FIXO://ok
+                return;//ok
+            case ENTRADA://ok
+                procedimentoEntradaBarra();//ok
+                break;//ok
+            case SAIDA://ok
+                procedimentoSaidaBarra();//ok
+                break;//ok
         }
     }
 
-    private void procedimentoEntradaBarra(){
-        if(this.posicaoBarra >= 0){
-            setBarraPosicao_Normal();
-        }
-        else{
-            this.posicaoBarra += this.VELOCIDADE_BARRA * Math.min(Gdx.graphics.getDeltaTime(), 0.1f);
-        }
+    private void procedimentoEntradaBarra(){//ok
+        if(this.posicaoBarra >= 0){//ok
+            setBarraPosicao_Normal();//ok
+        }//ok
+        else{//ok
+            this.posicaoBarra += this.VELOCIDADE_BARRA * Math.min(Gdx.graphics.getDeltaTime(), 0.1f);//ok
+        }//ok
+    }//ok
+
+    private void procedimentoSaidaBarra(){//ok
+        if(this.posicaoBarra >= this.FORA_DA_TELA){//ok
+            this.posicaoBarra -= this.VELOCIDADE_BARRA * Math.min(Gdx.graphics.getDeltaTime(), 0.1f);//ok
+        }//ok
+        else{//ok
+            setBarraPosicao_Inicial();//ok
+            msg.setFaseToFaseManager(Fase.ACEITAR_ENTRADA);//ok
+        }//ok
+    }//ok
+
+    private void setBarraPosicao_Inicial(){//ok
+        this.estadoPosicaoBarra = this.ENTRADA;//ok
+        this.posicaoBarra = this.FORA_DA_TELA;//ok
     }
 
-    private void procedimentoSaidaBarra(){
-        if(this.posicaoBarra >= this.FORA_DA_TELA){
-            this.posicaoBarra -= this.VELOCIDADE_BARRA * Math.min(Gdx.graphics.getDeltaTime(), 0.1f);
-        }
-        else{
-            setBarraPosicao_Inicial();
-            msg.setFaseToFaseManager(Fase.ACEITAR_ENTRADA);
-        }
+    private void setBarraPosicao_Normal(){//ok
+        this.estadoPosicaoBarra = this.FIXO;//ok
+        this.posicaoBarra = 0;//ok
+        this.bussola.calcularPontos();//ok
     }
 
-    private void setBarraPosicao_Inicial(){
-        this.estadoPosicaoBarra = this.ENTRADA;
-        this.posicaoBarra = this.FORA_DA_TELA;
-    }
-
-    private void setBarraPosicao_Normal(){
-        this.estadoPosicaoBarra = this.FIXO;
-        this.posicaoBarra = 0;
-        this.bussola.calcularPontos();
-    }
-
-    private void setBarraPosicao_Saida(){
-        this.estadoPosicaoBarra = this.SAIDA;
-        this.posicaoBarra = 0;
+    private void setBarraPosicao_Saida(){//ok
+        this.estadoPosicaoBarra = this.SAIDA;//ok
+        this.posicaoBarra = 0;//ok
     }
 
     @Override
@@ -179,8 +179,8 @@ class MenuGraficos implements Desenhavel, Controlavel, Disposable, MensagemBusso
 
     @Override
     public void dispose() {
-        this.stage.dispose();
-        this.atlas.dispose();
-        this.bussola.dispose();
+        this.stage.dispose();//ok
+        this.atlas.dispose();//ok
+        this.bussola.dispose();//ok
     }
 }

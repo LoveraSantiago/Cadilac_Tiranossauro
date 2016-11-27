@@ -39,4 +39,8 @@ public class CameraProjecao implements TipoCamera{
     public OrthographicCamera getCamera() {
         return camera;
     }
+
+    public Viewport getViewport() {
+        return viewport;
+    }
 }

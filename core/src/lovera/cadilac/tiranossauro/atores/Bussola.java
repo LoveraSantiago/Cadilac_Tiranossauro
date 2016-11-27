@@ -52,7 +52,7 @@ public final class Bussola extends Actor implements Disposable {
 
             @Override
             public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if(msg.isBarraHudFixa()){
+                if(msg.isBarraHudFixa()){//ok
                     anguloFixo = getAngulo(ptMedioBarra.x, ptMedioBarra.y, x + getX(), y + getY());
                     ultimoAngulo = anguloFixo;
                     toqueAcontecendo = true;
@@ -61,7 +61,7 @@ public final class Bussola extends Actor implements Disposable {
 
             @Override
             public void pan(InputEvent event, float x, float y, float deltaX, float deltaY) {
-                if(msg.isBarraHudFixa()){
+                if(msg.isBarraHudFixa()){//ok
                     panAcontecendo = true;
                     anguloMovel = getAngulo(ptMedioBarra.x, ptMedioBarra.y, x + getX(), y + getY());
 

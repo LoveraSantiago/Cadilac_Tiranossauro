@@ -10,9 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 
-import lovera.cadilac.tiranossauro.atores.graficos.utils.GraficosEnum;
 import lovera.cadilac.tiranossauro.telas.menus.MenuUtils;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.ControleManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 
 class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
 
@@ -26,17 +28,17 @@ class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
         Skin skin = new Skin(Gdx.files.internal("skins/uiskin.json"));
         skin.addRegions(this.atlas);
 
-        final ImageButton btnVetor = gerarBotao("reta_duplo"       , skin, GraficosEnum.VETOR      );
-        final ImageButton btnExp   = gerarBotao("exponencial_duplo", skin, GraficosEnum.EXPONENCIAL);
-        final ImageButton btnLog   = gerarBotao("logaritmo_duplo"  , skin, GraficosEnum.LOGARITMO  );
-        final ImageButton btnParab = gerarBotao("paraboloide_duplo", skin, GraficosEnum.PARABOLOIDE);
+        final ImageButton btnVetor = gerarBotao("reta_duplo"       , skin, GraficosEnum2.VETOR      );
+        final ImageButton btnExp   = gerarBotao("exponencial_duplo", skin, GraficosEnum2.EXPONENCIAL);
+        final ImageButton btnLog   = gerarBotao("logaritmo_duplo"  , skin, GraficosEnum2.LOGARITMO  );
+        final ImageButton btnParab = gerarBotao("paraboloide_duplo", skin, GraficosEnum2.PARABOLOIDE);
 
         Table tableResult =  new Table();
 //        tableResult.setDebug(true);
         tableResult.bottom();
         tableResult.setFillParent(true);
 
-        tableResult.add(bussola).width(MenuUtils.LARGURA_BTN * 4).height(MenuUtils.HALTURA_BTN * 2).colspan(4);
+        tableResult.add(Volante.getInstancia()).width(MenuUtils.LARGURA_BTN * 4).height(MenuUtils.HALTURA_BTN * 2).colspan(4);
         tableResult.row();
 
         tableResult.add(btnVetor).width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);
@@ -46,7 +48,7 @@ class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
         return tableResult;
     }
 
-    private ImageButton gerarBotao(String img, Skin skin, final GraficosEnum graficoEnum){
+    private ImageButton gerarBotao(String img, Skin skin, final GraficosEnum2 graficoEnum){
 
         ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle(skin.get(Button.ButtonStyle.class));
         style.imageUp = skin.getDrawable(img);
@@ -58,9 +60,12 @@ class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                if(estadoPosicaoBarra != FIXO) return;
-                msg.graficoEscolhido(graficoEnum);
-                setBarraPosicao_Saida();
+                if(Deslizador.getInstancia().isPosicaoBarraFixa()) return;
+
+                GraficoManager2.getInstancia().setGraficoEscolhido(graficoEnum);
+                ControleManager2.getInstance().setGraficoEscolhido(graficoEnum);
+
+                Deslizador.getInstancia().setBarraPosicao_Saida();
             }
         });
         return btn;
