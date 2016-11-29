@@ -15,36 +15,36 @@ import lovera.cadilac.tiranossauro.contratos.MensagemBussola;
 
 public final class Bussola extends Actor implements Disposable {
 
-    private boolean toqueAcontecendo;
-    private boolean panAcontecendo;
+    private boolean toqueAcontecendo;//ok
+    private boolean panAcontecendo;//ok
 
     private float anguloFixo;
     private float anguloMovel;
     private float ultimoAngulo;
     private float resultAnguloTemp;
 
-    private float larguraPonteiro;
-    private float metadePonteiro;
-    private float ptXinicioPonteiro;
+    private float larguraPonteiro;//ok
+    private float metadePonteiro;//ok
+    private float ptXinicioPonteiro;//ok
 
-    private final Texture meiaBussola;
-    private final TextureRegion setaFixa;
-    private final TextureRegion setaMovel;
+    private final Texture meiaBussola;//ok
+    private final TextureRegion setaFixa;//ok
+    private final TextureRegion setaMovel;//ok
 
     private final MensagemBussola msg;
 
-    private final Vector2 ptMedioBarra;
+    private final Vector2 ptMedioBarra;//ok
 
     public Bussola(MensagemBussola msgm) {
         this.msg = msgm;
 
-        this.setaFixa    = new TextureRegion(new Texture(Gdx.files.internal("setafixa.png")));
-        this.setaMovel   = new TextureRegion(new Texture(Gdx.files.internal("setamovel.png")));
-        this.meiaBussola = new Texture(Gdx.files.internal("meiabussola.png"));
+        this.setaFixa    = new TextureRegion(new Texture(Gdx.files.internal("setafixa.png")));//ok
+        this.setaMovel   = new TextureRegion(new Texture(Gdx.files.internal("setamovel.png")));//ok
+        this.meiaBussola = new Texture(Gdx.files.internal("meiabussola.png"));//ok
 
-        this.ptMedioBarra = new Vector2();
+        this.ptMedioBarra = new Vector2();//ok
 
-        adicionarListeners();
+        adicionarListeners();//ok
     }
 
     private void adicionarListeners(){
@@ -84,29 +84,29 @@ public final class Bussola extends Actor implements Disposable {
     }
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
-        batch.draw(this.meiaBussola, getX(), getY(), getWidth(), getHeight());
-        if(this.toqueAcontecendo){
+    public void draw(Batch batch, float parentAlpha) {//ok
+        batch.draw(this.meiaBussola, getX(), getY(), getWidth(), getHeight());//ok
+        if(this.toqueAcontecendo){//ok
 
-            batch.draw(this.setaFixa , this.ptXinicioPonteiro, getY(), this.metadePonteiro, 0, this.larguraPonteiro, getHeight(), 1, 1, -90 + this.anguloFixo);
+            batch.draw(this.setaFixa , this.ptXinicioPonteiro, getY(), this.metadePonteiro, 0, this.larguraPonteiro, getHeight(), 1, 1, -90 + this.anguloFixo);//ok
 
-            if(this.panAcontecendo){
-                batch.draw(this.setaMovel, this.ptXinicioPonteiro, getY(), this.metadePonteiro, 0, this.larguraPonteiro, getHeight(), 1, 1, -90 + this.anguloMovel);
-            }
-        }
-    }
+            if(this.panAcontecendo){//ok
+                batch.draw(this.setaMovel, this.ptXinicioPonteiro, getY(), this.metadePonteiro, 0, this.larguraPonteiro, getHeight(), 1, 1, -90 + this.anguloMovel);//ok
+            }//ok
+        }//ok
+    }//ok
 
-    public void calcularPontos(){
-        this.larguraPonteiro = getWidth() / 8;
-        this.metadePonteiro  = this.larguraPonteiro / 2;
-        this.ptXinicioPonteiro = (getX() + (getWidth() / 2)) - this.metadePonteiro;
-        this.ptMedioBarra.set(this.ptXinicioPonteiro + this.metadePonteiro, getY());
+    public void calcularPontos(){//ok
+        this.larguraPonteiro = getWidth() / 8;//ok
+        this.metadePonteiro  = this.larguraPonteiro / 2;//ok
+        this.ptXinicioPonteiro = (getX() + (getWidth() / 2)) - this.metadePonteiro;//ok
+        this.ptMedioBarra.set(this.ptXinicioPonteiro + this.metadePonteiro, getY());//ok
     }
 
     @Override
     public void dispose() {
-        this.meiaBussola.dispose();
-        this.setaFixa.getTexture().dispose();
+        this.meiaBussola.dispose();//ok
+        this.setaFixa.getTexture().dispose();//ok
     }
 
     private float getAngulo(float x0, float y0, float x1, float y1){

@@ -70,7 +70,7 @@ class Deslizador implements TipoSingleton{
     private void setBarraPosicao_Normal(){
         this.estadoPosicaoBarra = this.FIXO;
         this.posicaoBarra = 0;
-        this.bussola.calcularPontos();
+        Volante.getInstancia().calcularPontos();
     }
 
     public void setBarraPosicao_Saida(){
