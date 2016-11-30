@@ -5,11 +5,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
+import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromDeslizador;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
-public class MenuGraficos2 implements TipoDesenhavel, TipoSingleton, Disposable{
+public class MenuGraficos2 implements TipoDesenhavel, TipoSingleton, Disposable, MsgFromDeslizador{
 
     private static MenuGraficos2 menuGraficos;
 
@@ -18,16 +19,16 @@ public class MenuGraficos2 implements TipoDesenhavel, TipoSingleton, Disposable{
 
     private final Stage stage;
     private final Actor table;
+    private final Volante volante;
 
     public MenuGraficos2() {
-        //VOLANTE DEVE SER O PRIMEIRO POIS SERA ADICIONADO NA TABLE
-        new Volante().inicializar();
+        this.deslizador = new Deslizador(this);
 
-        this.deslizador = new Deslizador();
-        this.deslizador.inicializar();
+        this.volante = new Volante(this.deslizador);
+        this.volante.inicializar();
 
-        this.parserTable = new ParserToTable_MenuGraficos2();
-        this.table = this.parserTable.meTransforme(null);
+        this.parserTable = new ParserToTable_MenuGraficos2(this.volante, this.deslizador);
+        this.table = this.parserTable.meTransforme(this.deslizador);
 
         this.stage = new Stage(CameraManager.getInstance().getViewPortCameraProjecao(), mSpriteBatch.getInstance());
         this.stage.addActor(this.table);
@@ -50,9 +51,14 @@ public class MenuGraficos2 implements TipoDesenhavel, TipoSingleton, Disposable{
     }
 
     @Override
+    public void setBarraPosicao_Normal() {
+        this.volante.calcularPontos();
+    }
+
+    @Override
     public void dispose() {
         this.stage.dispose();
         this.parserTable.dispose();
-        Volante.getInstancia().dispose();
+        this.volante.dispose();
     }
 }

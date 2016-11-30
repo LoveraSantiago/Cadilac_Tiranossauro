@@ -2,6 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -20,9 +21,17 @@ class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
 
     private TextureAtlas atlas;
 
+    private final Actor volante;
+    private final Deslizador deslizador;
+
+    public ParserToTable_MenuGraficos2(Actor volante, Deslizador deslizador) {
+        this.volante = volante;
+        this.deslizador = deslizador;
+    }
+
     //CRIANDO A TABLE DE MENUS
     @Override
-    public Table meTransforme(Object objeto) {
+    public Table meTransforme(Object deslizadorP) {
         this.atlas = new TextureAtlas("imgs_botoes_duplos/btn_img_dbl.atlas");
 
         Skin skin = new Skin(Gdx.files.internal("skins/uiskin.json"));
@@ -38,7 +47,7 @@ class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
         tableResult.bottom();
         tableResult.setFillParent(true);
 
-        tableResult.add(Volante.getInstancia()).width(MenuUtils.LARGURA_BTN * 4).height(MenuUtils.HALTURA_BTN * 2).colspan(4);
+        tableResult.add(this.volante).width(MenuUtils.LARGURA_BTN * 4).height(MenuUtils.HALTURA_BTN * 2).colspan(4);
         tableResult.row();
 
         tableResult.add(btnVetor).width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);
@@ -60,12 +69,12 @@ class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                if(Deslizador.getInstancia().isPosicaoBarraFixa()) return;
+                if(deslizador.isPosicaoBarraFixa()) return;
 
                 GraficoManager2.getInstancia().setGraficoEscolhido(graficoEnum);
                 ControleManager2.getInstance().setGraficoEscolhido(graficoEnum);
 
-                Deslizador.getInstancia().setBarraPosicao_Saida();
+                deslizador.setBarraPosicao_Saida();
             }
         });
         return btn;

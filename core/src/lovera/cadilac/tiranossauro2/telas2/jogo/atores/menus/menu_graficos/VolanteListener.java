@@ -4,11 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
-
-class VolanteListener extends ActorGestureListener implements TipoSingleton{
-
-    private static VolanteListener volanteListener;
+class VolanteListener extends ActorGestureListener{
 
     private boolean toqueAcontecendo;
     private boolean panAcontecendo;
@@ -19,26 +15,21 @@ class VolanteListener extends ActorGestureListener implements TipoSingleton{
     private float ultimoAngulo;
 
     private VolanteControle controle;
+    private Deslizador deslizador;
 
     private final Actor atorVolante;
 
-    public VolanteListener(Actor atorVolante) {
+    private float resultAnguloTemp;
+
+    public VolanteListener(Actor atorVolante, Deslizador deslizador, VolanteControle controle) {
         this.atorVolante = atorVolante;
-    }
-
-    @Override
-    public void inicializar() {
-        volanteListener = this;
-        this.controle = VolanteControle.getInstancia();
-    }
-
-    public static VolanteListener getInstancia() {
-        return volanteListener;
+        this.deslizador = deslizador;
+        this.controle = controle;
     }
 
     @Override
     public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
-        if(Deslizador.getInstancia().isPosicaoBarraFixa()){
+        if(this.deslizador.isPosicaoBarraFixa()){
             anguloFixo = getAngulo(this.controle.getPtMedioBarra().x, this.controle.getPtMedioBarra().y,
                                    x + this.atorVolante.getX(), y + this.atorVolante.getY());
             ultimoAngulo = anguloFixo;
@@ -48,9 +39,9 @@ class VolanteListener extends ActorGestureListener implements TipoSingleton{
 
     @Override
     public void pan(InputEvent event, float x, float y, float deltaX, float deltaY) {
-        if(Deslizador.getInstancia().isPosicaoBarraFixa()){
+        if(this.deslizador.isPosicaoBarraFixa()){
             panAcontecendo = true;
-            anguloMovel = getAngulo(ptMedioBarra.x, ptMedioBarra.y,
+            anguloMovel = getAngulo(this.controle.getPtMedioBarra().x, this.controle.getPtMedioBarra().y,
                                     x + this.atorVolante.getX(), y + this.atorVolante.getY());
 
             if(ultimoAngulo != anguloMovel){

@@ -2,13 +2,11 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos;
 
 import com.badlogic.gdx.Gdx;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
+import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromDeslizador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 
-class Deslizador implements TipoSingleton{
-
-    private static Deslizador deslizador;
+class Deslizador{
 
     private final byte ENTRADA = 0;
     private final byte FIXO    = 1;
@@ -20,14 +18,11 @@ class Deslizador implements TipoSingleton{
 
     private final short VELOCIDADE_BARRA = 500;
 
-    @Override
-    public void inicializar() {
-        deslizador = this;
-        setBarraPosicao_Inicial();
-    }
+    private final MsgFromDeslizador msg;
 
-    public static Deslizador getInstancia() {
-        return deslizador;
+    public Deslizador(MsgFromDeslizador msg) {
+        this.msg = msg;
+        setBarraPosicao_Inicial();
     }
 
     public void analisarPosicaoDaBarra() {
@@ -70,7 +65,7 @@ class Deslizador implements TipoSingleton{
     private void setBarraPosicao_Normal(){
         this.estadoPosicaoBarra = this.FIXO;
         this.posicaoBarra = 0;
-        Volante.getInstancia().calcularPontos();
+        this.msg.setBarraPosicao_Normal();
     }
 
     public void setBarraPosicao_Saida(){

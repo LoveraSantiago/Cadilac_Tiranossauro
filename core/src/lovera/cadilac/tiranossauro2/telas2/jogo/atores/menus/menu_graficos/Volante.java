@@ -20,12 +20,9 @@ class Volante extends Actor implements TipoSingleton, Disposable{
     private TextureRegion setaFixa;
     private TextureRegion setaMovel;
 
-    public Volante() {
+    public Volante(Deslizador deslizador) {
         this.controle = new VolanteControle();
-        this.controle.inicializar();
-
-        this.listener = new VolanteListener(this);
-        this.listener.inicializar();
+        this.listener = new VolanteListener(this, deslizador, this.controle);
     }
 
     @Override
