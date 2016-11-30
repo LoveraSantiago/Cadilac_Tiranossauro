@@ -4,6 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
+
 class VolanteListener extends ActorGestureListener{
 
     private boolean toqueAcontecendo;
@@ -57,7 +59,7 @@ class VolanteListener extends ActorGestureListener{
         anguloMovel = 0;
         toqueAcontecendo = false;
         panAcontecendo = false;
-        msg.normatizarAngulo();
+        CameraManager.getInstance().normatizarAngulo();
     }
 
     private float getAngulo(float x0, float y0, float x1, float y1){

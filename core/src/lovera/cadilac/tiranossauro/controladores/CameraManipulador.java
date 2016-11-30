@@ -68,20 +68,20 @@ public class CameraManipulador implements Resetavel {
         this.ptDeRotacao.set(posicao.x, posicao.y);
     }
 
-    public void normatizarAngulo(){
-        if(this.anguloAtual < 0){
-            while(this.anguloAtual < 0){
-                this.anguloAtual += 360;
-            }
-            return;
-        }
-        else if(this.anguloAtual > 0){
-            while(this.anguloAtual > 360){
-                this.anguloAtual -= 360;
-            }
-            return;
-        }
-    }
+    public void normatizarAngulo(){//ok
+        if(this.anguloAtual < 0){//ok
+            while(this.anguloAtual < 0){//ok
+                this.anguloAtual += 360;//ok
+            }//ok
+            return;//ok
+        }//ok
+        else if(this.anguloAtual > 0){//ok
+            while(this.anguloAtual > 360){//ok
+                this.anguloAtual -= 360;//ok
+            }//ok
+            return;//ok
+        }//ok
+    }//ok
 
     public Vector3 reangularEmRelacaoAoPonto(Vector3 ptOrigem, Vector2 pontoRotacionar){
         reangularEmRelacaoAoPonto(ptOrigem.x, ptOrigem.y, pontoRotacionar.x, pontoRotacionar.y);

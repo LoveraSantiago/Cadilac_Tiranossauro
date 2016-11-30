@@ -8,7 +8,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 //Todo refatorar com classe CameraJogo
-public class CameraProjecao implements TipoCamera{
+class CameraProjecao implements TipoCamera{
 
     private final OrthographicCamera camera;
     private final Viewport viewport;

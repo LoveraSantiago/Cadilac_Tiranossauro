@@ -148,14 +148,14 @@ public final class TelaJogo implements MensagemDeMenus, Screen {
     }
 
     @Override
-    public void rotacionandoCamera(float angulo) {
+    public void rotacionandoCamera(float angulo) {//ok
         this.cameraManipulador.rotacionarCameraEmVoltaDoPonto(this.corredor.getPosicaoJogada(), angulo);
     }
 
     @Override
     public void normatizarAngulo() {
         this.cameraManipulador.normatizarAngulo();
-    }
+    }//ok
 
     @Override
     public Fase getFaseFromFaseManager() {

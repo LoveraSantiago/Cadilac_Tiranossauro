@@ -12,16 +12,24 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
 
     private CameraJogo cameraJogo;
     private CameraProjecao cameraProjecao;
+    private CameraAngulo angulo;
 
     @Override
     public void inicializar() {
         cameraManager = this;
         this.cameraProjecao = new CameraProjecao();
         this.cameraJogo = new CameraJogo();
+        this.angulo = new CameraAngulo();
     }
 
     public static CameraManager getInstance() {
         return cameraManager;
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        this.cameraJogo.resize(width, height);
+        this.cameraProjecao.resize(width, height);
     }
 
     @Override
@@ -45,10 +53,8 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
         this.cameraProjecao.updateSpriteBatch();
     }
 
-    @Override
-    public void resize(int width, int height) {
-        this.cameraJogo.resize(width, height);
-        this.cameraProjecao.resize(width, height);
+    public void normatizarAngulo(){
+        this.angulo.normatizarAngulo();
     }
 
     public OrthographicCamera getCameraProjecao() {
