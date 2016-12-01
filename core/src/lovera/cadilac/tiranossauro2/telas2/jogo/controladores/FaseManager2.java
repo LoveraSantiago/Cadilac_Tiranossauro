@@ -10,6 +10,7 @@ public final class FaseManager2 implements TipoSingleton{
 
     @Override
     public void inicializar() {
+        faseManager = this;
         this.faseAtual = Fase2.ESCOLHENDO_GRAFICO;
     }
 

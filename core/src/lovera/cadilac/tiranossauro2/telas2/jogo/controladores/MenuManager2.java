@@ -28,7 +28,7 @@ public class MenuManager2 implements TipoSingleton, TipoDesenhavel, Disposable{
     public void meDesenhar(Object objeto) {
         switch (FaseManager2.getInstance().getFaseAtual()){
             case ESCOLHENDO_GRAFICO :
-                this.menuGraficos.meDesenhar(mSpriteBatch.getInstance());
+                this.menuGraficos.meDesenhar(null);
                 break;
             case ACEITAR_ENTRADA :
 //                this.menuHelper.meDesenhar(spriteBatch);
