@@ -17,7 +17,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.ControleManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 
-class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
+final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
 
     private TextureAtlas atlas;
 

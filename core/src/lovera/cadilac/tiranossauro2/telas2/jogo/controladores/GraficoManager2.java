@@ -3,7 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 
-public class GraficoManager2 implements TipoSingleton{
+public final class GraficoManager2 implements TipoSingleton{
 
     private static GraficoManager2 graficoManager;
 

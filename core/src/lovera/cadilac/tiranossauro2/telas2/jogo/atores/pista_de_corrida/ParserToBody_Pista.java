@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 
-class ParserToBody_Pista implements TipoParseavel {
+final class ParserToBody_Pista implements TipoParseavel {
 
     @Override
     public Body meTransforme(Object tiledMap) {

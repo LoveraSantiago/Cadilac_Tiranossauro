@@ -1,6 +1,6 @@
 package lovera.cadilac.tiranossauro2.telas2.outras;
 
-public class AjustadorDeTela2 {
+public final class AjustadorDeTela2 {
 
     public  static final int ESCALA = 1;
 

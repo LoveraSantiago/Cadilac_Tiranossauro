@@ -9,7 +9,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 //CAMERAJOGO E ROTACIONADA CONTEM AS POSICOES VERDADEIRA DO JOGO
-class CameraJogo implements TipoCamera{
+final class CameraJogo implements TipoCamera{
 
     private final OrthographicCamera camera;
     private final Viewport viewport;

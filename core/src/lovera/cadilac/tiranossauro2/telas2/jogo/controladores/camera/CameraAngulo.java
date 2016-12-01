@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 
-class CameraAngulo {
+final class CameraAngulo {
 
     private float anguloAtual;
 

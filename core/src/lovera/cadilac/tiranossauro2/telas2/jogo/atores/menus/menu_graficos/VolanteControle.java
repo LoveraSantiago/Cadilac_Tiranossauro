@@ -2,11 +2,12 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos;
 
 import com.badlogic.gdx.math.Vector2;
 
-class VolanteControle{
+final class VolanteControle{
 
     private float larguraPonteiro;
     private float metadePonteiro;
     private float ptXinicioPonteiro;
+
     private final Vector2 ptMedioBarra;
 
     public VolanteControle() {
