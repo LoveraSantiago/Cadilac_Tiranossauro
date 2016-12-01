@@ -7,35 +7,23 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Disposable;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
-
-final class Volante extends Actor implements TipoSingleton, Disposable{
-
-    private static Volante volante;
+final class Volante extends Actor implements Disposable{
 
     private final VolanteControle controle;
     private final VolanteListener listener;
 
-    private Texture meiaBussola;
-    private TextureRegion setaFixa;
-    private TextureRegion setaMovel;
+    private final Texture meiaBussola;
+    private final TextureRegion setaFixa;
+    private final TextureRegion setaMovel;
 
     public Volante(Deslizador deslizador) {
         this.controle = new VolanteControle();
         this.listener = new VolanteListener(this, deslizador, this.controle);
-    }
 
-    @Override
-    public void inicializar() {
-        volante = this;
         this.setaFixa    = new TextureRegion(new Texture(Gdx.files.internal("setafixa.png")));
         this.setaMovel   = new TextureRegion(new Texture(Gdx.files.internal("setamovel.png")));
         this.meiaBussola = new Texture(Gdx.files.internal("meiabussola.png"));
         addListener(this.listener);
-    }
-
-    public static Volante getInstancia() {
-        return volante;
     }
 
     public void calcularPontos(){

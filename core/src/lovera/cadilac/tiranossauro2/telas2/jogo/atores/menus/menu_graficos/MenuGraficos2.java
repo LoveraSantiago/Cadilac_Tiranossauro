@@ -22,7 +22,6 @@ public final class MenuGraficos2 implements TipoDesenhavel, Disposable, MsgFromD
         this.deslizador = new Deslizador(this);
 
         this.volante = new Volante(this.deslizador);
-        this.volante.inicializar();
 
         this.parserTable = new ParserToTable_MenuGraficos2(this.volante, this.deslizador);
         this.table = this.parserTable.meTransforme(this.deslizador);
