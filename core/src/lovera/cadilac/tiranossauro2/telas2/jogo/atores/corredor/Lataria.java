@@ -10,22 +10,22 @@ import lovera.cadilac.tiranossauro.telas.AjustadorDeTela;
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 
-class Lataria implements TipoDesenhavel{
+final class Lataria implements TipoDesenhavel{
 
-    private Sprite sprite;
-    private SpriteBatch spriteBatchTemp;
+    private final Sprite sprite;
+    private final SpriteBatch spriteBatchTemp;
 
     public Lataria() {
         this.sprite = new Sprite(new Texture(Gdx.files.internal("redcarpeq.png")));
         this.sprite.setSize(this.sprite.getWidth() / AjustadorDeTela.ESCALA,
                             this.sprite.getHeight()/ AjustadorDeTela.ESCALA);
         this.sprite.setOriginCenter();
+
+        this.spriteBatchTemp = mSpriteBatch.getInstance();
     }
 
     @Override
     public void meDesenhar(Object objeto) {
-        this.spriteBatchTemp = mSpriteBatch.getInstance();
-
         this.spriteBatchTemp.begin();
         this.sprite.draw(this.spriteBatchTemp);
         this.spriteBatchTemp.end();

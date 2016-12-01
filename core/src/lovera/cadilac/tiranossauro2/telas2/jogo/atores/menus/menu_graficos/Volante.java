@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 
-class Volante extends Actor implements TipoSingleton, Disposable{
+final class Volante extends Actor implements TipoSingleton, Disposable{
 
     private static Volante volante;
 

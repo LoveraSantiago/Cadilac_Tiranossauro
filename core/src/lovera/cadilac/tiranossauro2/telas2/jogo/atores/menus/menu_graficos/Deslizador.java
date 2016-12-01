@@ -6,7 +6,7 @@ import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromDeslizador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 
-class Deslizador{
+final class Deslizador{
 
     private final byte ENTRADA = 0;
     private final byte FIXO    = 1;

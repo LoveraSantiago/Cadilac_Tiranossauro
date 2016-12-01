@@ -9,7 +9,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
-public class ParserToBody_Corredor implements TipoParseavel {
+public final class ParserToBody_Corredor implements TipoParseavel {
 
     @Override
     public Body meTransforme(Object objeto) {

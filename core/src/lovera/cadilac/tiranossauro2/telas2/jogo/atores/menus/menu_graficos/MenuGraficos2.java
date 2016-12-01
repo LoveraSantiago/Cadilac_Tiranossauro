@@ -9,7 +9,7 @@ import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromDeslizador;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
-public class MenuGraficos2 implements TipoDesenhavel, Disposable, MsgFromDeslizador{
+public final class MenuGraficos2 implements TipoDesenhavel, Disposable, MsgFromDeslizador{
 
     private final ParserToTable_MenuGraficos2 parserTable;
     private final Deslizador deslizador;

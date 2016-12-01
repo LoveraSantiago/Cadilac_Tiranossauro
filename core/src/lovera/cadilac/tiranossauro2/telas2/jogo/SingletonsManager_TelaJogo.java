@@ -24,7 +24,6 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
         new FaseManager2().inicializar();
 
-        //BOX2D DEVE SER INICIALIZADO ANTES DE CORREDOR E PISTA
         new MeuBox2D2().inicializar();
 
         this.pistaDeCorrida2 = new PistaDeCorrida2();
