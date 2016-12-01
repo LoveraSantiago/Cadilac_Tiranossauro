@@ -13,7 +13,7 @@ import lovera.cadilac.tiranossauro.telas.AjustadorDeTela;
 
 public class CameraManipulador implements Resetavel {
 
-    private float anguloAtual;
+    private float anguloAtual;//ok
 
     private float cosTemp;
     private float senTemp;

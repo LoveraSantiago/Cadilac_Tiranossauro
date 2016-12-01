@@ -12,14 +12,14 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
 
     private CameraJogo cameraJogo;
     private CameraProjecao cameraProjecao;
-    private CameraAngulo angulo;
+    private CameraAngulo cameraAngulo;
 
     @Override
     public void inicializar() {
         cameraManager = this;
         this.cameraProjecao = new CameraProjecao();
         this.cameraJogo = new CameraJogo();
-        this.angulo = new CameraAngulo();
+        this.cameraAngulo = new CameraAngulo(this.cameraJogo);
     }
 
     public static CameraManager getInstance() {
@@ -54,7 +54,11 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
     }
 
     public void normatizarAngulo(){
-        this.angulo.normatizarAngulo();
+        this.cameraAngulo.normatizarAngulo();
+    }
+
+    public void rotacionarCameraEmVoltaDoPonto(float angulo){
+        this.cameraAngulo.rotacionarCameraEmVoltaDoPonto(angulo);
     }
 
     public OrthographicCamera getCameraProjecao() {

@@ -1,5 +1,6 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
@@ -25,5 +26,9 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
     @Override
     public Body meTransforme(Object lataria) {
         return new ParserToBody_Corredor().meTransforme(lataria);
+    }
+
+    public Vector2 getPosicaoJogo(){
+        return this.corredor.getPosition();
     }
 }

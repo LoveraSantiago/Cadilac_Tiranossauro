@@ -47,7 +47,7 @@ class VolanteListener extends ActorGestureListener{
                                     x + this.atorVolante.getX(), y + this.atorVolante.getY());
 
             if(ultimoAngulo != anguloMovel){
-                msg.rotacionandoCamera(-(anguloMovel - ultimoAngulo));
+                CameraManager.getInstance().rotacionarCameraEmVoltaDoPonto(-(anguloMovel - ultimoAngulo));
             }
             ultimoAngulo = anguloMovel;
         }

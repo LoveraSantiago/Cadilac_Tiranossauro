@@ -25,4 +25,8 @@ public final class CorredorManager implements TipoSingleton, TipoDesenhavel{
     public void meDesenhar(Object objeto) {
         this.corredorP.meDesenhar(objeto);
     }
+
+    public Corredor2 getCorredorP() {
+        return corredorP;
+    }
 }
