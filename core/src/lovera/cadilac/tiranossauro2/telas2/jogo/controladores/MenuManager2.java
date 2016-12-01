@@ -1,7 +1,9 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
 
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Disposable;
 
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos.MenuGraficos2;
@@ -33,6 +35,10 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
 //                this.menuHelper.meDesenhar(spriteBatch);
                 break;
         }
+    }
+
+    public TipoControlavel getControlavelMenuGraficos(){
+        return this.menuGraficos;
     }
 
     @Override

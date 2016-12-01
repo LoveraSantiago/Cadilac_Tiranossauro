@@ -1,15 +1,17 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos;
 
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromDeslizador;
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
-public final class MenuGraficos2 implements TipoDesenhavel, Disposable, MsgFromDeslizador{
+public final class MenuGraficos2 implements TipoDesenhavel, Disposable, MsgFromDeslizador, TipoControlavel{
 
     private final ParserToTable_MenuGraficos2 parserTable;
     private final Deslizador deslizador;
@@ -40,6 +42,11 @@ public final class MenuGraficos2 implements TipoDesenhavel, Disposable, MsgFromD
     @Override
     public void setBarraPosicao_Normal() {
         this.volante.calcularPontos();
+    }
+
+    @Override
+    public InputProcessor passarInputProcessor() {
+        return this.stage;
     }
 
     @Override
