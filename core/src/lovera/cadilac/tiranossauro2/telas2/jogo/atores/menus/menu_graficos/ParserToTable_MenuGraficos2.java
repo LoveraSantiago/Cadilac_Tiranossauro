@@ -15,7 +15,6 @@ import lovera.cadilac.tiranossauro.telas.menus.MenuUtils;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.ControleManager2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 
 final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
 
@@ -31,7 +30,7 @@ final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
 
     //CRIANDO A TABLE DE MENUS
     @Override
-    public Table meTransforme(Object deslizadorP) {
+    public Table meTransforme(Object nulo) {
         this.atlas = new TextureAtlas("imgs_botoes_duplos/btn_img_dbl.atlas");
 
         Skin skin = new Skin(Gdx.files.internal("skins/uiskin.json"));

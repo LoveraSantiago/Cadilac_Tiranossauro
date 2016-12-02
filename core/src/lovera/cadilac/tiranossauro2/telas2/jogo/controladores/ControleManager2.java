@@ -29,6 +29,7 @@ public final class ControleManager2 implements TipoSingleton{
 
         MenuManager2 menuManagerTemp = MenuManager2.getInstancia();
         this.controleMenuGrafico = menuManagerTemp.getControlavelMenuGraficos();
+        this.controleMenuHelper  = menuManagerTemp.getControlavelMenuHelper();
 
         adicionarInputProcessor(this.controleMenuGrafico);
 
@@ -66,7 +67,7 @@ public final class ControleManager2 implements TipoSingleton{
 
 //        this.controlavelAtual = this.mapaControlaveis.get(graficoEnum);
         adicionarInputProcessor(this.controlavelAtual);
-//        adicionarInputProcessor(this.controleMenuHelper);
+        adicionarInputProcessor(this.controleMenuHelper);
         iniciar();
     }
 
