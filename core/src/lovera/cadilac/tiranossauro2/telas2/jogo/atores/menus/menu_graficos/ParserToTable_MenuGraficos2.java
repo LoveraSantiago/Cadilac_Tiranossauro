@@ -69,10 +69,10 @@ final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
             @Override
             public void clicked(InputEvent event, float x, float y) {
 
-                if(deslizador.isPosicaoBarraFixa()) return;
+                if(!deslizador.isPosicaoBarraFixa()) return;
 
-                GraficoManager2.getInstancia().setGraficoEscolhido(graficoEnum);
-                ControleManager2.getInstance().setGraficoEscolhido(graficoEnum);
+//                GraficoManager2.getInstancia().setGraficoEscolhido(graficoEnum);
+                ControleManager2.getInstance().setarControlavelAtual(graficoEnum);
 
                 deslizador.setBarraPosicao_Saida();
             }
