@@ -8,13 +8,16 @@ public final class CorredorManager implements TipoSingleton, TipoDesenhavel{
 
     private static CorredorManager corredorManager;
 
-    private Corredor2 corredorP;
+    private final Corredor2 corredorP;
     private Corredor2[] corredores;
+
+    public CorredorManager() {
+        this.corredorP = new Corredor2();
+    }
 
     @Override
     public void inicializar() {
         corredorManager = this;
-        this.corredorP = new Corredor2();
     }
 
     public static CorredorManager getInstancia() {

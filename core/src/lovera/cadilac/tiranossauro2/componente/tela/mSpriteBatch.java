@@ -8,10 +8,13 @@ public class mSpriteBatch implements TipoSingleton{
 
     private static SpriteBatch spriteBatch;
 
-    @Override
-    public void inicializar() {
+    public mSpriteBatch() {
         spriteBatch = new SpriteBatch();
     }
+
+    //SO DE ENFEITE
+    @Override
+    public void inicializar() {}
 
     public static SpriteBatch getInstancia() {
         return spriteBatch;

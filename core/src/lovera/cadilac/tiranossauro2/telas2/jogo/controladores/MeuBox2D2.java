@@ -15,14 +15,17 @@ public final class MeuBox2D2 implements TipoSingleton, TipoAtualizavel, TipoDese
 
     private static MeuBox2D2 meuBox;
 
-    private World world;
-    private Box2DDebugRenderer renderer;
+    private final World world;
+    private final Box2DDebugRenderer renderer;
+
+    public MeuBox2D2() {
+        this.world = new World(new Vector2(), true);
+        this.renderer = new Box2DDebugRenderer();
+    }
 
     @Override
     public void inicializar() {
         meuBox = this;
-        this.world = new World(new Vector2(), true);
-        this.renderer = new Box2DDebugRenderer();
     }
 
     public static MeuBox2D2 getInstancia() {

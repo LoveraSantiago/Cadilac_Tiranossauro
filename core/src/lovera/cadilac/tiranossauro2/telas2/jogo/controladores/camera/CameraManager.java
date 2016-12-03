@@ -10,16 +10,19 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
 
     private static CameraManager cameraManager;
 
-    private CameraJogo cameraJogo;
-    private CameraProjecao cameraProjecao;
-    private CameraAngulo cameraAngulo;
+    private final CameraJogo cameraJogo;
+    private final CameraProjecao cameraProjecao;
+    private final CameraAngulo cameraAngulo;
+
+    public CameraManager() {
+        this.cameraProjecao = new CameraProjecao();
+        this.cameraJogo = new CameraJogo();
+        this.cameraAngulo = new CameraAngulo(this.cameraJogo);
+    }
 
     @Override
     public void inicializar() {
         cameraManager = this;
-        this.cameraProjecao = new CameraProjecao();
-        this.cameraJogo = new CameraJogo();
-        this.cameraAngulo = new CameraAngulo(this.cameraJogo);
     }
 
     public static CameraManager getInstancia() {

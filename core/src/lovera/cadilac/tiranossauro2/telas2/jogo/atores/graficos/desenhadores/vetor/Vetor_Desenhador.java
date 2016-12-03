@@ -19,7 +19,6 @@ final class Vetor_Desenhador implements TipoDesenhavel, Disposable{
 
     private final Entrada2 entrada;
 
-
     public Vetor_Desenhador(Entrada2 entrada) {
         this.entrada = entrada;
         this.cameraProjecao = CameraManager.getInstancia().getCameraProjecao();

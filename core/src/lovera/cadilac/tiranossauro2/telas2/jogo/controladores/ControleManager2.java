@@ -17,8 +17,8 @@ public final class ControleManager2 implements TipoSingleton{
 
     private final InputMultiplexer inputMultiplexer;
 
-    private TipoControlavel controleMenuGrafico;
-    private TipoControlavel controleMenuHelper;
+    private final TipoControlavel controleMenuGrafico;
+    private final TipoControlavel controleMenuHelper;
     private TipoControlavel controlavelAtual;
 
     private final Map<GraficosEnum2, TipoControlavel> mapaControlaveis;
@@ -31,12 +31,6 @@ public final class ControleManager2 implements TipoSingleton{
 
             this.mapaControlaveis.put(chaveValor.getKey(), chaveValor.getValue());
         }
-    }
-
-    @Override
-    public void inicializar() {
-        controleManager = this;
-
 
         MenuManager2 menuManagerTemp = MenuManager2.getInstancia();
         this.controleMenuGrafico = menuManagerTemp.getControlavelMenuGraficos();
@@ -46,9 +40,12 @@ public final class ControleManager2 implements TipoSingleton{
 
         //SETANDO ALGUEM TEMPORARIAMENTE OBRIGATORIO EVITAR NULL POINTER E CHECAGEM A TODOS RENDER
         this.controlavelAtual = this.controleMenuGrafico;
-
-
         iniciar();
+    }
+
+    @Override
+    public void inicializar() {
+        controleManager = this;
     }
 
     public static ControleManager2 getInstancia() {

@@ -12,15 +12,17 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
 
     private static MenuManager2 menuManager2;
 
-    private MenuGraficos2 menuGraficos;
-    private MenuHelper2 menuHelper;
+    private final MenuGraficos2 menuGraficos;
+    private final MenuHelper2 menuHelper;
+
+    public MenuManager2() {
+        this.menuGraficos = new MenuGraficos2();
+        this.menuHelper = new MenuHelper2();
+    }
 
     @Override
     public void inicializar() {
         menuManager2 = this;
-
-        this.menuGraficos = new MenuGraficos2();
-        this.menuHelper = new MenuHelper2();
     }
 
     public static MenuManager2 getInstancia() {
