@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Disposable;
 import lovera.cadilac.tiranossauro.telas.menus.MenuUtils;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.utils.MenuUtils2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.ControleManager2;
 
 final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
@@ -49,10 +50,10 @@ final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
         tableResult.add(this.volante).width(MenuUtils.LARGURA_BTN * 4).height(MenuUtils.HALTURA_BTN * 2).colspan(4);
         tableResult.row();
 
-        tableResult.add(btnVetor).width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);
-        tableResult.add(btnExp)  .width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);
-        tableResult.add(btnLog)  .width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padRight(1).padBottom(5);
-        tableResult.add(btnParab).width(MenuUtils.LARGURA_BTN).height(MenuUtils.HALTURA_BTN).padBottom(5);
+        tableResult.add(btnVetor).width(MenuUtils2.LARGURA_BTN).height(MenuUtils2.HALTURA_BTN).padRight(1).padBottom(5);
+        tableResult.add(btnExp)  .width(MenuUtils2.LARGURA_BTN).height(MenuUtils2.HALTURA_BTN).padRight(1).padBottom(5);
+        tableResult.add(btnLog)  .width(MenuUtils2.LARGURA_BTN).height(MenuUtils2.HALTURA_BTN).padRight(1).padBottom(5);
+        tableResult.add(btnParab).width(MenuUtils2.LARGURA_BTN).height(MenuUtils2.HALTURA_BTN).padBottom(5);
         return tableResult;
     }
 
@@ -71,7 +72,7 @@ final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
                 if(!deslizador.isPosicaoBarraFixa()) return;
 
 //                GraficoManager2.getInstancia().setGraficoEscolhido(graficoEnum);
-                ControleManager2.getInstance().setarControlavelAtual(graficoEnum);
+                ControleManager2.getInstancia().setarControlavelAtual(graficoEnum);
 
                 deslizador.setBarraPosicao_Saida();
             }

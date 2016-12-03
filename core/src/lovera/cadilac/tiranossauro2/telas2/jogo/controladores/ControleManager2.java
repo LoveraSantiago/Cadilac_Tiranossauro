@@ -45,7 +45,7 @@ public final class ControleManager2 implements TipoSingleton{
         iniciar();
     }
 
-    public static ControleManager2 getInstance() {
+    public static ControleManager2 getInstancia() {
         return controleManager;
     }
 

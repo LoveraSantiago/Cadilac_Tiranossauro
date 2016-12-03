@@ -1,6 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
 
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
@@ -30,12 +29,12 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
 
     @Override
     public void meDesenhar(Object objeto) {
-        switch (FaseManager2.getInstance().getFaseAtual()){
+        switch (FaseManager2.getInstancia().getFaseAtual()){
             case ESCOLHENDO_GRAFICO :
                 this.menuGraficos.meDesenhar(null);
                 break;
             case ACEITAR_ENTRADA :
-//                this.menuHelper.meDesenhar(spriteBatch);
+                this.menuHelper.meDesenhar(null);
                 break;
         }
     }
@@ -51,5 +50,6 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
     @Override
     public void dispose() {
         this.menuGraficos.dispose();
+        this.menuHelper.dispose();
     }
 }

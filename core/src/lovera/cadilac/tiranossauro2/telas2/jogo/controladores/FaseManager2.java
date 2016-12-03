@@ -22,7 +22,7 @@ public final class FaseManager2 implements TipoSingleton{
         this.faseAtual = faseAtual;
     }
 
-    public static FaseManager2 getInstance(){
+    public static FaseManager2 getInstancia(){
         return faseManager;
     }
 }

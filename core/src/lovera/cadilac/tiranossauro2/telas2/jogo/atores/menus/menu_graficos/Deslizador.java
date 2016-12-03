@@ -53,7 +53,7 @@ final class Deslizador{
         }
         else{
             setBarraPosicao_Inicial();
-            FaseManager2.getInstance().setFaseAtual(Fase2.ACEITAR_ENTRADA);
+            FaseManager2.getInstancia().setFaseAtual(Fase2.ACEITAR_ENTRADA);
         }
     }
 
