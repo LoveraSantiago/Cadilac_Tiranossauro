@@ -38,7 +38,7 @@ public final class GraficoManager2 implements TipoSingleton, TipoDesenhavel, Dis
 
     @Override
     public void meDesenhar(Object objeto) {
-       if(this.faseManager2.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
+       if(this.faseManager2.isFaseAtual(Fase2.JOGANDO)){
            this.graficoAtual.meDesenhar(null);
        }
     }   
