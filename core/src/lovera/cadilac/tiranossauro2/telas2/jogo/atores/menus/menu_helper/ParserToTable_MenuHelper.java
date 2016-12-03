@@ -19,6 +19,8 @@ class ParserToTable_MenuHelper implements TipoParseavel, Disposable{
 
     @Override
     public Actor meTransforme(Object objeto) {
+        this.atlas = new TextureAtlas("imgs_botoes_menuhelper/btn_menu_helper.atlas");
+
         Skin skin = new Skin(Gdx.files.internal("skins/uiskin.json"));
         skin.addRegions(this.atlas);
 
