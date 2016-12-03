@@ -22,7 +22,7 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
         this.cameraAngulo = new CameraAngulo(this.cameraJogo);
     }
 
-    public static CameraManager getInstance() {
+    public static CameraManager getInstancia() {
         return cameraManager;
     }
 

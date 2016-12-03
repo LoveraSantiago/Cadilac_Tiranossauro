@@ -68,7 +68,6 @@ class MenuHelper implements Desenhavel, Controlavel, Disposable {
                 msg.helperEscolhido(btnEscolhido);
             }
         });
-
         return btn;
     }
 
@@ -90,3 +89,4 @@ class MenuHelper implements Desenhavel, Controlavel, Disposable {
         this.atlas.dispose();
     }
 }
+

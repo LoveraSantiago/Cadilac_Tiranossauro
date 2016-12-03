@@ -36,7 +36,7 @@ public final class MeuBox2D2 implements TipoSingleton, TipoAtualizavel, TipoDese
 
     @Override
     public void meDesenhar(Object objeto) {
-        this.renderer.render(this.world, CameraManager.getInstance().getCameraJogo().combined);
+        this.renderer.render(this.world, CameraManager.getInstancia().getCameraJogo().combined);
     }
 
     public World getWorld() {

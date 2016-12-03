@@ -40,7 +40,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
     }
 
     public void render(float delta){
-        this.cameraManagerTemp = CameraManager.getInstance();
+        this.cameraManagerTemp = CameraManager.getInstancia();
         this.meuBox2DTemp = MeuBox2D2.getInstancia();
 
         this.cameraManagerTemp.atualizar();

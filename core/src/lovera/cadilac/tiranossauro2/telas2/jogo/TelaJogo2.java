@@ -28,7 +28,7 @@ public final class TelaJogo2 implements Screen{
 
     @Override
     public void resize(int width, int height) {
-        CameraManager.getInstance().resize(width, height);
+        CameraManager.getInstancia().resize(width, height);
     }
 
     @Override

@@ -14,15 +14,19 @@ public final class FaseManager2 implements TipoSingleton{
         this.faseAtual = Fase2.ESCOLHENDO_GRAFICO;
     }
 
+    public static FaseManager2 getInstancia(){
+        return faseManager;
+    }
+
+    public boolean isFaseAtual(Fase2 fase){
+        return this.faseAtual == fase;
+    }
+
     public Fase2 getFaseAtual() {
         return faseAtual;
     }
 
     public void setFaseAtual(Fase2 faseAtual) {
         this.faseAtual = faseAtual;
-    }
-
-    public static FaseManager2 getInstancia(){
-        return faseManager;
     }
 }

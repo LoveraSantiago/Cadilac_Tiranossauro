@@ -21,7 +21,7 @@ public final class MenuHelper2 implements TipoControlavel, TipoDesenhavel, Dispo
         this.parserTable = new ParserToTable_MenuHelper();
         this.table = parserTable.meTransforme(null);
 
-        this.stage = new Stage(CameraManager.getInstance().getViewPortCameraProjecao(), mSpriteBatch.getInstance());
+        this.stage = new Stage(CameraManager.getInstancia().getViewPortCameraProjecao(), mSpriteBatch.getInstance());
         this.stage.addActor(this.table);
     }
 

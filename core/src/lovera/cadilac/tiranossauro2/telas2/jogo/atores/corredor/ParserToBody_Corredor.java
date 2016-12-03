@@ -14,7 +14,7 @@ public final class ParserToBody_Corredor implements TipoParseavel {
     @Override
     public Body meTransforme(Object objeto) {
         Lataria lataria = (Lataria) objeto;
-        CameraManager cameraManagerTemp = CameraManager.getInstance();
+        CameraManager cameraManagerTemp = CameraManager.getInstancia();
         float xInicial = cameraManagerTemp.getCameraProjecao().viewportWidth  / 2;
         float yInicial = cameraManagerTemp.getCameraProjecao().viewportHeight / 6;
 

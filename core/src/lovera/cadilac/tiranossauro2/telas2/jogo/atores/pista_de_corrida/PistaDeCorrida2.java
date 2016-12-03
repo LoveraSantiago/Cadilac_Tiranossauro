@@ -34,7 +34,7 @@ public class PistaDeCorrida2 implements TipoParseavel, TipoDesenhavel, TipoSingl
 
     @Override
     public void meDesenhar(Object objeto) {
-        this.renderer.setView(CameraManager.getInstance().getCameraJogo());
+        this.renderer.setView(CameraManager.getInstancia().getCameraJogo());
         this.renderer.render();
     }
 

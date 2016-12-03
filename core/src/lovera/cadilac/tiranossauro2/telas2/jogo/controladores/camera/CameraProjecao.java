@@ -7,7 +7,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
-//Todo refatorar com classe CameraJogo
 final class CameraProjecao implements TipoCamera{
 
     private final OrthographicCamera camera;

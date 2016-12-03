@@ -3,29 +3,40 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 
 public final class ControleManager2 implements TipoSingleton{
 
     private static ControleManager2 controleManager;
 
-    private InputMultiplexer inputMultiplexer;
+    private final InputMultiplexer inputMultiplexer;
 
     private TipoControlavel controleMenuGrafico;
     private TipoControlavel controleMenuHelper;
     private TipoControlavel controlavelAtual;
 
-    private Map<GraficosEnum2, TipoControlavel> mapaControlaveis;
+    private final Map<GraficosEnum2, TipoControlavel> mapaControlaveis;
 
+    public ControleManager2(Map<GraficosEnum2, EntradaGrafica> mapaEntradaGraficas) {
+        this.inputMultiplexer = new InputMultiplexer();
+
+        this.mapaControlaveis = new HashMap<GraficosEnum2, TipoControlavel>(mapaEntradaGraficas.size());
+        for (Map.Entry<GraficosEnum2, EntradaGrafica> chaveValor : mapaEntradaGraficas.entrySet()) {
+
+            this.mapaControlaveis.put(chaveValor.getKey(), chaveValor.getValue());
+        }
+    }
 
     @Override
     public void inicializar() {
         controleManager = this;
-        this.inputMultiplexer = new InputMultiplexer();
+
 
         MenuManager2 menuManagerTemp = MenuManager2.getInstancia();
         this.controleMenuGrafico = menuManagerTemp.getControlavelMenuGraficos();
@@ -36,11 +47,6 @@ public final class ControleManager2 implements TipoSingleton{
         //SETANDO ALGUEM TEMPORARIAMENTE OBRIGATORIO EVITAR NULL POINTER E CHECAGEM A TODOS RENDER
         this.controlavelAtual = this.controleMenuGrafico;
 
-//        this.mapaControlaveis = new HashMap<GraficosEnum2, TipoControlavel>(mapaGraficos.size());
-//        for (Map.Entry<GraficosEnum2, Grafico> chaveValor : mapaGraficos.entrySet()) {
-//
-//            this.mapaControlaveis.put(chaveValor.getKey(), chaveValor.getValue());
-//        }
 
         iniciar();
     }
