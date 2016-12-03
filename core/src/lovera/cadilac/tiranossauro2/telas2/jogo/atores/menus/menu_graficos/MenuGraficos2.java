@@ -28,7 +28,7 @@ public final class MenuGraficos2 implements TipoDesenhavel, Disposable, MsgFromD
         this.parserTable = new ParserToTable_MenuGraficos2(this.volante, this.deslizador);
         this.table = this.parserTable.meTransforme(this.deslizador);
 
-        this.stage = new Stage(CameraManager.getInstancia().getViewPortCameraProjecao(), mSpriteBatch.getInstance());
+        this.stage = new Stage(CameraManager.getInstancia().getViewPortCameraProjecao(), mSpriteBatch.getInstancia());
         this.stage.addActor(this.table);
     }
 

@@ -1,5 +1,6 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -17,6 +18,11 @@ public class PistaDeCorrida2 implements TipoParseavel, TipoDesenhavel, TipoSingl
     private static PistaDeCorrida2 pista;
 
     private TiledMapRenderer renderer;
+    private final OrthographicCamera camera;
+
+    public PistaDeCorrida2() {
+        this.camera = CameraManager.getInstancia().getCameraJogo();
+    }
 
     @Override
     public void inicializar() {
@@ -34,7 +40,7 @@ public class PistaDeCorrida2 implements TipoParseavel, TipoDesenhavel, TipoSingl
 
     @Override
     public void meDesenhar(Object objeto) {
-        this.renderer.setView(CameraManager.getInstancia().getCameraJogo());
+        this.renderer.setView(this.camera);
         this.renderer.render();
     }
 

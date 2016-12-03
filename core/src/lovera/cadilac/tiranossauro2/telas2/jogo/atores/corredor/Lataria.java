@@ -21,7 +21,7 @@ final class Lataria implements TipoDesenhavel{
                             this.sprite.getHeight()/ AjustadorDeTela.ESCALA);
         this.sprite.setOriginCenter();
 
-        this.spriteBatchTemp = mSpriteBatch.getInstance();
+        this.spriteBatchTemp = mSpriteBatch.getInstancia();
     }
 
     @Override

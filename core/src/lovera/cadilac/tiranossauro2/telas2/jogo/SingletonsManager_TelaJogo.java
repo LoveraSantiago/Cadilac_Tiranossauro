@@ -7,21 +7,27 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeC
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.ControleManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MenuManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
 final class SingletonsManager_TelaJogo implements Disposable{
 
-    private CameraManager cameraManagerTemp;
-    private MeuBox2D2 meuBox2DTemp;
-    private CorredorManager corredorManager;
-    private PistaDeCorrida2 pistaDeCorrida2;
+    private CameraManager cameraManager;
     private MenuManager2 menuManager2;
+    private CorredorManager corredorManager;
+    private GraficoManager2 graficoManager2;
+
+    private MeuBox2D2 meuBox2DTemp;
+
+    private PistaDeCorrida2 pistaDeCorrida2;
 
     public void iniciliazarSingletons(){
         new mSpriteBatch().inicializar();
-        new CameraManager().inicializar();
+
+        this.cameraManager = new CameraManager();
+        this.cameraManager.inicializar();
 
         new FaseManager2().inicializar();
 
@@ -36,34 +42,39 @@ final class SingletonsManager_TelaJogo implements Disposable{
         this.menuManager2 = new MenuManager2();
         this.menuManager2.inicializar();
 
-        new ControleManager2().inicializar();
+        this.graficoManager2 = new GraficoManager2();
+        this.graficoManager2.inicializar();
+
+        new ControleManager2(this.graficoManager2.getMapaEntradaGraficas()).inicializar();
     }
 
     public void render(float delta){
-        this.cameraManagerTemp = CameraManager.getInstancia();
         this.meuBox2DTemp = MeuBox2D2.getInstancia();
 
-        this.cameraManagerTemp.atualizar();
+        this.cameraManager.atualizar();
         this.meuBox2DTemp.atualizar();
 
         //UPDATE DO SPRITEBATCH COM CAMERA JOGO PARA RENDERIZAR PISTA
-        this.cameraManagerTemp.updateSpriteBatch_CamJogo();
+        this.cameraManager.updateSpriteBatch_CamJogo();
         this.pistaDeCorrida2.meDesenhar(null);
 
         //UPDATE DO SPRITEBATCH COM CAMERA NORMAL
-        this.cameraManagerTemp.updateSpriteBatch_CamProj();
+        this.cameraManager.updateSpriteBatch_CamProj();
         this.corredorManager.meDesenhar(null);
 
         this.menuManager2.meDesenhar(null);
 
         //SENDO CHAMADO POR ULTIMO PARA PODER SER VISUALIZADO POR CIMA DA TELA
         this.meuBox2DTemp.meDesenhar(null);
+        this.graficoManager2.meDesenhar(null);
     }
 
     @Override
     public void dispose() {
-        mSpriteBatch.getInstance().dispose();
+        mSpriteBatch.getInstancia().dispose();
         MeuBox2D2.getInstancia().dispose();
         this.menuManager2.dispose();
     }
+
+
 }

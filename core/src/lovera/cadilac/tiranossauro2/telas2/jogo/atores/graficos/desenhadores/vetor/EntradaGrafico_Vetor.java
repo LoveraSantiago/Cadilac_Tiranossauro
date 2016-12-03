@@ -2,8 +2,6 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.ve
 
 import com.badlogic.gdx.InputProcessor;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
@@ -26,5 +24,10 @@ public final class EntradaGrafico_Vetor extends EntradaGrafica{
     @Override
     public InputProcessor passarInputProcessor() {
         return this.entrada.passarInputProcessor();
+    }
+
+    @Override
+    public void dispose() {
+        this.desenhador.dispose();
     }
 }

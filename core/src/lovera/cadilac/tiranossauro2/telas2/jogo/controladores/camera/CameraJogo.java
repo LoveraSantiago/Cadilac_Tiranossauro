@@ -29,7 +29,7 @@ final class CameraJogo implements TipoCamera{
 
     @Override
     public void updateSpriteBatch(){
-        mSpriteBatch.getInstance().setProjectionMatrix(this.camera.combined);
+        mSpriteBatch.getInstancia().setProjectionMatrix(this.camera.combined);
     }
 
     @Override

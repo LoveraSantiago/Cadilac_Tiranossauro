@@ -13,7 +13,7 @@ public class mSpriteBatch implements TipoSingleton{
         spriteBatch = new SpriteBatch();
     }
 
-    public static SpriteBatch getInstance() {
+    public static SpriteBatch getInstancia() {
         return spriteBatch;
     }
 }
