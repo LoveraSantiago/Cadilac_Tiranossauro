@@ -73,12 +73,12 @@ public final class PincaEntrada2 extends Entrada2 {
 
     @Override
     public Vector3 getPtSuperior() {
-        return null;
+        return this.ptSuperior;
     }
 
     @Override
     public Vector3 getPtLateral() {
-        return null;
+        return this.ptLateral;
     }
 
     @Override
