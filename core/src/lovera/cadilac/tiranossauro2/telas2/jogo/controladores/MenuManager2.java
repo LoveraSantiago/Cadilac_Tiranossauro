@@ -29,6 +29,7 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
         return menuManager2;
     }
 
+    //CASOS ACEITAR ENTRADA E JOGANDO PARA POSICIONAR FORA E DENTRO DA TELA ATE TER O SEU PROPRIO COMPORTAMENTO PERSONALIZADO
     @Override
     public void meDesenhar(Object objeto) {
         switch (FaseManager2.getInstancia().getFaseAtual()){
@@ -36,7 +37,10 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
                 this.menuGraficos.meDesenhar(null);
                 break;
             case ACEITAR_ENTRADA :
-                this.menuHelper.meDesenhar(null);
+                this.menuHelper.meDesenhar(0f);
+                break;
+            case JOGANDO:
+                this.menuHelper.meDesenhar(-160f);
                 break;
         }
     }

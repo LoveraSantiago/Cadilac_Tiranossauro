@@ -27,7 +27,7 @@ public final class MenuHelper2 implements TipoControlavel, TipoDesenhavel, Dispo
 
     @Override
     public void meDesenhar(Object objeto) {
-        this.table.setPosition(0, 0);
+        this.table.setPosition((Float) objeto, 0);
         this.stage.draw();
     }
 
