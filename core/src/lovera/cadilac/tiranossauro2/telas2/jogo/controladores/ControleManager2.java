@@ -68,7 +68,7 @@ public final class ControleManager2 implements TipoSingleton{
     public void setarControlavelAtual(GraficosEnum2 graficoEnum){
         removerInputProcessors();
 
-//        this.controlavelAtual = this.mapaControlaveis.get(graficoEnum);
+        this.controlavelAtual = this.mapaControlaveis.get(graficoEnum);
         adicionarInputProcessor(this.controlavelAtual);
         adicionarInputProcessor(this.controleMenuHelper);
         iniciar();
