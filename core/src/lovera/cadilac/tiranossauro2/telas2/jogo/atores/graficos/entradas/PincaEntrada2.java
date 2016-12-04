@@ -50,7 +50,18 @@ public final class PincaEntrada2 extends Entrada2 {
 
     @Override
     public void pinchStop() {
-        super.pinchStop();
+        if(!this.faseManager.isFaseAtual(Fase2.JOGANDO)){
+            return;
+        }
+
+        if(isPtValidos()) {
+//            this.corredor.criarMouseJoint();
+//            this.msg.finalizadoFromInput();
+            this.faseManager.setFaseAtual(Fase2.ACAO);
+        }
+        else{
+            this.faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
+        }
     }
 
     private void determinarPontosMaximos(Vector2 p1, Vector2 p2){
