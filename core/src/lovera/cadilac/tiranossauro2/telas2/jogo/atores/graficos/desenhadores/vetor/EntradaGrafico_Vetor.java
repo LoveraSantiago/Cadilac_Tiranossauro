@@ -22,6 +22,7 @@ public final class EntradaGrafico_Vetor extends EntradaGrafica{
     private final Vector2 posicaoCorredorP;
 
     public EntradaGrafico_Vetor() {
+        super();
         this.entrada = new PincaEntrada2();
         this.desenhador = new Vetor_Desenhador(this.entrada);
 

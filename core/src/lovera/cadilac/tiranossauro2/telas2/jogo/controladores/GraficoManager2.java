@@ -9,17 +9,21 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.vazio.EntradaGrafico_Vazio;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.vetor.EntradaGrafico_Vetor;
 
 public final class GraficoManager2 implements TipoSingleton, TipoDesenhavel, Disposable{
     
     private static GraficoManager2 graficoManager;
 
+    private EntradaGrafica graficoAtual;
     private final Map<GraficosEnum2, EntradaGrafica> mapaEntradaGraficas;
 
     public GraficoManager2() {
         this.mapaEntradaGraficas = new HashMap<GraficosEnum2, EntradaGrafica>(1);
         this.mapaEntradaGraficas.put(GraficosEnum2.VETOR, new EntradaGrafico_Vetor());
+
+        this.graficoAtual = new EntradaGrafico_Vazio();
     }
 
     @Override
@@ -30,7 +34,6 @@ public final class GraficoManager2 implements TipoSingleton, TipoDesenhavel, Dis
     public static GraficoManager2 getInstancia() {
         return graficoManager;
     }
-    private EntradaGrafica graficoAtual;    
 
     @Override
     public void meDesenhar(Object objeto) {
