@@ -17,6 +17,8 @@ public final class PincaEntrada2 extends Entrada2 {
     private final Vector3 ptSuperior;
     private final Vector3 ptLateral;
     private final Vector3 ptSuperiorProjetado;
+    private final Vector3 copiaPtSuperior;
+    private final Vector3 copiaPtLateral;
 
     private final Vector2 posicaoCorredorP;
 
@@ -27,6 +29,8 @@ public final class PincaEntrada2 extends Entrada2 {
         this.ptSuperior          = new Vector3();
         this.ptLateral           = new Vector3();
         this.ptSuperiorProjetado = new Vector3();
+        this.copiaPtSuperior     = new Vector3();
+        this.copiaPtLateral      = new Vector3();
 
         this.posicaoCorredorP = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
     }
@@ -84,12 +88,16 @@ public final class PincaEntrada2 extends Entrada2 {
 
     @Override
     public Vector3 getPtSuperior() {
-        return this.ptSuperior;
+        this.copiaPtSuperior.set(this.ptSuperior);
+        this.cameraProjecao.unproject(this.copiaPtSuperior);
+        return this.copiaPtSuperior;
     }
 
     @Override
     public Vector3 getPtLateral() {
-        return this.ptLateral;
+        this.copiaPtLateral.set(this.ptLateral);
+        this.cameraProjecao.unproject(this.copiaPtLateral);
+        return this.copiaPtLateral;
     }
 
     @Override
