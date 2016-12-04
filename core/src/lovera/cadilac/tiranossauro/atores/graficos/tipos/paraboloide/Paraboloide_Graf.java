@@ -49,26 +49,26 @@ final class Paraboloide_Graf implements Disposable {
     }
 
     private void definirDirecao(Vector3 entradaPtLateral) {
-        this.lado = entradaPtLateral.x > this.corredor.getPosicaoProjX() ? Direcao.DIREITA : Direcao.ESQUERDA;
+        this.lado = entradaPtLateral.x > this.corredor.getPosicaoProjX() ? Direcao.DIREITA : Direcao.ESQUERDA;//ok
     }
 
     //LEMBRETE: entradaPtSuperior vira o ponto X e entradaPtLateral vira o pontovertice
     private void definirEquacaoQuadratica(Vector3 entradaPtSuperior, Vector3 entradaPtLateral){
-        entradaPtSuperior.x = entradaPtSuperior.y - this.corredor.getPosicaoProjY();
-        entradaPtSuperior.y = 0;
+        entradaPtSuperior.x = entradaPtSuperior.y - this.corredor.getPosicaoProjY();//ok
+        entradaPtSuperior.y = 0;//ok
 
 
-        if(this.lado == Direcao.DIREITA){
-            entradaPtLateral.y = entradaPtLateral.x - this.corredor.getPosicaoProjX();
-        }
-        else{
-            entradaPtLateral.y = this.corredor.getPosicaoProjX() - entradaPtLateral.x;
-        }
-        entradaPtLateral.x = entradaPtSuperior.x / 2;
+        if(this.lado == Direcao.DIREITA){//ok
+            entradaPtLateral.y = entradaPtLateral.x - this.corredor.getPosicaoProjX();//ok
+        }//ok
+        else{//ok
+            entradaPtLateral.y = this.corredor.getPosicaoProjX() - entradaPtLateral.x;//ok
+        }//ok
+        entradaPtLateral.x = entradaPtSuperior.x / 2;//ok
 
-        this.quadratica.definirEquacaoQuadratica(entradaPtLateral.x, entradaPtLateral.y, entradaPtSuperior.x, entradaPtSuperior.y);
+        this.quadratica.definirEquacaoQuadratica(entradaPtLateral.x, entradaPtLateral.y, entradaPtSuperior.x, entradaPtSuperior.y);//ok
 
-        definirEixo(entradaPtSuperior, entradaPtLateral);
+        definirEixo(entradaPtSuperior, entradaPtLateral);//ok
     }
 
     private void definirEixo(Vector3 entradaPtSuperior, Vector3 entradaPtLateral) {
@@ -76,24 +76,24 @@ final class Paraboloide_Graf implements Disposable {
     }
 
     //LEMBRETE: entradaPtSuperior vira o ponto X e entradaPtLateral vira o pontovertice
-    private void desenharParabola(Vector3 entradaPtSuperior){
-        this.shapeRenderer.setProjectionMatrix(this.corredor.getCameraManipulador().getCameraProjecao().combined);
-        this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        this.shapeRenderer.setColor(1.0f, 0.4f, 0f, 0f);
+    private void desenharParabola(Vector3 entradaPtSuperior){//ok
+        this.shapeRenderer.setProjectionMatrix(this.corredor.getCameraManipulador().getCameraProjecao().combined);//ok
+        this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);//ok
+        this.shapeRenderer.setColor(1.0f, 0.4f, 0f, 0f);//ok
 
-        Gdx.gl.glLineWidth(60);
+        Gdx.gl.glLineWidth(60);//ok
 
-        this.pt1Desenho.set(this.corredor.getPosicaoProjetada());
-        if(lado == Direcao.DIREITA){
-            procedimentoADireita(entradaPtSuperior);
-            this.corredor.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalDireita(0, this.corredor.getPosicaoProjetada()));
-        }
-        else{
-            procedimentoAEsquerda(entradaPtSuperior);
-            this.corredor.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalEsquerda(0, this.corredor.getPosicaoProjetada()));
-        }
-        this.shapeRenderer.end();
-    }
+        this.pt1Desenho.set(this.corredor.getPosicaoProjetada());//ok
+        if(lado == Direcao.DIREITA){//ok
+            procedimentoADireita(entradaPtSuperior);//ok
+            this.corredor.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalDireita(0, this.corredor.getPosicaoProjetada()));//ok
+        }//ok
+        else{//ok
+            procedimentoAEsquerda(entradaPtSuperior);//ok
+            this.corredor.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalEsquerda(0, this.corredor.getPosicaoProjetada()));//ok
+        }//ok
+        this.shapeRenderer.end();//ok
+    }//ok
 
     private void procedimentoADireita(Vector3 entradaPtSuperior){
         for(this.contador = 0; this.contador < entradaPtSuperior.x; this.contador = this.contador + 1f){

@@ -11,7 +11,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
-final class Vetor_Desenhador implements TipoDesenhavel, Disposable{
+final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
 
     private final ShapeRenderer shapeRenderer;
     private final OrthographicCamera cameraProjecao;
@@ -19,7 +19,7 @@ final class Vetor_Desenhador implements TipoDesenhavel, Disposable{
 
     private final Entrada2 entrada;
 
-    public Vetor_Desenhador(Entrada2 entrada) {
+    public DesenhadorGraf_Vetor(Entrada2 entrada) {
         this.entrada = entrada;
         this.cameraProjecao = CameraManager.getInstancia().getCameraProjecao();
         this.posicaoJogadorP = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();

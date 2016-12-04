@@ -1,4 +1,5 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.vetor;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.parabola;
+
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
@@ -11,22 +12,23 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
-public final class EntradaGrafico_Vetor extends EntradaGrafica{
+public final class EntradaGrafico_Parabola extends EntradaGrafica{
 
     private final Entrada2 entrada;
-    private final DesenhadorGraf_Vetor desenhador;
+    private final DesenhadorGraf_Parabola desenhador;
 
-    private final FaseManager2 faseManager2;
-
+    private final FaseManager2 faseManager2
+            ;
     private final Vector2 posicaoCorredorP;
 
-    public EntradaGrafico_Vetor() {
+    public EntradaGrafico_Parabola() {
         super();
         this.entrada = new PincaEntrada2();
-        this.desenhador = new DesenhadorGraf_Vetor(this.entrada);
+        this.desenhador = new DesenhadorGraf_Parabola(this.entrada);
 
         this.faseManager2 = FaseManager2.getInstancia();
         this.posicaoCorredorP = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
+
     }
 
     @Override
@@ -38,6 +40,7 @@ public final class EntradaGrafico_Vetor extends EntradaGrafica{
             super.getAreaJogavel2().setarTamanhoEDesenhar(0, this.posicaoCorredorP.y, AjustadorDeTela2.LARGURA_TELA, AjustadorDeTela2.ALTURA_TELA - this.posicaoCorredorP.y);
             this.desenhador.meDesenhar(null);
         }
+
     }
 
     @Override
