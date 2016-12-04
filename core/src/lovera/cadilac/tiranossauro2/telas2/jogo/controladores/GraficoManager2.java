@@ -15,15 +15,11 @@ public final class GraficoManager2 implements TipoSingleton, TipoDesenhavel, Dis
     
     private static GraficoManager2 graficoManager;
 
-    private final FaseManager2 faseManager2;
-
     private final Map<GraficosEnum2, EntradaGrafica> mapaEntradaGraficas;
 
     public GraficoManager2() {
         this.mapaEntradaGraficas = new HashMap<GraficosEnum2, EntradaGrafica>(1);
         this.mapaEntradaGraficas.put(GraficosEnum2.VETOR, new EntradaGrafico_Vetor());
-
-        this.faseManager2 = FaseManager2.getInstancia();
     }
 
     @Override
@@ -38,9 +34,7 @@ public final class GraficoManager2 implements TipoSingleton, TipoDesenhavel, Dis
 
     @Override
     public void meDesenhar(Object objeto) {
-       if(this.faseManager2.isFaseAtual(Fase2.JOGANDO)){
            this.graficoAtual.meDesenhar(null);
-       }
     }   
 
     public void setGraficoEscolhido(GraficosEnum2 graficoEnum){
