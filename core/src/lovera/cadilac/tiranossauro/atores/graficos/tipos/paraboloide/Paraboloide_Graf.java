@@ -31,17 +31,17 @@ final class Paraboloide_Graf implements Disposable {
     private final Paraboloide_ProjetorPtFuturo projetorPt;
 
     public Paraboloide_Graf(Corredor corredor, EquacaoQuadratica quadratica, Paraboloide_ProjetorPtFuturo projetorPt) {
-        this.quadratica = quadratica;
-        this.corredor = corredor;
-        this.projetorPt = projetorPt;
+        this.quadratica = quadratica;//ok
+        this.corredor = corredor;//ok
+        this.projetorPt = projetorPt;//ok
 
-        this.shapeRenderer = new ShapeRenderer();
-        this.pt1Desenho = new Vector2();
-        this.pt2Desenho = new Vector2();
+        this.shapeRenderer = new ShapeRenderer();//ok
+        this.pt1Desenho = new Vector2();//ok
+        this.pt2Desenho = new Vector2();//ok
     }
 
     public void desenharGrafico(Vector3 entradaPtSuperior, Vector3 entradaPtLateral) {
-        this.alturaChegadaTemp = entradaPtSuperior.y;
+        this.alturaChegadaTemp = entradaPtSuperior.y;//ok
 
         definirDirecao(entradaPtLateral);
         definirEquacaoQuadratica(entradaPtSuperior, entradaPtLateral);
