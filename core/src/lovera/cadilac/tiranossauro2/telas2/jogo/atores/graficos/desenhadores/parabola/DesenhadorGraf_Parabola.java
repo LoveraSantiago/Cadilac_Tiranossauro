@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
@@ -27,6 +28,8 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
 
     private final Vector2 pt1Desenho;
     private final Vector2 pt2Desenho;
+
+    private final Corredor2 corredorP;
     private final Vector2 posicaoCorredorP;
 
     private final Entrada2 entrada;
@@ -47,7 +50,8 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.ptSuperior = new Vector3();
         this.ptLateral  = new Vector3();
 
-        this.posicaoCorredorP = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
+        this.corredorP = CorredorManager.getInstancia().getCorredorP();
+        this.posicaoCorredorP = this.corredorP.getPosicaoJogo();
     }
 
     @Override
@@ -91,11 +95,11 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.pt1Desenho.set(posicaoCorredorP);
         if(this.lado == DirecaoEnum.DIREITA){
             procedimentoADireita();
-//            this.corredor.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalDireita(0, this.corredor.getPosicaoProjetada()));
+            this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalDireita(this.quadratica, 0, this.posicaoCorredorP));
         }
         else{
             procedimentoAEsquerda();
-//            this.corredor.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalEsquerda(0, this.corredor.getPosicaoProjetada()));
+            this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalEsquerda(this.quadratica, 0, this.posicaoCorredorP));
         }
         this.shapeRenderer.end();
     }
@@ -121,7 +125,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
             this.projetorPt.inverterXYDoVector2(this.pt2Desenho);
             this.pt2Desenho.x += this.posicaoCorredorP.x;
             this.pt2Desenho.y += this.posicaoCorredorP.y;
-            this.pt2Desenho.x = this.posicaoCorredorP.x - (this.pt2Desenho.x - this.posicaoCorredorP.x);//Espelhamento de X
+            this.pt2Desenho.x = this.projetorPt.espelharDireitaPEsquerda(this.pt2Desenho.x, this.posicaoCorredorP.x);
 
             this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 

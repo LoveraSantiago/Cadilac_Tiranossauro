@@ -1,17 +1,43 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.parabola;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
-final class ProjetorPt_Parabola {
+import lovera.cadilac.tiranossauro2.telas2.jogo.equacoes.EquacaoQuadratica2;
 
-    private Vector2 ptTemp;
+final class ProjetorPt_Parabola extends ProjetorDePonto2{
 
     public ProjetorPt_Parabola() {
-        this.ptTemp = new Vector2();
+        super();
+    }
+
+    public final Vector2 calcularPtFuturo_HorizontalDireita(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
+        contador += Gdx.graphics.getDeltaTime();
+
+        super.ptTemp.set(contador, quadratica.getY(contador));
+        inverterXYDoVector2(super.ptTemp);
+
+        super.ptTemp.x += posicao.x;
+        super.ptTemp.y += posicao.y;
+
+        return super.ptTemp;
+    }
+
+    public final Vector2 calcularPtFuturo_HorizontalEsquerda(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
+        contador += Gdx.graphics.getDeltaTime();
+
+        super.ptTemp.set(contador, quadratica.getY(contador));
+        inverterXYDoVector2(super.ptTemp);
+
+        super.ptTemp.x += posicao.x;
+        super.ptTemp.y += posicao.y;
+        super.ptTemp.x = espelharDireitaPEsquerda(super.ptTemp.x, posicao.x);
+
+        return super.ptTemp;
     }
 
     public final void inverterXYDoVector2(Vector2 vector2){
-        this.ptTemp.x = vector2.x;
-        vector2.set(vector2.y, this.ptTemp.x);
+        super.ptTemp.x = vector2.x;
+        vector2.set(vector2.y, super.ptTemp.x);
     }
 }

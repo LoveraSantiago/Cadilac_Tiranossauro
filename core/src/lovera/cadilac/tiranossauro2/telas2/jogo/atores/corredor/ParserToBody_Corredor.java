@@ -1,5 +1,6 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -28,6 +29,7 @@ public final class ParserToBody_Corredor implements TipoParseavel {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(xInicial, yInicial);
+        bodyDef.angle = 90 * MathUtils.degreesToRadians;
 
         Body body = MeuBox2D2.getInstancia().getWorld().createBody(bodyDef);
         body.createFixture(fixtureDef);
@@ -35,4 +37,6 @@ public final class ParserToBody_Corredor implements TipoParseavel {
         shape.dispose();
         return body;
     }
+
+
 }
