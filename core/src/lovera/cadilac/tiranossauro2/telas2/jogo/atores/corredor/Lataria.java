@@ -5,10 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import lovera.cadilac.tiranossauro.atores.Corredor;
 import lovera.cadilac.tiranossauro.telas.AjustadorDeTela;
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
@@ -21,7 +19,7 @@ final class Lataria implements TipoDesenhavel{
     private Body corredor;
 
     public Lataria() {
-        this.sprite = new Sprite(new Texture(Gdx.files.internal("redcarpeq_rotacionado.png")));
+        this.sprite = new Sprite(new Texture(Gdx.files.internal("redcarpeq.png")));
         this.sprite.setSize(this.sprite.getWidth() / AjustadorDeTela.ESCALA,
                             this.sprite.getHeight()/ AjustadorDeTela.ESCALA);
         this.sprite.setOriginCenter();

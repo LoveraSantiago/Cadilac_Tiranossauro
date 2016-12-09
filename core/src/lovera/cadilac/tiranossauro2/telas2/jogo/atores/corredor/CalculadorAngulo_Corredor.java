@@ -8,6 +8,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 
 final class CalculadorAngulo_Corredor implements TipoAtualizavel{
 
+    private float anguloCorredorGraus;
     private float anguloCalculado;
     private float contadorAngulo;
 
@@ -16,25 +17,24 @@ final class CalculadorAngulo_Corredor implements TipoAtualizavel{
     public CalculadorAngulo_Corredor(Body corredor) {
         this.corredor = corredor;
         this.anguloCalculado = 90;
+        this.contadorAngulo = corredor.getAngle();
     }
 
     @Override
     public void atualizar() {
-        System.out.println("angulo calculado " + this.anguloCalculado);
-        System.out.println("angulo corredor rad:" + this.corredor.getAngle());
-        System.out.println("angulo corredor gra:" + this.corredor.getAngle() * MathUtils.radiansToDegrees);
-        System.out.println("*******************************************");
-        if(this.anguloCalculado == Math.round(this.corredor.getAngle() * MathUtils.radiansToDegrees)) return;
-        if(this.corredor.getAngle() < this.anguloCalculado){
-            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
+        this.anguloCorredorGraus = Math.round(this.corredor.getAngle() * MathUtils.radiansToDegrees);
+        if(this.anguloCalculado == this.anguloCorredorGraus) return;
+
+        if(this.anguloCorredorGraus > this.anguloCalculado){
+            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
         }
         else{
-            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
+            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
         }
     }
 
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
-        this.anguloCalculado = (float) Math.toDegrees(Math.atan2(ptFuturoY - this.corredor.getPosition().y, ptFuturoX - this.corredor.getPosition().x));
+        this.anguloCalculado = (float) (Math.atan2(ptFuturoY - this.corredor.getPosition().y, ptFuturoX - this.corredor.getPosition().x)) * MathUtils.radiansToDegrees;
         if(this.anguloCalculado < 0 && this.anguloCalculado > -90){
             this.anguloCalculado += 270;
         }
@@ -46,5 +46,9 @@ final class CalculadorAngulo_Corredor implements TipoAtualizavel{
 
     public void calcularAngulo(Vector2 ptFuturo){
         calcularAngulo(ptFuturo.x, ptFuturo.y);
+    }
+
+    public void resetAngulo() {
+        this.anguloCalculado = 90;
     }
 }

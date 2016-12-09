@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
@@ -20,7 +21,7 @@ public final class PincaEntrada2 extends Entrada2 {
     private final Vector3 copiaPtSuperior;
     private final Vector3 copiaPtLateral;
 
-    private final Vector2 posicaoCorredorP;
+    private final Corredor2 corredor;
 
     public PincaEntrada2() {
         this.faseManager = FaseManager2.getInstancia();
@@ -32,7 +33,7 @@ public final class PincaEntrada2 extends Entrada2 {
         this.copiaPtSuperior     = new Vector3();
         this.copiaPtLateral      = new Vector3();
 
-        this.posicaoCorredorP = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
+        this.corredor = CorredorManager.getInstancia().getCorredorP();
     }
 
     @Override
@@ -48,6 +49,7 @@ public final class PincaEntrada2 extends Entrada2 {
         }
         else{
             this.faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
+            this.corredor.resetAngulo();
         }
         return false;
     }
@@ -65,6 +67,7 @@ public final class PincaEntrada2 extends Entrada2 {
         }
         else{
             this.faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
+            this.corredor.resetAngulo();
         }
     }
 
@@ -83,7 +86,7 @@ public final class PincaEntrada2 extends Entrada2 {
         this.ptSuperiorProjetado.set(this.ptSuperior);
         this.cameraProjecao.unproject(this.ptSuperiorProjetado);
 
-        return this.ptSuperiorProjetado.y > this.posicaoCorredorP.y + 1;
+        return this.ptSuperiorProjetado.y > this.corredor.getPosicaoJogo().y + 1;
     }
 
     @Override
