@@ -9,7 +9,9 @@ import com.badlogic.gdx.utils.Disposable;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.ponto.Pontos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.PontoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
 final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
@@ -22,6 +24,8 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
 
     private final Entrada2 entrada;
 
+    private final Pontos pontos;
+
     public DesenhadorGraf_Vetor(Entrada2 entrada) {
         this.entrada = entrada;
         this.cameraProjecao = CameraManager.getInstancia().getCameraProjecao();
@@ -30,10 +34,14 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
         this.posicaoJogadorP = this.corredorP.getPosicaoJogo();
 
         this.shapeRenderer = new ShapeRenderer();
+
+        this.pontos = PontoManager.getInstancia().getPontos();
     }
 
     @Override
     public void meDesenhar(Object objeto) {
+        this.pontos.limparPontos();
+
         this.corredorP.setPtFuturoProj(this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
 
         this.shapeRenderer.setProjectionMatrix(this.cameraProjecao.combined);
@@ -53,6 +61,12 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
                                     this.posicaoJogadorP.x + 1   , this.posicaoJogadorP.y);
         }
         this.shapeRenderer.end();
+
+        addToPontos(this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
+    }
+
+    private void addToPontos(float x, float y){
+        this.pontos.addPontos(x, y);
     }
 
     @Override

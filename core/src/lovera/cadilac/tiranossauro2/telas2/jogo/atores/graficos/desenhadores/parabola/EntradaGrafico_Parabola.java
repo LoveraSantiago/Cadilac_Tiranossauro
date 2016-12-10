@@ -17,8 +17,7 @@ public final class EntradaGrafico_Parabola extends EntradaGrafica{
     private final Entrada2 entrada;
     private final DesenhadorGraf_Parabola desenhador;
 
-    private final FaseManager2 faseManager2
-            ;
+    private final FaseManager2 faseManager2;
     private final Vector2 posicaoCorredorP;
 
     public EntradaGrafico_Parabola() {
