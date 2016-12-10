@@ -18,9 +18,12 @@ public final class MeuBox2D2 implements TipoSingleton, TipoAtualizavel, TipoDese
     private final World world;
     private final Box2DDebugRenderer renderer;
 
+    private final CameraManager cameraManager;
+
     public MeuBox2D2() {
         this.world = new World(new Vector2(), true);
         this.renderer = new Box2DDebugRenderer();
+        this.cameraManager = CameraManager.getInstancia();
     }
 
     @Override
@@ -39,7 +42,7 @@ public final class MeuBox2D2 implements TipoSingleton, TipoAtualizavel, TipoDese
 
     @Override
     public void meDesenhar(Object objeto) {
-        this.renderer.render(this.world, CameraManager.getInstancia().getCameraJogo().combined);
+        this.renderer.render(this.world, this.cameraManager.getCameraJogo().combined);
     }
 
     public World getWorld() {
