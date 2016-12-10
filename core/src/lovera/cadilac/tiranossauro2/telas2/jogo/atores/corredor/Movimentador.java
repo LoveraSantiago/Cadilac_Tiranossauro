@@ -15,8 +15,6 @@ final class Movimentador implements TipoAtualizavel{
     private final Vector2 posicaoCorredor;
     private final Vector2 proximaPosicao;
 
-//    private final MouseJoint_Corredor mouseJointer;
-
     private final Pontos pontos;
 
     private final Arredondador arredondador;
@@ -30,7 +28,6 @@ final class Movimentador implements TipoAtualizavel{
         this.proximaPosicao = new Vector2();
         this.proximaPosicao.set(this.posicaoCorredor);
 
-//        this.mouseJointer = new MouseJoint_Corredor(corredor);
         this.pontos = PontoManager.getInstancia().getPontos();
 
         this.arredondador = new Arredondador();
@@ -45,13 +42,11 @@ final class Movimentador implements TipoAtualizavel{
         if(isMesmaPosicao()){
             if(this.pontos.temProximoPonto()){
                 this.proximaPosicao.set(this.pontos.consumirProximoPonto());
-//                this.mouseJointer.irPara(this.proximaPosicao);
                 diferenca();
                 this.corredor.applyForceToCenter(this.diferencaV, true);
 //                this.corredor.applyLinearImpulse(this.diferencaV, this.corredor.getLocalCenter(), true);
             }
             else{
-//                this.mouseJointer.destruirMouseJoint();
                 FaseManager2.getInstancia().setFaseAtual(Fase2.CALCULAR_VOLTA);
             }
         }
