@@ -11,7 +11,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
     private final Lataria lataria;
     private final CalculadorAngulo_Corredor calcAngulo;
 
-    private Body corredor;
+    private final Body corredor;
 
     public Corredor2() {
         this.lataria = new Lataria();
