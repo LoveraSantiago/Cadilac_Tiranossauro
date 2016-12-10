@@ -15,7 +15,10 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
     private final MenuGraficos2 menuGraficos;
     private final MenuHelper2 menuHelper;
 
+    private final FaseManager2 faseManager;
+
     public MenuManager2() {
+        this.faseManager = FaseManager2.getInstancia();
         this.menuGraficos = new MenuGraficos2();
         this.menuHelper = new MenuHelper2();
     }
@@ -32,7 +35,7 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
     //CASOS ACEITAR ENTRADA E JOGANDO PARA POSICIONAR FORA E DENTRO DA TELA ATE TER O SEU PROPRIO COMPORTAMENTO PERSONALIZADO
     @Override
     public void meDesenhar(Object objeto) {
-        switch (FaseManager2.getInstancia().getFaseAtual()){
+        switch (this.faseManager.getFaseAtual()){
             case ESCOLHENDO_GRAFICO :
                 this.menuGraficos.meDesenhar(null);
                 break;
