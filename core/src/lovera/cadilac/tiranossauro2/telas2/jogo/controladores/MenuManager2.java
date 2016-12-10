@@ -1,12 +1,15 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
 
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos.MenuGraficos2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_helper.MenuHelper2;
+import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Disposable{
 
@@ -19,8 +22,10 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
 
     public MenuManager2() {
         this.faseManager = FaseManager2.getInstancia();
-        this.menuGraficos = new MenuGraficos2();
-        this.menuHelper = new MenuHelper2();
+
+        Viewport viewport = new StretchViewport(AjustadorDeTela2.LARGURA_TELA_MENU, AjustadorDeTela2.ALTURA_TELA_MENU);
+        this.menuGraficos = new MenuGraficos2(viewport);
+        this.menuHelper = new MenuHelper2(viewport);
     }
 
     @Override

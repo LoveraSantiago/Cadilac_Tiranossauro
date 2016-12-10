@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
+import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 public class AreaJogavel2 implements TipoDesenhavel, Disposable {
 
@@ -35,6 +36,11 @@ public class AreaJogavel2 implements TipoDesenhavel, Disposable {
     }
 
     public void setarTamanhoArea(float x, float y, float w, float h){
+//        this.x = x * AjustadorDeTela2.ESCALA;
+//        this.y = y * AjustadorDeTela2.ESCALA;
+//        this.w = w * AjustadorDeTela2.ESCALA;
+//        this.h = h * AjustadorDeTela2.ESCALA;
+
         this.x = x;
         this.y = y;
         this.w = w;

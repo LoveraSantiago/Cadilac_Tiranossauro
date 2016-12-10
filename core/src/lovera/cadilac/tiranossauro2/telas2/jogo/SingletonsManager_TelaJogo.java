@@ -63,13 +63,12 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
         //UPDATE DO SPRITEBATCH COM CAMERA NORMAL
         this.cameraManager.updateSpriteBatch_CamProj();
+        this.graficoManager2.meDesenhar(null);
         this.corredorManager.meDesenhar(null);
-
         this.menuManager2.meDesenhar(null);
 
         //SENDO CHAMADO POR ULTIMO PARA PODER SER VISUALIZADO POR CIMA DA TELA
         this.meuBox2DTemp.meDesenhar(null);
-        this.graficoManager2.meDesenhar(null);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
@@ -17,11 +18,11 @@ public final class MenuHelper2 implements TipoControlavel, TipoDesenhavel, Dispo
     private final Stage stage;
     private final Actor table;
 
-    public MenuHelper2() {
+    public MenuHelper2(Viewport viewport) {
         this.parserTable = new ParserToTable_MenuHelper();
         this.table = parserTable.meTransforme(null);
 
-        this.stage = new Stage(CameraManager.getInstancia().getViewPortCameraProjecao(), mSpriteBatch.getInstancia());
+        this.stage = new Stage(viewport, mSpriteBatch.getInstancia());
         this.stage.addActor(this.table);
     }
 

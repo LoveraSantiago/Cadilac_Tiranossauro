@@ -26,6 +26,7 @@ public class PistaDeCorrida2 implements TipoParseavel, TipoDesenhavel, TipoSingl
         this.camera = CameraManager.getInstancia().getCameraJogo();
 
         TiledMap map = new TmxMapLoader().load("maps/mapacorrida.tmx");
+
         this.renderer = new OrthogonalTiledMapRendererFixed(map, 1f / AjustadorDeTela2.ESCALA);
 
         this.pista = meTransforme(map);
