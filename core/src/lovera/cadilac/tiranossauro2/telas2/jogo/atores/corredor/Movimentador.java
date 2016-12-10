@@ -15,25 +15,29 @@ final class Movimentador implements TipoAtualizavel{
     private final Vector2 posicaoCorredor;
     private final Vector2 proximaPosicao;
 
-    private final MouseJoint_Corredor mouseJointer;
+//    private final MouseJoint_Corredor mouseJointer;
 
     private final Pontos pontos;
 
     private final Arredondador arredondador;
 
+    private final Body corredor;
+
     public Movimentador(Body corredor) {
+        this.corredor = corredor;
+
         this.posicaoCorredor = corredor.getPosition();
         this.proximaPosicao = new Vector2();
         this.proximaPosicao.set(this.posicaoCorredor);
 
-        this.mouseJointer = new MouseJoint_Corredor(corredor);
+//        this.mouseJointer = new MouseJoint_Corredor(corredor);
         this.pontos = PontoManager.getInstancia().getPontos();
 
         this.arredondador = new Arredondador();
     }
 
     public void prepararParaAcao(){
-        this.mouseJointer.criarMouseJoint();
+//        this.mouseJointer.criarMouseJoint();
     }
 
     @Override
@@ -41,17 +45,34 @@ final class Movimentador implements TipoAtualizavel{
         if(isMesmaPosicao()){
             if(this.pontos.temProximoPonto()){
                 this.proximaPosicao.set(this.pontos.consumirProximoPonto());
-                this.mouseJointer.irPara(this.proximaPosicao);
+//                this.mouseJointer.irPara(this.proximaPosicao);
+                diferenca();
+                this.corredor.applyForceToCenter(this.diferencaV, true);
+//                this.corredor.applyLinearImpulse(this.diferencaV, this.corredor.getLocalCenter(), true);
             }
             else{
-                this.mouseJointer.destruirMouseJoint();
+//                this.mouseJointer.destruirMouseJoint();
                 FaseManager2.getInstancia().setFaseAtual(Fase2.CALCULAR_VOLTA);
             }
+        }
+        else{
+            diferenca();
+            this.corredor.applyForceToCenter(this.diferencaV, true);
+//            this.corredor.applyLinearImpulse(this.diferencaV, this.corredor.getLocalCenter(), true);
         }
     }
 
     private boolean isMesmaPosicao(){
         return this.arredondador.arredondar(this.posicaoCorredor.x) == this.arredondador.arredondar(this.proximaPosicao.x) &&
                this.arredondador.arredondar(this.posicaoCorredor.y) == this.arredondador.arredondar(this.proximaPosicao.y);
+    }
+
+    Vector2 diferencaV = new Vector2();
+    private void diferenca(){
+        this.diferencaV.set(this.proximaPosicao).sub(this.posicaoCorredor);
+        Debugagem.dbgPontoVector2("Corredor P:", this.posicaoCorredor);
+        Debugagem.dbgPontoVector2("ProximaPos:", this.proximaPosicao);
+        Debugagem.dbgPontoVector2("Diferenca_:", this.diferencaV);
+        System.out.println("**************************************");
     }
 }

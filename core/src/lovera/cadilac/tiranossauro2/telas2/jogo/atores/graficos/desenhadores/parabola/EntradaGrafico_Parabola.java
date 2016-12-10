@@ -27,7 +27,6 @@ public final class EntradaGrafico_Parabola extends EntradaGrafica{
 
         this.faseManager2 = FaseManager2.getInstancia();
         this.posicaoCorredorP = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
-
     }
 
     @Override

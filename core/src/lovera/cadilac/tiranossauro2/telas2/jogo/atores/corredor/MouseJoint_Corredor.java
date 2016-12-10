@@ -7,10 +7,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
 import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 
-import java.awt.Point;
-import java.awt.geom.Point2D;
-
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeCorrida2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 
@@ -49,7 +45,7 @@ final class MouseJoint_Corredor{
     }
 
     public void destruirMouseJoint(){
-        this.corredor.setLinearVelocity(0,0);
         this.worldTemp.destroyJoint(this.mouseJoint);
+        this.corredor.setLinearVelocity(0,0);
     }
 }
