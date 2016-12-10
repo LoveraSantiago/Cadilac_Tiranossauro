@@ -2,7 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.pa
 
 import com.badlogic.gdx.math.Vector2;
 
-public class ProjetorDePonto2 {
+class ProjetorDePonto2 {
 
     protected final Vector2 ptTemp;
 

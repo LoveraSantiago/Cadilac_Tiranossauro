@@ -10,6 +10,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MenuManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.PontoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
 final class SingletonsManager_TelaJogo implements Disposable{
@@ -46,6 +47,8 @@ final class SingletonsManager_TelaJogo implements Disposable{
         this.graficoManager2.inicializar();
 
         new ControleManager2(this.graficoManager2.getMapaEntradaGraficas()).inicializar();
+
+        new PontoManager().inicializar();
     }
 
     public void render(float delta){

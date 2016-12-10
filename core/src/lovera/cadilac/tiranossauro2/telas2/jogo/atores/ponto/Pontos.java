@@ -24,6 +24,10 @@ public final class Pontos {
         this.listaY.add(y);
     }
 
+    public void addPontos(Vector2 posicao){
+        addPontos(posicao.x, posicao.y);
+    }
+
     public Vector2 consumirProximoPonto(){
         this.pontoTemp.set(this.listaX.get(0), this.listaY.get(0));
         limparPrimeiraPosicao();
