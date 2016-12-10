@@ -24,6 +24,7 @@ public class AreaJogavel2 implements TipoDesenhavel, Disposable {
     public AreaJogavel2() {
         this.textureAtlas = new TextureAtlas("ninepatches/ninepatches_areajogavel.atlas");
         this.ninePatch = this.textureAtlas.createPatch("area_jogavel2");
+        this.ninePatch.scale(.1f, .1f);
 
         this.spriteBatch = mSpriteBatch.getInstancia();
     }
@@ -36,11 +37,6 @@ public class AreaJogavel2 implements TipoDesenhavel, Disposable {
     }
 
     public void setarTamanhoArea(float x, float y, float w, float h){
-//        this.x = x * AjustadorDeTela2.ESCALA;
-//        this.y = y * AjustadorDeTela2.ESCALA;
-//        this.w = w * AjustadorDeTela2.ESCALA;
-//        this.h = h * AjustadorDeTela2.ESCALA;
-
         this.x = x;
         this.y = y;
         this.w = w;
