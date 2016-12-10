@@ -1,6 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
@@ -13,7 +14,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeCorrida2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 
-final class MouseJoint_Corredor implements TipoAtualizavel{
+final class MouseJoint_Corredor{
 
     private final MouseJointDef def;
     private MouseJoint mouseJoint;
@@ -38,8 +39,8 @@ final class MouseJoint_Corredor implements TipoAtualizavel{
         def.maxForce = 1000.0f * corredor.getMass();
     }
 
-    @Override
-    public void atualizar() {
+    public void irPara(Vector2 posicao){
+        this.mouseJoint.setTarget(posicao);
     }
 
     public void criarMouseJoint(){
@@ -48,7 +49,7 @@ final class MouseJoint_Corredor implements TipoAtualizavel{
     }
 
     public void destruirMouseJoint(){
-        this.worldTemp.destroyJoint(this.mouseJoint);
         this.corredor.setLinearVelocity(0,0);
+        this.worldTemp.destroyJoint(this.mouseJoint);
     }
 }

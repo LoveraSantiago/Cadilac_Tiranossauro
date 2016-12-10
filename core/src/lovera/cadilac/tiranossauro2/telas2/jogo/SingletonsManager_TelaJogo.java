@@ -37,6 +37,8 @@ final class SingletonsManager_TelaJogo implements Disposable{
         this.pistaDeCorrida2 = new PistaDeCorrida2();
         this.pistaDeCorrida2.inicializar();
 
+        new PontoManager().inicializar();
+
         this.corredorManager = new CorredorManager();
         this.corredorManager.inicializar();
 
@@ -47,8 +49,6 @@ final class SingletonsManager_TelaJogo implements Disposable{
         this.graficoManager2.inicializar();
 
         new ControleManager2(this.graficoManager2.getMapaEntradaGraficas()).inicializar();
-
-        new PontoManager().inicializar();
     }
 
     public void render(float delta){

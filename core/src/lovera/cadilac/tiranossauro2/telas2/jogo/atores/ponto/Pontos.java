@@ -28,6 +28,10 @@ public final class Pontos {
         addPontos(posicao.x, posicao.y);
     }
 
+    public boolean temProximoPonto(){
+        return  this.listaX.size() > 0;
+    }
+
     public Vector2 consumirProximoPonto(){
         this.pontoTemp.set(this.listaX.get(0), this.listaY.get(0));
         limparPrimeiraPosicao();
