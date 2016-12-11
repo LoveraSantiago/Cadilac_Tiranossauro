@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
+package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils;
 
 public enum Fase2 {
 
