@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades;
 
 
 public class Arredondador {

@@ -62,7 +62,7 @@ public final class PincaEntrada2 extends Entrada2 {
         }
 
         if(isPtValidos()) {
-            this.corredor.prepararParaAcao();
+//            this.corredor.prepararParaAcao();
 //            this.msg.finalizadoFromInput();
 
             this.faseManager.setFaseAtual(Fase2.ACAO);

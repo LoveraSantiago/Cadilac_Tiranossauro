@@ -6,9 +6,10 @@ import com.badlogic.gdx.physics.box2d.Body;
 import lovera.cadilac.tiranossauro.utils.Debugagem;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ponto.Pontos;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.quadrantes.ClassificadorDeQuadrante;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.PontoManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 
 final class Movimentador implements TipoAtualizavel{
 
@@ -17,9 +18,9 @@ final class Movimentador implements TipoAtualizavel{
 
     private final Pontos pontos;
 
-    private final Arredondador arredondador;
-
     private final Body corredor;
+
+    private final ClassificadorDeQuadrante quadrante;
 
     public Movimentador(Body corredor) {
         this.corredor = corredor;
@@ -30,40 +31,40 @@ final class Movimentador implements TipoAtualizavel{
 
         this.pontos = PontoManager.getInstancia().getPontos();
 
-        this.arredondador = new Arredondador();
-    }
-
-    public void prepararParaAcao(){
-//        this.mouseJointer.criarMouseJoint();
+        this.quadrante = new ClassificadorDeQuadrante();
     }
 
     @Override
     public void atualizar() {
-        if(isMesmaPosicao()){
+        if(irParaProximoPonto()){
             if(this.pontos.temProximoPonto()){
                 this.proximaPosicao.set(this.pontos.consumirProximoPonto());
-                diferenca();
+
+                setarQuadrante();
+                calcularDiferenca();
+
                 this.corredor.applyForceToCenter(this.diferencaV, true);
-//                this.corredor.applyLinearImpulse(this.diferencaV, this.corredor.getLocalCenter(), true);
             }
             else{
                 FaseManager2.getInstancia().setFaseAtual(Fase2.CALCULAR_VOLTA);
             }
         }
         else{
-            diferenca();
+            calcularDiferenca();
             this.corredor.applyForceToCenter(this.diferencaV, true);
-//            this.corredor.applyLinearImpulse(this.diferencaV, this.corredor.getLocalCenter(), true);
         }
     }
 
-    private boolean isMesmaPosicao(){
-        return this.arredondador.arredondar(this.posicaoCorredor.x) == this.arredondador.arredondar(this.proximaPosicao.x) &&
-               this.arredondador.arredondar(this.posicaoCorredor.y) == this.arredondador.arredondar(this.proximaPosicao.y);
+    private void setarQuadrante(){
+        this.quadrante.determinarQuadrante(this.posicaoCorredor, this.proximaPosicao);
+    }
+
+    private boolean irParaProximoPonto(){
+        return this.quadrante.pontoAtingido();
     }
 
     Vector2 diferencaV = new Vector2();
-    private void diferenca(){
+    private void calcularDiferenca(){
         this.diferencaV.set(this.proximaPosicao).sub(this.posicaoCorredor);
         Debugagem.dbgPontoVector2("Corredor P:", this.posicaoCorredor);
         Debugagem.dbgPontoVector2("ProximaPos:", this.proximaPosicao);

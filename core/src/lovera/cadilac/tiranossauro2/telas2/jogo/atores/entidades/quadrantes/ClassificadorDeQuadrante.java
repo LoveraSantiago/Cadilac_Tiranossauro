@@ -24,12 +24,15 @@ public final class ClassificadorDeQuadrante {
     }
 
     public ClassificadorDeQuadrante() {
+        quadranteAtual = listaDeQuadrantes.get(0);
     }
 
-    public void setarQuadrante(Vector2 ptOrigem, Vector2 pt){
+    public void determinarQuadrante(Vector2 ptOrigem, Vector2 pt){
+
         for(this.contador = 0; this.contador < 5; this.contador++){
 
             this.quadranteAtual = listaDeQuadrantes.get(this.contador);
+            this.quadranteAtual.setPontos(ptOrigem.x, ptOrigem.y, pt.x, pt.y);
             if(this.quadranteAtual.meuQuadrante()){
                 break;
             }

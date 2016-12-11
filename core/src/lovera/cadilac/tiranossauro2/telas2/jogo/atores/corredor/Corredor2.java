@@ -40,10 +40,6 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
         }
     }
 
-    public void prepararParaAcao(){
-        this.movimentador.prepararParaAcao();
-    }
-
     public void resetAngulo(){
         this.calcAngulo.resetAngulo();
     }

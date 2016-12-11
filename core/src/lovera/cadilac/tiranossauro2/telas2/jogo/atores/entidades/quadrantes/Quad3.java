@@ -12,7 +12,7 @@ final class Quad3 extends QuadrantePai {
     }
 
     @Override
-    int getMeuQuadrante() {
+    public int getMeuQuadrante() {
         return 3;
     }
 }
