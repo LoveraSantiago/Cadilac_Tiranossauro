@@ -32,7 +32,7 @@ public final class ClassificadorDeQuadrante {
         for(this.contador = 0; this.contador < 5; this.contador++){
 
             this.quadranteAtual = listaDeQuadrantes.get(this.contador);
-            this.quadranteAtual.setPontos(ptOrigem.x, ptOrigem.y, pt.x, pt.y);
+            this.quadranteAtual.setPontos(ptOrigem, pt.x, pt.y);
             if(this.quadranteAtual.meuQuadrante()){
                 break;
             }

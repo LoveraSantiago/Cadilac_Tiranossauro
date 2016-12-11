@@ -25,7 +25,7 @@ public final class ParserToBody_Corredor implements TipoParseavel {
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
-        fixtureDef.density = .01f;
+        fixtureDef.density = 1f;
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;

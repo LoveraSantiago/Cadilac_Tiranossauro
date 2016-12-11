@@ -9,8 +9,7 @@ abstract class QuadrantePai implements TipoQuadrante{
 
     protected final static Arredondador arredondador;
 
-    protected float ptOrigemX;
-    protected float ptOrigemY;
+    private Vector2 ptOrigem;
     protected float ptX;
     protected float ptY;
 
@@ -22,10 +21,17 @@ abstract class QuadrantePai implements TipoQuadrante{
     }
 
     @Override
-    public void setPontos(float ptOrigemX, float ptOrigemY, float ptX, float ptY) {
-        this.ptOrigemX = ptOrigemX;
-        this.ptOrigemY = ptOrigemY;
-        this.ptX = ptX;
-        this.ptY = ptY;
+    public void setPontos(Vector2 ptOrigem, float ptX, float ptY) {
+        this.ptOrigem = ptOrigem;
+        this.ptX = arredondador.arredondar(ptX);
+        this.ptY = arredondador.arredondar(ptY);
+    }
+
+    protected float getPtOrigemX(){
+        return this.arredondador.arredondar(this.ptOrigem.x);
+    }
+
+    protected float getPtOrigemY(){
+        return this.arredondador.arredondar(this.ptOrigem.y);
     }
 }

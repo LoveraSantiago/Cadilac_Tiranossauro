@@ -43,7 +43,8 @@ final class Movimentador implements TipoAtualizavel{
                 setarQuadrante();
                 calcularDiferenca();
 
-                this.corredor.applyForceToCenter(this.diferencaV, true);
+//                this.corredor.applyForceToCenter(this.diferencaV, true);
+                this.corredor.applyLinearImpulse(this.diferencaV, this.corredor.getLocalCenter(), true);
             }
             else{
                 FaseManager2.getInstancia().setFaseAtual(Fase2.CALCULAR_VOLTA);
@@ -51,7 +52,8 @@ final class Movimentador implements TipoAtualizavel{
         }
         else{
             calcularDiferenca();
-            this.corredor.applyForceToCenter(this.diferencaV, true);
+//            this.corredor.applyForceToCenter(this.diferencaV, true);
+            this.corredor.applyLinearImpulse(this.diferencaV, this.corredor.getLocalCenter(), true);
         }
     }
 

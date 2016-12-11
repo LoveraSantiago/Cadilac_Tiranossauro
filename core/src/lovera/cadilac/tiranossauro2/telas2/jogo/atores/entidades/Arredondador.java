@@ -10,7 +10,7 @@ public class Arredondador {
     private float temp;
 
     public Arredondador() {
-        this.escala = 2;
+        this.escala = 1;
     }
 
     public float arredondar(float numero){

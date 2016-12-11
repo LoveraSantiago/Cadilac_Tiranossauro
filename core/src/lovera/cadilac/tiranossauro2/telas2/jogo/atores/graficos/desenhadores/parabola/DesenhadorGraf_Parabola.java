@@ -117,7 +117,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     }
 
     private void procedimentoADireita(){
-        for(this.contador = 0; this.contador < this.ptSuperior.x; this.contador = this.contador + 5f){
+        for(this.contador = 0; this.contador < this.ptSuperior.x; this.contador = this.contador + 1f){
 
             this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
             this.projetorPt.inverterXYDoVector2(this.pt2Desenho);
@@ -136,7 +136,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     }
 
     private void procedimentoAEsquerda(){
-        for(this.contador = 0; this.contador < this.ptSuperior.x; this.contador = this.contador + 5f){
+        for(this.contador = 0; this.contador < this.ptSuperior.x; this.contador = this.contador + 1f){
 
             this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
             this.projetorPt.inverterXYDoVector2(this.pt2Desenho);

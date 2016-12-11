@@ -7,7 +7,7 @@ public interface TipoQuadrante {
     boolean meuQuadrante();
     boolean pontoAtingido();
 
-    void setPontos(float ptOrigemX, float ptOrigemY, float ptX, float ptY);
+    void setPontos(Vector2 ptOrigem, float ptX, float ptY);
 
     int getMeuQuadrante();
 }
