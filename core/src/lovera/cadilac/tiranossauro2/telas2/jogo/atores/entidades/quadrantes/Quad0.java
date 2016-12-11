@@ -6,10 +6,9 @@ final class Quad0 extends QuadrantePai{
         return this.ptOrigemX == this.ptX && this.ptOrigemY == this.ptY;
     }
 
-    //ESSE METODO NAO DEVE SER CHAMADO EM CASO DE PONTOS IGUAIS
     @Override
     public boolean pontoAtingido() {
-        throw new UnsupportedOperationException("Não deve ser chamado.");
+        return true;
     }
 
     @Override
