@@ -1,6 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
@@ -19,12 +20,12 @@ public final class MeuBox2D2 implements TipoSingleton, TipoAtualizavel, TipoDese
     private final World world;
     private final Box2DDebugRenderer renderer;
 
-    private final CameraManager cameraManager;
+    private final Matrix4 matrizCameraJogo;
 
     public MeuBox2D2() {
         this.world = new World(new Vector2(), true);
         this.renderer = new Box2DDebugRenderer();
-        this.cameraManager = CameraUnico.getCameraManager();
+        this.matrizCameraJogo = CameraUnico.getCameraManager().getCameraJogo().combined;
     }
 
     @Override
@@ -43,7 +44,7 @@ public final class MeuBox2D2 implements TipoSingleton, TipoAtualizavel, TipoDese
 
     @Override
     public void meDesenhar(Object objeto) {
-        this.renderer.render(this.world, this.cameraManager.getCameraJogo().combined);
+        this.renderer.render(this.world, this.matrizCameraJogo);
     }
 
     public World getWorld() {
