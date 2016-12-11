@@ -13,6 +13,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
+import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 final class ParserToBody_Pista implements TipoParseavel {
 
@@ -21,12 +22,12 @@ final class ParserToBody_Pista implements TipoParseavel {
         //INFORMACOES DOS CONTIDOS EM TILED MAP PARA SEREM USADOS NO BOX2D
         MapObject mapObject = ((TiledMap)tiledMap).getLayers().get("colisao").getObjects().get("contorno");
         MapProperties properties = mapObject.getProperties();
-        float x = Float.parseFloat(properties.get("x").toString());
-        float y = Float.parseFloat(properties.get("y").toString());
+        float x = Float.parseFloat(properties.get("x").toString()) / AjustadorDeTela2.ESCALA;
+        float y = Float.parseFloat(properties.get("y").toString()) / AjustadorDeTela2.ESCALA;
         Polyline contornoPista = ((PolylineMapObject) mapObject).getPolyline();
 
         ChainShape shape = new ChainShape();
-        shape.createChain(contornoPista.getVertices());
+        shape.createChain(getVerticesEscalados(contornoPista.getVertices()));
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
@@ -40,5 +41,13 @@ final class ParserToBody_Pista implements TipoParseavel {
 
         shape.dispose();
         return pistaBody;
+    }
+
+    private float[] getVerticesEscalados(float[] vertices){
+        float[] contornoEscalado = new float[vertices.length];
+        for(int i = 0; i < vertices.length; i++){
+            contornoEscalado[i] = vertices[i] / AjustadorDeTela2.ESCALA;
+        }
+        return contornoEscalado;
     }
 }
