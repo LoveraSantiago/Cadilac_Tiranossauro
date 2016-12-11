@@ -10,11 +10,11 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.ponto.Pontos;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ponto.Pontos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.PontoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.equacoes.EquacaoQuadratica2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 
 public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable{
 

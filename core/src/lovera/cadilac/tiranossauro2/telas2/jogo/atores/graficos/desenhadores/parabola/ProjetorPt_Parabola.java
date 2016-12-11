@@ -3,7 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.pa
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
-import lovera.cadilac.tiranossauro2.telas2.jogo.equacoes.EquacaoQuadratica2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 
 final class ProjetorPt_Parabola extends ProjetorDePonto2{
 

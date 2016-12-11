@@ -5,7 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro.utils.Debugagem;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.ponto.Pontos;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ponto.Pontos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.PontoManager;
