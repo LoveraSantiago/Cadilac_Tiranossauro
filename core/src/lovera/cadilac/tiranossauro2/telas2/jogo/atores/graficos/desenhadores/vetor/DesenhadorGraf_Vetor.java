@@ -13,6 +13,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ponto.Pontos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.PontoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
 final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
 
@@ -28,7 +29,7 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
 
     public DesenhadorGraf_Vetor(Entrada2 entrada) {
         this.entrada = entrada;
-        this.cameraProjecao = CameraManager.getInstancia().getCameraProjecao();
+        this.cameraProjecao = CameraUnico.getCameraManager().getCameraProjecao();
 
         this.corredorP = CorredorManager.getInstancia().getCorredorP();
         this.posicaoJogadorP = this.corredorP.getPosicaoJogo();

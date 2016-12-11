@@ -6,7 +6,8 @@ import com.badlogic.gdx.math.Vector3;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
@@ -25,7 +26,7 @@ public final class PincaEntrada2 extends Entrada2 {
 
     public PincaEntrada2() {
         this.faseManager = FaseManager2.getInstancia();
-        this.cameraProjecao = CameraManager.getInstancia().getCameraProjecao();
+        this.cameraProjecao = CameraUnico.getCameraManager().getCameraProjecao();
 
         this.ptSuperior          = new Vector3();
         this.ptLateral           = new Vector3();

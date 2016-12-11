@@ -7,7 +7,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 

@@ -2,6 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.pa
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
@@ -15,18 +16,17 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.PontoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
 public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable{
 
     private DirecaoEnum lado;
 
-    private final ShapeRenderer shapeRenderer;
-
-    private final ProjetorPt_Parabola projetorPt;
-
     private float contador;
-
     private float alturaChegadaTemp;
+
+    private final Matrix4 matrizCameraProjecao;
+    private final ShapeRenderer shapeRenderer;
 
     private final Vector2 pt1Desenho;
     private final Vector2 pt2Desenho;
@@ -37,6 +37,8 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     private final Entrada2 entrada;
     private final Vector3 ptSuperior;
     private final Vector3 ptLateral;
+
+    private final ProjetorPt_Parabola projetorPt;
 
     private final EquacaoQuadratica2 quadratica;
 
@@ -58,6 +60,8 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.posicaoCorredorP = this.corredorP.getPosicaoJogo();
 
         this.pontos = PontoManager.getInstancia().getPontos();
+
+        this.matrizCameraProjecao = CameraUnico.getCameraManager().getCameraProjecao().combined;
     }
 
     @Override
@@ -94,7 +98,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
 
     //LEMBRETE: entradaPtSuperior vira o ponto X e entradaPtLateral vira o pontovertice
     private void desenharParabola(){
-        this.shapeRenderer.setProjectionMatrix(CameraManager.getInstancia().getCameraProjecao().combined);
+        this.shapeRenderer.setProjectionMatrix(this.matrizCameraProjecao);
         this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         this.shapeRenderer.setColor(1.0f, 0.4f, 0f, 0f);
 

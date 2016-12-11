@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
 public final class TelaJogo2 implements Screen{
 
@@ -28,7 +29,7 @@ public final class TelaJogo2 implements Screen{
 
     @Override
     public void resize(int width, int height) {
-        CameraManager.getInstancia().resize(width, height);
+        CameraUnico.getCameraManager().resize(width, height);
     }
 
     @Override

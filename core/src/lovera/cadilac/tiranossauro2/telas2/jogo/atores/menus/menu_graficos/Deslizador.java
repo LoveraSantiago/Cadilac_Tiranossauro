@@ -3,7 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos;
 import com.badlogic.gdx.Gdx;
 
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromDeslizador;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 
 final class Deslizador{

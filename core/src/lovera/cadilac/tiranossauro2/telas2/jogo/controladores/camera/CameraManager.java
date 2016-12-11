@@ -6,9 +6,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 
-public final class CameraManager implements TipoSingleton, TipoCamera{
-
-    private static CameraManager cameraManager;
+public final class CameraManager implements TipoCamera{
 
     private final CameraJogo cameraJogo;
     private final CameraProjecao cameraProjecao;
@@ -18,15 +16,6 @@ public final class CameraManager implements TipoSingleton, TipoCamera{
         this.cameraProjecao = new CameraProjecao();
         this.cameraJogo = new CameraJogo();
         this.cameraAngulo = new CameraAngulo(this.cameraJogo);
-    }
-
-    @Override
-    public void inicializar() {
-        cameraManager = this;
-    }
-
-    public static CameraManager getInstancia() {
-        return cameraManager;
     }
 
     @Override

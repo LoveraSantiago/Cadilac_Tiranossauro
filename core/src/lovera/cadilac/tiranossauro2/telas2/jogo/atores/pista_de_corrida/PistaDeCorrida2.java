@@ -11,6 +11,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 public class PistaDeCorrida2 implements TipoParseavel, TipoDesenhavel, TipoSingleton{
@@ -23,7 +24,7 @@ public class PistaDeCorrida2 implements TipoParseavel, TipoDesenhavel, TipoSingl
     private final Body pista;
 
     public PistaDeCorrida2() {
-        this.camera = CameraManager.getInstancia().getCameraJogo();
+        this.camera = CameraUnico.getCameraManager().getCameraJogo();
 
         TiledMap map = new TmxMapLoader().load("maps/mapacorrida.tmx");
 

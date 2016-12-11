@@ -5,28 +5,32 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
 class VolanteListener extends ActorGestureListener{
 
     private boolean toqueAcontecendo;
     private boolean panAcontecendo;
 
+    private float ultimoAngulo;
     private float anguloFixo;
     private float anguloMovel;
+    private float resultAnguloTemp;
 
-    private float ultimoAngulo;
-
-    private VolanteControle controle;
-    private Deslizador deslizador;
+    private final VolanteControle controle;
+    private final Deslizador deslizador;
 
     private final Actor atorVolante;
 
-    private float resultAnguloTemp;
+    private final CameraManager cameraManager;
+
 
     public VolanteListener(Actor atorVolante, Deslizador deslizador, VolanteControle controle) {
         this.atorVolante = atorVolante;
         this.deslizador = deslizador;
         this.controle = controle;
+
+        this.cameraManager = CameraUnico.getCameraManager();
     }
 
     @Override
@@ -47,7 +51,7 @@ class VolanteListener extends ActorGestureListener{
                                     x + this.atorVolante.getX(), y + this.atorVolante.getY());
 
             if(ultimoAngulo != anguloMovel){
-                CameraManager.getInstancia().rotacionarCameraEmVoltaDoPonto(-(anguloMovel - ultimoAngulo));
+                this.cameraManager.rotacionarCameraEmVoltaDoPonto(-(anguloMovel - ultimoAngulo));
             }
             ultimoAngulo = anguloMovel;
         }
@@ -59,7 +63,7 @@ class VolanteListener extends ActorGestureListener{
         anguloMovel = 0;
         toqueAcontecendo = false;
         panAcontecendo = false;
-        CameraManager.getInstancia().normatizarAngulo();
+        this.cameraManager.normatizarAngulo();
     }
 
     private float getAngulo(float x0, float y0, float x1, float y1){
