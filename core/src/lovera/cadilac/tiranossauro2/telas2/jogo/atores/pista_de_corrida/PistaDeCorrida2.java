@@ -31,7 +31,6 @@ public class PistaDeCorrida2 implements TipoParseavel, TipoDesenhavel, TipoSingl
         this.renderer = new OrthogonalTiledMapRendererFixed(map, 1f / AjustadorDeTela2.ESCALA);
 
         this.pista = meTransforme(map);
-
     }
 
     @Override
