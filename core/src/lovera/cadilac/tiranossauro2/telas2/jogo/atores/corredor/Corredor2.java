@@ -18,6 +18,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
 
     private final FaseManager2 faseManager2;
 
+    public Corredor2() {
         this.faseManager2 = FaseManager2.getInstancia();
 
         this.lataria = new Lataria();
