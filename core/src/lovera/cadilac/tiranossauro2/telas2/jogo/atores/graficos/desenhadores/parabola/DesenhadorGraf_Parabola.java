@@ -66,7 +66,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
 
     @Override
     public void meDesenhar(Object objeto) {
-        this.pontos.limparPontos();
+        resetarComponentes();
 
         this.ptSuperior.set(this.entrada.getPtSuperior());
         this.ptLateral.set(this.entrada.getPtLateral());
@@ -75,6 +75,11 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         definirDirecao();
         definirEquacaoQuadratica();
         desenharParabola();
+    }
+
+    private void resetarComponentes(){
+        this.pontos.limparPontos();
+        this.corredorP.resetEspacoPercorrido();
     }
 
     private void definirDirecao() {
@@ -117,7 +122,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     }
 
     private void procedimentoADireita(){
-        for(this.contador = 0; this.contador < this.ptSuperior.x; this.contador = this.contador + 1f){
+        for(this.contador = 1; this.contador < this.ptSuperior.x; this.contador = this.contador + 1f){
 
             this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
             this.projetorPt.inverterXYDoVector2(this.pt2Desenho);
@@ -127,16 +132,16 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
             this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
             this.pt1Desenho.set(this.pt2Desenho);
 
-            addToPontos(this.pt2Desenho);
+            addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
         }
         this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
 
-        addToPontos(this.posicaoCorredorP.x, this.alturaChegadaTemp);
+        addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
 //        System.out.println("contador " + this.contador);
     }
 
     private void procedimentoAEsquerda(){
-        for(this.contador = 0; this.contador < this.ptSuperior.x; this.contador = this.contador + 1f){
+        for(this.contador = 1; this.contador < this.ptSuperior.x; this.contador = this.contador + 1f){
 
             this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
             this.projetorPt.inverterXYDoVector2(this.pt2Desenho);
@@ -147,20 +152,17 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
             this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
             this.pt1Desenho.set(this.pt2Desenho);
 
-            addToPontos(this.pt2Desenho);
+            addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
         }
         this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
 
-        addToPontos(this.posicaoCorredorP.x, this.alturaChegadaTemp);
+        addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
 //        System.out.println("contador " + this.contador);
     }
 
-    private void addToPontos(Vector2 posicao){
-        this.pontos.addPontos(posicao);
-    }
-
-    private void addToPontos(float x, float y){
-        this.pontos.addPontos(x, y);
+    private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){
+        this.pontos.addPontos(pt2X, pt2Y);
+        this.corredorP.addEspacoPercorrido(pt1X, pt1Y, pt2X, pt2Y);
     }
 
     @Override
