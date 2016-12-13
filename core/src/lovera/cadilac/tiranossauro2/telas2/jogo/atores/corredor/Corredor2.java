@@ -18,6 +18,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
 
     private final FaseManager2 faseManager2;
 
+    long inicio;
     public Corredor2() {
         this.faseManager2 = FaseManager2.getInstancia();
 
@@ -27,6 +28,8 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
 
         this.lataria.setCorredor(this.corredor);
         this.movimentador = new Movimentador(this.corredor);
+        this.corredor.setLinearVelocity(new Vector2(0,6f));
+        inicio = System.currentTimeMillis();
     }
 
     @Override
@@ -37,6 +40,11 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
 
         if(this.faseManager2.isFaseAtual(Fase2.ACAO)){
             this.movimentador.atualizar();
+        }
+
+        if(this.corredor.getPosition().y >= 40){
+            System.out.println("Terminou em : + " + ((System.currentTimeMillis() - inicio)/1000));
+            this.corredor.setLinearVelocity(0,0);
         }
     }
 
