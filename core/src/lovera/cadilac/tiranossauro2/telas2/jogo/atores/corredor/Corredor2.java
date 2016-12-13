@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Distancia;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 
@@ -12,14 +13,12 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
 
     private final Lataria lataria;
     private final CalculadorAngulo_Corredor calcAngulo;
-    private final CalculadorDistancia calcDistancia;
+    private final Distancia calcDistancia;
     private final Movimentador movimentador;
 
     private final Body corredor;
 
     private final FaseManager2 faseManager2;
-
-    private Float espacoPercorrido;
 
     public Corredor2() {
         this.faseManager2 = FaseManager2.getInstancia();
@@ -27,7 +26,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
         this.lataria = new Lataria();
         this.corredor = meTransforme(this.lataria);
         this.calcAngulo = new CalculadorAngulo_Corredor(this.corredor);
-        this.calcDistancia = new CalculadorDistancia();
+        this.calcDistancia = new Distancia();
 
         this.lataria.setCorredor(this.corredor);
         this.movimentador = new Movimentador(this.corredor);
@@ -42,18 +41,6 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
         if(this.faseManager2.isFaseAtual(Fase2.ACAO)){
             this.movimentador.atualizar();
         }
-    }
-
-    public void addEspacoPercorrido(Vector2 pt1, Vector2 pt2){
-        addEspacoPercorrido(pt1.x, pt1.y, pt2.x, pt2.y);
-    }
-
-    public void addEspacoPercorrido(float pt1X, float pt1Y, float pt2X, float pt2Y){
-        this.espacoPercorrido = this.calcDistancia.calcularDistancia(pt1X, pt1Y, pt2X, pt2Y);
-    }
-
-    public void resetEspacoPercorrido(){
-        this.espacoPercorrido = 0f;
     }
 
     public void resetAngulo(){

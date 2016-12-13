@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ponto;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao;
 
 import com.badlogic.gdx.math.Vector2;
 

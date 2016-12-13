@@ -1,7 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ponto.Pontos;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Pontos;
 
 public class PontoManager implements TipoSingleton{
 
