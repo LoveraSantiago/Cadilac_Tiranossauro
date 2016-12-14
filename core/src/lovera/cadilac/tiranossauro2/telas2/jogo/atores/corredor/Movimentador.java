@@ -8,6 +8,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Pontos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.quadrantes.ClassificadorDeQuadrante;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 
 final class Movimentador implements TipoAtualizavel{
@@ -28,7 +29,7 @@ final class Movimentador implements TipoAtualizavel{
         this.proximaPosicao = new Vector2();
         this.proximaPosicao.set(this.posicaoCorredor);
 
-        this.pontos = PontoManager.getInstancia().getPontos();
+        this.pontos = InformacaoManager.getInstancia().getInformacao().getPontos();
 
         this.quadrante = new ClassificadorDeQuadrante();
     }

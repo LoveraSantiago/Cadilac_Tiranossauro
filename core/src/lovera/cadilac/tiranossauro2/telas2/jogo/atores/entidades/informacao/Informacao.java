@@ -19,4 +19,12 @@ public class Informacao {
         this.pontos.addPontos(pt2X, pt2Y);
         this.distancia.addEspacoPercorrido(pt1X, pt1Y, pt2X, pt2Y);
     }
+
+    public Pontos getPontos() {
+        return pontos;
+    }
+
+    public Distancia getDistancia() {
+        return distancia;
+    }
 }

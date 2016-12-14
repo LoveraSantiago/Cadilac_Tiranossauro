@@ -1,6 +1,6 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao;
 
-final class Distancia {
+public final class Distancia {
 
     private Float espacoPercorrido;
 
