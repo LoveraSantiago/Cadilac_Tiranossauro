@@ -5,7 +5,6 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Distancia;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 
@@ -13,7 +12,6 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
 
     private final Lataria lataria;
     private final CalculadorAngulo_Corredor calcAngulo;
-    private final Distancia calcDistancia;
     private final Movimentador movimentador;
 
     private final Body corredor;
@@ -26,7 +24,6 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
         this.lataria = new Lataria();
         this.corredor = meTransforme(this.lataria);
         this.calcAngulo = new CalculadorAngulo_Corredor(this.corredor);
-        this.calcDistancia = new Distancia();
 
         this.lataria.setCorredor(this.corredor);
         this.movimentador = new Movimentador(this.corredor);
