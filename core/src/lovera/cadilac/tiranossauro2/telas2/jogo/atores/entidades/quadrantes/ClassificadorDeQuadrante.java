@@ -34,7 +34,6 @@ public final class ClassificadorDeQuadrante {
             this.quadranteAtual = listaDeQuadrantes.get(this.contador);
             this.quadranteAtual.setPontos(ptOrigem, pt.x, pt.y);
             if(this.quadranteAtual.meuQuadrante()){
-                System.out.println("Quadrante n:" + this.contador);
                 break;
             }
         }

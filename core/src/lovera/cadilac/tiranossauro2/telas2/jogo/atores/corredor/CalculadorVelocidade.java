@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 class CalculadorVelocidade {
 
-    private final float VELOCIDADE = 6f;
+    private final float VELOCIDADE = 10f;
 
     private float tempoTotal;
     private float tempoPonto;
@@ -23,7 +23,6 @@ class CalculadorVelocidade {
     public Vector2 calcularVelocidadePonto(Vector2 posicaoAtual, Vector2 ponto){
         this.resultVelocidade.x = (ponto.x - posicaoAtual.x) / this.tempoPonto;
         this.resultVelocidade.y = (ponto.y - posicaoAtual.y) / this.tempoPonto;
-
         return this.resultVelocidade;
     }
 

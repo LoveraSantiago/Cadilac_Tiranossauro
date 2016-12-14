@@ -128,9 +128,10 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
             this.pt2Desenho.y += this.posicaoCorredorP.y;
 
             this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
-            this.pt1Desenho.set(this.pt2Desenho);
 
             addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+
+            this.pt1Desenho.set(this.pt2Desenho);
         }
         this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
 
@@ -147,9 +148,10 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
             this.pt2Desenho.x = this.projetorPt.espelharDireitaPEsquerda(this.pt2Desenho.x, this.posicaoCorredorP.x);
 
             this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
-            this.pt1Desenho.set(this.pt2Desenho);
 
             addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+
+            this.pt1Desenho.set(this.pt2Desenho);
         }
         this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
 

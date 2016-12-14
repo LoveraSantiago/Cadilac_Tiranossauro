@@ -16,7 +16,6 @@ final class Movimentador implements TipoAtualizavel{
     private final Vector2 posicaoCorredor;
     private final Vector2 proximaPosicao;
 
-    private float percursoTotal;
     private Pontos pontos;
 
     private final Body corredor;
@@ -37,8 +36,7 @@ final class Movimentador implements TipoAtualizavel{
 
     public void prepararParaAcao(Informacao informacao) {
         this.pontos = informacao.getPontos();
-        this.percursoTotal = informacao.getDistancia().getEspacoPercorrido();
-        this.calcVelocidade.calcularVelocidadePercurso(this.pontos.getQtdPontos(), this.percursoTotal);
+        this.calcVelocidade.calcularVelocidadePercurso(this.pontos.getQtdPontos(), informacao.getDistancia().getEspacoPercorrido());
     }
 
     @Override
@@ -46,11 +44,13 @@ final class Movimentador implements TipoAtualizavel{
         if(irParaProximoPonto()){
             if(this.pontos.temProximoPonto()){
                 this.proximaPosicao.set(this.pontos.consumirProximoPonto());
-
+                Debugagem.dbgPontoVector2("Proximo ponto:", this.proximaPosicao);
                 setarQuadrante();
                 this.corredor.setLinearVelocity(this.calcVelocidade.calcularVelocidadePonto(this.posicaoCorredor, this.proximaPosicao));
             }
             else{
+                System.out.println("Finalizado");
+                System.out.println("**********");
                 this.corredor.setLinearVelocity(0, 0);
                 FaseManager2.getInstancia().setFaseAtual(Fase2.CALCULAR_VOLTA);
             }
