@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 
@@ -38,6 +39,10 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
         if(this.faseManager2.isFaseAtual(Fase2.ACAO)){
             this.movimentador.atualizar();
         }
+    }
+
+    public void prepararParaAcao(Informacao informacao){
+        this.movimentador.prepararParaAcao(informacao);
     }
 
     public void resetAngulo(){

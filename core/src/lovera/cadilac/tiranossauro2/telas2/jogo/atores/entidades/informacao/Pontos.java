@@ -47,4 +47,8 @@ public final class Pontos {
         this.listaY.clear();
         this.listaX.clear();
     }
+
+    public int getQtdPontos(){
+        return this.listaX.size();
+    }
 }
