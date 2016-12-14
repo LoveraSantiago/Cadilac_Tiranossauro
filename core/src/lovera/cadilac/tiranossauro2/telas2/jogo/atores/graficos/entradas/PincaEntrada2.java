@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
@@ -62,9 +63,7 @@ public final class PincaEntrada2 extends Entrada2 {
         }
 
         if(isPtValidos()) {
-//            this.corredor.prepararParaAcao();
-//            this.msg.finalizadoFromInput();
-
+            this.corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
             this.faseManager.setFaseAtual(Fase2.ACAO);
         }
         else{

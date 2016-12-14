@@ -21,8 +21,8 @@ class CalculadorVelocidade {
     }
 
     public Vector2 calcularVelocidadePonto(Vector2 posicaoAtual, Vector2 ponto){
-        this.resultVelocidade.x = (posicaoAtual.x - ponto.x) / this.tempoPonto;
-        this.resultVelocidade.y = (posicaoAtual.y - ponto.y) / this.tempoPonto;
+        this.resultVelocidade.x = (ponto.x - posicaoAtual.x) / this.tempoPonto;
+        this.resultVelocidade.y = (ponto.y - posicaoAtual.y) / this.tempoPonto;
 
         return this.resultVelocidade;
     }
