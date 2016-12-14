@@ -9,11 +9,12 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Pontos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
 public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable{
@@ -40,7 +41,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
 
     private final EquacaoQuadratica2 quadratica;
 
-    private final Pontos pontos;
+    private final Informacao informacao;
 
     public DesenhadorGraf_Parabola(Entrada2 entrada2) {
         this.entrada = entrada2;
@@ -57,7 +58,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.corredorP = CorredorManager.getInstancia().getCorredorP();
         this.posicaoCorredorP = this.corredorP.getPosicaoJogo();
 
-        this.pontos = PontoManager.getInstancia().getPontos();
+        this.informacao = InformacaoManager.getInstancia().getInformacao();
 
         this.matrizCameraProjecao = CameraUnico.getCameraManager().getCameraProjecao().combined;
     }
@@ -76,8 +77,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     }
 
     private void resetarComponentes(){
-        this.pontos.limparPontos();
-        this.corredorP.resetEspacoPercorrido();
+        this.informacao.resetarInformacao();
     }
 
     private void definirDirecao() {
@@ -135,7 +135,6 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
 
         addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
-//        System.out.println("contador " + this.contador);
     }
 
     private void procedimentoAEsquerda(){
@@ -155,12 +154,10 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
 
         addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
-//        System.out.println("contador " + this.contador);
     }
 
     private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){
-        this.pontos.addPontos(pt2X, pt2Y);
-        this.corredorP.addEspacoPercorrido(pt1X, pt1Y, pt2X, pt2Y);
+        this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
     }
 
     @Override
