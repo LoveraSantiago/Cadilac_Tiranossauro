@@ -8,9 +8,9 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.ControleManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MenuManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.PontoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
@@ -38,7 +38,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
         this.pistaDeCorrida2 = new PistaDeCorrida2();
         this.pistaDeCorrida2.inicializar();
 
-        new PontoManager().inicializar();
+        new InformacaoManager().inicializar();
 
         this.corredorManager = new CorredorManager();
         this.corredorManager.inicializar();
