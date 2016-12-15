@@ -20,7 +20,7 @@ final class ParserToBody_Pista implements TipoParseavel {
     @Override
     public Body meTransforme(Object tiledMap) {
         //INFORMACOES DOS CONTIDOS EM TILED MAP PARA SEREM USADOS NO BOX2D
-        MapObject mapObject = ((TiledMap)tiledMap).getLayers().get("colisao").getObjects().get("contorno");
+        MapObject mapObject = ((TiledMap)tiledMap).getLayers().get("colisao2").getObjects().get("contorno2");
         MapProperties properties = mapObject.getProperties();
         float x = Float.parseFloat(properties.get("x").toString()) / AjustadorDeTela2.ESCALA;
         float y = Float.parseFloat(properties.get("y").toString()) / AjustadorDeTela2.ESCALA;
