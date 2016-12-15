@@ -51,17 +51,21 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
         this.shapeRenderer.setColor(1.0f, 0.4f, 0f, 0f);
 
         Gdx.gl.glLineWidth(60);
-        this.shapeRenderer.line(this.posicaoJogadorP.x, this.posicaoJogadorP.y - 1,
-                                this.posicaoJogadorP.x, this.entrada.getPtSuperior().y);
 
-        if(this.entrada.getPtLateral().x >= this.posicaoJogadorP.x){
-            this.shapeRenderer.line(this.posicaoJogadorP.x - 1    , this.posicaoJogadorP.y,
-                                    this.entrada.getPtLateral().x , this.posicaoJogadorP.y);
-        }
-        else{
-            this.shapeRenderer.line(this.entrada.getPtLateral().x, this.posicaoJogadorP.y,
-                                    this.posicaoJogadorP.x + 1   , this.posicaoJogadorP.y);
-        }
+//TODO        LEVAR ESSE CARA PARA OS EIXOS CARTESIANOS
+//        this.shapeRenderer.line(this.posicaoJogadorP.x, this.posicaoJogadorP.y - 1,
+//                                this.posicaoJogadorP.x, this.entrada.getPtSuperior().y);
+//
+//        if(this.entrada.getPtLateral().x >= this.posicaoJogadorP.x){
+//            this.shapeRenderer.line(this.posicaoJogadorP.x - 1    , this.posicaoJogadorP.y,
+//                                    this.entrada.getPtLateral().x , this.posicaoJogadorP.y);
+//        }
+//        else{
+//            this.shapeRenderer.line(this.entrada.getPtLateral().x, this.posicaoJogadorP.y,
+//                                    this.posicaoJogadorP.x + 1   , this.posicaoJogadorP.y);
+//        }
+
+        this.shapeRenderer.line(this.posicaoJogadorP.x, this.posicaoJogadorP.y, this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
         this.shapeRenderer.end();
 
         addToComponentes(this.posicaoJogadorP.x, this.posicaoJogadorP.y, this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
