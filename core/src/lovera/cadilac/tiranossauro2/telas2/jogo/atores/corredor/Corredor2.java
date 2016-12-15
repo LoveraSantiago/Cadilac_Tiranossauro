@@ -32,12 +32,22 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
 
     @Override
     public void meDesenhar(Object objeto) {
+        if(!this.faseManager2.isFaseAtual(Fase2.ACAO)){
+            meDesenhar_NaoFaseAcao();
+        }
+        else{
+            meDesenhar_FaseAcao();
+        }
+    }
+
+    private void meDesenhar_NaoFaseAcao(){
         this.calcAngulo.atualizar();
         this.lataria.meDesenhar(null);
+    }
 
-        if(this.faseManager2.isFaseAtual(Fase2.ACAO)){
-            this.movimentador.atualizar();
-        }
+    private void meDesenhar_FaseAcao(){
+        this.lataria.meDesenhar(null);
+        this.movimentador.atualizar();
     }
 
     public void prepararParaAcao(Informacao informacao){
