@@ -32,18 +32,9 @@ public final class Pontos {
         return  this.listaX.size() > 0;
     }
 
-    public boolean temProximoPonto(){
-        return this.listaX.size() > 1;
-    }
-
     public Vector2 consumirPonto(){
         this.pontoTemp.set(this.listaX.get(0), this.listaY.get(0));
         limparPrimeiraPosicao();
-        return this.pontoTemp;
-    }
-
-    public Vector2 getProximoPonto(){
-        this.pontoTemp.set(this.listaX.get(1), this.listaY.get(1));
         return this.pontoTemp;
     }
 
