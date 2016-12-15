@@ -8,10 +8,11 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
-final class Lataria implements TipoDesenhavel{
+final class Lataria implements TipoDesenhavel, TipoAtualizavel{
 
     private final Sprite sprite;
     private final SpriteBatch spriteBatchTemp;
@@ -19,6 +20,8 @@ final class Lataria implements TipoDesenhavel{
     private Body corredor;
 
     public Lataria() {
+        this.corredor = corredor;
+
         this.sprite = new Sprite(new Texture(Gdx.files.internal("redcarpeq.png")));
         this.sprite.setSize(this.sprite.getWidth() / AjustadorDeTela2.ESCALA,
                             this.sprite.getHeight()/ AjustadorDeTela2.ESCALA);
@@ -29,15 +32,18 @@ final class Lataria implements TipoDesenhavel{
 
     @Override
     public void meDesenhar(Object objeto) {
+        atualizar();
         this.spriteBatchTemp.begin();
         this.sprite.draw(this.spriteBatchTemp);
         this.spriteBatchTemp.end();
     }
 
-    public void setPosicao(Body corredor){
-        this.sprite.setPosition(corredor.getPosition().x - getMetadeLargura(), corredor.getPosition().y - getMetadeAltura());
-        this.sprite.setRotation(corredor.getAngle() * MathUtils.radiansToDegrees);
+    @Override
+    public void atualizar() {
+        this.sprite.setPosition(this.corredor.getPosition().x - getMetadeLargura(), this.corredor.getPosition().y - getMetadeAltura());
+        this.sprite.setRotation(this.corredor.getAngle() * MathUtils.radiansToDegrees);
     }
+
 
     public float getAltura(){
         return this.sprite.getHeight();
