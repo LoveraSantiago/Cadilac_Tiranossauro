@@ -42,8 +42,8 @@ final class Movimentador implements TipoAtualizavel{
     @Override
     public void atualizar() {
         if(irParaProximoPonto()){
-            if(this.pontos.temProximoPonto()){
-                this.proximaPosicao.set(this.pontos.consumirProximoPonto());
+            if(this.pontos.temPonto()){
+                this.proximaPosicao.set(this.pontos.consumirPonto());
                 Debugagem.dbgPontoVector2("Proximo ponto:", this.proximaPosicao);
                 setarQuadrante();
                 this.corredor.setLinearVelocity(this.calcVelocidade.calcularVelocidadePonto(this.posicaoCorredor, this.proximaPosicao));
