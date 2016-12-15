@@ -22,6 +22,7 @@ final class Movimentador implements TipoAtualizavel{
 
     private final ClassificadorDeQuadrante quadrante;
     private final CalculadorVelocidade calcVelocidade;
+    private final CalculadorAnguloMovimento calcAngulo;
 
     public Movimentador(Body corredor) {
         this.corredor = corredor;
@@ -32,6 +33,7 @@ final class Movimentador implements TipoAtualizavel{
 
         this.quadrante = new ClassificadorDeQuadrante();
         this.calcVelocidade = new CalculadorVelocidade();
+        this.calcAngulo = new CalculadorAnguloMovimento();
     }
 
     public void prepararParaAcao(Informacao informacao) {

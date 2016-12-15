@@ -33,14 +33,14 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
     @Override
     public void meDesenhar(Object objeto) {
         if(!this.faseManager2.isFaseAtual(Fase2.ACAO)){
-            meDesenhar_NaoFaseAcao();
+            meDesenhar_FaseOutras();
         }
         else{
             meDesenhar_FaseAcao();
         }
     }
 
-    private void meDesenhar_NaoFaseAcao(){
+    private void meDesenhar_FaseOutras(){
         this.calcAngulo.atualizar();
         this.lataria.meDesenhar(null);
     }
