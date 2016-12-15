@@ -44,13 +44,10 @@ final class Movimentador implements TipoAtualizavel{
         if(irParaProximoPonto()){
             if(this.pontos.temPonto()){
                 this.proximaPosicao.set(this.pontos.consumirPonto());
-                Debugagem.dbgPontoVector2("Proximo ponto:", this.proximaPosicao);
                 setarQuadrante();
                 this.corredor.setLinearVelocity(this.calcVelocidade.calcularVelocidadePonto(this.posicaoCorredor, this.proximaPosicao));
             }
             else{
-                System.out.println("Finalizado");
-                System.out.println("**********");
                 this.corredor.setLinearVelocity(0, 0);
                 FaseManager2.getInstancia().setFaseAtual(Fase2.CALCULAR_VOLTA);
             }
