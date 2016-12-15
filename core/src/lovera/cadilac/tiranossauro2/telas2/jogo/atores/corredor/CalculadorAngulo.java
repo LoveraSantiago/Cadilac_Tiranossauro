@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 
-final class CalculadorAnguloParado implements TipoAtualizavel{
+final class CalculadorAngulo implements TipoAtualizavel{
 
     private float anguloCorredorGraus;
     private float anguloCalculado;
@@ -14,7 +14,7 @@ final class CalculadorAnguloParado implements TipoAtualizavel{
 
     private final Body corredor;
 
-    public CalculadorAnguloParado(Body corredor) {
+    public CalculadorAngulo(Body corredor) {
         this.corredor = corredor;
         this.anguloCalculado = 90;
         this.contadorAngulo = corredor.getAngle();
