@@ -1,5 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -41,8 +43,8 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
     }
 
     private void meDesenhar_FaseOutras(){
-        this.calcAngulo.atualizar();
         this.lataria.meDesenhar(null);
+        this.calcAngulo.rotacionarParado();
     }
 
     private void meDesenhar_FaseAcao(){

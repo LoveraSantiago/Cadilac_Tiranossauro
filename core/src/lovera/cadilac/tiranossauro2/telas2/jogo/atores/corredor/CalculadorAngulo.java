@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 
-final class CalculadorAngulo implements TipoAtualizavel{
+final class CalculadorAngulo {
 
     private float anguloCorredorGraus;
     private float anguloCalculado;
@@ -19,10 +19,18 @@ final class CalculadorAngulo implements TipoAtualizavel{
         this.anguloCalculado = 90;
         this.contadorAngulo = corredor.getAngle();
     }
+//    float nextAngle;
+//    float totalRotation;
+//    float desiredAngularVelocity;
+//    float torque;
+//    nextAngle = corredor.getAngle() + corredor.getAngularVelocity() / 60.0f;
+//    totalRotation = 15 * MathUtils.degreesToRadians - nextAngle;
+//    desiredAngularVelocity = totalRotation * 60.0f;
+//    torque = corredor.getInertia() * desiredAngularVelocity / (1/60.0f);
+//    corredor.applyTorque(torque, true);
 
-    @Override
-    public void atualizar() {
-        this.anguloCorredorGraus = Math.round(this.corredor.getAngle() * MathUtils.radiansToDegrees);
+    public void rotacionarParado() {
+        this.anguloCorredorGraus = getAnguloCorredor_Graus();
         if(this.anguloCalculado == this.anguloCorredorGraus) return;
 
         if(this.anguloCorredorGraus > this.anguloCalculado){
@@ -50,5 +58,9 @@ final class CalculadorAngulo implements TipoAtualizavel{
 
     public void resetAngulo() {
         this.anguloCalculado = 90;
+    }
+
+    private int getAnguloCorredor_Graus(){
+        return Math.round(this.corredor.getAngle() * MathUtils.radiansToDegrees);
     }
 }
