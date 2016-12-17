@@ -1,17 +1,11 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 import lovera.cadilac.tiranossauro.utils.Debugagem;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 
 public final class PincaEntrada2 extends Entrada2 {
 
@@ -21,8 +15,6 @@ public final class PincaEntrada2 extends Entrada2 {
     private final Vector3 copiaPtSuperior;
     private final Vector3 copiaPtLateral;
 
-    private final Corredor2 corredor;
-
     public PincaEntrada2() {
         super();
         this.ptSuperior          = new Vector3();
@@ -30,8 +22,6 @@ public final class PincaEntrada2 extends Entrada2 {
         this.ptSuperiorProjetado = new Vector3();
         this.copiaPtSuperior     = new Vector3();
         this.copiaPtLateral      = new Vector3();
-
-        this.corredor = CorredorManager.getInstancia().getCorredorP();
     }
 
     @Override
@@ -48,7 +38,7 @@ public final class PincaEntrada2 extends Entrada2 {
         }
         else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-            this.corredor.resetAngulo();
+            corredor.resetAngulo();
         }
         return false;
     }
@@ -64,12 +54,12 @@ public final class PincaEntrada2 extends Entrada2 {
             Debugagem.dbgPontoVector3("ptLateral:", this.getPtLateral());
             Debugagem.dbgPontoVector3("ptSuperior:", this.getPtSuperior());
             System.out.println("**************************");
-            this.corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
+            corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
             faseManager.setFaseAtual(Fase2.ACAO);
         }
         else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-            this.corredor.resetAngulo();
+            corredor.resetAngulo();
         }
     }
 
@@ -90,7 +80,7 @@ public final class PincaEntrada2 extends Entrada2 {
     }
 
     private boolean isPtValidos(){
-        return this.ptSuperiorProjetado.y > this.corredor.getPosicaoJogo().y + 1;
+        return this.ptSuperiorProjetado.y > corredor.getPosicaoJogo().y + 1;
     }
 
     @Override

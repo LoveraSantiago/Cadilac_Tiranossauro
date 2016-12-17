@@ -6,6 +6,8 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector3;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
@@ -13,12 +15,14 @@ public abstract class Entrada2  extends GestureDetector.GestureAdapter implement
 
     protected static final FaseManager2 faseManager;
     protected static final OrthographicCamera cameraProjecao;
+    protected static final Corredor2 corredor;
 
     private final GestureDetector gestureDetector;
 
     static{
         faseManager = FaseManager2.getInstancia();
         cameraProjecao =  CameraUnico.getCameraManager().getCameraProjecao();
+        corredor = CorredorManager.getInstancia().getCorredorP();
     }
 
     protected Entrada2() {
