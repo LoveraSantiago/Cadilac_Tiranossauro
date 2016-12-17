@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import lovera.cadilac.tiranossauro.utils.Debugagem;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
@@ -67,6 +68,10 @@ public final class PincaEntrada2 extends Entrada2 {
             this.faseManager.setFaseAtual(Fase2.ACAO);
         }
         else{
+            System.out.println("*****Pinca finalizado*****");
+            Debugagem.dbgPontoVector3("ptLateral:", this.getPtLateral());
+            Debugagem.dbgPontoVector3("ptSuperior:", this.getPtSuperior());
+            System.out.println("**************************");
             this.faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
             this.corredor.resetAngulo();
         }
