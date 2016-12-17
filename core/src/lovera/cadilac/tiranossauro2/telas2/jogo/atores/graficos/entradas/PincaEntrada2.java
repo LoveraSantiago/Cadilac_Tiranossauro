@@ -15,7 +15,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManag
 
 public final class PincaEntrada2 extends Entrada2 {
 
-    private final FaseManager2 faseManager;
     private final OrthographicCamera cameraProjecao;
 
     private final Vector3 ptSuperior;
@@ -27,7 +26,6 @@ public final class PincaEntrada2 extends Entrada2 {
     private final Corredor2 corredor;
 
     public PincaEntrada2() {
-        this.faseManager = FaseManager2.getInstancia();
         this.cameraProjecao = CameraUnico.getCameraManager().getCameraProjecao();
 
         this.ptSuperior          = new Vector3();
@@ -41,17 +39,17 @@ public final class PincaEntrada2 extends Entrada2 {
 
     @Override
     public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
-        if(!this.faseManager.isFaseAtual(Fase2.JOGANDO) && !this.faseManager.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
+        if(!faseManager.isFaseAtual(Fase2.JOGANDO) && !faseManager.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
             return true;
         }
 
         determinarPontosMaximos(pointer1, pointer2);
 
         if(isPtValidos()){
-            this.faseManager.setFaseAtual(Fase2.JOGANDO);
+            faseManager.setFaseAtual(Fase2.JOGANDO);
         }
         else{
-            this.faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
+            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
             this.corredor.resetAngulo();
         }
         return false;
@@ -59,20 +57,20 @@ public final class PincaEntrada2 extends Entrada2 {
 
     @Override
     public void pinchStop() {
-        if(!this.faseManager.isFaseAtual(Fase2.JOGANDO)){
+        if(!faseManager.isFaseAtual(Fase2.JOGANDO)){
             return;
         }
 
         if(isPtValidos()) {
             this.corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
-            this.faseManager.setFaseAtual(Fase2.ACAO);
+            faseManager.setFaseAtual(Fase2.ACAO);
         }
         else{
             System.out.println("*****Pinca finalizado*****");
             Debugagem.dbgPontoVector3("ptLateral:", this.getPtLateral());
             Debugagem.dbgPontoVector3("ptSuperior:", this.getPtSuperior());
             System.out.println("**************************");
-            this.faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
+            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
             this.corredor.resetAngulo();
         }
     }
