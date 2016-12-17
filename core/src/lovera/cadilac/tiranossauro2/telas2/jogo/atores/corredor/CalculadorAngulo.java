@@ -29,8 +29,6 @@ final class CalculadorAngulo {
     }
 
     public void rotacionarEmMovimento(){
-        if(isMesmoAngulo()) return;
-
         setFps();
         this.proxAngulo = this.corredor.getAngle() + this.corredor.getAngularVelocity() / this.fps;
         this.diferencaAngulo = this.anguloCalculado * MathUtils.degreesToRadians - this.proxAngulo;
