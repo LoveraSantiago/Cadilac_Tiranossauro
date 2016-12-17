@@ -26,7 +26,6 @@ final class CalculadorAngulo {
     public CalculadorAngulo(Body corredor) {
         this.corredor = corredor;
         this.anguloCalculado = 90;
-        this.contadorAngulo = corredor.getAngle();
     }
 
     public void rotacionarEmMovimento(){
@@ -60,6 +59,8 @@ final class CalculadorAngulo {
             this.anguloCalculado += 90;
         }
         this.anguloCalculado = Math.round(this.anguloCalculado);
+
+        this.contadorAngulo = this.corredor.getAngle();
     }
 
     public void resetAngulo() {

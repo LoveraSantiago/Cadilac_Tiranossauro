@@ -42,14 +42,14 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
     }
 
     private void meDesenhar_FaseOutras(){
-        this.lataria.meDesenhar(null);
         this.calcAngulo.rotacionarParado();
+        this.lataria.meDesenhar(null);
     }
 
     private void meDesenhar_FaseAcao(){
+        this.calcAngulo.rotacionarEmMovimento();
         this.lataria.meDesenhar(null);
         this.movimentador.atualizar();
-        this.calcAngulo.rotacionarEmMovimento();
     }
 
     public void prepararParaAcao(Informacao informacao){
@@ -58,6 +58,11 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
 
     public void resetAngulo(){
         this.calcAngulo.resetAngulo();
+    }
+
+    @Override
+    public void resetPtFuturo(){
+        this.calcAngulo.calcularAngulo(this.corredor.getPosition().x, this.corredor.getPosition().y + 1);
     }
 
     @Override
