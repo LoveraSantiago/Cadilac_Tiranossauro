@@ -15,8 +15,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManag
 
 public final class PincaEntrada2 extends Entrada2 {
 
-    private final OrthographicCamera cameraProjecao;
-
     private final Vector3 ptSuperior;
     private final Vector3 ptLateral;
     private final Vector3 ptSuperiorProjetado;
@@ -27,8 +25,6 @@ public final class PincaEntrada2 extends Entrada2 {
 
     public PincaEntrada2() {
         super();
-        this.cameraProjecao = CameraUnico.getCameraManager().getCameraProjecao();
-
         this.ptSuperior          = new Vector3();
         this.ptLateral           = new Vector3();
         this.ptSuperiorProjetado = new Vector3();
@@ -90,7 +86,7 @@ public final class PincaEntrada2 extends Entrada2 {
 
     private void unProjetarPontos(){
         this.ptSuperiorProjetado.set(this.ptSuperior);
-        this.cameraProjecao.unproject(this.ptSuperiorProjetado);
+        cameraProjecao.unproject(this.ptSuperiorProjetado);
     }
 
     private boolean isPtValidos(){
@@ -100,14 +96,14 @@ public final class PincaEntrada2 extends Entrada2 {
     @Override
     public Vector3 getPtSuperior() {
         this.copiaPtSuperior.set(this.ptSuperior);
-        this.cameraProjecao.unproject(this.copiaPtSuperior);
+        cameraProjecao.unproject(this.copiaPtSuperior);
         return this.copiaPtSuperior;
     }
 
     @Override
     public Vector3 getPtLateral() {
         this.copiaPtLateral.set(this.ptLateral);
-        this.cameraProjecao.unproject(this.copiaPtLateral);
+        cameraProjecao.unproject(this.copiaPtLateral);
         return this.copiaPtLateral;
     }
 
