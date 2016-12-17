@@ -3,7 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import lovera.cadilac.tiranossauro.utils.Debugagem;
+import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Pontos;
@@ -23,8 +23,11 @@ final class Movimentador implements TipoAtualizavel{
     private final ClassificadorDeQuadrante quadrante;
     private final CalculadorVelocidade calcVelocidade;
 
-    public Movimentador(Body corredor) {
+    private final MsgFromMovimentador msg;
+
+    public Movimentador(Body corredor, MsgFromMovimentador msg) {
         this.corredor = corredor;
+        this.msg = msg;
 
         this.posicaoCorredor = corredor.getPosition();
         this.proximaPosicao = new Vector2();
@@ -44,7 +47,10 @@ final class Movimentador implements TipoAtualizavel{
         if(irParaProximoPonto()){
             if(this.pontos.temPonto()){
                 this.proximaPosicao.set(this.pontos.consumirPonto());
+
                 setarQuadrante();
+                setarPtFuturo();
+
                 this.corredor.setLinearVelocity(this.calcVelocidade.calcularVelocidadePonto(this.posicaoCorredor, this.proximaPosicao));
             }
             else{
@@ -56,6 +62,10 @@ final class Movimentador implements TipoAtualizavel{
 
     private void setarQuadrante(){
         this.quadrante.determinarQuadrante(this.posicaoCorredor, this.proximaPosicao);
+    }
+
+    private void setarPtFuturo(){
+        this.msg.setPtFuturoProj(this.proximaPosicao.x, this.proximaPosicao.y);
     }
 
     private boolean irParaProximoPonto(){

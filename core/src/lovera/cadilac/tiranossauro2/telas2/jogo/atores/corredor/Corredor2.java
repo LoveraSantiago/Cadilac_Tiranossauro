@@ -1,17 +1,16 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 
-public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
+public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMovimentador {
 
     private final Lataria lataria;
     private final CalculadorAngulo calcAngulo;
@@ -29,7 +28,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
         this.calcAngulo = new CalculadorAngulo(this.corredor);
 
         this.lataria.setCorredor(this.corredor);
-        this.movimentador = new Movimentador(this.corredor);
+        this.movimentador = new Movimentador(this.corredor, this);
     }
 
     @Override
@@ -50,6 +49,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
     private void meDesenhar_FaseAcao(){
         this.lataria.meDesenhar(null);
         this.movimentador.atualizar();
+        this.calcAngulo.rotacionarEmMovimento();
     }
 
     public void prepararParaAcao(Informacao informacao){
@@ -60,6 +60,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel{
         this.calcAngulo.resetAngulo();
     }
 
+    @Override
     public final void setPtFuturoProj(float x, float y){
         this.calcAngulo.calcularAngulo(x, y);
     }

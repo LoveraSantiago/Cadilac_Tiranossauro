@@ -1,5 +1,6 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -8,9 +9,17 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 
 final class CalculadorAngulo {
 
+    //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
     private float anguloCorredorGraus;
     private float anguloCalculado;
     private float contadorAngulo;
+
+    //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
+    private float fps;
+    private float proxAngulo;
+    private float diferencaAngulo;
+    private float velocidadeAngularEsperada;
+    private float torque;
 
     private final Body corredor;
 
@@ -19,19 +28,20 @@ final class CalculadorAngulo {
         this.anguloCalculado = 90;
         this.contadorAngulo = corredor.getAngle();
     }
-//    float nextAngle;
-//    float totalRotation;
-//    float desiredAngularVelocity;
-//    float torque;
-//    nextAngle = corredor.getAngle() + corredor.getAngularVelocity() / 60.0f;
-//    totalRotation = 15 * MathUtils.degreesToRadians - nextAngle;
-//    desiredAngularVelocity = totalRotation * 60.0f;
-//    torque = corredor.getInertia() * desiredAngularVelocity / (1/60.0f);
-//    corredor.applyTorque(torque, true);
+
+    public void rotacionarEmMovimento(){
+        if(isMesmoAngulo()) return;
+
+        setFps();
+        this.proxAngulo = this.corredor.getAngle() + this.corredor.getAngularVelocity() / this.fps;
+        this.diferencaAngulo = this.anguloCalculado * MathUtils.degreesToRadians - this.proxAngulo;
+        this.velocidadeAngularEsperada = this.diferencaAngulo * this.fps;
+        this.torque = this.corredor.getInertia() * this.velocidadeAngularEsperada / (1 / this.fps);
+        this.corredor.applyTorque(this.torque, true);
+    }
 
     public void rotacionarParado() {
-        this.anguloCorredorGraus = getAnguloCorredor_Graus();
-        if(this.anguloCalculado == this.anguloCorredorGraus) return;
+        if(isMesmoAngulo()) return;
 
         if(this.anguloCorredorGraus > this.anguloCalculado){
             this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
@@ -52,15 +62,21 @@ final class CalculadorAngulo {
         this.anguloCalculado = Math.round(this.anguloCalculado);
     }
 
-    public void calcularAngulo(Vector2 ptFuturo){
-        calcularAngulo(ptFuturo.x, ptFuturo.y);
-    }
-
     public void resetAngulo() {
         this.anguloCalculado = 90;
     }
 
     private int getAnguloCorredor_Graus(){
         return Math.round(this.corredor.getAngle() * MathUtils.radiansToDegrees);
+    }
+
+    private boolean isMesmoAngulo(){
+        this.anguloCorredorGraus = getAnguloCorredor_Graus();
+        return this.anguloCalculado == this.anguloCorredorGraus;
+    }
+
+    private void setFps(){
+        this.fps = Gdx.graphics.getFramesPerSecond();
+        this.fps = this.fps < 60 ? 60 : this.fps;
     }
 }
