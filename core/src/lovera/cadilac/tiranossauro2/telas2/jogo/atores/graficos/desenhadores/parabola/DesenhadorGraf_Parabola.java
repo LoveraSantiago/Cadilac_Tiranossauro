@@ -4,16 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
@@ -34,8 +33,8 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     private final Vector2 posicaoCorredorP;
 
     private final Entrada2 entrada;
-    private final Vector3 ptSuperior;
-    private final Vector3 ptLateral;
+    private final Vector2 ptSuperior;
+    private final Vector2 ptLateral;
 
     private final ProjetorPt_Parabola projetorPt;
 
@@ -52,8 +51,8 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.shapeRenderer = new ShapeRenderer();
         this.pt1Desenho = new Vector2();
         this.pt2Desenho = new Vector2();
-        this.ptSuperior = new Vector3();
-        this.ptLateral  = new Vector3();
+        this.ptSuperior = new Vector2();
+        this.ptLateral  = new Vector2();
 
         this.corredorP = CorredorManager.getInstancia().getCorredorP();
         this.posicaoCorredorP = this.corredorP.getPosicaoJogo();

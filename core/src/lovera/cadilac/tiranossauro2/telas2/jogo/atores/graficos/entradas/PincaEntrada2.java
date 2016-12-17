@@ -15,8 +15,8 @@ public final class PincaEntrada2 extends Entrada2 {
     private final Vector3 ptSuperiorProjetado;
     private final Vector3 ptLateralProjetado;
 
-    private final Vector3 copiaPtSuperior;
-    private final Vector3 copiaPtLateral;
+    private final Vector2 copiaPtSuperior;
+    private final Vector2 copiaPtLateral;
 
     public PincaEntrada2() {
         super();
@@ -26,8 +26,8 @@ public final class PincaEntrada2 extends Entrada2 {
         this.ptSuperiorProjetado = new Vector3();
         this.ptLateralProjetado = new Vector3();
 
-        this.copiaPtSuperior     = new Vector3();
-        this.copiaPtLateral      = new Vector3();
+        this.copiaPtSuperior     = new Vector2();
+        this.copiaPtLateral      = new Vector2();
     }
 
     @Override
@@ -57,8 +57,8 @@ public final class PincaEntrada2 extends Entrada2 {
 
         if(isPtValidos()) {
             System.out.println("*****Pinca finalizado*****");
-            Debugagem.dbgPontoVector3("ptLateral:", this.getPtLateral());
-            Debugagem.dbgPontoVector3("ptSuperior:", this.getPtSuperior());
+            Debugagem.dbgPontoVector2("ptLateral:", this.getPtLateral());
+            Debugagem.dbgPontoVector2("ptSuperior:", this.getPtSuperior());
             System.out.println("**************************");
             corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
             faseManager.setFaseAtual(Fase2.ACAO);
@@ -93,19 +93,19 @@ public final class PincaEntrada2 extends Entrada2 {
     }
 
     @Override
-    public Vector3 getPtSuperior() {
-        this.copiaPtSuperior.set(this.ptSuperiorProjetado);
+    public Vector2 getPtSuperior() {
+        this.copiaPtSuperior.set(this.ptSuperiorProjetado.x, this.ptSuperiorProjetado.y);
         return this.copiaPtSuperior;
     }
 
     @Override
-    public Vector3 getPtLateral() {
-        this.copiaPtLateral.set(this.ptLateralProjetado);
+    public Vector2 getPtLateral() {
+        this.copiaPtLateral.set(this.ptLateralProjetado.x, this.ptLateralProjetado.y);
         return this.copiaPtLateral;
     }
 
     @Override
-    public Vector3 getPtToque() {
+    public Vector2 getPtToque() {
         throw new UnsupportedOperationException("Ponto toque não pode ser chamada na entrada de Pinça");
     }
 }

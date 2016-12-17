@@ -3,6 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 import lovera.cadilac.tiranossauro.atores.Corredor;
@@ -30,9 +31,9 @@ public abstract class Entrada2  extends GestureDetector.GestureAdapter implement
         this.gestureDetector = new GestureDetector(this);
     }
 
-    public abstract Vector3 getPtToque();
-    public abstract Vector3 getPtSuperior();
-    public abstract Vector3 getPtLateral();
+    public abstract Vector2 getPtToque();
+    public abstract Vector2 getPtSuperior();
+    public abstract Vector2 getPtLateral();
 
     @Override
     public InputProcessor passarInputProcessor() {
