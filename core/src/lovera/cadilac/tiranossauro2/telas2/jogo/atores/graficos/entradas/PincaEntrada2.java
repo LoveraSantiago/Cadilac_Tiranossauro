@@ -11,7 +11,10 @@ public final class PincaEntrada2 extends Entrada2 {
 
     private final Vector3 ptSuperior;
     private final Vector3 ptLateral;
+
     private final Vector3 ptSuperiorProjetado;
+    private final Vector3 ptLateralProjetado;
+
     private final Vector3 copiaPtSuperior;
     private final Vector3 copiaPtLateral;
 
@@ -19,7 +22,10 @@ public final class PincaEntrada2 extends Entrada2 {
         super();
         this.ptSuperior          = new Vector3();
         this.ptLateral           = new Vector3();
+
         this.ptSuperiorProjetado = new Vector3();
+        this.ptLateralProjetado = new Vector3();
+
         this.copiaPtSuperior     = new Vector3();
         this.copiaPtLateral      = new Vector3();
     }
@@ -77,6 +83,9 @@ public final class PincaEntrada2 extends Entrada2 {
     private void unProjetarPontos(){
         this.ptSuperiorProjetado.set(this.ptSuperior);
         cameraProjecao.unproject(this.ptSuperiorProjetado);
+
+        this.ptLateralProjetado.set(this.ptLateral);
+        cameraProjecao.unproject(this.ptLateralProjetado);
     }
 
     private boolean isPtValidos(){
@@ -85,20 +94,18 @@ public final class PincaEntrada2 extends Entrada2 {
 
     @Override
     public Vector3 getPtSuperior() {
-        this.copiaPtSuperior.set(this.ptSuperior);
-        cameraProjecao.unproject(this.copiaPtSuperior);
+        this.copiaPtSuperior.set(this.ptSuperiorProjetado);
         return this.copiaPtSuperior;
     }
 
     @Override
     public Vector3 getPtLateral() {
-        this.copiaPtLateral.set(this.ptLateral);
-        cameraProjecao.unproject(this.copiaPtLateral);
+        this.copiaPtLateral.set(this.ptLateralProjetado);
         return this.copiaPtLateral;
     }
 
     @Override
-    public Vector3 getPosicaoFinal() {
-        throw new UnsupportedOperationException("Posicao final não pode ser chamada na entrada de Pinça");
+    public Vector3 getPtToque() {
+        throw new UnsupportedOperationException("Ponto toque não pode ser chamada na entrada de Pinça");
     }
 }
