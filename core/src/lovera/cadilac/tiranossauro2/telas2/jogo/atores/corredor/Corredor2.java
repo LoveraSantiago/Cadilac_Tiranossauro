@@ -56,13 +56,9 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
         this.movimentador.prepararParaAcao(informacao);
     }
 
+    @Override
     public void resetAngulo(){
         this.calcAngulo.resetAngulo();
-    }
-
-    @Override
-    public void resetPtFuturo(){
-        this.calcAngulo.calcularAngulo(this.corredor.getPosition().x, this.corredor.getPosition().y + 1);
     }
 
     @Override
