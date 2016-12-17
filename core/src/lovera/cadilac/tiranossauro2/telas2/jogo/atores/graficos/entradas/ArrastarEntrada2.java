@@ -47,9 +47,8 @@ public final class ArrastarEntrada2 extends Entrada2 {
         }
 
         if(isPtValidos()){
-            System.out.println("*****Pinca finalizado*****");
-            Debugagem.dbgPontoVector3("ptLateral:", this.getPtLateral());
-            Debugagem.dbgPontoVector3("ptSuperior:", this.getPtSuperior());
+            System.out.println("*****Arrastar finalizado*****");
+            Debugagem.dbgPontoVector2("ptToque:", this.getPtToque());
             System.out.println("**************************");
             corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
             faseManager.setFaseAtual(Fase2.ACAO);
@@ -72,8 +71,8 @@ public final class ArrastarEntrada2 extends Entrada2 {
 
     @Override
     public Vector2 getPtToque() {
-//        this.ptToqueCopia.set()
-        return null;
+        this.ptToqueCopia.set(this.ptToqueProjetado.x, this.ptToqueProjetado.y);
+        return this.ptToqueCopia;
     }
 
     @Override
