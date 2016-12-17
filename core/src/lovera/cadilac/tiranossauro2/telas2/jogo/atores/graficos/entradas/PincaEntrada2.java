@@ -26,6 +26,7 @@ public final class PincaEntrada2 extends Entrada2 {
     private final Corredor2 corredor;
 
     public PincaEntrada2() {
+        super();
         this.cameraProjecao = CameraUnico.getCameraManager().getCameraProjecao();
 
         this.ptSuperior          = new Vector3();
@@ -44,6 +45,7 @@ public final class PincaEntrada2 extends Entrada2 {
         }
 
         determinarPontosMaximos(pointer1, pointer2);
+        unProjetarPontos();
 
         if(isPtValidos()){
             faseManager.setFaseAtual(Fase2.JOGANDO);
@@ -62,14 +64,14 @@ public final class PincaEntrada2 extends Entrada2 {
         }
 
         if(isPtValidos()) {
-            this.corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
-            faseManager.setFaseAtual(Fase2.ACAO);
-        }
-        else{
             System.out.println("*****Pinca finalizado*****");
             Debugagem.dbgPontoVector3("ptLateral:", this.getPtLateral());
             Debugagem.dbgPontoVector3("ptSuperior:", this.getPtSuperior());
             System.out.println("**************************");
+            this.corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
+            faseManager.setFaseAtual(Fase2.ACAO);
+        }
+        else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
             this.corredor.resetAngulo();
         }
@@ -86,10 +88,12 @@ public final class PincaEntrada2 extends Entrada2 {
         }
     }
 
-    private boolean isPtValidos(){
+    private void unProjetarPontos(){
         this.ptSuperiorProjetado.set(this.ptSuperior);
         this.cameraProjecao.unproject(this.ptSuperiorProjetado);
+    }
 
+    private boolean isPtValidos(){
         return this.ptSuperiorProjetado.y > this.corredor.getPosicaoJogo().y + 1;
     }
 

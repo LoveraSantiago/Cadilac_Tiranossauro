@@ -10,13 +10,13 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 public abstract class Entrada2  extends GestureDetector.GestureAdapter implements TipoControlavel {
 
     protected static final FaseManager2 faseManager;
-    protected final GestureDetector gestureDetector;
+    private final GestureDetector gestureDetector;
 
     static{
         faseManager = FaseManager2.getInstancia();
     }
 
-    public Entrada2() {
+    protected Entrada2() {
         this.gestureDetector = new GestureDetector(this);
     }
 
