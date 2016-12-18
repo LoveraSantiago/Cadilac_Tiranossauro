@@ -34,10 +34,10 @@ public class EntradaGrafico_Exponencial extends EntradaGrafica{
     @Override
     public void meDesenhar(Object objeto) {
         if(this.faseManager2.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-            super.getAreaJogavel2().setarTamanhoEDesenhar(0, this.posicaoCorredorP.y, AjustadorDeTela2.LARGURA_TELA, AjustadorDeTela2.ALTURA_TELA - this.posicaoCorredorP.y);
+            super.getAreaJogavel2().setarTamanhoEDesenhar(0, 0, AjustadorDeTela2.LARGURA_TELA, this.posicaoCorredorP.y);
         }
         else if(this.faseManager2.isFaseAtual(Fase2.JOGANDO)){
-            super.getAreaJogavel2().setarTamanhoEDesenhar(0, this.posicaoCorredorP.y, AjustadorDeTela2.LARGURA_TELA, AjustadorDeTela2.ALTURA_TELA - this.posicaoCorredorP.y);
+            super.getAreaJogavel2().setarTamanhoEDesenhar(0, 0, AjustadorDeTela2.LARGURA_TELA, this.posicaoCorredorP.y);
             this.desenhador.meDesenhar(null);
         }
     }
