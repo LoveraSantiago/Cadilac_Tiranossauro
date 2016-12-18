@@ -65,11 +65,6 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     @Override
     public void meDesenhar(Object objeto) {
         resetarComponentes();
-
-        this.ptSuperior.set(this.entrada.getPtSuperior());
-        this.ptLateral.set(this.entrada.getPtLateral());
-
-        this.alturaChegadaTemp = this.entrada.getPtSuperior().y;
         definirDirecao();
         definirEquacaoQuadratica();
         desenharParabola();
@@ -77,6 +72,10 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
 
     private void resetarComponentes(){
         this.informacao.resetarInformacao();
+
+        this.ptSuperior.set(this.entrada.getPtSuperior());
+        this.ptLateral.set(this.entrada.getPtLateral());
+        this.alturaChegadaTemp = this.entrada.getPtSuperior().y;
     }
 
     private void definirDirecao() {
