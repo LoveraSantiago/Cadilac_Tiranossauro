@@ -12,6 +12,8 @@ final class CameraProjecao implements TipoCamera{
     private final OrthographicCamera camera;
     private final Viewport viewport;
 
+    private float ptYMaior;
+
     public CameraProjecao() {
         this.camera = new OrthographicCamera();
         this.viewport = new StretchViewport(AjustadorDeTela2.LARGURA_TELA, AjustadorDeTela2.ALTURA_TELA, this.camera);
@@ -28,6 +30,15 @@ final class CameraProjecao implements TipoCamera{
     @Override
     public void updateSpriteBatch() {
 
+    }
+
+    public float getPtYMaior(){
+        this.ptYMaior = -1;
+
+        for(int i = 0; i < this.camera.frustum.planePoints.length; i++) {
+            ptYMaior = Math.max(ptYMaior, this.camera.frustum.planePoints[i].x);
+        }
+        return ptYMaior;
     }
 
     @Override

@@ -1,8 +1,8 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.parabola;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades;
 
 import com.badlogic.gdx.math.Vector2;
 
-class ProjetorDePonto2 {
+public class ProjetorDePonto2 {
 
     protected final Vector2 ptTemp;
 
@@ -19,6 +19,6 @@ class ProjetorDePonto2 {
     }
 
     public Vector2 getPtTemp() {
-        return ptTemp;
+        return this.ptTemp;
     }
 }

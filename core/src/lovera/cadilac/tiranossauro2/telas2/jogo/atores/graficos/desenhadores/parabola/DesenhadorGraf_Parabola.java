@@ -79,7 +79,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     }
 
     private void definirDirecao() {
-        this.lado = this.ptLateral.x > posicaoCorredorP.x ? DirecaoEnum.DIREITA : DirecaoEnum.ESQUERDA;
+        this.lado = this.ptLateral.x > this.posicaoCorredorP.x ? DirecaoEnum.DIREITA : DirecaoEnum.ESQUERDA;
     }
 
     private void definirEquacaoQuadratica(){
@@ -97,6 +97,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.quadratica.definirEquacaoQuadratica(this.ptLateral.x, this.ptLateral.y, this.ptSuperior.x, this.ptSuperior.y);
     }
 
+    //TODO: configurar o shaperenderer seria necessario apenas uma vez! Testar alguma melhoria. *Obs ver se da problema uma vez q tem q dar end
     //LEMBRETE: entradaPtSuperior vira o ponto X e entradaPtLateral vira o pontovertice
     private void desenharParabola(){
         this.shapeRenderer.setProjectionMatrix(this.matrizCameraProjecao);
@@ -105,7 +106,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
 
         Gdx.gl.glLineWidth(60);
 
-        this.pt1Desenho.set(posicaoCorredorP);
+        this.pt1Desenho.set(this.posicaoCorredorP);
         if(this.lado == DirecaoEnum.DIREITA){
             procedimentoADireita();
             this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalDireita(this.quadratica, 0, this.posicaoCorredorP));

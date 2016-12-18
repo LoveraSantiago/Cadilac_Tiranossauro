@@ -64,4 +64,8 @@ public final class CameraManager implements TipoCamera{
     public OrthographicCamera getCameraJogo() {
         return cameraJogo.getCamera();
     }
+
+    public float getMaiorPtXDaCameraProjecao(){
+        return this.cameraProjecao.getPtYMaior();
+    }
 }
