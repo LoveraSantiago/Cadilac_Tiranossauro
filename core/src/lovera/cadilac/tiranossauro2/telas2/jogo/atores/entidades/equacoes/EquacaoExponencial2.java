@@ -16,9 +16,16 @@ public class EquacaoExponencial2 implements TipoEquacao{
         this.b = acentuacaoDaCurva(b);
     }
 
+    //ANTIGO TAMANHO DE TELA
     //GARANTE QUE A CURVA ESTEJA EM UM MINIMO DE 1.35 OU MAXIMO DE 1.062 SENDO 0.0048 A PROPORCAO
+//    private float acentuacaoDaCurva(float toqueY){
+//        return 1.35f - (Math.min(toqueY, 60) * 0.0048f);
+//    }
+
+    //GARANTE QUE A CURVA ESTEJA EM UM MINIMO DE 2.00 OU MAXIMO DE 1.415
+    //6.5f E A DISTANCIA MAXIMA ENTRE O CORREDOR E A POSICAO DO TOQUE NO EIXO Y
     private float acentuacaoDaCurva(float toqueY){
-        return 1.35f - (Math.min(toqueY, 60) * 0.0048f);
+        return 2.0f - (Math.min(toqueY, 6.5f) * .09f);
     }
 
     public float getY(float b, float x){

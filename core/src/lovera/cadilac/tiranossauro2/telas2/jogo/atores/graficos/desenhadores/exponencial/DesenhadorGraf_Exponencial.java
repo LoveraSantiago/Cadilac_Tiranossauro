@@ -18,6 +18,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
+//LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
 public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
 
     private DirecaoEnum lado;
@@ -69,10 +70,11 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
         this.informacao.resetarInformacao();
 
         this.ptToque.set(this.entrada2.getPtToque());
+        this.ptToque.set(15.851f, 1.333f);
     }
 
     private void definirDirecao() {
-        this.lado = this.posicaoCorredor.x < this.ptToque.x ? DirecaoEnum.ESQUERDA : DirecaoEnum.DIREITA;
+        this.lado = this.posicaoCorredor.x < this.ptToque.x ? DirecaoEnum.DIREITA : DirecaoEnum.ESQUERDA;
     }
 
     private void desenharExponencial() {
