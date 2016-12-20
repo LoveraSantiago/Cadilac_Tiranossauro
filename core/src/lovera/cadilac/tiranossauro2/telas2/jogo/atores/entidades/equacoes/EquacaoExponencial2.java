@@ -23,9 +23,10 @@ public class EquacaoExponencial2 implements TipoEquacao{
 //    }
 
     //GARANTE QUE A CURVA ESTEJA EM UM MINIMO DE 2.00 OU MAXIMO DE 1.415
-    //6.5f E A DISTANCIA MAXIMA ENTRE O CORREDOR E A POSICAO DO TOQUE NO EIXO Y
+    //6.0f E A DISTANCIA MAXIMA ENTRE O CORREDOR E A POSICAO DO TOQUE NO EIXO Y
+    //0.09f RESULTADO DE (2.00 - 1.4515)/6.0f
     private float acentuacaoDaCurva(float toqueY){
-        return 2.0f - (Math.min(toqueY, 6.5f) * .09f);
+        return 2.0f - (Math.min(toqueY, 6f) * .0914f);
     }
 
     public float getY(float b, float x){

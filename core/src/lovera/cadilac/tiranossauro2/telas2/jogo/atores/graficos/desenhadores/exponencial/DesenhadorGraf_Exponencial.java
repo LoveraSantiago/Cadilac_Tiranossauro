@@ -70,7 +70,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
         this.informacao.resetarInformacao();
 
         this.ptToque.set(this.entrada2.getPtToque());
-        this.ptToque.set(15.851f, 1.333f);
+//        this.ptToque.set(15.851f, 1.333f);
     }
 
     private void definirDirecao() {
@@ -93,7 +93,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
         else{
             procedimentoAEsquerda();
         }
-        this.shapeRenderer.end();;
+        this.shapeRenderer.end();
     }
 
     private void procedimentoADireita() {
@@ -101,7 +101,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
 
         for(this.contador = 1;
             this.contador <= this.helperContador;
-            this.contador = this.contador++) {
+            this.contador = this.contador + .1f) {
 
             this.pt2Desenho.set(this.posicaoCorredor.x + this.contador, this.posicaoCorredor.y + (this.eqExponencial.getY(this.contador)));
 
@@ -111,7 +111,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-        this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.eqExponencial, 8, this.posicaoCorredor));//8 valor ajustado olhometro
+        this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.eqExponencial, 1, this.posicaoCorredor));//8 valor ajustado olhometro
     }
 
     private void procedimentoAEsquerda() {
@@ -120,7 +120,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
 
         for(this.contador = 1;
             this.contador <= this.helperContador;
-            this.contador = this.contador++) {
+            this.contador = this.contador + .1f) {
 
             this.pt2Desenho.set(this.posicaoCorredor.x + this.contador, (this.posicaoCorredor.y + (this.eqExponencial.getY(this.contador))));
             this.pt2Desenho.x = this.projetorPt.espelharEsquerdaPDireita(this.pt2Desenho.x, this.posicaoCorredor.x);
@@ -131,15 +131,13 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-        this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.eqExponencial, 8, this.posicaoCorredor));
+        this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.eqExponencial, 1, this.posicaoCorredor));
     }
 
     private float getProporcaoDoGraficoPeloToque(){
         //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da pela e a posicao y do jogador) /100
         //dessa forma pega o tamanho proporcional
-        return this.eqExponencial.getX((this.ptToque.x - this.posicaoCorredor.x) *
-                (this.cameraManager.getMaiorPtXDaCameraProjecao() - this.posicaoCorredor.y)
-                / 100);
+        return this.eqExponencial.getX((this.ptToque.x - this.posicaoCorredor.x) * (this.cameraManager.getMaiorPtYDaCameraProjecao() - this.posicaoCorredor.y) / 10);
     }
 
     private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){

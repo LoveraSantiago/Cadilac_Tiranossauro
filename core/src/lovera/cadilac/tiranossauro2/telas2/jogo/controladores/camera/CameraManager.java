@@ -65,7 +65,7 @@ public final class CameraManager implements TipoCamera{
         return cameraJogo.getCamera();
     }
 
-    public float getMaiorPtXDaCameraProjecao(){
+    public float getMaiorPtYDaCameraProjecao(){
         return this.cameraProjecao.getPtYMaior();
     }
 }

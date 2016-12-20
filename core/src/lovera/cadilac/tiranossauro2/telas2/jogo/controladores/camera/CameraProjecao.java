@@ -36,7 +36,7 @@ final class CameraProjecao implements TipoCamera{
         this.ptYMaior = -1;
 
         for(int i = 0; i < this.camera.frustum.planePoints.length; i++) {
-            ptYMaior = Math.max(ptYMaior, this.camera.frustum.planePoints[i].x);
+            ptYMaior = Math.max(ptYMaior, this.camera.frustum.planePoints[i].y);
         }
         return ptYMaior;
     }
