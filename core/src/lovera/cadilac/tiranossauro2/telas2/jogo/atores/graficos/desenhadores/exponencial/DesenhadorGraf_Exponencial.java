@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Arredondador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.DirecaoEnum;
@@ -26,18 +27,19 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
     private float helperContador;
     private float contador;
 
+    private final ShapeRenderer shapeRenderer;
+    private final Matrix4 matrizCameraProjecao;
+
     private final EquacaoExponencial2 eqExponencial;
     private final Entrada2 entrada2;
     private final Informacao informacao;
-    private final ProjetorPt_Exponencial projetorPt;
-
-    private final Corredor2 corredorP;
-    private final Vector2 posicaoCorredor;
-
-    private final ShapeRenderer shapeRenderer;
+    private final Arredondador arredondador;
     private final CameraManager cameraManager;
-    private final Matrix4 matrizCameraProjecao;
+    private final ProjetorPt_Exponencial projetorPt;
+    private final Corredor2 corredorP;
+
     private final Vector2 ptToque;
+    private final Vector2 posicaoCorredor;
 
     private final Vector2 pt1Desenho;
     private final Vector2 pt2Desenho;
@@ -45,6 +47,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
     public DesenhadorGraf_Exponencial(Entrada2 entrada2) {
         this.entrada2 = entrada2;
         this.informacao = InformacaoManager.getInstancia().getInformacao();
+        this.arredondador = new Arredondador();
         this.corredorP = CorredorManager.getInstancia().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
@@ -141,7 +144,9 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
     }
 
     private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){
-        this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
+        if(this.arredondador.arredondar(this.contador) % 1 == 0){
+            this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
+        }
     }
 
     @Override

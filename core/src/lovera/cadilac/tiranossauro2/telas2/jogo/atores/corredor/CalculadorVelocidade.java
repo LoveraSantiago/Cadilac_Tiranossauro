@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 class CalculadorVelocidade {
 
-    private final float VELOCIDADE = 10f;
+    private final float VELOCIDADE = 6f;
 
     private float tempoTotal;
     private float tempoPonto;
