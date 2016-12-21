@@ -144,9 +144,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
     }
 
     private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){
-        if(this.arredondador.arredondar(this.contador) % 1 == 0){
-            this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
-        }
+        this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
     }
 
     @Override

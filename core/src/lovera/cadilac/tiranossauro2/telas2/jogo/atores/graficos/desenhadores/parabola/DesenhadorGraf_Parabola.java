@@ -36,7 +36,6 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     private final ProjetorPt_Parabola projetorPt;
     private final EquacaoQuadratica2 quadratica;
     private final Informacao informacao;
-    private final Arredondador arredondador;
 
     private final Vector2 pt1Desenho;
     private final Vector2 pt2Desenho;
@@ -58,7 +57,6 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.posicaoCorredorP = this.corredorP.getPosicaoJogo();
 
         this.informacao = InformacaoManager.getInstancia().getInformacao();
-        this.arredondador = new Arredondador();
 
         this.matrizCameraProjecao = CameraUnico.getCameraManager().getCameraProjecao().combined;
     }
@@ -159,9 +157,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     }
 
     private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){
-        if(this.arredondador.arredondar(this.contador) % 1 == 0){
-            this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
-        }
+        this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
     }
 
     @Override
