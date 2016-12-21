@@ -38,8 +38,8 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao {
 
         this.quadrante = new ClassificadorDeQuadrante();
         this.calcVelocidade = new CalculadorVelocidade();
-        this.colisao = new Colisao(this.corredor);
         this.timer = new TimerColisao(this);
+        this.colisao = new Colisao(this.corredor, this.timer);
     }
 
     public void prepararParaAcao(Informacao informacao) {
@@ -50,6 +50,19 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao {
 
     @Override
     public void atualizar() {
+        if(this.colisao.isAconteceuColisao()){
+            procedimentoComColisao();
+        }
+        else{
+            procedimentoSemColisao();
+        }
+    }
+
+    private void procedimentoComColisao(){
+        this.timer.atualizar();
+    }
+
+    private void procedimentoSemColisao(){
         if(irParaProximoPonto()){
             if(this.pontos.temPonto()){
                 this.proximaPosicao.set(this.pontos.consumirPonto());
@@ -60,9 +73,7 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao {
                 this.corredor.setLinearVelocity(this.calcVelocidade.calcularVelocidadePonto(this.posicaoCorredor, this.proximaPosicao));
             }
             else{
-                if(!this.colisao.isAconteceuColisao()){
-                    finalizarMovimento();
-                }
+                finalizarMovimento();
             }
         }
     }
