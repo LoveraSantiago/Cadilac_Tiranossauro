@@ -11,7 +11,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
-public final class ParserToBody_Corredor implements TipoParseavel {
+final class ParserToBody_Corredor implements TipoParseavel {
 
     @Override
     public Body meTransforme(Object objeto) {

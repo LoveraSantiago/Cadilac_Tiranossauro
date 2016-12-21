@@ -7,18 +7,28 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
+
 final class Colisao implements ContactListener {
 
     private final Body corredor;
+    private final TimerColisao timer;
 
-    public Colisao(Body corredor) {
+    private boolean aconteceuColisao;
+
+    public Colisao(Body corredor, TimerColisao timer) {
         this.corredor = corredor;
+        this.timer = timer;
+        MeuBox2D2.getInstancia().getWorld().setContactListener(this);
+
+        resetColisao();
     }
 
     @Override
     public void beginContact(Contact contact) {
         if(contact.getFixtureA().getBody() == this.corredor || contact.getFixtureB().getBody() == this.corredor){
-
+            this.aconteceuColisao = true;
+            this.timer.inicializar();
         }
     }
 
@@ -35,5 +45,13 @@ final class Colisao implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
+    }
+
+    public void resetColisao(){
+        this.aconteceuColisao = false;
+    }
+
+    public boolean isAconteceuColisao() {
+        return aconteceuColisao;
     }
 }
