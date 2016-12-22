@@ -7,7 +7,6 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 
 class TimerColisao implements TipoAtualizavel{
 
-    private final int SEGUNDOS = 1;
     private long contadorTempo;
 
     private final MsgFromTimerColisao msg;
@@ -22,7 +21,7 @@ class TimerColisao implements TipoAtualizavel{
     }
 
     private void realizarAcao(){
-        if(TimeUtils.timeSinceMillis(this.contadorTempo) >= SEGUNDOS * 1000){
+        if(TimeUtils.timeSinceMillis(this.contadorTempo) >= 500){
             this.msg.finalizarMovimento();
         }
     }
