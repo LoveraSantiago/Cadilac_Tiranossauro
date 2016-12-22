@@ -12,6 +12,10 @@ public final class Pontos {
     private final List<Float> listaX;
     private final List<Float> listaY;
 
+    private int contador;
+    private float atualX;
+    private float atualY;
+
     public Pontos() {
         this.listaX = new ArrayList<Float>();
         this.listaY = new ArrayList<Float>();
@@ -22,10 +26,6 @@ public final class Pontos {
     public void addPontos(float x, float y){
         this.listaX.add(x);
         this.listaY.add(y);
-    }
-
-    public void addPontos(Vector2 posicao){
-        addPontos(posicao.x, posicao.y);
     }
 
     public boolean temPonto(){
@@ -50,5 +50,27 @@ public final class Pontos {
 
     public int getQtdPontos(){
         return this.listaX.size();
+    }
+
+    public void otimizarPontos(){
+        this.atualX = this.listaX.get(0);
+        this.atualY = this.listaY.get(0);
+
+        this.contador = 1;
+        while(this.contador < this.listaX.size() - 1){
+            if(calcularHipotenusa() < 1){
+                this.listaX.remove(this.contador);
+                this.listaY.remove(this.contador);
+            }
+            else{
+                this.atualX = this.listaX.get(this.contador);
+                this.atualY = this.listaY.get(this.contador);
+                this.contador++;
+            }
+        }
+    }
+
+    private double calcularHipotenusa(){
+        return Math.sqrt(Math.pow(this.listaX.get(this.contador) - this.atualX, 2) + Math.pow(this.listaY.get(this.contador) - this.atualY, 2));
     }
 }
