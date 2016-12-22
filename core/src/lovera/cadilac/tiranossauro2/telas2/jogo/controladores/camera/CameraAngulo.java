@@ -3,7 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 
 final class CameraAngulo {
 

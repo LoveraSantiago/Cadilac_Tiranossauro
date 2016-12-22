@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
+import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
@@ -20,7 +21,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
 
     private final FaseManager2 faseManager2;
 
-    public Corredor2() {
+    public Corredor2(MsgToCorredorManager msgCM) {
         this.faseManager2 = FaseManager2.getInstancia();
 
         this.lataria = new Lataria();
@@ -28,7 +29,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
         this.calcAngulo = new CalculadorAngulo(this.corredor);
 
         this.lataria.setCorredor(this.corredor);
-        this.movimentador = new Movimentador(this.corredor, this);
+        this.movimentador = new Movimentador(this.corredor, msgCM, this);
     }
 
     @Override
