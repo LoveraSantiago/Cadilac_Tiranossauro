@@ -47,4 +47,8 @@ final class CameraAngulo {
             return;
         }
     }
+
+    public float getAnguloAtual() {
+        return anguloAtual;
+    }
 }
