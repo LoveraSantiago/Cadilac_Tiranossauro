@@ -62,6 +62,10 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
         this.calcAngulo.resetAngulo();
     }
 
+    public void telaAngulada(float angulo){
+        this.calcAngulo.telaAngulada(angulo);
+    }
+
     @Override
     public final void setPtFuturoProj(float x, float y){
         this.calcAngulo.calcularAngulo(x, y);

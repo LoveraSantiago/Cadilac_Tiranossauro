@@ -9,7 +9,9 @@ final class CameraAngulo {
 
     private float anguloAtual;
 
-    private final Vector2 ptDeRotacao;
+    private final Vector2 ptDeRotacao;//TODO apagar esse cara?
+    private final Vector2 posicaoCorredor;
+
     private final Vector3 eixoZ;
     private final Vector3 posicaoTemp;
 
@@ -17,6 +19,7 @@ final class CameraAngulo {
 
     public CameraAngulo(CameraJogo cameraJogo) {
         this.cameraJogo = cameraJogo;
+        this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
 
         this.anguloAtual = 0;
         this.ptDeRotacao = new Vector2();
@@ -25,7 +28,7 @@ final class CameraAngulo {
     }
 
     public void rotacionarCameraEmVoltaDoPonto(float angulo){
-        this.posicaoTemp.set(CorredorManager.getInstancia().getCorredorP().getPosicaoJogo(), 0);
+        this.posicaoTemp.set(this.posicaoCorredor, 0);
 
         this.cameraJogo.getCamera().rotateAround(this.posicaoTemp, this.eixoZ, angulo);
         this.anguloAtual = this.anguloAtual + angulo;

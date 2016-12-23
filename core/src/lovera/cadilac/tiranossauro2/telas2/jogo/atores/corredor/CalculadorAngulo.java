@@ -15,6 +15,7 @@ final class CalculadorAngulo {
     private float contadorAngulo;
 
     //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
+    private float anguloNorte;
     private float fps;
     private float proxAngulo;
     private float diferencaAngulo;
@@ -25,7 +26,9 @@ final class CalculadorAngulo {
 
     public CalculadorAngulo(Body corredor) {
         this.corredor = corredor;
-        this.anguloCalculado = 90;
+
+        this.anguloNorte = 90;
+        resetAngulo();
     }
 
     public void rotacionarEmMovimento(){
@@ -61,8 +64,12 @@ final class CalculadorAngulo {
         this.contadorAngulo = this.corredor.getAngle();
     }
 
+    public void telaAngulada(float angulo) {
+        this.anguloNorte -= angulo;
+    }
+
     public void resetAngulo() {
-        this.anguloCalculado = 90;
+        this.anguloCalculado = this.anguloNorte;
     }
 
     private int getAnguloCorredor_Graus(){

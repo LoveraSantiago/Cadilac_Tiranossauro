@@ -4,8 +4,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 
 class VolanteListener extends ActorGestureListener{
 
@@ -16,6 +18,7 @@ class VolanteListener extends ActorGestureListener{
     private float anguloFixo;
     private float anguloMovel;
     private float resultAnguloTemp;
+    private float anguloResult;
 
     private final VolanteControle controle;
     private final Deslizador deslizador;
@@ -23,6 +26,7 @@ class VolanteListener extends ActorGestureListener{
     private final Actor atorVolante;
 
     private final CameraManager cameraManager;
+    private final Corredor2 corredor;
 
 
     public VolanteListener(Actor atorVolante, Deslizador deslizador, VolanteControle controle) {
@@ -31,27 +35,31 @@ class VolanteListener extends ActorGestureListener{
         this.controle = controle;
 
         this.cameraManager = CameraUnico.getCameraManager();
+        this.corredor = CorredorManager.getInstancia().getCorredorP();
     }
 
     @Override
     public void touchDown(InputEvent event, float x, float y, int pointer, int button) {
         if(this.deslizador.isPosicaoBarraFixa()){
-            anguloFixo = getAngulo(this.controle.getPtMedioBarra().x, this.controle.getPtMedioBarra().y,
+            this.anguloFixo = getAngulo(this.controle.getPtMedioBarra().x, this.controle.getPtMedioBarra().y,
                                    x + this.atorVolante.getX(), y + this.atorVolante.getY());
-            ultimoAngulo = anguloFixo;
-            toqueAcontecendo = true;
+            this.ultimoAngulo = anguloFixo;
+            this.toqueAcontecendo = true;
         }
     }
 
     @Override
     public void pan(InputEvent event, float x, float y, float deltaX, float deltaY) {
         if(this.deslizador.isPosicaoBarraFixa()){
-            panAcontecendo = true;
-            anguloMovel = getAngulo(this.controle.getPtMedioBarra().x, this.controle.getPtMedioBarra().y,
+            this.panAcontecendo = true;
+            this.anguloMovel = getAngulo(this.controle.getPtMedioBarra().x, this.controle.getPtMedioBarra().y,
                                     x + this.atorVolante.getX(), y + this.atorVolante.getY());
 
-            if(ultimoAngulo != anguloMovel){
-                this.cameraManager.rotacionarCameraEmVoltaDoPonto(-(anguloMovel - ultimoAngulo));
+            if(this.ultimoAngulo != this.anguloMovel){
+                this.anguloResult = -(anguloMovel - ultimoAngulo);
+
+                this.cameraManager.rotacionarCameraEmVoltaDoPonto(this.anguloResult);
+                this.corredor.telaAngulada(this.anguloResult);
             }
             ultimoAngulo = anguloMovel;
         }
@@ -59,10 +67,10 @@ class VolanteListener extends ActorGestureListener{
 
     @Override
     public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-        anguloFixo = 0;
-        anguloMovel = 0;
-        toqueAcontecendo = false;
-        panAcontecendo = false;
+        this.anguloFixo = 0;
+        this.anguloMovel = 0;
+        this.toqueAcontecendo = false;
+        this.panAcontecendo = false;
         this.cameraManager.normatizarAngulo();
     }
 
