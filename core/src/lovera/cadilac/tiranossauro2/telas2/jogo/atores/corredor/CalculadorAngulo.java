@@ -65,7 +65,8 @@ final class CalculadorAngulo {
     }
 
     public void telaAngulada(float angulo) {
-        this.anguloNorte -= angulo;
+        this.anguloNorte += angulo;
+        resetAngulo();
     }
 
     public void resetAngulo() {
