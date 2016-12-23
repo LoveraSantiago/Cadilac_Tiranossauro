@@ -52,8 +52,7 @@ class VolanteListener extends ActorGestureListener{
     public void pan(InputEvent event, float x, float y, float deltaX, float deltaY) {
         if(this.deslizador.isPosicaoBarraFixa()){
             this.panAcontecendo = true;
-            this.anguloMovel = getAngulo(this.controle.getPtMedioBarra().x, this.controle.getPtMedioBarra().y,
-                                    x + this.atorVolante.getX(), y + this.atorVolante.getY());
+            this.anguloMovel = getAngulo(this.controle.getPtMedioBarra().x, this.controle.getPtMedioBarra().y, x + this.atorVolante.getX(), y + this.atorVolante.getY());
 
             if(this.ultimoAngulo != this.anguloMovel){
                 this.anguloResult = -(anguloMovel - ultimoAngulo);

@@ -12,7 +12,7 @@ public final class TelaJogo2 implements Screen{
 
     public TelaJogo2() {
         this.singletonsManager = new SingletonsManager_TelaJogo();
-        this.singletonsManager.iniciliazarSingletons();
+        this.singletonsManager.inicializarSingletons();
     }
 
     @Override

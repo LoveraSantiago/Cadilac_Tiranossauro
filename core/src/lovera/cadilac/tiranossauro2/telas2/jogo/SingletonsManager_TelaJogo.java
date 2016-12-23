@@ -25,7 +25,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
     private PistaDeCorrida2 pistaDeCorrida2;
 
-    public void iniciliazarSingletons(){
+    public void inicializarSingletons(){
         new mSpriteBatch().inicializar();
 
         new CameraUnico().inicializar();
