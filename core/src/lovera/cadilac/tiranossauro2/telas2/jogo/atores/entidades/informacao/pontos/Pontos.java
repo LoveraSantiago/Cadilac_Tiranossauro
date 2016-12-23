@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos;
 
 import com.badlogic.gdx.math.Vector2;
 
@@ -12,15 +12,14 @@ public final class Pontos {
     private final List<Float> listaX;
     private final List<Float> listaY;
 
-    private int contador;
-    private float atualX;
-    private float atualY;
+    private final Otimizador otimizador;
 
     public Pontos() {
         this.listaX = new ArrayList<Float>();
         this.listaY = new ArrayList<Float>();
 
         this.pontoTemp = new Vector2();
+        this.otimizador = new Otimizador(this.listaX, this.listaY);
     }
 
     public void addPontos(float x, float y){
@@ -52,25 +51,8 @@ public final class Pontos {
         return this.listaX.size();
     }
 
-    public void otimizarPontos(){
-        this.atualX = this.listaX.get(0);
-        this.atualY = this.listaY.get(0);
-
-        this.contador = 1;
-        while(this.contador < this.listaX.size() - 1){
-            if(calcularHipotenusa() < 1){
-                this.listaX.remove(this.contador);
-                this.listaY.remove(this.contador);
-            }
-            else{
-                this.atualX = this.listaX.get(this.contador);
-                this.atualY = this.listaY.get(this.contador);
-                this.contador++;
-            }
-        }
+    public void prepararPontos(){
+        this.otimizador.otimizarPontos();
     }
 
-    private double calcularHipotenusa(){
-        return Math.sqrt(Math.pow(this.listaX.get(this.contador) - this.atualX, 2) + Math.pow(this.listaY.get(this.contador) - this.atualY, 2));
-    }
 }
