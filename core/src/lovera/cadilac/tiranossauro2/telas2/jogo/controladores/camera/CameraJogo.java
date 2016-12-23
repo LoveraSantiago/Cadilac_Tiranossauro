@@ -1,6 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -14,12 +15,15 @@ final class CameraJogo implements TipoCamera{
     private final OrthographicCamera camera;
     private final Viewport viewport;
 
+    private final SpriteBatch spriteBatch;
+
     public CameraJogo() {
         this.camera = new OrthographicCamera();
         this.viewport = new StretchViewport(AjustadorDeTela2.LARGURA_TELA, AjustadorDeTela2.ALTURA_TELA, this.camera);
         this.viewport.apply();
 
         this.camera.position.set(this.camera.viewportWidth / 2, this.camera.viewportHeight / 2, 0);
+        this.spriteBatch = mSpriteBatch.getInstancia();
     }
 
     @Override
@@ -29,7 +33,7 @@ final class CameraJogo implements TipoCamera{
 
     @Override
     public void updateSpriteBatch(){
-        mSpriteBatch.getInstancia().setProjectionMatrix(this.camera.combined);
+       this.spriteBatch.setProjectionMatrix(this.camera.combined);
     }
 
     @Override
