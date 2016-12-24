@@ -41,18 +41,17 @@ final class Rotacionador {
     }
 
     private void rotacionar(){
-        this.tempX = this.posicaoCorredor.x - this.listaX.get(this.contador);
-        this.tempY = this.posicaoCorredor.y - this.listaY.get(this.contador);
+        this.tempX = this.listaX.get(this.contador) - this.posicaoCorredor.x;
+        this.tempY = this.listaY.get(this.contador) - this.posicaoCorredor.y;
 
-        this.listaX.set(this.contador, (this.tempX * this.cos)-(this.tempY * this.sen));
-        this.listaY.set(this.contador, (this.tempY * this.cos)+(this.tempX * this.sen));
+        this.listaX.set(this.contador, ((this.tempX * this.cos)-(this.tempY * this.sen)) + this.posicaoCorredor.x);
+        this.listaY.set(this.contador, ((this.tempY * this.cos)+(this.tempX * this.sen)) + this.posicaoCorredor.y);
     }
 
     private void setSenoCosseno(){
-        this.angulo = cameraManager.getAngulo_CameraJogo();
+        this.angulo = this.cameraManager.getAngulo_CameraJogo();
 
         this.cos = MathUtils.cosDeg(this.angulo);
         this.sen = MathUtils.sinDeg(this.angulo);
     }
-
 }
