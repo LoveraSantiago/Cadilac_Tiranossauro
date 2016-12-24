@@ -15,7 +15,7 @@ import lovera.cadilac.tiranossauro.telas.menus.MenuUtils;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.utils.MenuUtils2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.ControleManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 
 final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{

@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
+package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -10,6 +10,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MenuManager2;
 
 public final class ControleManager2 implements TipoSingleton{
 
