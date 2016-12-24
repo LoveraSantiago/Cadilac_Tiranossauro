@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.Disposable;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
 public final class MeuBox2D2 implements TipoSingleton, TipoAtualizavel, TipoDesenhavel, Disposable{
@@ -25,7 +24,7 @@ public final class MeuBox2D2 implements TipoSingleton, TipoAtualizavel, TipoDese
     public MeuBox2D2() {
         this.world = new World(new Vector2(), true);
         this.renderer = new Box2DDebugRenderer();
-        this.matrizCameraJogo = CameraUnico.getCameraManager().getCameraJogo().combined;
+        this.matrizCameraJogo = CameraUnico.getCameraManager().getCamera_CamJogo().combined;
     }
 
     @Override

@@ -57,7 +57,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
 
         this.informacao = InformacaoManager.getInstancia().getInformacao();
 
-        this.matrizCameraProjecao = CameraUnico.getCameraManager().getCameraProjecao().combined;
+        this.matrizCameraProjecao = CameraUnico.getCameraManager().getCamera_CamProj().combined;
     }
 
     @Override

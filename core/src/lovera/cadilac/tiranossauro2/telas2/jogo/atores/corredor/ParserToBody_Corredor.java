@@ -17,8 +17,8 @@ final class ParserToBody_Corredor implements TipoParseavel {
     public Body meTransforme(Object objeto) {
         Lataria lataria = (Lataria) objeto;
         CameraManager cameraManagerTemp = CameraUnico.getCameraManager();
-        float xInicial = cameraManagerTemp.getCameraProjecao().viewportWidth  / 2;
-        float yInicial = cameraManagerTemp.getCameraProjecao().viewportHeight / 6;
+        float xInicial = cameraManagerTemp.getCamera_CamProj().viewportWidth  / 2;
+        float yInicial = cameraManagerTemp.getCamera_CamProj().viewportHeight / 6;
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(lataria.getLargura() / 2, lataria.getAltura() / 2);

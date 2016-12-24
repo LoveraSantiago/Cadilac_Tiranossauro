@@ -2,19 +2,24 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSubCamera;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
-final class CameraProjecao implements TipoCamera{
+//TODO refatorar com CameraJogo
+final class CameraProjecao implements TipoSubCamera{
 
     private final OrthographicCamera camera;
     private final Viewport viewport;
 
     private float ptYMaior;
+
+    private final Vector2 posicaoTemp;
 
     private final SpriteBatch spriteBatch;
 
@@ -25,6 +30,8 @@ final class CameraProjecao implements TipoCamera{
 
         this.camera.position.set(this.camera.viewportWidth / 2, this.camera.viewportHeight / 2, 0);
         this.spriteBatch = mSpriteBatch.getInstancia();
+
+        this.posicaoTemp = new Vector2();
     }
 
     @Override
@@ -51,11 +58,22 @@ final class CameraProjecao implements TipoCamera{
         this.viewport.update(width, height);
     }
 
+    @Override
     public OrthographicCamera getCamera() {
         return camera;
     }
 
     public Viewport getViewport() {
         return viewport;
+    }
+
+    @Override
+    public Vector2 getPosicao() {
+        return this.posicaoTemp.set(this.camera.position.x, this.camera.position.y);
+    }
+
+    @Override
+    public void setPosicao(float x, float y) {
+        this.camera.position.set(x, y, 0);
     }
 }

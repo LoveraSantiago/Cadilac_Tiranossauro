@@ -51,7 +51,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
         this.corredorP = CorredorManager.getInstancia().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
-        this.matrizCameraProjecao = this.cameraManager.getCameraProjecao().combined;
+        this.matrizCameraProjecao = this.cameraManager.getCamera_CamProj().combined;
 
         this.shapeRenderer = new ShapeRenderer();
 
@@ -140,7 +140,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
     private float getProporcaoDoGraficoPeloToque(){
         //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da pela e a posicao y do jogador) /100
         //dessa forma pega o tamanho proporcional
-        return this.eqExponencial.getX((this.ptToque.x - this.posicaoCorredor.x) * (this.cameraManager.getMaiorPtYDaCameraProjecao() - this.posicaoCorredor.y) / 10);
+        return this.eqExponencial.getX((this.ptToque.x - this.posicaoCorredor.x) * (this.cameraManager.getMaiorPtY_CamProj() - this.posicaoCorredor.y) / 10);
     }
 
     private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){

@@ -21,7 +21,7 @@ public abstract class Entrada2  extends GestureDetector.GestureAdapter implement
 
     static{
         faseManager = FaseManager2.getInstancia();
-        cameraProjecao =  CameraUnico.getCameraManager().getCameraProjecao();
+        cameraProjecao =  CameraUnico.getCameraManager().getCamera_CamProj();
         corredor = CorredorManager.getInstancia().getCorredorP();
     }
 

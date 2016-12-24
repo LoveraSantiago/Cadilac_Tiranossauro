@@ -13,6 +13,8 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MenuManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.VoltarOrigemManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.voltar.VoltarOrigem2;
 
 final class SingletonsManager_TelaJogo implements Disposable{
 
@@ -20,6 +22,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
     private MenuManager2 menuManager2;
     private CorredorManager corredorManager;
     private GraficoManager2 graficoManager2;
+    private VoltarOrigem2 voltarOrigem2;
 
     private MeuBox2D2 meuBox2DTemp;
 
@@ -50,6 +53,9 @@ final class SingletonsManager_TelaJogo implements Disposable{
         this.graficoManager2.inicializar();
 
         new ControleManager2(this.graficoManager2.getMapaEntradaGraficas()).inicializar();
+
+        new VoltarOrigemManager().inicializar();
+        this.voltarOrigem2 = VoltarOrigemManager.getInstancia();
     }
 
     public void render(float delta){
@@ -74,6 +80,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
         //SENDO CHAMADO POR ULTIMO PARA PODER SER VISUALIZADO POR CIMA DA TELA
         this.meuBox2DTemp.meDesenhar(null);
+        this.voltarOrigem2.meDesenhar(null);
     }
 
     @Override

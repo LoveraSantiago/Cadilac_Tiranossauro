@@ -49,7 +49,7 @@ final class Rotacionador {
     }
 
     private void setSenoCosseno(){
-        this.angulo = this.cameraManager.getAngulo_CameraJogo();
+        this.angulo = this.cameraManager.getAngulo_CamJogo();
 
         this.cos = MathUtils.cosDeg(this.angulo);
         this.sen = MathUtils.sinDeg(this.angulo);

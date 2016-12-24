@@ -1,6 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
@@ -30,13 +31,6 @@ public final class CameraManager implements TipoCamera{
         this.cameraProjecao.atualizar();
     }
 
-    //Não dá para realizar a operação nas duas classes cameras igual ao metodo update pq o spritebatch deve ser atualizado em tempos
-    //diferente para as cameras diferentes
-    @Override
-    public void updateSpriteBatch() {
-        throw new UnsupportedOperationException("Operação não suportada ver CameraManager updateSpriteBatch comentários");
-    }
-
     public void updateSpriteBatch_CamJogo() {
         this.cameraJogo.updateSpriteBatch();
     }
@@ -53,23 +47,40 @@ public final class CameraManager implements TipoCamera{
         this.cameraAngulo.rotacionarCameraEmVoltaDoPonto(angulo);
     }
 
-    public OrthographicCamera getCameraProjecao() {
+    public OrthographicCamera getCamera_CamProj() {
         return cameraProjecao.getCamera();
     }
 
-    public Viewport getViewPortCameraProjecao(){
+    public Viewport getViewPort_CamProj(){
         return this.cameraProjecao.getViewport();
     }
 
-    public OrthographicCamera getCameraJogo() {
+    public OrthographicCamera getCamera_CamJogo() {
         return cameraJogo.getCamera();
     }
 
-    public float getMaiorPtYDaCameraProjecao(){
+    public float getMaiorPtY_CamProj(){
         return this.cameraProjecao.getPtYMaior();
     }
 
-    public float getAngulo_CameraJogo(){
+    public float getAngulo_CamJogo(){
         return this.cameraAngulo.getAnguloAtual();
     }
+
+    public Vector2 getPosicao_CamProj(){
+        return this.cameraProjecao.getPosicao();
+    }
+
+    public void setPosicao_CamProj(float x, float y){
+        this.cameraProjecao.setPosicao(x, y);
+    }
+
+    public Vector2 getPosicao_CamJogo(){
+        return this.cameraJogo.getPosicao();
+    }
+
+    public void setPosicao_CamJogo(float x, float y){
+        this.cameraJogo.setPosicao(x, y);
+    }
+
 }

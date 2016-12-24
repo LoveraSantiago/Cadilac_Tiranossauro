@@ -30,7 +30,7 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
 
     public DesenhadorGraf_Vetor(Entrada2 entrada) {
         this.entrada = entrada;
-        this.cameraProjecao = CameraUnico.getCameraManager().getCameraProjecao();
+        this.cameraProjecao = CameraUnico.getCameraManager().getCamera_CamProj();
 
         this.corredorP = CorredorManager.getInstancia().getCorredorP();
         this.posicaoJogadorP = this.corredorP.getPosicaoJogo();
