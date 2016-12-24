@@ -6,7 +6,5 @@ public enum Fase2 {
     ACEITAR_ENTRADA,
     JOGANDO,
     ACAO,
-    CALCULAR_VOLTA,
     TELA_VOLTANDO;
-
 }

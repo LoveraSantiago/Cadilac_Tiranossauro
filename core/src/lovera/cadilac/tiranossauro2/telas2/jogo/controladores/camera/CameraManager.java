@@ -75,6 +75,10 @@ public final class CameraManager implements TipoCamera{
         this.cameraProjecao.setPosicao(x, y);
     }
 
+    public void setPosicao_CamProj(Vector2 pt){
+        setPosicao_CamProj(pt.x, pt.y);
+    }
+
     public Vector2 getPosicao_CamJogo(){
         return this.cameraJogo.getPosicao();
     }
@@ -83,4 +87,7 @@ public final class CameraManager implements TipoCamera{
         this.cameraJogo.setPosicao(x, y);
     }
 
+    public void setPosicao_CamJogo(Vector2 pt){
+        setPosicao_CamJogo(pt.x, pt.y);
+    }
 }

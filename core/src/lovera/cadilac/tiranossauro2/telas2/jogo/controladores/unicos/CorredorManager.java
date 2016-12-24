@@ -5,7 +5,6 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 
 public final class CorredorManager implements TipoSingleton, TipoDesenhavel, MsgToCorredorManager{
 
@@ -51,7 +50,7 @@ public final class CorredorManager implements TipoSingleton, TipoDesenhavel, Msg
         this.contadorAcoes++;
 
         if(this.contadorAcoes == this.qtdJogadores){
-            this.faseManager.setFaseAtual(Fase2.CALCULAR_VOLTA);
+            VoltarOrigemUnico.voltarOrigem2().calcularVolta();
             resetContadorAcoes();
         }
     }

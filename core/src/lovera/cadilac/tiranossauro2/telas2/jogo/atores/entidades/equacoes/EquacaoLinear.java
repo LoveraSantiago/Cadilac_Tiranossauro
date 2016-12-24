@@ -1,5 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes;
 
+import com.badlogic.gdx.math.Vector2;
+
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoEquacao;
 
 public final class EquacaoLinear implements TipoEquacao{
@@ -12,6 +14,10 @@ public final class EquacaoLinear implements TipoEquacao{
 
         this.coefAngular = (y2 - y1) / (x2 - x1);
         this.intercepto = y2 - (coefAngular * x2);
+    }
+
+    public void definirEquacaoDaReta(Vector2 pt1, Vector2 pt2){
+        definirEquacaoDaReta(pt1.x, pt1.y, pt2.x, pt2.y);
     }
 
     @Override
