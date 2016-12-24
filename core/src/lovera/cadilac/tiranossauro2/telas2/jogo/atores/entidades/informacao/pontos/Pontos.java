@@ -55,6 +55,7 @@ public final class Pontos {
 
     public void prepararPontos(){
         this.otimizador.otimizarPontos();
+        this.rotacionador.rotacionarPontos();
     }
 
 }

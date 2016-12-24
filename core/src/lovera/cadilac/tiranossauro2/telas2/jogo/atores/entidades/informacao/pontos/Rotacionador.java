@@ -21,7 +21,7 @@ final class Rotacionador {
     private final List<Float> listaX;
     private final List<Float> listaY;
 
-    private final Vector2 posicaoCorredor;
+    private Vector2 posicaoCorredor;
     private final CameraManager cameraManager;
 
     public Rotacionador(List<Float> listaX, List<Float> listaY) {
@@ -29,10 +29,10 @@ final class Rotacionador {
         this.listaY = listaY;
 
         this.cameraManager = CameraUnico.getCameraManager();
-        this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
     }
 
     public void rotacionarPontos(){
+        this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
         setSenoCosseno();
 
         for(this.contador = 0; this.contador < this.listaX.size(); this.contador++){
