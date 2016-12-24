@@ -13,6 +13,7 @@ public final class Pontos {
     private final List<Float> listaY;
 
     private final Otimizador otimizador;
+    private final Rotacionador rotacionador;
 
     public Pontos() {
         this.listaX = new ArrayList<Float>();
@@ -20,6 +21,7 @@ public final class Pontos {
 
         this.pontoTemp = new Vector2();
         this.otimizador = new Otimizador(this.listaX, this.listaY);
+        this.rotacionador = new Rotacionador(this.listaX, this.listaY);
     }
 
     public void addPontos(float x, float y){
