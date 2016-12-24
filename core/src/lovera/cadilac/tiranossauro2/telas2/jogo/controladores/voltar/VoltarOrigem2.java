@@ -15,6 +15,8 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
     private final CalculadorVolta calculadorVolta;
     private final FaseManager2 faseManager2;
 
+    private final Vector2 posicaoCameraFim;
+
     private final Vector2 posicaoTemp;
     private final Vector2 posicaoCorredor;
     private final CameraManager cameraManager;
@@ -22,8 +24,10 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
     private final EquacaoLinear equacaoLinear;
 
     public VoltarOrigem2() {
+        this.posicaoCameraFim = new Vector2();
+
         this.equacaoLinear = new EquacaoLinear();
-        this.calculadorVolta = new CalculadorVolta(this.equacaoLinear);
+        this.calculadorVolta = new CalculadorVolta(this.equacaoLinear, this.posicaoCameraFim);
         this.posicaoTemp = new Vector2();
 
         this.faseManager2 = FaseManager2.getInstancia();
@@ -36,22 +40,36 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         if(this.faseManager2.isFaseAtual(Fase2.TELA_VOLTANDO)){
             this.posicaoTemp.set(this.cameraManager.getPosicao_CamJogo());
 
-            this.posicaoTemp.x += this.calculadorVolta.getIncremento();
-            this.posicaoTemp.y = this.equacaoLinear.getY(this.posicaoTemp.x);
+            if(!isCameraPosicaoCorreta()){
+                this.posicaoTemp.x += this.calculadorVolta.getIncremento();
+                this.posicaoTemp.y = this.equacaoLinear.getY(this.posicaoTemp.x);
 
-            this.cameraManager.setPosicao_CamJogo(this.posicaoTemp);
+                this.cameraManager.setPosicao_CamJogo(this.posicaoTemp);
+            }
+            else{
+                this.faseManager2.setFaseAtual(Fase2.ESCOLHENDO_GRAFICO);
+            }
         }
+    }
+
+    private boolean isCameraPosicaoCorreta(){
+        return this.posicaoTemp.x == this.posicaoCameraFim.x && this.posicaoTemp.y == this.posicaoCameraFim.y;
     }
 
     public void calcularVolta(){
         this.calculadorVolta.calcularVolta();
+
+        atualizar_CamProj();
+
+        this.faseManager2.setFaseAtual(Fase2.TELA_VOLTANDO);
+    }
+
+    private void atualizar_CamProj(){
         this.posicaoTemp.set(this.cameraManager.getPosicao_CamProj());
 
         this.posicaoTemp.x += this.posicaoCorredor.x;
         this.posicaoTemp.y += this.posicaoCorredor.y;
 
         this.cameraManager.setPosicao_CamProj(this.posicaoTemp);
-
-        this.faseManager2.setFaseAtual(Fase2.TELA_VOLTANDO);
     }
 }
