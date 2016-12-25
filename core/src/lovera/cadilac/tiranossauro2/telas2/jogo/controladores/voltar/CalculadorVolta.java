@@ -25,7 +25,7 @@ final class CalculadorVolta {
 
     public void calcularVolta(float diferenca){
         this.equacaoLinear.definirEquacaoDaReta(this.posicaoJogador.x, this.posicaoJogador.y + diferenca, this.cameraManager.getPosicao_CamJogo());
-        this.incremento = (this.posicaoJogador.x - this.cameraManager.getPosicao_CamJogo().x)/ (Math.max(60f, Gdx.graphics.getFramesPerSecond() * 3));
+        this.incremento = (this.posicaoJogador.x - this.cameraManager.getPosicao_CamJogo().x)/ (Math.max(60f, Gdx.graphics.getFramesPerSecond() * 2));
     }
 
     public float getIncremento() {

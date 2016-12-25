@@ -5,8 +5,10 @@ import com.badlogic.gdx.math.Vector2;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoLinear;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 
@@ -22,6 +24,8 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
     private final EquacaoLinear equacaoLinear;
     private final CalculadorVolta calculadorVolta;
 
+    private final ControleManager2 controleManager2;
+
     public VoltarOrigem2() {
 
         this.equacaoLinear = new EquacaoLinear();
@@ -31,6 +35,7 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         this.faseManager2 = FaseManager2.getInstancia();
         this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
+        this.controleManager2 = ControleManager2.getInstancia();
 
         this.diferencaCameraCorredorY = this.cameraManager.getPosicao_CamProj().y - this.posicaoCorredor.y;
     }
@@ -41,16 +46,25 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
             this.posicaoTemp.set(this.cameraManager.getPosicao_CamJogo());
 
             if(!isCameraPosicaoFinal()){
-                this.posicaoTemp.x += this.calculadorVolta.getIncremento();
-                this.posicaoTemp.y = this.equacaoLinear.getY(this.posicaoTemp.x);
-
-                this.cameraManager.setPosicao_CamJogo(this.posicaoTemp);
+                procedimentoIncremento();
             }
             else{
-                this.cameraManager.setPosicao_CamJogo(this.posicaoCorredor.x, this.posicaoCorredor.y + this.diferencaCameraCorredorY);
-                this.faseManager2.setFaseAtual(Fase2.ESCOLHENDO_GRAFICO);
+                procedimentoFinalizar();
             }
         }
+    }
+
+    private void procedimentoIncremento(){
+        this.posicaoTemp.x += this.calculadorVolta.getIncremento();
+        this.posicaoTemp.y = this.equacaoLinear.getY(this.posicaoTemp.x);
+
+        this.cameraManager.setPosicao_CamJogo(this.posicaoTemp);
+    }
+
+    private void procedimentoFinalizar(){
+        this.cameraManager.setPosicao_CamJogo(this.posicaoCorredor.x, this.posicaoCorredor.y + this.diferencaCameraCorredorY);
+        this.faseManager2.setFaseAtual(Fase2.ESCOLHENDO_GRAFICO);
+        this.controleManager2.voltarMenuGrafico();
     }
 
     private boolean isCameraPosicaoFinal(){
