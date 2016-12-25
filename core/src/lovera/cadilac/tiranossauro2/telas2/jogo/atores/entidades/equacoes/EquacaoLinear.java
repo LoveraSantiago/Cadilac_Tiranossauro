@@ -20,6 +20,10 @@ public final class EquacaoLinear implements TipoEquacao{
         definirEquacaoDaReta(pt1.x, pt1.y, pt2.x, pt2.y);
     }
 
+    public void definirEquacaoDaReta(float x1, float y1, Vector2 pt2){
+        definirEquacaoDaReta(x1, y1, pt2.x, pt2.y);
+    }
+
     @Override
     public float getX(float y){
         return ((y - this.intercepto) / this.coefAngular);

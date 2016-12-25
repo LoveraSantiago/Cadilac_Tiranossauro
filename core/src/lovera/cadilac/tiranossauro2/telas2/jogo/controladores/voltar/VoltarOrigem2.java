@@ -32,7 +32,7 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
 
-        this.diferencaCameraCorredorY = this.cameraManager.getPosicao_CamProj().x - this.posicaoCorredor.x;
+        this.diferencaCameraCorredorY = this.cameraManager.getPosicao_CamProj().y - this.posicaoCorredor.y;
     }
 
     @Override
@@ -47,17 +47,18 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
                 this.cameraManager.setPosicao_CamJogo(this.posicaoTemp);
             }
             else{
+                this.cameraManager.setPosicao_CamJogo(this.posicaoCorredor.x, this.posicaoCorredor.y + this.diferencaCameraCorredorY);
                 this.faseManager2.setFaseAtual(Fase2.ESCOLHENDO_GRAFICO);
             }
         }
     }
 
     private boolean isCameraPosicaoFinal(){
-        return this.cameraManager.isCamerasMesmaPosicao();
+        return this.cameraManager.isCamerasMesmaPosicao_Arredondado();
     }
 
     public void calcularVolta(){
-        this.calculadorVolta.calcularVolta();
+        this.calculadorVolta.calcularVolta(this.diferencaCameraCorredorY);
 
         atualizar_CamProj();
 

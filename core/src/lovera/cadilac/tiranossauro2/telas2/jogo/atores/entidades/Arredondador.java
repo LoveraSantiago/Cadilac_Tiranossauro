@@ -13,6 +13,10 @@ public class Arredondador {
         this.escala = 1;
     }
 
+    public Arredondador(int escala){
+        this.escala = escala;
+    }
+
     public float arredondar(float numero){
         this.potencia = 10;
         for(this.contador = 1; this.contador < this.escala; this.contador++){

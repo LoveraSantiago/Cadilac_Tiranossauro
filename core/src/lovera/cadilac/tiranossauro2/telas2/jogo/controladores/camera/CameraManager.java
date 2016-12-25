@@ -94,4 +94,8 @@ public final class CameraManager implements TipoCamera{
     public boolean isCamerasMesmaPosicao(){
         return this.cameraJogo.getPosicao().x == this.cameraProjecao.getPosicao().x && this.cameraJogo.getPosicao().y == this.cameraProjecao.getPosicao().y;
     }
+
+    public boolean isCamerasMesmaPosicao_Arredondado(){
+        return ((int)this.cameraJogo.getPosicao().x) == ((int)this.cameraProjecao.getPosicao().x) && ((int)this.cameraJogo.getPosicao().y) == ((int)this.cameraProjecao.getPosicao().y);
+    }
 }
