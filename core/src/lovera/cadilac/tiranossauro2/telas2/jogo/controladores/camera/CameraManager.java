@@ -90,4 +90,8 @@ public final class CameraManager implements TipoCamera{
     public void setPosicao_CamJogo(Vector2 pt){
         setPosicao_CamJogo(pt.x, pt.y);
     }
+
+    public boolean isCamerasMesmaPosicao(){
+        return this.cameraJogo.getPosicao().x == this.cameraProjecao.getPosicao().x && this.cameraJogo.getPosicao().y == this.cameraProjecao.getPosicao().y;
+    }
 }

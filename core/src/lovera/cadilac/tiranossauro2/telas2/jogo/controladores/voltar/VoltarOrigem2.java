@@ -14,7 +14,6 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
 
     private final float diferencaCameraCorredorY;
 
-    private final Vector2 posicaoCameraFim;
     private final Vector2 posicaoTemp;
     private final Vector2 posicaoCorredor;
     private final CameraManager cameraManager;
@@ -24,10 +23,9 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
     private final CalculadorVolta calculadorVolta;
 
     public VoltarOrigem2() {
-        this.posicaoCameraFim = new Vector2();
 
         this.equacaoLinear = new EquacaoLinear();
-        this.calculadorVolta = new CalculadorVolta(this.equacaoLinear, this.posicaoCameraFim);
+        this.calculadorVolta = new CalculadorVolta(this.equacaoLinear);
         this.posicaoTemp = new Vector2();
 
         this.faseManager2 = FaseManager2.getInstancia();
@@ -42,7 +40,7 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         if(this.faseManager2.isFaseAtual(Fase2.TELA_VOLTANDO)){
             this.posicaoTemp.set(this.cameraManager.getPosicao_CamJogo());
 
-            if(!isCameraPosicaoCorreta()){
+            if(!isCameraPosicaoFinal()){
                 this.posicaoTemp.x += this.calculadorVolta.getIncremento();
                 this.posicaoTemp.y = this.equacaoLinear.getY(this.posicaoTemp.x);
 
@@ -54,8 +52,8 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         }
     }
 
-    private boolean isCameraPosicaoCorreta(){
-        return this.posicaoTemp.x == this.posicaoCameraFim.x && this.posicaoTemp.y == this.posicaoCameraFim.y;
+    private boolean isCameraPosicaoFinal(){
+        return this.cameraManager.isCamerasMesmaPosicao();
     }
 
     public void calcularVolta(){
