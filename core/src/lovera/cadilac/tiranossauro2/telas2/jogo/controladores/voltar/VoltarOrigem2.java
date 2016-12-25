@@ -12,16 +12,16 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 
 public final class VoltarOrigem2 implements TipoDesenhavel{
 
-    private final CalculadorVolta calculadorVolta;
-    private final FaseManager2 faseManager2;
+    private final float diferencaCameraCorredorY;
 
     private final Vector2 posicaoCameraFim;
-
     private final Vector2 posicaoTemp;
     private final Vector2 posicaoCorredor;
     private final CameraManager cameraManager;
 
+    private final FaseManager2 faseManager2;
     private final EquacaoLinear equacaoLinear;
+    private final CalculadorVolta calculadorVolta;
 
     public VoltarOrigem2() {
         this.posicaoCameraFim = new Vector2();
@@ -33,6 +33,8 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         this.faseManager2 = FaseManager2.getInstancia();
         this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
+
+        this.diferencaCameraCorredorY = this.cameraManager.getPosicao_CamProj().x - this.posicaoCorredor.x;
     }
 
     @Override
@@ -65,11 +67,6 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
     }
 
     private void atualizar_CamProj(){
-        this.posicaoTemp.set(this.cameraManager.getPosicao_CamProj());
-
-        this.posicaoTemp.x += this.posicaoCorredor.x;
-        this.posicaoTemp.y += this.posicaoCorredor.y;
-
-        this.cameraManager.setPosicao_CamProj(this.posicaoTemp);
+        this.cameraManager.setPosicao_CamProj(this.posicaoCorredor.x, this.posicaoCorredor.y + this.diferencaCameraCorredorY);
     }
 }
