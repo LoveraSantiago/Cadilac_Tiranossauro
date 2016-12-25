@@ -18,24 +18,21 @@ public final class EntradaGrafico_Vetor extends EntradaGrafica{
 
     private final FaseManager2 faseManager2;
 
-    private final Vector2 posicaoCorredorP;
-
     public EntradaGrafico_Vetor() {
         super();
         this.entrada = new PincaEntrada2();
         this.desenhador = new DesenhadorGraf_Vetor(this.entrada);
 
         this.faseManager2 = FaseManager2.getInstancia();
-        this.posicaoCorredorP = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
     }
 
     @Override
     public void meDesenhar(Object objeto) {
         if(this.faseManager2.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-            super.getAreaJogavel2().setarTamanhoEDesenhar(0, this.posicaoCorredorP.y, AjustadorDeTela2.LARGURA_TELA, AjustadorDeTela2.ALTURA_TELA - this.posicaoCorredorP.y);
+            super.getAreaJogavel2().meDesenhar(null);
         }
         else if(this.faseManager2.isFaseAtual(Fase2.JOGANDO)){
-            super.getAreaJogavel2().setarTamanhoEDesenhar(0, this.posicaoCorredorP.y, AjustadorDeTela2.LARGURA_TELA, AjustadorDeTela2.ALTURA_TELA - this.posicaoCorredorP.y);
+            super.getAreaJogavel2().meDesenhar(null);
             this.desenhador.meDesenhar(null);
         }
     }

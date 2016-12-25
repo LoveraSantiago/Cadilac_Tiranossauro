@@ -2,26 +2,30 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSubCamera;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 //TODO refatorar com CameraJogo
 final class CameraProjecao implements TipoSubCamera{
 
-    private final OrthographicCamera camera;
-    private final Viewport viewport;
-
     private float ptYMaior;
+    private float ptYMenor;
+    private float ptXmenor;
+    private float ptXMaior;
+
+    private final Rectangle area;
 
     private final Vector2 posicaoTemp;
 
     private final SpriteBatch spriteBatch;
+    private final OrthographicCamera camera;
+    private final Viewport viewport;
 
     public CameraProjecao() {
         this.camera = new OrthographicCamera();
@@ -32,6 +36,7 @@ final class CameraProjecao implements TipoSubCamera{
         this.spriteBatch = mSpriteBatch.getInstancia();
 
         this.posicaoTemp = new Vector2();
+        this.area = new Rectangle();
     }
 
     @Override
@@ -45,12 +50,26 @@ final class CameraProjecao implements TipoSubCamera{
     }
 
     public float getPtYMaior(){
-        this.ptYMaior = -1;
+        this.ptYMaior = -1f;
 
         for(int i = 0; i < this.camera.frustum.planePoints.length; i++) {
-            ptYMaior = Math.max(ptYMaior, this.camera.frustum.planePoints[i].y);
+            this.ptYMaior = Math.max(this.ptYMaior, this.camera.frustum.planePoints[i].y);
         }
         return ptYMaior;
+    }
+
+    private void getPtsArea(){
+        this.ptYMaior = -1f;
+        this.ptXMaior = -1f;
+        this.ptXmenor = 100f;
+        this.ptYMenor = 100f;
+
+        for(int i = 0; i < this.camera.frustum.planePoints.length; i++){
+            this.ptYMaior = Math.max(this.ptYMaior, this.camera.frustum.planePoints[i].y);
+            this.ptYMenor = Math.min(this.ptYMenor, this.camera.frustum.planePoints[i].y);
+            this.ptXMaior = Math.max(this.ptXMaior, this.camera.frustum.planePoints[i].x);
+            this.ptXmenor = Math.min(this.ptXmenor, this.camera.frustum.planePoints[i].x);
+        }
     }
 
     @Override
@@ -75,5 +94,10 @@ final class CameraProjecao implements TipoSubCamera{
     @Override
     public void setPosicao(float x, float y) {
         this.camera.position.set(x, y, 0);
+    }
+
+    public Rectangle getArea(){
+        getPtsArea();
+        return this.area.set(this.ptXmenor, this.ptYMenor, this.ptXMaior, this.ptYMaior);
     }
 }

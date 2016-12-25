@@ -3,10 +3,17 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.areajogavel;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 public class AreaJogavel2 implements TipoDesenhavel, Disposable {
@@ -21,12 +28,20 @@ public class AreaJogavel2 implements TipoDesenhavel, Disposable {
     private float w;
     private float h;
 
+    private final CameraManager cameraManager;
+
+    private final Vector2 posicaoJogador;
+
+    private Rectangle areaTemp;
+
     public AreaJogavel2() {
         this.textureAtlas = new TextureAtlas("ninepatches/ninepatches_areajogavel.atlas");
         this.ninePatch = this.textureAtlas.createPatch("area_jogavel2");
         this.ninePatch.scale(.1f, .1f);
 
         this.spriteBatch = mSpriteBatch.getInstancia();
+        this.cameraManager = CameraUnico.getCameraManager();
+        this.posicaoJogador = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
     }
 
     @Override
@@ -36,21 +51,26 @@ public class AreaJogavel2 implements TipoDesenhavel, Disposable {
         this.spriteBatch.end();
     }
 
-    public void setarTamanhoArea(float x, float y, float w, float h){
+    private void setarTamanhoArea(float x, float y, float w, float h){
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
     }
 
-    public void setarTamanhoEDesenhar(float x, float y, float w, float h){
-        setarTamanhoArea(x, y, w, h);
-        meDesenhar(null);
+    public void configurarAreaJogavel(GraficosEnum2 graficoEnum){
+        this.areaTemp = this.cameraManager.getArea_CamProj();
+
+        if(graficoEnum == GraficosEnum2.VETOR || graficoEnum == GraficosEnum2.PARABOLOIDE){
+            setarTamanhoArea(this.areaTemp.getX(), this.posicaoJogador.y, this.areaTemp.getWidth(), this.areaTemp.getHeight() - this.posicaoJogador.y);
+        }
+        else{
+            setarTamanhoArea(this.areaTemp.getX(), this.areaTemp.getY(), this.areaTemp.getWidth(), this.posicaoJogador.y);
+        }
     }
 
     @Override
     public void dispose() {
         this.textureAtlas.dispose();
     }
-
 }

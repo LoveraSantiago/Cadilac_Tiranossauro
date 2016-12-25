@@ -1,6 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -97,5 +98,9 @@ public final class CameraManager implements TipoCamera{
 
     public boolean isCamerasMesmaPosicao_Arredondado(){
         return ((int)this.cameraJogo.getPosicao().x) == ((int)this.cameraProjecao.getPosicao().x) && ((int)this.cameraJogo.getPosicao().y) == ((int)this.cameraProjecao.getPosicao().y);
+    }
+
+    public Rectangle getArea_CamProj(){
+        return this.cameraProjecao.getArea();
     }
 }

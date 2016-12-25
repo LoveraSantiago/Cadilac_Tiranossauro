@@ -20,6 +20,10 @@ public abstract class EntradaGrafica implements TipoControlavel, TipoDesenhavel,
         return areaJogavel2;
     }
 
+    public void configurarAreaJogavel(GraficosEnum2 graficoEnum){
+        areaJogavel2.configurarAreaJogavel(graficoEnum);
+    }
+
     @Override
     public void dispose() {
         areaJogavel2.dispose();

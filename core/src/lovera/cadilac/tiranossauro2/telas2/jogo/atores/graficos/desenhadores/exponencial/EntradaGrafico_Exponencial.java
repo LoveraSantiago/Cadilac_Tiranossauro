@@ -17,8 +17,6 @@ public class EntradaGrafico_Exponencial extends EntradaGrafica{
     private final Entrada2 entrada;
     private final DesenhadorGraf_Exponencial desenhador;
 
-    private final Vector2 posicaoCorredorP;
-
     //TODO: levar faseManager para membro estatico final de EntradaGrafica
     private final FaseManager2 faseManager2;
 
@@ -28,16 +26,15 @@ public class EntradaGrafico_Exponencial extends EntradaGrafica{
         this.desenhador = new DesenhadorGraf_Exponencial(this.entrada);
 
         this.faseManager2 = FaseManager2.getInstancia();
-        this.posicaoCorredorP = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
     }
 
     @Override
     public void meDesenhar(Object objeto) {
         if(this.faseManager2.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-            super.getAreaJogavel2().setarTamanhoEDesenhar(0, 0, AjustadorDeTela2.LARGURA_TELA, this.posicaoCorredorP.y);
+            super.getAreaJogavel2().meDesenhar(null);
         }
         else if(this.faseManager2.isFaseAtual(Fase2.JOGANDO)){
-            super.getAreaJogavel2().setarTamanhoEDesenhar(0, 0, AjustadorDeTela2.LARGURA_TELA, this.posicaoCorredorP.y);
+            super.getAreaJogavel2().meDesenhar(null);
             this.desenhador.meDesenhar(null);
         }
     }
