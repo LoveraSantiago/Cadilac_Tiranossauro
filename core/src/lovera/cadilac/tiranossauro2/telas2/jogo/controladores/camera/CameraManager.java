@@ -48,6 +48,12 @@ public final class CameraManager implements TipoCamera{
         this.cameraAngulo.rotacionarCameraEmVoltaDoPonto(angulo);
     }
 
+    @Override
+    public void setDiferencaCentroCamera_Corredor_Y() {
+        this.cameraJogo.setDiferencaCentroCamera_Corredor_Y();
+        this.cameraProjecao.setDiferencaCentroCamera_Corredor_Y();
+    }
+
     public OrthographicCamera getCamera_CamProj() {
         return cameraProjecao.getCamera();
     }
@@ -102,5 +108,13 @@ public final class CameraManager implements TipoCamera{
 
     public Rectangle getArea_CamProj(){
         return this.cameraProjecao.getArea();
+    }
+
+    public float getDiferencaCentroCamera_Corredor_Y_CamProj(){
+        return this.cameraProjecao.getDiferencaY();
+    }
+
+    public float getDiferencaCentroCamera_Corredor_Y_CamJogo(){
+        return this.cameraJogo.getDiferencaY();
     }
 }

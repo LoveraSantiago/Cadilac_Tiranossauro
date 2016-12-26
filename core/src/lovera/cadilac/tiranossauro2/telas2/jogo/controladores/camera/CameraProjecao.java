@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSubCamera;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 //TODO refatorar com CameraJogo
@@ -26,6 +27,8 @@ final class CameraProjecao implements TipoSubCamera{
     private final SpriteBatch spriteBatch;
     private final OrthographicCamera camera;
     private final Viewport viewport;
+
+    private float diferencaY;
 
     public CameraProjecao() {
         this.camera = new OrthographicCamera();
@@ -99,5 +102,14 @@ final class CameraProjecao implements TipoSubCamera{
     public Rectangle getArea(){
         getPtsArea();
         return this.area.set(this.ptXmenor, this.ptYMenor, this.ptXMaior, this.ptYMaior);
+    }
+
+    @Override
+    public void setDiferencaCentroCamera_Corredor_Y() {
+        this.diferencaY = this.camera.position.y - CorredorManager.getInstancia().getCorredorP().getPosicaoJogo().y;
+    }
+
+    public float getDiferencaY() {
+        return diferencaY;
     }
 }

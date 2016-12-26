@@ -62,6 +62,7 @@ public final class PincaEntrada2 extends Entrada2 {
             System.out.println("**************************");
             corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
             faseManager.setFaseAtual(Fase2.ACAO);
+            cameraManager.setDiferencaCentroCamera_Corredor_Y();
         }
         else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
