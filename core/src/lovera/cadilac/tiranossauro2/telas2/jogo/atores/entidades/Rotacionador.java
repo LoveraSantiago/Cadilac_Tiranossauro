@@ -1,6 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
@@ -31,5 +32,25 @@ public class Rotacionador {
 
         this.cos = MathUtils.cosDeg(this.angulo);
         this.sen = MathUtils.sinDeg(this.angulo);
+    }
+
+    public void rotacionar(float pt1x, float pt1y, float pt2x, float pt2y){
+        this.tempX = pt1x - pt2x;
+        this.tempY = pt1y - pt2y;
+
+        this.resultX = (this.tempX * this.cos) - (this.tempY * this.sen);
+        this.resultY = (this.tempY * this.cos) + (this.tempX * this.sen);
+    }
+
+    public void rotacionar(float pt1x, float pt1y, Vector2 pt2){
+        rotacionar(pt1x, pt1y, pt2.x, pt2.y);
+    }
+
+    public float getResultX() {
+        return resultX;
+    }
+
+    public float getResultY() {
+        return resultY;
     }
 }
