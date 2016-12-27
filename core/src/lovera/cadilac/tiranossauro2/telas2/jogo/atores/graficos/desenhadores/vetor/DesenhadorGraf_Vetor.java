@@ -52,7 +52,7 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
 
         Gdx.gl.glLineWidth(60);
 
-//TODO        LEVAR ESSE CARA PARA OS EIXOS CARTESIANOS
+//TODO LEVAR ESSE CARA PARA OS EIXOS CARTESIANOS
 //        this.shapeRenderer.line(this.posicaoJogadorP.x, this.posicaoJogadorP.y - 1,
 //                                this.posicaoJogadorP.x, this.entrada.getPtSuperior().y);
 //

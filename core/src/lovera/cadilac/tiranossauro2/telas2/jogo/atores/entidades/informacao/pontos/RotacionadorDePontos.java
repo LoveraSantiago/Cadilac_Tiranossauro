@@ -9,7 +9,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManag
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 
-final class Rotacionador {
+final class RotacionadorDePontos {
 
     private int contador;
     private float angulo;
@@ -24,7 +24,7 @@ final class Rotacionador {
     private Vector2 posicaoCorredor;
     private final CameraManager cameraManager;
 
-    public Rotacionador(List<Float> listaX, List<Float> listaY) {
+    public RotacionadorDePontos(List<Float> listaX, List<Float> listaY) {
         this.listaX = listaX;
         this.listaY = listaY;
 
