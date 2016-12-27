@@ -1,33 +1,25 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.List;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 
 final class RotacionadorDePontos {
 
     private int contador;
-    private float tempX;
-    private float tempY;
 
     private final List<Float> listaX;
     private final List<Float> listaY;
 
     private Vector2 posicaoCorredor;
-    private final CameraManager cameraManager;
     private final Rotacionador rotacionador;
 
     public RotacionadorDePontos(List<Float> listaX, List<Float> listaY) {
         this.listaX = listaX;
         this.listaY = listaY;
-
-        this.cameraManager = CameraUnico.getCameraManager();
         this.rotacionador = new Rotacionador();
     }
 
