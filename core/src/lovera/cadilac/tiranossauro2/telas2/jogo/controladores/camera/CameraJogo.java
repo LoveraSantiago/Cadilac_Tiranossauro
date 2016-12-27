@@ -22,7 +22,7 @@ final class CameraJogo implements TipoSubCamera{
 
     private final SpriteBatch spriteBatch;
 
-    private float diferencaY;
+    private final Vector2 diferenca;
 
     public CameraJogo() {
         this.camera = new OrthographicCamera();
@@ -33,6 +33,7 @@ final class CameraJogo implements TipoSubCamera{
         this.spriteBatch = mSpriteBatch.getInstancia();
 
         this.posicaoTemp = new Vector2();
+        this.diferenca = new Vector2();
     }
 
     @Override
@@ -66,11 +67,13 @@ final class CameraJogo implements TipoSubCamera{
     }
 
     @Override
-    public void setDiferencaCentroCamera_Corredor_Y() {
-        this.diferencaY = this.camera.position.y - CorredorManager.getInstancia().getCorredorP().getPosicaoJogo().y;
+    public void setDiferenca() {
+        this.posicaoTemp.set(CorredorManager.getInstancia().getCorredorP().getPosicaoJogo());
+        this.diferenca.set(this.camera.position.x - this.posicaoTemp.x,this.camera.position.y - this.posicaoTemp.y);
     }
 
-    public float getDiferencaY() {
-        return diferencaY;
+    @Override
+    public Vector2 getDiferenca() {
+        return diferenca;
     }
 }

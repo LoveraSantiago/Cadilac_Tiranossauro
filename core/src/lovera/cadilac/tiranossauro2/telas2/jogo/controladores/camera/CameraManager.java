@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 
 public final class CameraManager implements TipoCamera{
 
@@ -49,9 +48,9 @@ public final class CameraManager implements TipoCamera{
     }
 
     @Override
-    public void setDiferencaCentroCamera_Corredor_Y() {
-        this.cameraJogo.setDiferencaCentroCamera_Corredor_Y();
-        this.cameraProjecao.setDiferencaCentroCamera_Corredor_Y();
+    public void setDiferenca() {
+        this.cameraJogo.setDiferenca();
+        this.cameraProjecao.setDiferenca();
     }
 
     public OrthographicCamera getCamera_CamProj() {
@@ -98,23 +97,15 @@ public final class CameraManager implements TipoCamera{
         setPosicao_CamJogo(pt.x, pt.y);
     }
 
-    public boolean isCamerasMesmaPosicao(){
-        return this.cameraJogo.getPosicao().x == this.cameraProjecao.getPosicao().x && this.cameraJogo.getPosicao().y == this.cameraProjecao.getPosicao().y;
-    }
-
-    public boolean isCamerasMesmaPosicao_Arredondado(){
-        return ((int)this.cameraJogo.getPosicao().x) == ((int)this.cameraProjecao.getPosicao().x) && ((int)this.cameraJogo.getPosicao().y) == ((int)this.cameraProjecao.getPosicao().y);
-    }
-
     public Rectangle getArea_CamProj(){
         return this.cameraProjecao.getArea();
     }
 
-    public float getDiferencaCentroCamera_Corredor_Y_CamProj(){
-        return this.cameraProjecao.getDiferencaY();
+    public Vector2 getDiferenca_CamProj(){
+        return this.cameraProjecao.getDiferenca();
     }
 
-    public float getDiferencaCentroCamera_Corredor_Y_CamJogo(){
-        return this.cameraJogo.getDiferencaY();
+    public Vector2 getDiferenca_CamJogo(){
+        return this.cameraJogo.getDiferenca();
     }
 }

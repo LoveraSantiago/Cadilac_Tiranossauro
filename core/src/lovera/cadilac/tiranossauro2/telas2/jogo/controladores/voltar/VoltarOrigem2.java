@@ -14,8 +14,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 
 public final class VoltarOrigem2 implements TipoDesenhavel{
 
-    private final float diferencaCameraCorredorY;
-
     private final Vector2 posicaoTemp;
     private final Vector2 posicaoCorredor;
     private final CameraManager cameraManager;
@@ -36,8 +34,6 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
         this.controleManager2 = ControleManager2.getInstancia();
-
-        this.diferencaCameraCorredorY = this.cameraManager.getPosicao_CamProj().y - this.posicaoCorredor.y;
     }
 
     @Override
@@ -45,7 +41,7 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         if(this.faseManager2.isFaseAtual(Fase2.TELA_VOLTANDO)){
             this.posicaoTemp.set(this.cameraManager.getPosicao_CamJogo());
 
-            if(!isCameraPosicaoFinal()){
+            if(!this.calculadorVolta.isCameraNaPosicaoFinal()){
                 procedimentoIncremento();
             }
             else{
@@ -62,17 +58,13 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
     }
 
     private void procedimentoFinalizar(){
-        this.cameraManager.setPosicao_CamJogo(this.posicaoCorredor.x, this.posicaoCorredor.y + this.diferencaCameraCorredorY);
+        this.cameraManager.setPosicao_CamJogo(this.calculadorVolta.getPosicaoFinalCamera());
         this.faseManager2.setFaseAtual(Fase2.ESCOLHENDO_GRAFICO);
         this.controleManager2.voltarMenuGrafico();
     }
 
-    private boolean isCameraPosicaoFinal(){
-        return this.cameraManager.isCamerasMesmaPosicao_Arredondado();
-    }
-
     public void calcularVolta(){
-        this.calculadorVolta.calcularVolta(this.diferencaCameraCorredorY);
+        this.calculadorVolta.calcularVolta();
 
         atualizar_CamProj();
 
@@ -80,6 +72,6 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
     }
 
     private void atualizar_CamProj(){
-        this.cameraManager.setPosicao_CamProj(this.posicaoCorredor.x, this.posicaoCorredor.y + this.diferencaCameraCorredorY);
+        this.cameraManager.setPosicao_CamProj(this.posicaoCorredor.x, this.posicaoCorredor.y + this.cameraManager.getDiferenca_CamProj().y);
     }
 }

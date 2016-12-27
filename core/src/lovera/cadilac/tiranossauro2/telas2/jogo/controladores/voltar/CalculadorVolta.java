@@ -11,6 +11,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorMan
 final class CalculadorVolta {
 
     private final Vector2 posicaoJogador;
+    private final Vector2 posicaoFinalCamera;
 
     private final CameraManager cameraManager;
     private final EquacaoLinear equacaoLinear;
@@ -21,14 +22,28 @@ final class CalculadorVolta {
         this.cameraManager = CameraUnico.getCameraManager();
         this.posicaoJogador = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
         this.equacaoLinear = equacaoLinear;
+
+        this.posicaoFinalCamera = new Vector2();
     }
 
-    public void calcularVolta(float diferenca){
-        this.equacaoLinear.definirEquacaoDaReta(this.posicaoJogador.x, this.posicaoJogador.y + diferenca, this.cameraManager.getPosicao_CamJogo());
-        this.incremento = (this.posicaoJogador.x - this.cameraManager.getPosicao_CamJogo().x)/ (Math.max(60f, Gdx.graphics.getFramesPerSecond() * 2));
+    public void calcularVolta(){
+        this.posicaoFinalCamera.set(this.cameraManager.getDiferenca_CamJogo());
+        this.posicaoFinalCamera.x += this.posicaoJogador.x;
+        this.posicaoFinalCamera.y += this.posicaoJogador.y;
+
+        this.equacaoLinear.definirEquacaoDaReta(this.posicaoFinalCamera, this.cameraManager.getPosicao_CamJogo());
+        this.incremento = (this.posicaoJogador.x - this.cameraManager.getPosicao_CamJogo().x)/ (Math.max(60f, Gdx.graphics.getFramesPerSecond()));
     }
 
     public float getIncremento() {
         return incremento;
+    }
+
+    public boolean isCameraNaPosicaoFinal(){
+        return ((int)this.posicaoFinalCamera.x) == ((int) this.cameraManager.getPosicao_CamJogo().x) && ((int) this.posicaoFinalCamera.y) == ((int) this.cameraManager.getPosicao_CamJogo().y);
+    }
+
+    public Vector2 getPosicaoFinalCamera() {
+        return posicaoFinalCamera;
     }
 }

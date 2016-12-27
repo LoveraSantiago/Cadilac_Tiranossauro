@@ -8,5 +8,6 @@ public interface TipoSubCamera extends TipoCamera{
     void updateSpriteBatch();
     OrthographicCamera getCamera();
     Vector2 getPosicao();
+    Vector2 getDiferenca();
     void setPosicao(float x, float y);
 }
