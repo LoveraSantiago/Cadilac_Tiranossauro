@@ -41,7 +41,10 @@ final class CalculadorAngulo {
     }
 
     public void rotacionarParado() {
-        if(isMesmoAngulo()) return;
+        if(isMesmoAngulo()){
+            this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+            return;
+        }
 
         if(this.anguloCorredorGraus > this.anguloCalculado){
             this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
@@ -79,7 +82,7 @@ final class CalculadorAngulo {
 
     private boolean isMesmoAngulo(){
         this.anguloCorredorGraus = getAnguloCorredor_Graus();
-        return this.anguloCalculado == this.anguloCorredorGraus;
+        return Math.round(this.anguloCalculado) == this.anguloCorredorGraus;
     }
 
     private void setFps(){
