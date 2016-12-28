@@ -32,7 +32,7 @@ final class CalculadorVolta {
         this.posicaoFinalCamera.y += this.posicaoJogador.y;
 
         this.equacaoLinear.definirEquacaoDaReta(this.posicaoFinalCamera, this.cameraManager.getPosicao_CamJogo());
-        this.incremento = (this.posicaoJogador.x - this.cameraManager.getPosicao_CamJogo().x)/ (Math.max(60f, Gdx.graphics.getFramesPerSecond()));
+        this.incremento = (this.posicaoFinalCamera.x - this.cameraManager.getPosicao_CamJogo().x)/ (Math.max(60f, Gdx.graphics.getFramesPerSecond()));
     }
 
     public float getIncremento() {
