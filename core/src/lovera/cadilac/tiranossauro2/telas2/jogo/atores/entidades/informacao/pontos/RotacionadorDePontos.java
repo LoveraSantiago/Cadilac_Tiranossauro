@@ -35,8 +35,8 @@ final class RotacionadorDePontos {
     private void rotacionar(){
         this.rotacionador.rotacionar(this.listaX.get(this.contador), this.listaY.get(this.contador), this.posicaoCorredor);
 
-        this.listaX.set(this.contador, this.rotacionador.getResultX() + this.posicaoCorredor.x);
-        this.listaY.set(this.contador, this.rotacionador.getResultY() + this.posicaoCorredor.y);
+        this.listaX.set(this.contador, this.rotacionador.getResultX());
+        this.listaY.set(this.contador, this.rotacionador.getResultY());
     }
 
     private void setSenoCosseno(){

@@ -38,8 +38,8 @@ public class Rotacionador {
         this.tempX = pt1x - pt2x;
         this.tempY = pt1y - pt2y;
 
-        this.resultX = (this.tempX * this.cos) - (this.tempY * this.sen);
-        this.resultY = (this.tempY * this.cos) + (this.tempX * this.sen);
+        this.resultX = ((this.tempX * this.cos) - (this.tempY * this.sen)) + pt2x;
+        this.resultY = ((this.tempY * this.cos) + (this.tempX * this.sen)) + pt2y;
     }
 
     public void rotacionar(float pt1x, float pt1y, Vector2 pt2){

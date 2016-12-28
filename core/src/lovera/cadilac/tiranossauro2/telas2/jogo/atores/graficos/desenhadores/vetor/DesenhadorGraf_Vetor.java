@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
@@ -21,12 +22,12 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
     private final ShapeRenderer shapeRenderer;
     private final OrthographicCamera cameraProjecao;
 
-    private final Corredor2 corredorP;
     private final Vector2 posicaoJogadorP;
+    private final Corredor2 corredorP;
 
     private final Entrada2 entrada;
-
     private final Informacao informacao;
+    private final Rotacionador rotacionador;
 
     public DesenhadorGraf_Vetor(Entrada2 entrada) {
         this.entrada = entrada;
@@ -38,13 +39,16 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
         this.shapeRenderer = new ShapeRenderer();
 
         this.informacao = InformacaoManager.getInstancia().getInformacao();
+        this.rotacionador = new Rotacionador();
     }
 
     @Override
     public void meDesenhar(Object objeto) {
         resetarComponentes();
 
-        this.corredorP.setPtFuturoProj(this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
+        this.rotacionador.atualizarAnguloDoJogo();
+        this.rotacionador.rotacionar(this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y, this.posicaoJogadorP);
+        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
 
         this.shapeRenderer.setProjectionMatrix(this.cameraProjecao.combined);
         this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
