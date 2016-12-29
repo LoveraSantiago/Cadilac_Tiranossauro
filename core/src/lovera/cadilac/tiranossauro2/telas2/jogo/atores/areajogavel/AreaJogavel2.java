@@ -62,10 +62,10 @@ public class AreaJogavel2 implements TipoDesenhavel, Disposable {
         this.areaTemp = this.cameraManager.getArea_CamProj();
 
         if(graficoEnum == GraficosEnum2.VETOR || graficoEnum == GraficosEnum2.PARABOLOIDE){
-            setarTamanhoArea(this.areaTemp.getX(), this.posicaoJogador.y, this.areaTemp.getWidth(), this.areaTemp.getHeight() - this.posicaoJogador.y);
+            setarTamanhoArea(this.areaTemp.getX(), this.posicaoJogador.y, this.areaTemp.getWidth(), this.areaTemp.getHeight() - (this.posicaoJogador.y - this.areaTemp.getY()));
         }
         else{
-            setarTamanhoArea(this.areaTemp.getX(), this.areaTemp.getY(), this.areaTemp.getWidth(), this.posicaoJogador.y);
+            setarTamanhoArea(this.areaTemp.getX(), this.areaTemp.getY(), this.areaTemp.getWidth(), this.posicaoJogador.y - this.areaTemp.getY());
         }
     }
 

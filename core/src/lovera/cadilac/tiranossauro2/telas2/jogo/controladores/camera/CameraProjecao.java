@@ -102,7 +102,7 @@ final class CameraProjecao implements TipoSubCamera{
 
     public Rectangle getArea(){
         getPtsArea();
-        return this.area.set(this.ptXmenor, this.ptYMenor, this.ptXMaior, this.ptYMaior);
+        return this.area.set(this.ptXmenor, this.ptYMenor, this.ptXMaior - this.ptXmenor, this.ptYMaior - this.ptYMenor);
     }
 
     @Override
