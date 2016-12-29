@@ -2,6 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 
 import com.badlogic.gdx.math.Vector3;
 
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.NormatizadorDeAngulos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 
 final class CameraAngulo {
@@ -12,6 +13,7 @@ final class CameraAngulo {
     private final Vector3 posicaoTemp;
 
     private final CameraJogo cameraJogo;
+    private final NormatizadorDeAngulos normatizador;
 
     public CameraAngulo(CameraJogo cameraJogo) {
         this.cameraJogo = cameraJogo;
@@ -19,6 +21,8 @@ final class CameraAngulo {
         this.anguloAtual = 0;
         this.posicaoTemp = new Vector3();
         this.eixoZ       = new Vector3(0, 0, 1);
+
+        this.normatizador = new NormatizadorDeAngulos();
     }
 
     public void rotacionarCameraEmVoltaDoPonto(float angulo){
@@ -29,18 +33,7 @@ final class CameraAngulo {
     }
 
     public void normatizarAngulo(){
-        if(this.anguloAtual < 0){
-            while(this.anguloAtual < 0){
-                this.anguloAtual += 360;
-            }
-            return;
-        }
-        else if(this.anguloAtual > 0){
-            while(this.anguloAtual > 360){
-                this.anguloAtual -= 360;
-            }
-            return;
-        }
+        this.anguloAtual = this.normatizador.normatizar(this.anguloAtual);
     }
 
     public float getAnguloAtual() {
