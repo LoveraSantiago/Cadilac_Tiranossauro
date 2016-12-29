@@ -24,7 +24,7 @@ public final class ClassificadorDeQuadrante {
     }
 
     public ClassificadorDeQuadrante() {
-        quadranteAtual = listaDeQuadrantes.get(0);
+        resetQuadrante();
     }
 
     public void determinarQuadrante(Vector2 ptOrigem, Vector2 pt){
@@ -41,5 +41,9 @@ public final class ClassificadorDeQuadrante {
 
     public boolean pontoAtingido(){
         return this.quadranteAtual.pontoAtingido();
+    }
+
+    public void resetQuadrante(){
+        this.quadranteAtual = listaDeQuadrantes.get(0);
     }
 }

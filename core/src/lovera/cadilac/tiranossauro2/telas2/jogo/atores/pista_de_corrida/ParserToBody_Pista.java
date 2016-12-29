@@ -27,7 +27,7 @@ final class ParserToBody_Pista implements TipoParseavel {
         Polyline contornoPista = ((PolylineMapObject) mapObject).getPolyline();
 
         ChainShape shape = new ChainShape();
-//        shape.createChain(getVerticesEscalados(contornoPista.getVertices()));
+        shape.createChain(getVerticesEscalados(contornoPista.getVertices()));
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;

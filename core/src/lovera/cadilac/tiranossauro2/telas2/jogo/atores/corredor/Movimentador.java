@@ -48,6 +48,7 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao {
         this.pontos.prepararPontos();
         this.calcVelocidade.calcularVelocidadePercurso(this.pontos.getQtdPontos(), informacao.getDistancia().getEspacoPercorrido());
         this.colisao.resetColisao();
+        this.quadrante.resetQuadrante();
     }
 
     @Override
