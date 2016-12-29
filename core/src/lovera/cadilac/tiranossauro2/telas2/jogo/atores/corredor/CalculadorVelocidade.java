@@ -18,12 +18,6 @@ class CalculadorVelocidade {
     public void calcularVelocidadePercurso(int pontos, float percursoTotal){
         this.tempoTotal = percursoTotal / VELOCIDADE;
         this.tempoPonto = this.tempoTotal / pontos;
-
-        System.out.println("Velocidade " + VELOCIDADE);
-        System.out.println("Percurso " + percursoTotal);
-        System.out.println("Tempo total " + tempoTotal);
-        System.out.println("Pontos " + pontos);
-        System.out.println("Tempo ponto " + tempoPonto);
     }
 
     public Vector2 calcularVelocidadePonto(Vector2 posicaoAtual, Vector2 ponto){
