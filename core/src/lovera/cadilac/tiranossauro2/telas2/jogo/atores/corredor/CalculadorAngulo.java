@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.NormatizadorDeAngulos;
 
 final class CalculadorAngulo {
 
@@ -24,11 +25,15 @@ final class CalculadorAngulo {
 
     private final Body corredor;
 
+    private final NormatizadorDeAngulos normatizador;
+
     public CalculadorAngulo(Body corredor) {
         this.corredor = corredor;
 
         this.anguloNorte = 90;
         resetAngulo();
+
+        this.normatizador = new NormatizadorDeAngulos();
     }
 
     public void rotacionarEmMovimento(){
@@ -58,13 +63,8 @@ final class CalculadorAngulo {
 
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
         this.anguloCalculado = (float) (Math.atan2(ptFuturoY - this.corredor.getPosition().y, ptFuturoX - this.corredor.getPosition().x)) * MathUtils.radiansToDegrees;
-        if(this.anguloCalculado < 0 && this.anguloCalculado > -90){
-            this.anguloCalculado += 270;
-        }
-        else if(this.anguloCalculado < 0 && this.anguloCalculado <= -90){
-            this.anguloCalculado += 90;
-        }
         this.anguloCalculado = Math.round(this.anguloCalculado);
+        this.anguloCalculado = this.normatizador.normatizar(this.anguloCalculado);
 
         this.contadorAngulo = this.corredor.getAngle();
 
