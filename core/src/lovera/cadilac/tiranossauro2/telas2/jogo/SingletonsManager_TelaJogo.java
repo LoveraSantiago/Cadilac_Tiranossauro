@@ -13,6 +13,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MenuManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.LadoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.VoltarOrigemUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.voltar.VoltarOrigem2;
 
@@ -30,6 +31,8 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
     public void inicializarSingletons(){
         new mSpriteBatch().inicializar();
+
+        new LadoManager().inicializar();
 
         new CameraUnico().inicializar();
         this.cameraManager = CameraUnico.getCameraManager();
