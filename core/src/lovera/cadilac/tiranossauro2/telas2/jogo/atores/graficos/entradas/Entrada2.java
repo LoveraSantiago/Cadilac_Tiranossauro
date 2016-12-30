@@ -7,10 +7,12 @@ import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Lado;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.LadoManager;
 
 //TODO uniformizar acessos as variaveis de classe pai
 public abstract class Entrada2  extends GestureDetector.GestureAdapter implements TipoControlavel {
@@ -19,6 +21,7 @@ public abstract class Entrada2  extends GestureDetector.GestureAdapter implement
     protected static final CameraManager cameraManager;
     protected static final OrthographicCamera cameraProjecao;
     protected static final Corredor2 corredor;
+    protected static final Lado lado;
 
     private final GestureDetector gestureDetector;
 
@@ -27,6 +30,7 @@ public abstract class Entrada2  extends GestureDetector.GestureAdapter implement
         cameraManager = CameraUnico.getCameraManager();
         cameraProjecao =  cameraManager.getCamera_CamProj();
         corredor = CorredorManager.getInstancia().getCorredorP();
+        lado = LadoManager.getInstancia().getLado();
     }
 
     protected Entrada2() {
