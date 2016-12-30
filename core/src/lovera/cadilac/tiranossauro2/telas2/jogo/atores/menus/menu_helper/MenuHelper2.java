@@ -6,10 +6,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
+import lovera.cadilac.tiranossauro2.componente.tela.SpriteBatchManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 
 public final class MenuHelper2 implements TipoControlavel, TipoDesenhavel, Disposable{
 
@@ -22,7 +22,7 @@ public final class MenuHelper2 implements TipoControlavel, TipoDesenhavel, Dispo
         this.parserTable = new ParserToTable_MenuHelper();
         this.table = parserTable.meTransforme(null);
 
-        this.stage = new Stage(viewport, mSpriteBatch.getInstancia());
+        this.stage = new Stage(viewport, SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch());
         this.stage.addActor(this.table);
     }
 

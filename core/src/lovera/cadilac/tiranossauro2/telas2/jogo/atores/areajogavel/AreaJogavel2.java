@@ -7,14 +7,13 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 
-import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
+import lovera.cadilac.tiranossauro2.componente.tela.SpriteBatchManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
-import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 
 public class AreaJogavel2 implements TipoDesenhavel, Disposable {
 
@@ -39,7 +38,7 @@ public class AreaJogavel2 implements TipoDesenhavel, Disposable {
         this.ninePatch = this.textureAtlas.createPatch("area_jogavel2");
         this.ninePatch.scale(.1f, .1f);
 
-        this.spriteBatch = mSpriteBatch.getInstancia();
+        this.spriteBatch = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
         this.cameraManager = CameraUnico.getCameraManager();
         this.posicaoJogador = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
     }

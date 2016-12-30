@@ -6,10 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
+import lovera.cadilac.tiranossauro2.componente.tela.SpriteBatchManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSubCamera;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 //CAMERAJOGO E ROTACIONADA CONTEM AS POSICOES VERDADEIRA DO JOGO
@@ -30,7 +30,7 @@ final class CameraJogo implements TipoSubCamera{
         this.viewport.apply();
 
         this.camera.position.set(this.camera.viewportWidth / 2, this.camera.viewportHeight / 2, 0);
-        this.spriteBatch = mSpriteBatch.getInstancia();
+        this.spriteBatch = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
 
         this.posicaoTemp = new Vector2();
         this.diferenca = new Vector2();

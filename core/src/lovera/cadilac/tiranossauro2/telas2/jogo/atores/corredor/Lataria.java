@@ -7,9 +7,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
+import lovera.cadilac.tiranossauro2.componente.tela.SpriteBatchManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 final class Lataria implements TipoDesenhavel, TipoAtualizavel{
@@ -27,7 +28,7 @@ final class Lataria implements TipoDesenhavel, TipoAtualizavel{
                             this.sprite.getHeight()/ AjustadorDeTela2.ESCALA);
         this.sprite.setOriginCenter();
 
-        this.spriteBatchTemp = mSpriteBatch.getInstancia();
+        this.spriteBatchTemp = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
     }
 
     @Override

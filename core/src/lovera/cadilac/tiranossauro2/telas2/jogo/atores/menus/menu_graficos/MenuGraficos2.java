@@ -4,15 +4,13 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import lovera.cadilac.tiranossauro2.componente.tela.mSpriteBatch;
+import lovera.cadilac.tiranossauro2.componente.tela.SpriteBatchManager;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromDeslizador;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
-import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 
 public final class MenuGraficos2 implements TipoDesenhavel, Disposable, MsgFromDeslizador, TipoControlavel{
 
@@ -31,7 +29,7 @@ public final class MenuGraficos2 implements TipoDesenhavel, Disposable, MsgFromD
         this.parserTable = new ParserToTable_MenuGraficos2(this.volante, this.deslizador);
         this.table = this.parserTable.meTransforme(this.deslizador);
 
-        this.stage = new Stage(viewport, mSpriteBatch.getInstancia());
+        this.stage = new Stage(viewport, SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch());
         this.stage.addActor(this.table);
     }
 
