@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 import lovera.cadilac.tiranossauro.utils.Debugagem;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 public final class PincaEntrada2 extends Entrada2 {
 
@@ -60,7 +60,7 @@ public final class PincaEntrada2 extends Entrada2 {
             Debugagem.dbgPontoVector2("ptLateral:", this.getPtLateral());
             Debugagem.dbgPontoVector2("ptSuperior:", this.getPtSuperior());
             System.out.println("**************************");
-            corredor.prepararParaAcao(InformacaoManager.getInstancia().getInformacao());
+            corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
             faseManager.setFaseAtual(Fase2.ACAO);
             cameraManager.setDiferenca();
         }

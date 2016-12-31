@@ -9,12 +9,12 @@ import com.badlogic.gdx.utils.Disposable;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable{
 
@@ -34,7 +34,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     private final Corredor2 corredorP;
     private final ProjetorPt_Parabola projetorPt;
     private final EquacaoQuadratica2 quadratica;
-    private final Informacao informacao;
+    private final InformacaoManager informacao;
 
     private final Vector2 pt1Desenho;
     private final Vector2 pt2Desenho;
@@ -55,7 +55,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredorP = this.corredorP.getPosicaoJogo();
 
-        this.informacao = InformacaoManager.getInstancia().getInformacao();
+        this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
 
         this.matrizCameraProjecao = CameraUnico.getCameraManager().getCamera_CamProj().combined;
     }

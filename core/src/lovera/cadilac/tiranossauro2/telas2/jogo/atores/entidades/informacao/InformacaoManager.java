@@ -1,12 +1,14 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao;
 
-public class Informacao {
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos.Pontos;
 
-    private final lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos.Pontos pontos;
+public class InformacaoManager {
+
+    private final Pontos pontos;
     private final Distancia distancia;
 
-    public Informacao() {
-        this.pontos = new lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos.Pontos();
+    public InformacaoManager() {
+        this.pontos = new Pontos();
         this.distancia = new Distancia();
     }
 
@@ -20,7 +22,7 @@ public class Informacao {
         this.distancia.addEspacoPercorrido(pt1X, pt1Y, pt2X, pt2Y);
     }
 
-    public lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos.Pontos getPontos() {
+    public Pontos getPontos() {
         return pontos;
     }
 

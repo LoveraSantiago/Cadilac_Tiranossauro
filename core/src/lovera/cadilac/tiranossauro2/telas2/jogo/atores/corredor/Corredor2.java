@@ -7,7 +7,7 @@ import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
@@ -54,7 +54,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
         this.movimentador.atualizar();
     }
 
-    public void prepararParaAcao(Informacao informacao){
+    public void prepararParaAcao(InformacaoManager informacao){
         this.movimentador.prepararParaAcao(informacao);
     }
 

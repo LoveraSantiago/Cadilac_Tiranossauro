@@ -11,13 +11,13 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Arredondador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 //LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
 public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
@@ -32,7 +32,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
 
     private final EquacaoExponencial2 eqExponencial;
     private final Entrada2 entrada2;
-    private final Informacao informacao;
+    private final InformacaoManager informacao;
     private final Arredondador arredondador;
     private final CameraManager cameraManager;
     private final ProjetorPt_Exponencial projetorPt;
@@ -46,7 +46,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
 
     public DesenhadorGraf_Exponencial(Entrada2 entrada2) {
         this.entrada2 = entrada2;
-        this.informacao = InformacaoManager.getInstancia().getInformacao();
+        this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.arredondador = new Arredondador();
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();

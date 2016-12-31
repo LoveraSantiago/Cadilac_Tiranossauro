@@ -9,12 +9,11 @@ import com.badlogic.gdx.utils.Disposable;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 
 //TODO refatorar com DesenhadorGraf_Parabola informacao da para ser atributo estatico de superclasse
@@ -27,7 +26,7 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
     private final Corredor2 corredorP;
 
     private final Entrada2 entrada;
-    private final Informacao informacao;
+    private final InformacaoManager informacao;
     private final Rotacionador rotacionador;
 
     public DesenhadorGraf_Vetor(Entrada2 entrada) {
@@ -39,7 +38,7 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
 
         this.shapeRenderer = new ShapeRenderer();
 
-        this.informacao = InformacaoManager.getInstancia().getInformacao();
+        this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.rotacionador = new Rotacionador();
     }
 

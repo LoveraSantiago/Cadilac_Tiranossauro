@@ -7,7 +7,7 @@ import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromTimerColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos.Pontos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.quadrantes.ClassificadorDeQuadrante;
 
@@ -43,7 +43,7 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao {
         this.colisao = new Colisao(this.corredor, this.timer);
     }
 
-    public void prepararParaAcao(Informacao informacao) {
+    public void prepararParaAcao(InformacaoManager informacao) {
         this.pontos = informacao.getPontos();
         this.pontos.prepararPontos();
         this.calcVelocidade.calcularVelocidadePercurso(this.pontos.getQtdPontos(), informacao.getDistancia().getEspacoPercorrido());
