@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MenuManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.MenuManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.MenuUnico;
 
 public final class ControleManager2{
 
@@ -31,7 +31,7 @@ public final class ControleManager2{
             this.mapaControlaveis.put(chaveValor.getKey(), chaveValor.getValue());
         }
 
-        MenuManager2 menuManagerTemp = MenuManager2.getInstancia();
+        MenuManager2 menuManagerTemp = MenuUnico.getInstancia().getMenuManager();
         this.controleMenuGrafico = menuManagerTemp.getControlavelMenuGraficos();
         this.controleMenuHelper  = menuManagerTemp.getControlavelMenuHelper();
 

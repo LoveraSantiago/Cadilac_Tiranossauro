@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus;
 
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -13,9 +13,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
-public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Disposable{
-
-    private static MenuManager2 menuManager2;
+public final class MenuManager2 implements TipoDesenhavel, Disposable{
 
     private final MenuGraficos2 menuGraficos;
     private final MenuHelper2 menuHelper;
@@ -28,15 +26,6 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
         Viewport viewport = new StretchViewport(AjustadorDeTela2.LARGURA_TELA_MENU, AjustadorDeTela2.ALTURA_TELA_MENU);
         this.menuGraficos = new MenuGraficos2(viewport);
         this.menuHelper = new MenuHelper2(viewport);
-    }
-
-    @Override
-    public void inicializar() {
-        menuManager2 = this;
-    }
-
-    public static MenuManager2 getInstancia() {
-        return menuManager2;
     }
 
     //CASOS ACEITAR ENTRADA E JOGANDO PARA POSICIONAR FORA E DENTRO DA TELA ATE TER O SEU PROPRIO COMPORTAMENTO PERSONALIZADO
