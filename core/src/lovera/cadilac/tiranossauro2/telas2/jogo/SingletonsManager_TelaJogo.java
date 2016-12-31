@@ -6,8 +6,9 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeCorrida2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficoManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.MenuManager2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.box2d.Box2DManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.Box2DUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
@@ -28,7 +29,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
     private GraficoManager2 graficoManager2;
     private VoltarOrigem2 voltarOrigem2;
 
-    private MeuBox2D2 meuBox2DTemp;
+    private Box2DManager box2DManager;
 
     private PistaDeCorrida2 pistaDeCorrida2;
 
@@ -42,7 +43,8 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
         new FaseUnico().inicializar();
 
-        new MeuBox2D2().inicializar();
+        new Box2DUnico().inicializar();
+        this.box2DManager = Box2DUnico.getInstancia().getBox2DManager();
 
         this.pistaDeCorrida2 = new PistaDeCorrida2();
         this.pistaDeCorrida2.inicializar();
@@ -65,10 +67,8 @@ final class SingletonsManager_TelaJogo implements Disposable{
     }
 
     public void render(float delta){
-        this.meuBox2DTemp = MeuBox2D2.getInstancia();
-
         this.cameraManager.atualizar();
-        this.meuBox2DTemp.atualizar();
+        this.box2DManager.atualizar();
 
         //UPDATE DO SPRITEBATCH COM CAMERA JOGO PARA RENDERIZAR PISTA
         this.cameraManager.updateSpriteBatch_CamJogo();
@@ -85,14 +85,14 @@ final class SingletonsManager_TelaJogo implements Disposable{
         this.menuManager2.meDesenhar(null);
 
         //SENDO CHAMADO POR ULTIMO PARA PODER SER VISUALIZADO POR CIMA DA TELA
-        this.meuBox2DTemp.meDesenhar(null);
+        this.box2DManager.meDesenhar(null);
         this.voltarOrigem2.meDesenhar(null);
     }
 
     @Override
     public void dispose() {
         SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch().dispose();
-        MeuBox2D2.getInstancia().dispose();
+        this.box2DManager.dispose();
         this.menuManager2.dispose();
     }
 }

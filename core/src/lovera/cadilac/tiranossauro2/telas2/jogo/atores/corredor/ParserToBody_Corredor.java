@@ -7,8 +7,9 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.box2d.Box2DManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.Box2DUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
 final class ParserToBody_Corredor implements TipoParseavel {
@@ -33,7 +34,7 @@ final class ParserToBody_Corredor implements TipoParseavel {
         bodyDef.position.set(xInicial, yInicial);
         bodyDef.angle = 90 * MathUtils.degreesToRadians;
 
-        Body body = MeuBox2D2.getInstancia().getWorld().createBody(bodyDef);
+        Body body = Box2DUnico.getInstancia().getBox2DManager().getWorld().createBody(bodyDef);
         body.createFixture(fixtureDef);
 
         shape.dispose();

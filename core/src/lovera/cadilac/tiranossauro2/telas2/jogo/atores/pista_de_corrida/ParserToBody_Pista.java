@@ -12,7 +12,8 @@ import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.box2d.Box2DManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.Box2DUnico;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 final class ParserToBody_Pista implements TipoParseavel {
@@ -35,7 +36,7 @@ final class ParserToBody_Pista implements TipoParseavel {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.StaticBody;
 
-        Body pistaBody = MeuBox2D2.getInstancia().getWorld().createBody(bodyDef);
+        Body pistaBody = Box2DUnico.getInstancia().getBox2DManager().getWorld().createBody(bodyDef);
         pistaBody.createFixture(fixtureDef);
         pistaBody.setTransform(x, y, 0);
 

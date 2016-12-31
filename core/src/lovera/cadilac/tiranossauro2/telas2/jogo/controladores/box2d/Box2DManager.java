@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.controladores;
+package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.box2d;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Matrix4;
@@ -12,28 +12,17 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
-public final class MeuBox2D2 implements TipoSingleton, TipoAtualizavel, TipoDesenhavel, Disposable{
-
-    private static MeuBox2D2 meuBox;
+public final class Box2DManager implements TipoAtualizavel, TipoDesenhavel, Disposable{
 
     private final World world;
     private final Box2DDebugRenderer renderer;
 
     private final Matrix4 matrizCameraJogo;
 
-    public MeuBox2D2() {
+    public Box2DManager() {
         this.world = new World(new Vector2(), true);
         this.renderer = new Box2DDebugRenderer();
         this.matrizCameraJogo = CameraUnico.getCameraManager().getCamera_CamJogo().combined;
-    }
-
-    @Override
-    public void inicializar() {
-        meuBox = this;
-    }
-
-    public static MeuBox2D2 getInstancia() {
-        return meuBox;
     }
 
     @Override
