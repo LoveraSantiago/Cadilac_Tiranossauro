@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos;
+package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.controle;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -12,9 +12,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MenuManager2;
 
-public final class ControleManager2 implements TipoSingleton{
-
-    private static ControleManager2 controleManager;
+public final class ControleManager2{
 
     private final InputMultiplexer inputMultiplexer;
 
@@ -42,15 +40,6 @@ public final class ControleManager2 implements TipoSingleton{
         //SETANDO ALGUEM TEMPORARIAMENTE OBRIGATORIO EVITAR NULL POINTER E CHECAGEM A TODOS RENDER
         this.controlavelAtual = this.controleMenuGrafico;
         iniciar();
-    }
-
-    @Override
-    public void inicializar() {
-        controleManager = this;
-    }
-
-    public static ControleManager2 getInstancia() {
-        return controleManager;
     }
 
     private void adicionarInputProcessor(TipoControlavel controlavel){

@@ -5,10 +5,10 @@ import com.badlogic.gdx.math.Vector2;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoLinear;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.controle.ControleManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 
@@ -33,7 +33,7 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         this.faseManager2 = FaseManager2.getInstancia();
         this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
-        this.controleManager2 = ControleManager2.getInstancia();
+        this.controleManager2 = ControleUnico.getInstancia().getControleManager2();
     }
 
     @Override
