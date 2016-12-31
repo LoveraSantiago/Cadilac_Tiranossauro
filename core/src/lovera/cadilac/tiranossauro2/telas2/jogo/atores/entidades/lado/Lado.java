@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.DirecaoEnum;
 

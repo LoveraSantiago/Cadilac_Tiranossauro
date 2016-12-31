@@ -2,9 +2,8 @@ package lovera.cadilac.tiranossauro2.telas2.jogo;
 
 import com.badlogic.gdx.utils.Disposable;
 
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeCorrida2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeCorrida2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
@@ -12,8 +11,9 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MenuManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.MeuBox2D2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.LadoManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.LadoUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.VoltarOrigemUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.voltar.VoltarOrigem2;
@@ -33,7 +33,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
     public void inicializarSingletons(){
         new SpriteBatchUnico().inicializar();
 
-        new LadoManager().inicializar();
+        new LadoUnico().inicializar();
 
         new CameraUnico().inicializar();
         this.cameraManager = CameraUnico.getCameraManager();
