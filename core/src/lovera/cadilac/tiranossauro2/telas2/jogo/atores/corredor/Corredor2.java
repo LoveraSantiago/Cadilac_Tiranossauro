@@ -44,6 +44,14 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
         else if(this.faseManager2.isFaseAtual(Fase2.ACAO)){
             meDesenhar_FaseAcao();
         }
+        else{
+            meDesenhar_FaseOutras();
+        }
+    }
+
+    private void meDesenhar_FaseOutras(){
+        this.calcAngulo.rotacionarParado();
+        this.lataria.meDesenhar(null);
     }
 
     private void meDesenhar_FaseJogando(){

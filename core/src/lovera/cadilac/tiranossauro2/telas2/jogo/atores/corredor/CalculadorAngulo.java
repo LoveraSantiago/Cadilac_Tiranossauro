@@ -48,6 +48,22 @@ final class CalculadorAngulo {
         this.corredor.applyTorque(this.torque, true);
     }
 
+    public void rotacionarParado() {
+        if(isMesmoAngulo()){
+            this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+            return;
+        }
+
+        if(this.anguloCorredorGraus > this.anguloCalculado){
+            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
+            System.out.println("Incremento NEG contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+        }
+        else{
+            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
+            System.out.println("Incremento POS contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+        }
+    }
+
     public void rotacionarIda(){
         if(isMesmoAngulo()){
             this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
