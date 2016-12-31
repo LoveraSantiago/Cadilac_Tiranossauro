@@ -5,7 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.List;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
 final class RotacionadorDePontos {
 
@@ -24,7 +25,7 @@ final class RotacionadorDePontos {
     }
 
     public void rotacionarPontos(){
-        this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
+        this.posicaoCorredor = CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getPosicaoJogo();
         setSenoCosseno();
 
         for(this.contador = 0; this.contador < this.listaX.size(); this.contador++){

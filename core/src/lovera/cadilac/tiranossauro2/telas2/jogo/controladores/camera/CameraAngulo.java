@@ -3,7 +3,8 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 import com.badlogic.gdx.math.Vector3;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.NormatizadorDeAngulos;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
 final class CameraAngulo {
 
@@ -26,7 +27,7 @@ final class CameraAngulo {
     }
 
     public void rotacionarCameraEmVoltaDoPonto(float angulo){
-        this.posicaoTemp.set(CorredorManager.getInstancia().getCorredorP().getPosicaoJogo(), 0);
+        this.posicaoTemp.set(CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getPosicaoJogo(), 0);
 
         this.cameraJogo.getCamera().rotateAround(this.posicaoTemp, this.eixoZ, angulo);
         this.anguloAtual = this.anguloAtual + angulo;

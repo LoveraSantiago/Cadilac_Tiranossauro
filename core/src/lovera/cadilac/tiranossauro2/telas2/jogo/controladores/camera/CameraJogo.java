@@ -6,9 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import lovera.cadilac.tiranossauro2.componente.tela.SpriteBatchManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSubCamera;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
@@ -68,7 +67,7 @@ final class CameraJogo implements TipoSubCamera{
 
     @Override
     public void setDiferenca() {
-        this.posicaoTemp.set(CorredorManager.getInstancia().getCorredorP().getPosicaoJogo());
+        this.posicaoTemp.set(CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getPosicaoJogo());
         this.diferenca.set(this.camera.position.x - this.posicaoTemp.x,this.camera.position.y - this.posicaoTemp.y);
     }
 

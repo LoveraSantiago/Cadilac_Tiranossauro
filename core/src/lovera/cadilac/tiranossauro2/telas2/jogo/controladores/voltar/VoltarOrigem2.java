@@ -9,7 +9,8 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManag
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.controle.ControleManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
 
 public final class VoltarOrigem2 implements TipoDesenhavel{
@@ -31,7 +32,7 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         this.posicaoTemp = new Vector2();
 
         this.faseManager2 = FaseManager2.getInstancia();
-        this.posicaoCorredor = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
+        this.posicaoCorredor = CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
         this.controleManager2 = ControleUnico.getInstancia().getControleManager2();
     }

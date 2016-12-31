@@ -7,7 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
 class VolanteListener extends ActorGestureListener{
 
@@ -35,7 +36,7 @@ class VolanteListener extends ActorGestureListener{
         this.controle = controle;
 
         this.cameraManager = CameraUnico.getCameraManager();
-        this.corredor = CorredorManager.getInstancia().getCorredorP();
+        this.corredor = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
     }
 
     @Override

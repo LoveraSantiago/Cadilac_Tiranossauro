@@ -1,14 +1,11 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.VoltarOrigemUnico;
 
-public final class CorredorManager implements TipoSingleton, TipoDesenhavel, MsgToCorredorManager{
-
-    private static CorredorManager corredorManager;
+public final class CorredorManager implements TipoDesenhavel, MsgToCorredorManager{
 
     private final Corredor2 corredorP;
     private Corredor2[] corredores;
@@ -25,15 +22,6 @@ public final class CorredorManager implements TipoSingleton, TipoDesenhavel, Msg
 
         contarCorredores();
         resetContadorAcoes();
-    }
-
-    @Override
-    public void inicializar() {
-        corredorManager = this;
-    }
-
-    public static CorredorManager getInstancia() {
-        return corredorManager;
     }
 
     private void contarCorredores(){

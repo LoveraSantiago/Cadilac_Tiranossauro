@@ -11,9 +11,10 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
 
 //TODO refatorar com DesenhadorGraf_Parabola informacao da para ser atributo estatico de superclasse
@@ -33,7 +34,7 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
         this.entrada = entrada;
         this.cameraProjecao = CameraUnico.getCameraManager().getCamera_CamProj();
 
-        this.corredorP = CorredorManager.getInstancia().getCorredorP();
+        this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoJogadorP = this.corredorP.getPosicaoJogo();
 
         this.shapeRenderer = new ShapeRenderer();

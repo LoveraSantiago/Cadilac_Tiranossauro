@@ -9,9 +9,10 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Lado;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.LadoManager;
 
 //TODO uniformizar acessos as variaveis de classe pai
@@ -29,7 +30,7 @@ public abstract class Entrada2  extends GestureDetector.GestureAdapter implement
         faseManager = FaseManager2.getInstancia();
         cameraManager = CameraUnico.getCameraManager();
         cameraProjecao =  cameraManager.getCamera_CamProj();
-        corredor = CorredorManager.getInstancia().getCorredorP();
+        corredor = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         lado = LadoManager.getInstancia().getLado();
     }
 

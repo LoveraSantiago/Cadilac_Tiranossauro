@@ -12,9 +12,10 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.Equaca
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
 public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable{
 
@@ -52,7 +53,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
         this.ptSuperior = new Vector2();
         this.ptLateral  = new Vector2();
 
-        this.corredorP = CorredorManager.getInstancia().getCorredorP();
+        this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredorP = this.corredorP.getPosicaoJogo();
 
         this.informacao = InformacaoManager.getInstancia().getInformacao();

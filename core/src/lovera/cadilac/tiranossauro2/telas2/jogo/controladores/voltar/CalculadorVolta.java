@@ -6,7 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoLinear;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
 final class CalculadorVolta {
 
@@ -20,7 +21,7 @@ final class CalculadorVolta {
 
     public CalculadorVolta(EquacaoLinear equacaoLinear) {
         this.cameraManager = CameraUnico.getCameraManager();
-        this.posicaoJogador = CorredorManager.getInstancia().getCorredorP().getPosicaoJogo();
+        this.posicaoJogador = CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getPosicaoJogo();
         this.equacaoLinear = equacaoLinear;
 
         this.posicaoFinalCamera = new Vector2();

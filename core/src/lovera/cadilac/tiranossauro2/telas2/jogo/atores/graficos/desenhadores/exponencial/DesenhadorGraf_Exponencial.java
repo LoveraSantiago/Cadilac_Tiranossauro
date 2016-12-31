@@ -14,10 +14,11 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.Equaca
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
 //LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
 public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
@@ -48,7 +49,7 @@ public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
         this.entrada2 = entrada2;
         this.informacao = InformacaoManager.getInstancia().getInformacao();
         this.arredondador = new Arredondador();
-        this.corredorP = CorredorManager.getInstancia().getCorredorP();
+        this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
         this.matrizCameraProjecao = this.cameraManager.getCamera_CamProj().combined;
