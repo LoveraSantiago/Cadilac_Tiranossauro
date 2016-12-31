@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.exponencial.EntradaGrafico_Exponencial;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.parabola.EntradaGrafico_Parabola;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.vazio.EntradaGrafico_Vazio;

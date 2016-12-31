@@ -1,13 +1,11 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
-
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.box2d.Box2DManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.Box2DUnico;
 
 final class Colisao implements ContactListener {

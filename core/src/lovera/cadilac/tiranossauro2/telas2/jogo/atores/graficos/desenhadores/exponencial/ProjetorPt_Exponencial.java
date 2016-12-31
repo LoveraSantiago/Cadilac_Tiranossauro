@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoEquacao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePonto2;
 
-class ProjetorPt_Exponencial extends ProjetorDePonto2{
+final class ProjetorPt_Exponencial extends ProjetorDePonto2{
 
     public final Vector2 calcularPtFuturoDireita_Horizontal(TipoEquacao equacao, float contador, Vector2 ptParametro){
         contador += Gdx.graphics.getDeltaTime();

@@ -10,7 +10,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 
 //TODO: refatorar bem com outras EntradasGraficas
-public class EntradaGrafico_Exponencial extends EntradaGrafica{
+public final class EntradaGrafico_Exponencial extends EntradaGrafica{
 
     private final Entrada2 entrada;
     private final DesenhadorGraf_Exponencial desenhador;

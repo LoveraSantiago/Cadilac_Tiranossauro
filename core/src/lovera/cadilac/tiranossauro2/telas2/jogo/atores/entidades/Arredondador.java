@@ -1,7 +1,7 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades;
 
 
-public class Arredondador {
+public final class Arredondador {
 
     private int potencia;
     private int contador;

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromDeslizador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 
 final class Deslizador{

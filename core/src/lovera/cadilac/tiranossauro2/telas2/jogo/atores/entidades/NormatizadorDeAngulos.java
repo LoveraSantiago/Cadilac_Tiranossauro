@@ -1,6 +1,6 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades;
 
-public class NormatizadorDeAngulos {
+public final class NormatizadorDeAngulos {
 
     public float normatizar(float angulo){
         if(angulo < 0){

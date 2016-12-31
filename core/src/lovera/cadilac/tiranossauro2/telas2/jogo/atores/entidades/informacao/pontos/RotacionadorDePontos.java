@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.List;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
 final class RotacionadorDePontos {

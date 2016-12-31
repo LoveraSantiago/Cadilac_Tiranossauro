@@ -2,7 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoEquacao;
 
-public class EquacaoExponencial2 implements TipoEquacao{
+public final class EquacaoExponencial2 implements TipoEquacao{
 
     /*
     Definição da equação exponencial a(b^x)+c

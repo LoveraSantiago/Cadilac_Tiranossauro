@@ -7,10 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
-class VolanteListener extends ActorGestureListener{
+final class VolanteListener extends ActorGestureListener{
 
     private boolean toqueAcontecendo;
     private boolean panAcontecendo;

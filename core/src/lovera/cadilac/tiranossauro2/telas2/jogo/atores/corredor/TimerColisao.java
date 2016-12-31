@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromTimerColisao;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 
-class TimerColisao implements TipoAtualizavel{
+final class TimerColisao implements TipoAtualizavel{
 
     private long contadorTempo;
 

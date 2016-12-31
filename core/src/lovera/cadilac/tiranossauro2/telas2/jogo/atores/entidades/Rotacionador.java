@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
-public class Rotacionador {
+public final class Rotacionador {
 
     private float angulo;
     private float cos;

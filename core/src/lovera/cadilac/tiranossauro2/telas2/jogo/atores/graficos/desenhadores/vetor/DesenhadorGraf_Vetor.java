@@ -15,7 +15,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
-
 //TODO refatorar com DesenhadorGraf_Parabola informacao da para ser atributo estatico de superclasse
 final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
 

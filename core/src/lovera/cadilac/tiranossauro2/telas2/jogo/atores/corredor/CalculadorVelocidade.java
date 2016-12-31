@@ -2,7 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
 import com.badlogic.gdx.math.Vector2;
 
-class CalculadorVelocidade {
+final class CalculadorVelocidade {
 
     private final float VELOCIDADE = 7f;
 

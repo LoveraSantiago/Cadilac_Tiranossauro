@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Disposable;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.utils.MenuUtils2;
 
-class ParserToTable_MenuHelper implements TipoParseavel, Disposable{
+final class ParserToTable_MenuHelper implements TipoParseavel, Disposable{
 
     private TextureAtlas atlas;
 

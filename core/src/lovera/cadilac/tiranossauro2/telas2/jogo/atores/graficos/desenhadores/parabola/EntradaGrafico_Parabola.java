@@ -1,6 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.parabola;
 
-
 import com.badlogic.gdx.InputProcessor;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;

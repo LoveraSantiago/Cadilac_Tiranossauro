@@ -2,7 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pon
 
 import java.util.List;
 
-class Otimizador {
+final class Otimizador {
 
     private final List<Float> listaX;
     private final List<Float> listaY;

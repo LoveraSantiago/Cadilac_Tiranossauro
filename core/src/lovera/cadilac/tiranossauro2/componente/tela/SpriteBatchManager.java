@@ -2,7 +2,7 @@ package lovera.cadilac.tiranossauro2.componente.tela;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class SpriteBatchManager{
+public final class SpriteBatchManager{
 
     private final SpriteBatch spriteBatch;
 

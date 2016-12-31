@@ -1,6 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.exponencial;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
@@ -20,7 +19,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUni
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 //LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
-public class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
+public final class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
 
     private DirecaoEnum lado;
 

@@ -2,7 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos.Pontos;
 
-public class InformacaoManager {
+public final class InformacaoManager {
 
     private final Pontos pontos;
     private final Distancia distancia;
