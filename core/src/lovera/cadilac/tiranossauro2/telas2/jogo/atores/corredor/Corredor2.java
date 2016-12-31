@@ -8,8 +8,9 @@ import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Informacao;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 
 public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMovimentador {
 
@@ -22,7 +23,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
     private final FaseManager2 faseManager2;
 
     public Corredor2(MsgToCorredorManager msgCM) {
-        this.faseManager2 = FaseManager2.getInstancia();
+        this.faseManager2 = FaseUnico.getInstancia().getFaseManager2();
 
         this.lataria = new Lataria();
         this.corredor = meTransforme(this.lataria);

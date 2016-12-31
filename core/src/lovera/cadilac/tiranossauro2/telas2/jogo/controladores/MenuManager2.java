@@ -9,6 +9,8 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos.MenuGraficos2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_helper.MenuHelper2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
 
 public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Disposable{
@@ -21,7 +23,7 @@ public final class MenuManager2 implements TipoSingleton, TipoDesenhavel, Dispos
     private final FaseManager2 faseManager;
 
     public MenuManager2() {
-        this.faseManager = FaseManager2.getInstancia();
+        this.faseManager = FaseUnico.getInstancia().getFaseManager2();
 
         Viewport viewport = new StretchViewport(AjustadorDeTela2.LARGURA_TELA_MENU, AjustadorDeTela2.ALTURA_TELA_MENU);
         this.menuGraficos = new MenuGraficos2(viewport);

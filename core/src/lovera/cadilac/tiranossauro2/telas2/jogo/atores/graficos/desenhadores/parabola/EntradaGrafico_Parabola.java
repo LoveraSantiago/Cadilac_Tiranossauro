@@ -6,8 +6,9 @@ import com.badlogic.gdx.InputProcessor;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 
 public final class EntradaGrafico_Parabola extends EntradaGrafica{
 
@@ -21,7 +22,7 @@ public final class EntradaGrafico_Parabola extends EntradaGrafica{
         this.entrada = new PincaEntrada2();
         this.desenhador = new DesenhadorGraf_Parabola(this.entrada);
 
-        this.faseManager2 = FaseManager2.getInstancia();
+        this.faseManager2 = FaseUnico.getInstancia().getFaseManager2();
     }
 
     @Override

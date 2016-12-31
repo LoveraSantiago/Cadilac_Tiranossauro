@@ -2,7 +2,8 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.VoltarOrigemUnico;
 
 public final class CorredorManager implements TipoDesenhavel, MsgToCorredorManager{
@@ -16,7 +17,7 @@ public final class CorredorManager implements TipoDesenhavel, MsgToCorredorManag
     private final FaseManager2 faseManager;
 
     public CorredorManager() {
-        this.faseManager = FaseManager2.getInstancia();
+        this.faseManager = FaseUnico.getInstancia().getFaseManager2();
         this.corredorP = new Corredor2(this);
         this.corredores = new Corredor2[0];
 

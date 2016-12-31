@@ -4,14 +4,14 @@ import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoLinear;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.controle.ControleManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 
 public final class VoltarOrigem2 implements TipoDesenhavel{
 
@@ -31,7 +31,7 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         this.calculadorVolta = new CalculadorVolta(this.equacaoLinear);
         this.posicaoTemp = new Vector2();
 
-        this.faseManager2 = FaseManager2.getInstancia();
+        this.faseManager2 = FaseUnico.getInstancia().getFaseManager2();
         this.posicaoCorredor = CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
         this.controleManager2 = ControleUnico.getInstancia().getControleManager2();

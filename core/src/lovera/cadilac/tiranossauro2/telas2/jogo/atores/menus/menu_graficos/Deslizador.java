@@ -3,8 +3,9 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos;
 import com.badlogic.gdx.Gdx;
 
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromDeslizador;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.utils.Fase2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 
 final class Deslizador{
 
@@ -53,7 +54,7 @@ final class Deslizador{
         }
         else{
             setBarraPosicao_Inicial();
-            FaseManager2.getInstancia().setFaseAtual(Fase2.ACEITAR_ENTRADA);
+            FaseUnico.getInstancia().getFaseManager2().setFaseAtual(Fase2.ACEITAR_ENTRADA);
         }
     }
 
