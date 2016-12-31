@@ -6,7 +6,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.EntradaGrafica;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 
-public class ControleUnico implements TipoSingleton{
+public final class ControleUnico implements TipoSingleton{
 
     private static ControleUnico controleUnico;
     private final lovera.cadilac.tiranossauro2.telas2.jogo.controladores.controle.ControleManager2 controleManager2;
