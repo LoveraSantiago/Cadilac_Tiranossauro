@@ -65,16 +65,21 @@ final class CalculadorAngulo {
     }
 
     public void rotacionarIda(){
-        if(isMesmoAngulo()){
-            this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
-            return;
-        }
-        else{
-            if(this.ladoManager.isLado(DirecaoEnum.DIREITA)){
+        if(this.ladoManager.isLado(DirecaoEnum.DIREITA)){
+            if(isAnguloMaiorDireita()){
+                this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+            }
+            else{
                 this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
                 System.out.println("Incremento NEG contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
             }
-            else if(this.ladoManager.isLado(DirecaoEnum.ESQUERDA)){
+        }
+        else if(this.ladoManager.isLado(DirecaoEnum.ESQUERDA)){
+
+            if(isAnguloMaiorEsquerda()){
+                this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+            }
+            else{
                 this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
                 System.out.println("Incremento POS contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
             }
@@ -82,16 +87,20 @@ final class CalculadorAngulo {
     }
 
     public void rotacionarVolta(){
-        if(isMesmoAngulo()){
-            this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
-            return;
-        }
-        else{
-            if(this.ladoManager.isLado(DirecaoEnum.DIREITA)){
+        if(this.ladoManager.isLado(DirecaoEnum.DIREITA)){
+            if(isAnguloMaiorDireita()){
+                this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+            }
+            else{
                 this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
                 System.out.println("Incremento POS contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
             }
-            else if(this.ladoManager.isLado(DirecaoEnum.ESQUERDA)){
+        }
+        else if(this.ladoManager.isLado(DirecaoEnum.ESQUERDA)){
+            if(isAnguloMaiorEsquerda()){
+                this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+            }
+            else{
                 this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
                 System.out.println("Incremento NEG contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
             }
@@ -126,6 +135,16 @@ final class CalculadorAngulo {
     private boolean isMesmoAngulo(){
         this.anguloCorredorGraus = getAnguloCorredor_Graus();
         return Math.round(this.anguloCalculado) == this.anguloCorredorGraus;
+    }
+
+    private boolean isAnguloMaiorDireita(){
+        this.anguloCorredorGraus = getAnguloCorredor_Graus();
+        return Math.round(this.anguloCalculado) <= this.anguloCorredorGraus;
+    }
+
+    private boolean isAnguloMaiorEsquerda(){
+        this.anguloCorredorGraus = getAnguloCorredor_Graus();
+        return Math.round(this.anguloCalculado) >= this.anguloCorredorGraus;
     }
 
     private void setFps(){
