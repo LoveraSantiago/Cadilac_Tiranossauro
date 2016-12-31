@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado;
 
 public enum DirecaoEnum {
 

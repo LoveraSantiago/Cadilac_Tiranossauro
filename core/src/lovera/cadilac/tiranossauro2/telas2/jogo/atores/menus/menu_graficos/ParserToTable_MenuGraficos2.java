@@ -15,8 +15,8 @@ import lovera.cadilac.tiranossauro.telas.menus.MenuUtils;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.utils.MenuUtils2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.GraficoManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.GraficoUnico;
 
 final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
 
@@ -72,7 +72,7 @@ final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
 
                 if(!deslizador.isPosicaoBarraFixa()) return;
 
-                GraficoManager2.getInstancia().setGraficoEscolhido(graficoEnum);
+                GraficoUnico.getInstancia().getGraficoManager2().setGraficoEscolhido(graficoEnum);
                 ControleUnico.getInstancia().getControleManager2().setarControlavelAtual(graficoEnum);
 
                 deslizador.setBarraPosicao_Saida();
