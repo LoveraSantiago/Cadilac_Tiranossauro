@@ -41,6 +41,7 @@ public final class PincaEntrada2 extends Entrada2 {
 
         if(isPtValidos()){
             faseManager.setFaseAtual(Fase2.JOGANDO);
+            ladoManager.setPosicaoToque(this.ptLateralProjetado.x);
         }
         else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);

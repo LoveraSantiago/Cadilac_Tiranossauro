@@ -5,6 +5,9 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.NormatizadorDeAngulos;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado.DirecaoEnum;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado.LadoManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.LadoUnico;
 
 final class CalculadorAngulo {
 
@@ -23,6 +26,7 @@ final class CalculadorAngulo {
 
     private final Body corredor;
 
+    private final LadoManager ladoManager;
     private final NormatizadorDeAngulos normatizador;
 
     public CalculadorAngulo(Body corredor) {
@@ -32,6 +36,7 @@ final class CalculadorAngulo {
         resetAngulo();
 
         this.normatizador = new NormatizadorDeAngulos();
+        this.ladoManager = LadoUnico.getInstancia().getLadoManager();
     }
 
     public void rotacionarEmMovimento(){
@@ -43,19 +48,37 @@ final class CalculadorAngulo {
         this.corredor.applyTorque(this.torque, true);
     }
 
-    public void rotacionarParado() {
+    public void rotacionarIda(){
         if(isMesmoAngulo()){
             this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
             return;
         }
+        else{
+            if(this.ladoManager.isLado(DirecaoEnum.DIREITA)){
+                this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
+                System.out.println("Incremento NEG contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+            }
+            else if(this.ladoManager.isLado(DirecaoEnum.ESQUERDA)){
+                this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
+                System.out.println("Incremento POS contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+            }
+        }
+    }
 
-        if(this.anguloCorredorGraus > this.anguloCalculado){
-            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
-            System.out.println("Incremento NEG contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+    public void rotacionarVolta(){
+        if(isMesmoAngulo()){
+            this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+            return;
         }
         else{
-            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
-            System.out.println("Incremento POS contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+            if(this.ladoManager.isLado(DirecaoEnum.DIREITA)){
+                this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
+                System.out.println("Incremento POS contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+            }
+            else if(this.ladoManager.isLado(DirecaoEnum.ESQUERDA)){
+                this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
+                System.out.println("Incremento NEG contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+            }
         }
     }
 

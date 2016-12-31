@@ -33,6 +33,7 @@ public final class ArrastarEntrada2 extends Entrada2 {
 
         if(isPtValidos()){
             faseManager.setFaseAtual(Fase2.JOGANDO);
+            ladoManager.setPosicaoToque(this.ptToqueProjetado.x);
         }
         else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
