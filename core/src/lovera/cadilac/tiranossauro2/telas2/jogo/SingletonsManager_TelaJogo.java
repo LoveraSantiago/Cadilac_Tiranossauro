@@ -15,7 +15,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUni
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.GraficoUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.LadoUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.MenuUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.VoltarOrigemUnico;
@@ -35,8 +34,6 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
     public void inicializarSingletons(){
         new SpriteBatchUnico().inicializar();
-
-        new LadoUnico().inicializar();
 
         new CameraUnico().inicializar();
         this.cameraManager = CameraUnico.getCameraManager();
