@@ -52,12 +52,13 @@ final class CalculadorAngulo {
 
         if(this.anguloCorredorGraus > this.anguloCalculado){
             this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
-            System.out.println("Incremento NEG contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+//            System.out.println("Incremento NEG contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
         }
         else{
             this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
-            System.out.println("Incremento POS contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
+//            System.out.println("Incremento POS contador angulo " + this.contadorAngulo * MathUtils.radiansToDegrees);
         }
+        System.out.println("DIFERENCA " + (this.anguloCalculado - this.contadorAngulo));
     }
 
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
@@ -67,9 +68,10 @@ final class CalculadorAngulo {
 
         this.contadorAngulo = this.corredor.getAngle();
 
-        System.out.println("*****");
-        System.out.println("angulo calculado " + this.anguloCalculado);
-        System.out.println("contador angulo  " + this.contadorAngulo * MathUtils.radiansToDegrees);
+
+//        System.out.println("*****");
+//        System.out.println("angulo calculado " + this.anguloCalculado);
+//        System.out.println("contador angulo  " + this.contadorAngulo * MathUtils.radiansToDegrees);
     }
 
     public void telaAngulada(float angulo) {
