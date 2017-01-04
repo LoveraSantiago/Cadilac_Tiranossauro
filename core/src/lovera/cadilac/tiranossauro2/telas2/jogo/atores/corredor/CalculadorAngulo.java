@@ -26,6 +26,10 @@ final class CalculadorAngulo {
 
     private final NormatizadorDeAngulos normatizador;
 
+    private Relogio relogioAtual;
+    private Relogio horario;
+    private Relogio antihorario;
+
     public CalculadorAngulo(Body corredor) {
         this.corredor = corredor;
 
@@ -33,6 +37,9 @@ final class CalculadorAngulo {
         resetAngulo();
 
         this.normatizador = new NormatizadorDeAngulos();
+
+        this.horario = new Horario();
+        this.antihorario = new AntiHorario();
     }
 
     public void rotacionarEmMovimento(){
@@ -61,6 +68,38 @@ final class CalculadorAngulo {
         System.out.println("DIFERENCA " + (this.anguloCalculado - this.contadorAngulo));
     }
 
+    public void rotacionarIda(){
+        if(this.relogioAtual == null){
+            rotacionarParado();
+        }
+        else{
+            if(isMesmoAngulo()){
+                this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+                return;
+            }
+            else{
+                this.relogioAtual.ida();
+            }
+        }
+    }
+
+    public void rotacionarVolta(){
+        if(this.relogioAtual == null){
+            rotacionarParado();
+        }
+        else{
+            if(isMesmoAngulo()){
+                this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+                return;
+            }
+            else{
+                this.relogioAtual.volta();
+            }
+        }
+    }
+
+    float diferencaHorario;
+    float diferencaAntihorario;
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
         this.anguloCalculado = (float) (Math.atan2(ptFuturoY - this.corredor.getPosition().y, ptFuturoX - this.corredor.getPosition().x)) * MathUtils.radiansToDegrees;
         this.anguloCalculado = Math.round(this.anguloCalculado);
@@ -68,10 +107,22 @@ final class CalculadorAngulo {
 
         this.contadorAngulo = this.corredor.getAngle();
 
+        System.out.println("*****");
+        System.out.println("angulo calculado " + this.anguloCalculado);
+        System.out.println("angulo corredor  " + getAnguloCorredor_Graus());
 
-//        System.out.println("*****");
-//        System.out.println("angulo calculado " + this.anguloCalculado);
-//        System.out.println("contador angulo  " + this.contadorAngulo * MathUtils.radiansToDegrees);
+        this.diferencaAntihorario = Math.abs(this.anguloCalculado - getAnguloCorredor_Graus());
+        this.diferencaHorario = Math.abs(360 - getAnguloCorredor_Graus() + this.anguloCalculado);
+
+        System.out.println("dif Antihorario" + this.diferencaAntihorario);
+        System.out.println("dif     horario" + this.diferencaHorario);
+
+        if(this.diferencaAntihorario < this.diferencaHorario){
+            this.relogioAtual = this.antihorario;
+        }
+        else{
+            this.relogioAtual = this.horario;
+        }
     }
 
     public void telaAngulada(float angulo) {
@@ -95,5 +146,36 @@ final class CalculadorAngulo {
     private void setFps(){
         this.fps = Gdx.graphics.getFramesPerSecond();
         this.fps = this.fps < 60 ? 60 : this.fps;
+    }
+
+    interface Relogio{
+        void ida();
+        void volta();
+    }
+
+    class Horario implements Relogio{
+
+        @Override
+        public void ida() {
+            corredor.setTransform(corredor.getPosition(), contadorAngulo -= MathUtils.degreesToRadians);
+        }
+
+        @Override
+        public void volta() {
+            corredor.setTransform(corredor.getPosition(), contadorAngulo += MathUtils.degreesToRadians);
+        }
+    }
+
+    class AntiHorario implements Relogio{
+
+        @Override
+        public void ida() {
+            corredor.setTransform(corredor.getPosition(), contadorAngulo += MathUtils.degreesToRadians);
+        }
+
+        @Override
+        public void volta() {
+            corredor.setTransform(corredor.getPosition(), contadorAngulo -= MathUtils.degreesToRadians);
+        }
     }
 }
