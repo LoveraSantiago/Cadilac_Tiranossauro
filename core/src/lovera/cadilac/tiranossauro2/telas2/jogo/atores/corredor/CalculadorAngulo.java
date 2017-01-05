@@ -98,8 +98,6 @@ final class CalculadorAngulo {
         }
     }
 
-    float diferencaHorario;
-    float diferencaAntihorario;
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
         this.anguloCalculado = (float) (Math.atan2(ptFuturoY - this.corredor.getPosition().y, ptFuturoX - this.corredor.getPosition().x)) * MathUtils.radiansToDegrees;
         this.anguloCalculado = Math.round(this.anguloCalculado);
@@ -111,23 +109,8 @@ final class CalculadorAngulo {
         System.out.println("angulo calculado " + this.anguloCalculado);
         System.out.println("angulo corredor  " + getAnguloCorredor_Graus());
 
-        if(this.anguloCalculado < getAnguloCorredor_Graus()){
-            this.diferencaHorario     = Math.abs(this.anguloCalculado - getAnguloCorredor_Graus());
-            this.diferencaAntihorario = Math.abs(360 - getAnguloCorredor_Graus() + this.anguloCalculado);
 
-        }
-        else if(this.anguloCalculado > getAnguloCorredor_Graus()){
-            this.diferencaAntihorario = Math.abs(this.anguloCalculado - getAnguloCorredor_Graus());
-            this.diferencaHorario     = Math.abs(360 - getAnguloCorredor_Graus() + this.anguloCalculado);
-        }
-        else{
-            return;
-        }
-
-        System.out.println("dif Antihorario: " + this.diferencaAntihorario);
-        System.out.println("dif     horario: " + this.diferencaHorario);
-
-        if(this.diferencaAntihorario < this.diferencaHorario){
+        if((this.anguloCalculado - getAnguloCorredor_Graus() + 360) % 360 < 180){
             this.relogioAtual = this.antihorario;
         }
         else{
@@ -137,7 +120,12 @@ final class CalculadorAngulo {
 
     public void telaAngulada(float angulo) {
         this.anguloNorte += angulo;
+        normatizarCorredor();
         resetAngulo();
+    }
+
+    public void normatizarCorredor(){
+        this.corredor.setTransform(this.corredor.getPosition(), this.normatizador.normatizar(getAnguloCorredor_Graus()) * MathUtils.degreesToRadians);
     }
 
     public void resetAngulo() {
@@ -150,7 +138,7 @@ final class CalculadorAngulo {
 
     private boolean isMesmoAngulo(){
         this.anguloCorredorGraus = getAnguloCorredor_Graus();
-        return Math.round(this.anguloCalculado) == this.anguloCorredorGraus;
+        return Math.round(this.anguloCalculado) % this.anguloCorredorGraus == 0;
     }
 
     private void setFps(){
@@ -167,13 +155,11 @@ final class CalculadorAngulo {
 
         @Override
         public void ida() {
-            contadorAngulo = (normatizador.normatizar(contadorAngulo * MathUtils.degreesToRadians)) * MathUtils.radiansToDegrees;
             corredor.setTransform(corredor.getPosition(), contadorAngulo -= MathUtils.degreesToRadians);
         }
 
         @Override
         public void volta() {
-            contadorAngulo = (normatizador.normatizar(contadorAngulo * MathUtils.degreesToRadians)) * MathUtils.radiansToDegrees;
             corredor.setTransform(corredor.getPosition(), contadorAngulo += MathUtils.degreesToRadians);
         }
     }
@@ -182,13 +168,11 @@ final class CalculadorAngulo {
 
         @Override
         public void ida() {
-            contadorAngulo = (normatizador.normatizar(contadorAngulo * MathUtils.degreesToRadians)) * MathUtils.radiansToDegrees;
             corredor.setTransform(corredor.getPosition(), contadorAngulo += MathUtils.degreesToRadians);
         }
 
         @Override
         public void volta() {
-            contadorAngulo = (normatizador.normatizar(contadorAngulo * MathUtils.degreesToRadians)) * MathUtils.radiansToDegrees;
             corredor.setTransform(corredor.getPosition(), contadorAngulo -= MathUtils.degreesToRadians);
         }
     }
