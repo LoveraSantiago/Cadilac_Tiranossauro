@@ -111,11 +111,21 @@ final class CalculadorAngulo {
         System.out.println("angulo calculado " + this.anguloCalculado);
         System.out.println("angulo corredor  " + getAnguloCorredor_Graus());
 
-        this.diferencaAntihorario = Math.abs(this.anguloCalculado - getAnguloCorredor_Graus());
-        this.diferencaHorario = Math.abs(360 - getAnguloCorredor_Graus() + this.anguloCalculado);
+        if(this.anguloCalculado < getAnguloCorredor_Graus()){
+            this.diferencaHorario     = Math.abs(this.anguloCalculado - getAnguloCorredor_Graus());
+            this.diferencaAntihorario = Math.abs(360 - getAnguloCorredor_Graus() + this.anguloCalculado);
 
-        System.out.println("dif Antihorario" + this.diferencaAntihorario);
-        System.out.println("dif     horario" + this.diferencaHorario);
+        }
+        else if(this.anguloCalculado > getAnguloCorredor_Graus()){
+            this.diferencaAntihorario = Math.abs(this.anguloCalculado - getAnguloCorredor_Graus());
+            this.diferencaHorario     = Math.abs(360 - getAnguloCorredor_Graus() + this.anguloCalculado);
+        }
+        else{
+            return;
+        }
+
+        System.out.println("dif Antihorario: " + this.diferencaAntihorario);
+        System.out.println("dif     horario: " + this.diferencaHorario);
 
         if(this.diferencaAntihorario < this.diferencaHorario){
             this.relogioAtual = this.antihorario;
@@ -157,11 +167,13 @@ final class CalculadorAngulo {
 
         @Override
         public void ida() {
+            contadorAngulo = (normatizador.normatizar(contadorAngulo * MathUtils.degreesToRadians)) * MathUtils.radiansToDegrees;
             corredor.setTransform(corredor.getPosition(), contadorAngulo -= MathUtils.degreesToRadians);
         }
 
         @Override
         public void volta() {
+            contadorAngulo = (normatizador.normatizar(contadorAngulo * MathUtils.degreesToRadians)) * MathUtils.radiansToDegrees;
             corredor.setTransform(corredor.getPosition(), contadorAngulo += MathUtils.degreesToRadians);
         }
     }
@@ -170,11 +182,13 @@ final class CalculadorAngulo {
 
         @Override
         public void ida() {
+            contadorAngulo = (normatizador.normatizar(contadorAngulo * MathUtils.degreesToRadians)) * MathUtils.radiansToDegrees;
             corredor.setTransform(corredor.getPosition(), contadorAngulo += MathUtils.degreesToRadians);
         }
 
         @Override
         public void volta() {
+            contadorAngulo = (normatizador.normatizar(contadorAngulo * MathUtils.degreesToRadians)) * MathUtils.radiansToDegrees;
             corredor.setTransform(corredor.getPosition(), contadorAngulo -= MathUtils.degreesToRadians);
         }
     }
