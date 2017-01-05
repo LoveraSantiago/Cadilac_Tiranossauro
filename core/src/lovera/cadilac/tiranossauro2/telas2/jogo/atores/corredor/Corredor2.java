@@ -33,16 +33,6 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
         this.movimentador = new Movimentador(this.corredor, msgCM, this);
     }
 
-//    @Override
-//    public void meDesenhar(Object objeto) {
-//        if(!this.faseManager2.isFaseAtual(Fase2.ACAO)){
-//            meDesenhar_FaseOutras();
-//        }
-//        else{
-//            meDesenhar_FaseAcao();
-//        }
-//    }
-
     @Override
     public void meDesenhar(Object objeto) {
         if(this.faseManager2.isFaseAtual(Fase2.JOGANDO)){
