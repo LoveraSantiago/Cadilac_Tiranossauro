@@ -15,7 +15,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMovimentador {
 
     private final Lataria lataria;
-    private final CalculadorAngulo calcAngulo;
+    private final CalculadorAngulo2 calcAngulo;
     private final Movimentador movimentador;
 
     private final Body corredor;
@@ -27,45 +27,45 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
 
         this.lataria = new Lataria();
         this.corredor = meTransforme(this.lataria);
-        this.calcAngulo = new CalculadorAngulo(this.corredor);
+        this.calcAngulo = new CalculadorAngulo2(this.corredor);
 
         this.lataria.setCorredor(this.corredor);
         this.movimentador = new Movimentador(this.corredor, msgCM, this);
     }
 
-//    @Override
-//    public void meDesenhar(Object objeto) {
-//        if(!this.faseManager2.isFaseAtual(Fase2.ACAO)){
-//            meDesenhar_FaseOutras();
-//        }
-//        else{
-//            meDesenhar_FaseAcao();
-//        }
-//    }
-
     @Override
     public void meDesenhar(Object objeto) {
-        if(this.faseManager2.isFaseAtual(Fase2.JOGANDO)){
-           meDesenhar_FaseJogando();
-        }
-        else if(this.faseManager2.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-            meDesenhar_FaseAceitarEntrada();
-        }
-        else if(this.faseManager2.isFaseAtual(Fase2.ACAO)){
-            meDesenhar_FaseAcao();
+        if(!this.faseManager2.isFaseAtual(Fase2.ACAO)){
+            meDesenhar_FaseOutras();
         }
         else{
-            meDesenhar_FaseOutras();
+            meDesenhar_FaseAcao();
         }
     }
 
+//    @Override
+//    public void meDesenhar(Object objeto) {
+//        if(this.faseManager2.isFaseAtual(Fase2.JOGANDO)){
+//           meDesenhar_FaseJogando();
+//        }
+//        else if(this.faseManager2.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
+//            meDesenhar_FaseAceitarEntrada();
+//        }
+//        else if(this.faseManager2.isFaseAtual(Fase2.ACAO)){
+//            meDesenhar_FaseAcao();
+//        }
+//        else{
+//            meDesenhar_FaseOutras();
+//        }
+//    }
+
     private void meDesenhar_FaseJogando(){
-        this.calcAngulo.rotacionarIda();
+//        this.calcAngulo.rotacionarIda();
         this.lataria.meDesenhar(null);
     }
 
     private void meDesenhar_FaseAceitarEntrada(){
-        this.calcAngulo.rotacionarVolta();
+//        this.calcAngulo.rotacionarVolta();
         this.lataria.meDesenhar(null);
     }
 
