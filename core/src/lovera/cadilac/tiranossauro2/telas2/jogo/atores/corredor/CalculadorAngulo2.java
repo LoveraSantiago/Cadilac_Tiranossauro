@@ -33,6 +33,7 @@ final class CalculadorAngulo2 {
         resetAngulo();
 
         this.normatizador = new NormatizadorDeAngulos();
+        this.contadorAngulo = this.corredor.getAngle();
     }
 
     public void rotacionarEmMovimento(){
@@ -45,6 +46,9 @@ final class CalculadorAngulo2 {
     }
 
     public void rotacionarParado() {
+        printagemDbg("ROTACIONAR PARADO INICIO");
+
+        normatizarComponentes();
         if(isMesmoAngulo()){
             this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
             return;
@@ -56,36 +60,36 @@ final class CalculadorAngulo2 {
         else{
             this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
         }
-
-        System.out.println("*****TELA ANGULADA*****");
-        System.out.println("angulo calculado " + this.anguloCalculado);
-        System.out.println("angulo corredor  " + getAnguloCorredor_Graus());
+        printagemDbg("ROTACIONAR PARADO FIM");
     }
 
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
+        printagemDbg("CALCULAR ANGULO INICIO");
+
         this.anguloCalculado = (float) (Math.atan2(ptFuturoY - this.corredor.getPosition().y, ptFuturoX - this.corredor.getPosition().x)) * MathUtils.radiansToDegrees;
         this.anguloCalculado = Math.round(this.anguloCalculado);
-        this.anguloCalculado = this.normatizador.normatizar(this.anguloCalculado);
 
         this.contadorAngulo = this.corredor.getAngle();
 
-        System.out.println("*****CALCULAR ANGULO*****");
-        System.out.println("angulo calculado " + this.anguloCalculado);
-        System.out.println("angulo corredor  " + getAnguloCorredor_Graus());
+        printagemDbg("CALCULAR ANGULO FIM");
     }
 
     public void telaAngulada(float angulo) {
-        this.anguloNorte += angulo;
-        resetAngulo();
-        normatizarCorredor();
+        printagemDbg("TELA ANGULADA INICIO");
 
-        System.out.println("*****TELA ANGULADA*****");
-        System.out.println("angulo calculado " + this.anguloCalculado);
-        System.out.println("angulo corredor  " + getAnguloCorredor_Graus());
+        this.anguloNorte += angulo;
+        this.anguloNorte = this.normatizador.normatizar(this.anguloNorte);
+        resetAngulo();
+
+        printagemDbg("TELA ANGULADA FIM");
+        normatizarComponentes();
     }
 
-    public void normatizarCorredor(){
+    public void normatizarComponentes(){
         this.corredor.setTransform(this.corredor.getPosition(), this.normatizador.normatizar(getAnguloCorredor_Graus()) * MathUtils.degreesToRadians);
+        this.anguloCalculado = this.normatizador.normatizar(this.anguloCalculado);
+
+        printagemDbg("COMPONENTES NORMATIZADOS");
     }
 
     public void resetAngulo() {
@@ -99,10 +103,20 @@ final class CalculadorAngulo2 {
     private boolean isMesmoAngulo(){
         this.anguloCorredorGraus = getAnguloCorredor_Graus();
         return Math.round(this.anguloCalculado) % this.anguloCorredorGraus == 0;
+
+        //PROBLEMA AQUI 0 % qualquer coisa da zero
     }
 
     private void setFps(){
         this.fps = Gdx.graphics.getFramesPerSecond();
         this.fps = this.fps < 60 ? 60 : this.fps;
+    }
+
+    private void printagemDbg(String texto){
+        System.out.println("*****" + texto + "*****");
+        System.out.println("angulo norte      : " + this.anguloNorte);
+        System.out.println("angulo calculado  : " + this.anguloCalculado);
+        System.out.println("contador de angulo: " + (this.contadorAngulo * MathUtils.radiansToDegrees));
+        System.out.println("angulo corredor   : " + getAnguloCorredor_Graus());
     }
 }
