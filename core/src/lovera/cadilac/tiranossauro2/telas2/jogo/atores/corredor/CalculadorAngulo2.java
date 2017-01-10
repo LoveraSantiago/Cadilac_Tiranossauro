@@ -46,8 +46,7 @@ final class CalculadorAngulo2 {
     }
 
     public void rotacionarParado() {
-        printagemDbg("ROTACIONAR PARADO INICIO");
-
+//        printagemDbg("ROTACIONAR PARADO INICIO");
         normatizarComponentes();
         if(isMesmoAngulo()){
             this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
@@ -60,36 +59,31 @@ final class CalculadorAngulo2 {
         else{
             this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
         }
-        printagemDbg("ROTACIONAR PARADO FIM");
+//        printagemDbg("ROTACIONAR PARADO FIM");
     }
 
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
-        printagemDbg("CALCULAR ANGULO INICIO");
-
+//        printagemDbg("CALCULAR ANGULO INICIO");
         this.anguloCalculado = (float) (Math.atan2(ptFuturoY - this.corredor.getPosition().y, ptFuturoX - this.corredor.getPosition().x)) * MathUtils.radiansToDegrees;
         this.anguloCalculado = Math.round(this.anguloCalculado);
 
         this.contadorAngulo = this.corredor.getAngle();
-
-        printagemDbg("CALCULAR ANGULO FIM");
+//        printagemDbg("CALCULAR ANGULO FIM");
     }
 
     public void telaAngulada(float angulo) {
-        printagemDbg("TELA ANGULADA INICIO");
-
+//        printagemDbg("TELA ANGULADA INICIO");
         this.anguloNorte += angulo;
         this.anguloNorte = this.normatizador.normatizar(this.anguloNorte);
         resetAngulo();
-
-        printagemDbg("TELA ANGULADA FIM");
+//        printagemDbg("TELA ANGULADA FIM");
         normatizarComponentes();
     }
 
     public void normatizarComponentes(){
         this.corredor.setTransform(this.corredor.getPosition(), this.normatizador.normatizar(getAnguloCorredor_Graus()) * MathUtils.degreesToRadians);
         this.anguloCalculado = this.normatizador.normatizar(this.anguloCalculado);
-
-        printagemDbg("COMPONENTES NORMATIZADOS");
+//        printagemDbg("COMPONENTES NORMATIZADOS");
     }
 
     public void resetAngulo() {
@@ -102,9 +96,7 @@ final class CalculadorAngulo2 {
 
     private boolean isMesmoAngulo(){
         this.anguloCorredorGraus = getAnguloCorredor_Graus();
-        return Math.round(this.anguloCalculado) % this.anguloCorredorGraus == 0;
-
-        //PROBLEMA AQUI 0 % qualquer coisa da zero
+        return this.normatizador.normatizar(Math.round(this.anguloCalculado)) == this.normatizador.normatizar(this.anguloCorredorGraus);
     }
 
     private void setFps(){
@@ -112,6 +104,7 @@ final class CalculadorAngulo2 {
         this.fps = this.fps < 60 ? 60 : this.fps;
     }
 
+    //TODO: Apagar qdo tiver seguranca que esta funcionando normalmente
     private void printagemDbg(String texto){
         System.out.println("*****" + texto + "*****");
         System.out.println("angulo norte      : " + this.anguloNorte);
