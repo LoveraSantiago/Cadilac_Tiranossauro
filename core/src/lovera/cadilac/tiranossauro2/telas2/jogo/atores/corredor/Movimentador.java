@@ -3,6 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromTimerColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
@@ -11,7 +12,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Info
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos.Pontos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.quadrantes.ClassificadorDeQuadrante;
 
-final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao {
+final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFromColisao {
 
     private final Vector2 posicaoCorredor;
     private final Vector2 proximaPosicao;
@@ -60,6 +61,12 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao {
             procedimentoSemColisao();
         }
     }
+
+    @Override
+    public void colisaoAconteceu() {
+        this.timer.inicializar();
+    }
+
 
     private void procedimentoComColisao(){
         this.timer.atualizar();

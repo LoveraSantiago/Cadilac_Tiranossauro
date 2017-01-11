@@ -43,6 +43,16 @@ final class CalculadorAngulo2 {
         this.velocidadeAngularEsperada = this.diferencaAngulo * this.fps;
         this.torque = this.corredor.getInertia() * this.velocidadeAngularEsperada / (1 / this.fps);
         this.corredor.applyTorque(this.torque, true);
+
+        System.out.print("-fps " + fps);
+        System.out.print(" -proxAngulo " + proxAngulo);
+        System.out.print(" -difAngulo " + diferencaAngulo);
+        System.out.print(" -velEsp " + velocidadeAngularEsperada);
+        System.out.print(" -torque " + torque);
+        System.out.print(" -inercia " + this.corredor.getInertia());
+        System.out.print(" -angCalc " + this.anguloCalculado);
+        System.out.print(" -angCor " + getAnguloCorredor_Graus());
+        System.out.println();
     }
 
     public void rotacionarParado() {
