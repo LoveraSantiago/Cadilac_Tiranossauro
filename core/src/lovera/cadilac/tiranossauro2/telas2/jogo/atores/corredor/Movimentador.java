@@ -3,6 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import lovera.cadilac.tiranossauro2.contratos.helpers.HelperMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromTimerColisao;
@@ -29,6 +30,10 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
     private final MsgFromMovimentador msgMv;
     private final MsgToCorredorManager msgCm;
 
+    private HelperMovimentador helperAtual;
+    private final HelperMovimentador helperComColisao;
+    private final HelperMovimentador helperSemColisao;
+
     public Movimentador(Body corredor, MsgToCorredorManager msgCm, MsgFromMovimentador msgMv) {
         this.corredor = corredor;
         this.msgMv = msgMv;
@@ -41,7 +46,11 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
         this.quadrante = new ClassificadorDeQuadrante();
         this.calcVelocidade = new CalculadorVelocidade();
         this.timer = new TimerColisao(this);
-        this.colisao = new Colisao(this.corredor, this.timer);
+        this.colisao = new Colisao(this.corredor, this);
+
+        this.helperComColisao = new HelperComColisao();
+        this.helperSemColisao = new HelperSemColisao();
+        this.helperAtual = this.helperSemColisao;
     }
 
     public void prepararParaAcao(InformacaoManager informacao) {
@@ -54,38 +63,13 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
 
     @Override
     public void atualizar() {
-        if(this.colisao.isAconteceuColisao()){
-            procedimentoComColisao();
-        }
-        else{
-            procedimentoSemColisao();
-        }
+        this.helperAtual.realizarAcao();
     }
 
     @Override
     public void colisaoAconteceu() {
         this.timer.inicializar();
-    }
-
-
-    private void procedimentoComColisao(){
-        this.timer.atualizar();
-    }
-
-    private void procedimentoSemColisao(){
-        if(irParaProximoPonto()){
-            if(this.pontos.temPonto()){
-                this.proximaPosicao.set(this.pontos.consumirPonto());
-
-                setarQuadrante();
-                setarPtFuturo();
-
-                this.corredor.setLinearVelocity(this.calcVelocidade.calcularVelocidadePonto(this.posicaoCorredor, this.proximaPosicao));
-            }
-            else{
-                finalizarMovimento();
-            }
-        }
+        this.helperAtual = this.helperComColisao;
     }
 
     private boolean irParaProximoPonto(){
@@ -103,8 +87,40 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
     @Override
     public void finalizarMovimento(){
         this.msgMv.resetAngulo();
+
         this.corredor.setLinearVelocity(0, 0);
         this.corredor.setAngularVelocity(0);
+
+        this.helperAtual = this.helperSemColisao;
+
         this.msgCm.acaoFinalizada();
+    }
+
+    class HelperComColisao implements HelperMovimentador{
+
+        @Override
+        public void realizarAcao() {
+            Movimentador.this.timer.atualizar();
+        }
+    }
+
+    class HelperSemColisao implements HelperMovimentador{
+
+        @Override
+        public void realizarAcao() {
+            if(irParaProximoPonto()){
+                if(pontos.temPonto()){
+                    proximaPosicao.set(pontos.consumirPonto());
+
+                    setarQuadrante();
+                    setarPtFuturo();
+
+                    corredor.setLinearVelocity(calcVelocidade.calcularVelocidadePonto(posicaoCorredor, proximaPosicao));
+                }
+                else{
+                    finalizarMovimento();
+                }
+            }
+        }
     }
 }
