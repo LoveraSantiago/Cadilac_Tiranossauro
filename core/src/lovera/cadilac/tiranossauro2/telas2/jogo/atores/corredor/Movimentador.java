@@ -3,7 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import lovera.cadilac.tiranossauro2.contratos.helpers.HelperMovimentador;
+import lovera.cadilac.tiranossauro2.contratos.helpers.HelperUmaAcao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromTimerColisao;
@@ -30,11 +30,11 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
     private final MsgFromMovimentador msgMv;
     private final MsgToCorredorManager msgCm;
 
-    private HelperMovimentador helperAtual;
-    private final HelperMovimentador helperComColisao;
-    private final HelperMovimentador helperSemColisao;
+    private HelperUmaAcao helperAtual;
+    private final HelperUmaAcao helperComColisao;
+    private final HelperUmaAcao helperSemColisao;
 
-    public Movimentador(Body corredor, MsgToCorredorManager msgCm, MsgFromMovimentador msgMv) {
+    public Movimentador(Body corredor, MsgToCorredorManager msgCm, MsgFromMovimentador msgMv, CalculadorAngulo2 calculadorAngulo2) {
         this.corredor = corredor;
         this.msgMv = msgMv;
         this.msgCm = msgCm;
@@ -45,8 +45,8 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
 
         this.quadrante = new ClassificadorDeQuadrante();
         this.calcVelocidade = new CalculadorVelocidade();
-        this.timer = new TimerColisao(this);
-        this.colisao = new Colisao(this.corredor, this);
+        this.timer = new TimerColisao(this, calculadorAngulo2);
+        this.colisao = new Colisao(this.corredor, this, calculadorAngulo2);
 
         this.helperComColisao = new HelperComColisao();
         this.helperSemColisao = new HelperSemColisao();
@@ -57,7 +57,6 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
         this.pontos = informacao.getPontos();
         this.pontos.prepararPontos();
         this.calcVelocidade.calcularVelocidadePercurso(this.pontos.getQtdPontos(), informacao.getDistancia().getEspacoPercorrido());
-        this.colisao.resetColisao();
         this.quadrante.resetQuadrante();
     }
 
@@ -85,7 +84,7 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
     }
 
     @Override
-    public void finalizarMovimento(){
+    public void timerFinalizado(){
         this.msgMv.resetAngulo();
 
         this.corredor.setLinearVelocity(0, 0);
@@ -96,15 +95,15 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
         this.msgCm.acaoFinalizada();
     }
 
-    class HelperComColisao implements HelperMovimentador{
+    class HelperComColisao implements HelperUmaAcao {
 
         @Override
         public void realizarAcao() {
-            Movimentador.this.timer.atualizar();
+            timer.atualizar();
         }
     }
 
-    class HelperSemColisao implements HelperMovimentador{
+    class HelperSemColisao implements HelperUmaAcao {
 
         @Override
         public void realizarAcao() {
@@ -118,7 +117,7 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
                     corredor.setLinearVelocity(calcVelocidade.calcularVelocidadePonto(posicaoCorredor, proximaPosicao));
                 }
                 else{
-                    finalizarMovimento();
+                    timerFinalizado();
                 }
             }
         }

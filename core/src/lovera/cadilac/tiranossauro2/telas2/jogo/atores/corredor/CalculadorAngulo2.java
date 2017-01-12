@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import lovera.cadilac.tiranossauro2.contratos.helpers.HelperUmaAcao;
+import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
+import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromTimerColisao;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.NormatizadorDeAngulos;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado.DirecaoEnum;
 
-final class CalculadorAngulo2 {
+final class CalculadorAngulo2 implements MsgFromTimerColisao, MsgFromColisao {
 
     //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
     private float anguloCorredorGraus;
@@ -26,6 +28,10 @@ final class CalculadorAngulo2 {
 
     private final NormatizadorDeAngulos normatizador;
 
+    private HelperUmaAcao rotacaoMovimentoAtual;
+    private final HelperUmaAcao rotacaoComColisao;
+    private final HelperUmaAcao rotacaoSemColisao;
+
     public CalculadorAngulo2(Body corredor) {
         this.corredor = corredor;
 
@@ -34,25 +40,24 @@ final class CalculadorAngulo2 {
 
         this.normatizador = new NormatizadorDeAngulos();
         this.contadorAngulo = this.corredor.getAngle();
+
+        this.rotacaoComColisao = new RotacaoComColisao();
+        this.rotacaoSemColisao = new RotacaoSemColisao();
+        this.rotacaoMovimentoAtual = this.rotacaoSemColisao;
     }
 
     public void rotacionarEmMovimento(){
-        setFps();
-        this.proxAngulo = this.corredor.getAngle() + this.corredor.getAngularVelocity() / this.fps;
-        this.diferencaAngulo = this.anguloCalculado * MathUtils.degreesToRadians - this.proxAngulo;
-        this.velocidadeAngularEsperada = this.diferencaAngulo * this.fps;
-        this.torque = this.corredor.getInertia() * this.velocidadeAngularEsperada / (1 / this.fps);
-        this.corredor.applyTorque(this.torque, true);
+        this.rotacaoMovimentoAtual.realizarAcao();
+    }
 
-        System.out.print("-fps " + fps);
-        System.out.print(" -proxAngulo " + proxAngulo);
-        System.out.print(" -difAngulo " + diferencaAngulo);
-        System.out.print(" -velEsp " + velocidadeAngularEsperada);
-        System.out.print(" -torque " + torque);
-        System.out.print(" -inercia " + this.corredor.getInertia());
-        System.out.print(" -angCalc " + this.anguloCalculado);
-        System.out.print(" -angCor " + getAnguloCorredor_Graus());
-        System.out.println();
+    @Override
+    public void colisaoAconteceu() {
+        this.rotacaoMovimentoAtual = this.rotacaoComColisao;
+    }
+
+    @Override
+    public void timerFinalizado() {
+        this.rotacaoMovimentoAtual = this.rotacaoSemColisao;
     }
 
     public void rotacionarParado() {
@@ -121,5 +126,36 @@ final class CalculadorAngulo2 {
         System.out.println("angulo calculado  : " + this.anguloCalculado);
         System.out.println("contador de angulo: " + (this.contadorAngulo * MathUtils.radiansToDegrees));
         System.out.println("angulo corredor   : " + getAnguloCorredor_Graus());
+    }
+
+    class RotacaoSemColisao implements HelperUmaAcao{
+
+        @Override
+        public void realizarAcao() {
+            setFps();
+            proxAngulo = corredor.getAngle() + corredor.getAngularVelocity() / fps;
+            diferencaAngulo = anguloCalculado * MathUtils.degreesToRadians - proxAngulo;
+            velocidadeAngularEsperada = diferencaAngulo * fps;
+            torque = corredor.getInertia() * velocidadeAngularEsperada / (1 / fps);
+            corredor.applyTorque(torque, true);
+
+            System.out.print("-fps " + fps);
+            System.out.print(" -proxAngulo " + proxAngulo);
+            System.out.print(" -difAngulo " + diferencaAngulo);
+            System.out.print(" -velEsp " + velocidadeAngularEsperada);
+            System.out.print(" -torque " + torque);
+            System.out.print(" -inercia " + corredor.getInertia());
+            System.out.print(" -angCalc " + anguloCalculado);
+            System.out.print(" -angCor " + getAnguloCorredor_Graus());
+            System.out.println();
+        }
+    }
+
+    class RotacaoComColisao implements HelperUmaAcao{
+
+        @Override
+        public void realizarAcao() {
+
+        }
     }
 }

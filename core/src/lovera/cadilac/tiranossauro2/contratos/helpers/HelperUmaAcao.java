@@ -1,5 +1,7 @@
 package lovera.cadilac.tiranossauro2.contratos.helpers;
 
-public interface HelperMovimentador {
+public interface HelperUmaAcao {
+
     void realizarAcao();
+
 }

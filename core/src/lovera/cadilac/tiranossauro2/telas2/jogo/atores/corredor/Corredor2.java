@@ -30,7 +30,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
         this.calcAngulo = new CalculadorAngulo2(this.corredor);
 
         this.lataria.setCorredor(this.corredor);
-        this.movimentador = new Movimentador(this.corredor, msgCM, this);
+        this.movimentador = new Movimentador(this.corredor, msgCM, this, this.calcAngulo);
     }
 
     @Override

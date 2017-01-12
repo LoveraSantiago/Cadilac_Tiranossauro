@@ -11,24 +11,25 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.Box2DUnico;
 
 final class Colisao implements ContactListener {
 
-    private boolean aconteceuColisao;
+    private final MsgFromColisao msgMovimentador;
+    private final MsgFromColisao msgCalcAngulo;
 
-    private final MsgFromColisao msg;
     private final Body corredor;
 
-    public Colisao(Body corredor, MsgFromColisao msg) {
+    public Colisao(Body corredor, MsgFromColisao msgMovimentador, MsgFromColisao msgCalcAngulo) {
         this.corredor = corredor;
-        this.msg = msg;
-        Box2DUnico.getInstancia().getBox2DManager().getWorld().setContactListener(this);
 
-        resetColisao();
+        this.msgMovimentador = msgMovimentador;
+        this.msgCalcAngulo = msgCalcAngulo;
+
+        Box2DUnico.getInstancia().getBox2DManager().getWorld().setContactListener(this);
     }
 
     @Override
     public void beginContact(Contact contact) {
         if(contact.getFixtureA().getBody() == this.corredor || contact.getFixtureB().getBody() == this.corredor){
-            this.aconteceuColisao = true;
-            this.msg.colisaoAconteceu();
+            this.msgMovimentador.colisaoAconteceu();
+            this.msgCalcAngulo.colisaoAconteceu();
         }
     }
 
@@ -41,11 +42,4 @@ final class Colisao implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {}
 
-    public void resetColisao(){
-        this.aconteceuColisao = false;
-    }
-
-    public boolean isAconteceuColisao() {
-        return aconteceuColisao;
-    }
 }

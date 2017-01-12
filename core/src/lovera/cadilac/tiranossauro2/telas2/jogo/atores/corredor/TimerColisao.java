@@ -9,10 +9,12 @@ final class TimerColisao implements TipoAtualizavel{
 
     private long contadorTempo;
 
-    private final MsgFromTimerColisao msg;
+    private final MsgFromTimerColisao msgMovimentador;
+    private final MsgFromTimerColisao msgCalcAngulo;
 
-    public TimerColisao(MsgFromTimerColisao msg) {
-        this.msg = msg;
+    public TimerColisao(MsgFromTimerColisao msgMovimentador, MsgFromTimerColisao msgCalcAngulo) {
+        this.msgMovimentador = msgMovimentador;
+        this.msgCalcAngulo = msgCalcAngulo;
     }
 
     @Override
@@ -22,7 +24,8 @@ final class TimerColisao implements TipoAtualizavel{
 
     private void realizarAcao(){
         if(TimeUtils.timeSinceMillis(this.contadorTempo) >= 500){
-            this.msg.finalizarMovimento();
+            this.msgMovimentador.timerFinalizado();
+            this.msgCalcAngulo.timerFinalizado();
         }
     }
 
