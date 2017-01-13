@@ -57,7 +57,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 
     @Override
     public void setPtFuturoProj(float x, float y) {
-
+        throw new UnsupportedOperationException("CalculadorAngulo nao seta ponto futuro");
     }
 
     @Override
