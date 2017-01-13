@@ -36,7 +36,7 @@ public final class ArrastarEntrada2 extends Entrada2 {
         }
         else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-            corredor.resetAngulo();
+            corredor.movimentacaoEncerrada();
         }
         return true;
     }
@@ -57,7 +57,7 @@ public final class ArrastarEntrada2 extends Entrada2 {
         }
         else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-            corredor.resetAngulo();
+            corredor.movimentacaoEncerrada();
         }
         return true;
     }

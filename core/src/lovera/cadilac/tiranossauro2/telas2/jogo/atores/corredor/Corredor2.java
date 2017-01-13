@@ -60,7 +60,7 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
     }
 
     @Override
-    public void resetAngulo(){
+    public void movimentacaoEncerrada(){
         this.calcAngulo.resetAngulo();
     }
 

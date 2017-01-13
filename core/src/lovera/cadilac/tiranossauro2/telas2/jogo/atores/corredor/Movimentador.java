@@ -7,14 +7,13 @@ import lovera.cadilac.tiranossauro.utils.Debugagem;
 import lovera.cadilac.tiranossauro2.contratos.helpers.HelperUmaAcao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
-import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromTimerColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pontos.Pontos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.quadrantes.ClassificadorDeQuadrante;
 
-final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFromColisao {
+final class Movimentador implements TipoAtualizavel, MsgFromColisao {
 
     private final Vector2 posicaoCorredor;
     private final Vector2 proximaPosicao;
@@ -26,18 +25,18 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
     private final ClassificadorDeQuadrante quadrante;
     private final CalculadorVelocidade calcVelocidade;
 
-    private final MsgFromMovimentador msgMv;
-    private final MsgToCorredorManager msgCm;
-    private final MsgFromTimerColisao msgCalcAngulo;
+    private final MsgFromMovimentador msgFromMovimentador;
+    private final MsgToCorredorManager msgToCorredorManager;
+    private final MsgFromMovimentador msgCalcAngulo;
 
     private HelperUmaAcao helperAtual;
     private final HelperUmaAcao helperComColisao;
     private final HelperUmaAcao helperSemColisao;
 
-    public Movimentador(Body corredor, MsgToCorredorManager msgCm, MsgFromMovimentador msgMv, CalculadorAngulo2 calculadorAngulo2) {
+    public Movimentador(Body corredor, MsgToCorredorManager msgToCorredorManager, MsgFromMovimentador msgFromMovimentador, CalculadorAngulo2 calculadorAngulo2) {
         this.corredor = corredor;
-        this.msgMv = msgMv;
-        this.msgCm = msgCm;
+        this.msgFromMovimentador = msgFromMovimentador;
+        this.msgToCorredorManager = msgToCorredorManager;
 
         this.posicaoCorredor = corredor.getPosition();
         this.proximaPosicao = new Vector2();
@@ -80,20 +79,19 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
     }
 
     private void setarPtFuturo(){
-        this.msgMv.setPtFuturoProj(this.proximaPosicao.x, this.proximaPosicao.y);
+        this.msgFromMovimentador.setPtFuturoProj(this.proximaPosicao.x, this.proximaPosicao.y);
     }
 
-    @Override
-    public void timerFinalizado(){
-        this.msgMv.resetAngulo();
+    public void encerrarMovimentacao(){
+        this.msgFromMovimentador.movimentacaoEncerrada();
+        this.msgCalcAngulo.movimentacaoEncerrada();
 
         this.corredor.setLinearVelocity(0, 0);
         this.corredor.setAngularVelocity(0);
 
         this.helperAtual = this.helperSemColisao;
 
-        this.msgCm.acaoFinalizada();
-        this.msgCalcAngulo.timerFinalizado();
+        this.msgToCorredorManager.acaoFinalizada();
     }
 
     class HelperComColisao implements HelperUmaAcao {
@@ -102,7 +100,7 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
         public void realizarAcao() {
             Debugagem.dbgPontoVector2("linear velocity", corredor.getLinearVelocity());
             if(corredor.getLinearVelocity().x <= 0.3f && corredor.getLinearVelocity().y <= 0.3f){
-                timerFinalizado();
+                encerrarMovimentacao();
             }
             else{
                 corredor.setLinearVelocity(corredor.getLinearVelocity().x * .99f, corredor.getLinearVelocity().y * .99f);
@@ -125,7 +123,7 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
                     corredor.setLinearVelocity(calcVelocidade.calcularVelocidadePonto(posicaoCorredor, proximaPosicao));
                 }
                 else{
-                    timerFinalizado();
+                    encerrarMovimentacao();
                 }
             }
         }

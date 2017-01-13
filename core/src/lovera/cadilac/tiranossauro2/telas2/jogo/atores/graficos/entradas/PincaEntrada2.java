@@ -44,7 +44,7 @@ public final class PincaEntrada2 extends Entrada2 {
         }
         else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-            corredor.resetAngulo();
+            corredor.movimentacaoEncerrada();
         }
         return false;
     }
@@ -66,7 +66,7 @@ public final class PincaEntrada2 extends Entrada2 {
         }
         else{
             faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-            corredor.resetAngulo();
+            corredor.movimentacaoEncerrada();
         }
     }
 

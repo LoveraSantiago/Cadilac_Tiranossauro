@@ -6,10 +6,10 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 import lovera.cadilac.tiranossauro2.contratos.helpers.HelperUmaAcao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
-import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromTimerColisao;
+import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.NormatizadorDeAngulos;
 
-final class CalculadorAngulo2 implements MsgFromTimerColisao, MsgFromColisao {
+final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 
     //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
     private float anguloCorredorGraus;
@@ -56,7 +56,12 @@ final class CalculadorAngulo2 implements MsgFromTimerColisao, MsgFromColisao {
     }
 
     @Override
-    public void timerFinalizado() {
+    public void setPtFuturoProj(float x, float y) {
+
+    }
+
+    @Override
+    public void movimentacaoEncerrada() {
         this.rotacaoMovimentoAtual = this.rotacaoSemColisao;
     }
 
