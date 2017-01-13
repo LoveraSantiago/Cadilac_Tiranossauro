@@ -139,15 +139,15 @@ final class CalculadorAngulo2 implements MsgFromTimerColisao, MsgFromColisao {
             torque = corredor.getInertia() * velocidadeAngularEsperada / (1 / fps);
             corredor.applyTorque(torque, true);
 
-            System.out.print("-fps " + fps);
-            System.out.print(" -proxAngulo " + proxAngulo);
-            System.out.print(" -difAngulo " + diferencaAngulo);
-            System.out.print(" -velEsp " + velocidadeAngularEsperada);
-            System.out.print(" -torque " + torque);
-            System.out.print(" -inercia " + corredor.getInertia());
-            System.out.print(" -angCalc " + anguloCalculado);
-            System.out.print(" -angCor " + getAnguloCorredor_Graus());
-            System.out.println();
+//            System.out.print("-fps " + fps);
+//            System.out.print(" -proxAngulo " + proxAngulo);
+//            System.out.print(" -difAngulo " + diferencaAngulo);
+//            System.out.print(" -velEsp " + velocidadeAngularEsperada);
+//            System.out.print(" -torque " + torque);
+//            System.out.print(" -inercia " + corredor.getInertia());
+//            System.out.print(" -angCalc " + anguloCalculado);
+//            System.out.print(" -angCor " + getAnguloCorredor_Graus());
+//            System.out.println();
         }
     }
 

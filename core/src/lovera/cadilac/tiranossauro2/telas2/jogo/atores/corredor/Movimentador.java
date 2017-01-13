@@ -3,6 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
+import lovera.cadilac.tiranossauro.utils.Debugagem;
 import lovera.cadilac.tiranossauro2.contratos.helpers.HelperUmaAcao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
@@ -24,11 +25,10 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
 
     private final ClassificadorDeQuadrante quadrante;
     private final CalculadorVelocidade calcVelocidade;
-    private final Colisao colisao;
-    private final TimerColisao timer;
 
     private final MsgFromMovimentador msgMv;
     private final MsgToCorredorManager msgCm;
+    private final MsgFromTimerColisao msgCalcAngulo;
 
     private HelperUmaAcao helperAtual;
     private final HelperUmaAcao helperComColisao;
@@ -45,12 +45,13 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
 
         this.quadrante = new ClassificadorDeQuadrante();
         this.calcVelocidade = new CalculadorVelocidade();
-        this.timer = new TimerColisao(this, calculadorAngulo2);
-        this.colisao = new Colisao(this.corredor, this, calculadorAngulo2);
+        new Colisao(this.corredor, this, calculadorAngulo2);
 
         this.helperComColisao = new HelperComColisao();
         this.helperSemColisao = new HelperSemColisao();
         this.helperAtual = this.helperSemColisao;
+
+        this.msgCalcAngulo = calculadorAngulo2;
     }
 
     public void prepararParaAcao(InformacaoManager informacao) {
@@ -67,7 +68,6 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
 
     @Override
     public void colisaoAconteceu() {
-        this.timer.inicializar();
         this.helperAtual = this.helperComColisao;
     }
 
@@ -93,13 +93,21 @@ final class Movimentador implements TipoAtualizavel, MsgFromTimerColisao, MsgFro
         this.helperAtual = this.helperSemColisao;
 
         this.msgCm.acaoFinalizada();
+        this.msgCalcAngulo.timerFinalizado();
     }
 
     class HelperComColisao implements HelperUmaAcao {
 
         @Override
         public void realizarAcao() {
-            timer.atualizar();
+            Debugagem.dbgPontoVector2("linear velocity", corredor.getLinearVelocity());
+            if(corredor.getLinearVelocity().x <= 0.3f && corredor.getLinearVelocity().y <= 0.3f){
+                timerFinalizado();
+            }
+            else{
+                corredor.setLinearVelocity(corredor.getLinearVelocity().x * .99f, corredor.getLinearVelocity().y * .99f);
+                corredor.setAngularVelocity(corredor.getAngularVelocity() * .99f);
+            }
         }
     }
 
