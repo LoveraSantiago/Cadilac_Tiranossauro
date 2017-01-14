@@ -27,7 +27,9 @@ final class Colisao implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-        if(contact.getFixtureA().getBody() == this.corredor || contact.getFixtureB().getBody() == this.corredor){
+        if(contact.isTouching() &&
+                (contact.getFixtureA().getBody() == this.corredor || contact.getFixtureB().getBody() == this.corredor)){
+
             this.msgMovimentador.colisaoAconteceu();
             this.msgCalcAngulo.colisaoAconteceu();
         }
