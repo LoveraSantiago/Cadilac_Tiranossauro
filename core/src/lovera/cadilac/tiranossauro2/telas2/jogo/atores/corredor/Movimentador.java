@@ -44,7 +44,6 @@ final class Movimentador implements TipoAtualizavel, MsgFromColisao {
 
         this.quadrante = new ClassificadorDeQuadrante();
         this.calcVelocidade = new CalculadorVelocidade();
-        new Colisao(this.corredor, this, calculadorAngulo2);
 
         this.helperComColisao = new HelperComColisao();
         this.helperSemColisao = new HelperSemColisao();
