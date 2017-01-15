@@ -34,11 +34,16 @@ final class Colisao implements ContactListener {
         }
     }
 
+    //http://www.iforce2d.net/b2dtut/collision-anatomy
+    //While fixtures continue to overlap...
+
+
     @Override
     public void endContact(Contact contact) {}
 
     @Override
-    public void preSolve(Contact contact, Manifold oldManifold) {}
+    public void preSolve(Contact contact, Manifold oldManifold) {
+    }
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {}

@@ -65,22 +65,73 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         this.rotacaoMovimentoAtual = this.rotacaoSemColisao;
     }
 
+    //TENTATIVA USANDO SET TRANSFORM
+//    public void rotacionarParado() {
+////        printagemDbg("ROTACIONAR PARADO INICIO");
+//        normatizarComponentes();
+//        if(isMesmoAngulo()){
+//            this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
+//            return;
+//        }
+//
+//        if((this.anguloCalculado - getAnguloCorredor_Graus() + 360) % 360 < 180){
+//            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
+//        }
+//        else{
+//            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
+//        }
+////        printagemDbg("ROTACIONAR PARADO FIM");
+//    }
+
+    //TENTATIVA USANDO applyAngularImpulse
     public void rotacionarParado() {
 //        printagemDbg("ROTACIONAR PARADO INICIO");
         normatizarComponentes();
         if(isMesmoAngulo()){
-            this.corredor.setTransform(this.corredor.getPosition(),this.anguloCalculado * MathUtils.degreesToRadians);
-            return;
-        }
-
-        if((this.anguloCalculado - getAnguloCorredor_Graus() + 360) % 360 < 180){
-            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo += MathUtils.degreesToRadians);
+            this.corredor.applyAngularImpulse(0, true);
         }
         else{
-            this.corredor.setTransform(this.corredor.getPosition(), this.contadorAngulo -= MathUtils.degreesToRadians);
+            if((this.anguloCalculado - getAnguloCorredor_Graus() + 360) % 360 < 180){
+                if(this.corredor.getAngularVelocity() <= 0){
+                    this.corredor.applyAngularImpulse(10f, true);
+                }
+            }
+            else{
+                if(this.corredor.getAngularVelocity() >= 0){
+                    this.corredor.applyAngularImpulse(-10f, true);
+                }
+            }
         }
-//        printagemDbg("ROTACIONAR PARADO FIM");
+
+        printagemDbg("ROTACIONAR PARADO FIM");
     }
+
+//    //TENTATIVA USANDO TORQUE
+//    public void rotacionarParado() {
+//        normatizarComponentes();
+//        if(isMesmoAngulo()){
+//            setFps();
+//            proxAngulo = corredor.getAngle() + corredor.getAngularVelocity() / fps;
+//            diferencaAngulo = anguloCalculado * MathUtils.degreesToRadians - proxAngulo;
+//            velocidadeAngularEsperada = diferencaAngulo * fps;
+//            torque = corredor.getInertia() * velocidadeAngularEsperada / (1 / fps);
+//            corredor.applyTorque(torque, true);
+//        }
+//        else{
+//            if((this.anguloCalculado - getAnguloCorredor_Graus() + 360) % 360 < 180){
+//                this.contadorAngulo += MathUtils.degreesToRadians;
+//            }
+//            else{
+//                this.contadorAngulo -= MathUtils.degreesToRadians;
+//            }
+//            setFps();
+//            proxAngulo = corredor.getAngle() + corredor.getAngularVelocity() / fps;
+//            diferencaAngulo = this.contadorAngulo * MathUtils.degreesToRadians - proxAngulo;
+//            velocidadeAngularEsperada = diferencaAngulo * fps;
+//            torque = corredor.getInertia() * velocidadeAngularEsperada / (1 / fps);
+//            corredor.applyTorque(torque, true);
+//        }
+//    }
 
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
 //        printagemDbg("CALCULAR ANGULO INICIO");
