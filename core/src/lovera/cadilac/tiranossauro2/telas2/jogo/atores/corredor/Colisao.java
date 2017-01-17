@@ -11,6 +11,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.Box2DUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.VoltarOrigemUnico;
 
 final class Colisao implements ContactListener {
 
@@ -41,7 +42,14 @@ final class Colisao implements ContactListener {
     }
 
     @Override
-    public void endContact(Contact contact) {}
+    public void endContact(Contact contact) {
+        if(contactTemCorredor(contact) && !this.faseManager2.isFaseAtual(Fase2.ACAO)){
+            System.out.println("Colisao acontecendo fora da fase acao");
+            this.corredor.setLinearVelocity(0,0);
+            this.corredor.applyAngularImpulse(0, true);
+            VoltarOrigemUnico.voltarOrigem2().calcularVoltaImediata();
+        }
+    }
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
@@ -52,9 +60,6 @@ final class Colisao implements ContactListener {
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
-        if(contactTemCorredor(contact) && !this.faseManager2.isFaseAtual(Fase2.ACAO)){
-            System.out.println("Colisao acontecendo fora da fase acao");
-        }
     }
 
     private boolean contactTemCorredor(Contact contact){

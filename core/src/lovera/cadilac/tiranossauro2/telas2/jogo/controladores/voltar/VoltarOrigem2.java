@@ -60,6 +60,7 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
 
     private void procedimentoFinalizar(){
         this.cameraManager.setPosicao_CamJogo(this.calculadorVolta.getPosicaoFinalCamera());
+        this.cameraManager.setDiferenca();
         this.faseManager2.setFaseAtual(Fase2.ESCOLHENDO_GRAFICO);
         this.controleManager2.voltarMenuGrafico();
     }
@@ -72,7 +73,17 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
         this.faseManager2.setFaseAtual(Fase2.TELA_VOLTANDO);
     }
 
+    public void calcularVoltaImediata(){
+//        this.calculadorVolta.calcularVoltaImediata();
+        atualizar_CamProj();
+        atualizar_CamJogo();
+    }
+
     private void atualizar_CamProj(){
         this.cameraManager.setPosicao_CamProj(this.posicaoCorredor.x, this.posicaoCorredor.y + this.cameraManager.getDiferenca_CamProj().y);
+    }
+
+    private void atualizar_CamJogo(){
+        this.cameraManager.setPosicao_CamJogo(this.posicaoCorredor.x, this.posicaoCorredor.y + this.cameraManager.getDiferenca_CamJogo().y);
     }
 }

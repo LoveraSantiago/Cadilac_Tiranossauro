@@ -35,6 +35,15 @@ final class CalculadorVolta {
         this.incremento = (this.posicaoFinalCamera.x - this.cameraManager.getPosicao_CamJogo().x)/ (Math.max(60f, Gdx.graphics.getFramesPerSecond()));
     }
 
+    public void calcularVoltaImediata(){
+        this.posicaoFinalCamera.set(this.cameraManager.getDiferenca_CamJogo());
+        this.posicaoFinalCamera.x += this.posicaoJogador.x;
+        this.posicaoFinalCamera.y += this.posicaoJogador.y;
+
+        this.equacaoLinear.definirEquacaoDaReta(this.posicaoFinalCamera, this.cameraManager.getPosicao_CamJogo());
+        this.incremento = (this.posicaoFinalCamera.x - this.cameraManager.getPosicao_CamJogo().x)/ 1;
+    }
+
     public float getIncremento() {
         return incremento;
     }
