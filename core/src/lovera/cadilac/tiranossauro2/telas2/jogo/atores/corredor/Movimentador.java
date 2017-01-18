@@ -97,7 +97,6 @@ final class Movimentador implements TipoAtualizavel, MsgFromColisao {
 
         @Override
         public void realizarAcao() {
-            Debugagem.dbgPontoVector2("linear velocity", corredor.getLinearVelocity());
             if(corredor.getLinearVelocity().x <= 0.3f && corredor.getLinearVelocity().y <= 0.3f){
                 encerrarMovimentacao();
             }
