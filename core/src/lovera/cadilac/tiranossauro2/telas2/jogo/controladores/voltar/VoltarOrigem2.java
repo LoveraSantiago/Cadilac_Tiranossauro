@@ -84,6 +84,6 @@ public final class VoltarOrigem2 implements TipoDesenhavel{
     }
 
     private void atualizar_CamJogo(){
-        this.cameraManager.setPosicao_CamJogo(this.posicaoCorredor.x, this.posicaoCorredor.y + this.cameraManager.getDiferenca_CamJogo().y);
+        this.cameraManager.setPosicao_CamJogo(this.posicaoCorredor.x + this.cameraManager.getDiferenca_CamJogo().x, this.posicaoCorredor.y + this.cameraManager.getDiferenca_CamJogo().y);
     }
 }

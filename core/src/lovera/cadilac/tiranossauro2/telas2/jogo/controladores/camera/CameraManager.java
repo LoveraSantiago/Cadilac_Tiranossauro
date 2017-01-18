@@ -45,6 +45,7 @@ public final class CameraManager implements TipoCamera{
 
     public void rotacionarCameraEmVoltaDoPonto(float angulo){
         this.cameraAngulo.rotacionarCameraEmVoltaDoPonto(angulo);
+        setDiferenca();
     }
 
     @Override

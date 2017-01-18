@@ -12,6 +12,13 @@ public final class FaseManager2{
         return this.faseAtual == fase;
     }
 
+    public boolean isUmaDasFaseAtual(Fase2... fases){
+        for(Fase2 fase : fases){
+            if(isFaseAtual(fase)) return true;
+        }
+        return false;
+    }
+
     public Fase2 getFaseAtual() {
         return faseAtual;
     }

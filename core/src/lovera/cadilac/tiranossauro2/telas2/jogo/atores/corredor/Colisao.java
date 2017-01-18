@@ -43,19 +43,15 @@ final class Colisao implements ContactListener {
 
     @Override
     public void endContact(Contact contact) {
-        if(contactTemCorredor(contact) && !this.faseManager2.isFaseAtual(Fase2.ACAO)){
-            System.out.println("Colisao acontecendo fora da fase acao");
+        if(contactTemCorredor(contact) && !this.faseManager2.isUmaDasFaseAtual(Fase2.ACAO, Fase2.TELA_VOLTANDO)){
             this.corredor.setLinearVelocity(0,0);
-            this.corredor.applyAngularImpulse(0, true);
+            this.corredor.setAngularVelocity(0);
             VoltarOrigemUnico.voltarOrigem2().calcularVoltaImediata();
         }
     }
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
-        if(contactTemCorredor(contact) && !this.faseManager2.isFaseAtual(Fase2.ACAO)){
-            System.out.println("Colisao acontecendo fora da fase acao");
-        }
     }
 
     @Override
@@ -65,5 +61,4 @@ final class Colisao implements ContactListener {
     private boolean contactTemCorredor(Contact contact){
         return contact.getFixtureA().getBody() == this.corredor || contact.getFixtureB().getBody() == this.corredor;
     }
-
 }

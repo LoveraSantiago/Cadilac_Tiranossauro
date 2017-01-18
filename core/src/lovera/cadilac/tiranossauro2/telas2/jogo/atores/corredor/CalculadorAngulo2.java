@@ -69,7 +69,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 //        printagemDbg("ROTACIONAR PARADO INICIO");
         normatizarComponentes();
         if(isMesmoAngulo()){
-            this.corredor.applyAngularImpulse(0, true);
+            this.corredor.setAngularVelocity(0);
         }
         else{
             if((this.anguloCalculado - getAnguloCorredor_Graus() + 360) % 360 < 180){
