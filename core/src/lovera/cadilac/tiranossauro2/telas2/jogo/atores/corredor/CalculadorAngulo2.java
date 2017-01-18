@@ -114,10 +114,6 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         this.anguloCalculado = this.anguloNorte;
     }
 
-    public void resetAnguloCalculado(){
-        this.anguloCalculado = getAnguloCorredor_Graus();
-    }
-
     private int getAnguloCorredor_Graus(){
         return Math.round(this.corredor.getAngle() * MathUtils.radiansToDegrees);
     }

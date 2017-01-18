@@ -58,7 +58,6 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
     public void prepararParaAcao(InformacaoManager informacao){
         this.calcAngulo.normatizarComponentes();
         this.movimentador.prepararParaAcao(informacao);
-        this.calcAngulo.resetAnguloCalculado();
     }
 
     @Override
