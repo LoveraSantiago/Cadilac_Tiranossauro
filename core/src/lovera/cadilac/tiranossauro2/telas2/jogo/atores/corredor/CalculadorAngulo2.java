@@ -93,6 +93,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 
         this.contadorAngulo = this.corredor.getAngle();
 //        printagemDbg("CALCULAR ANGULO FIM");
+        normatizarComponentes();
     }
 
     public void telaAngulada(float angulo) {
@@ -129,13 +130,13 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
     }
 
     //TODO: Apagar qdo tiver seguranca que esta funcionando normalmente
-    private void printagemDbg(String texto){
-        System.out.println("*****" + texto + "*****");
-        System.out.println("angulo norte      : " + this.anguloNorte);
-        System.out.println("angulo calculado  : " + this.anguloCalculado);
-        System.out.println("contador de angulo: " + (this.contadorAngulo * MathUtils.radiansToDegrees));
-        System.out.println("angulo corredor   : " + getAnguloCorredor_Graus());
-    }
+//    private void printagemDbg(String texto){
+//        System.out.println("*****" + texto + "*****");
+//        System.out.println("angulo norte      : " + this.anguloNorte);
+//        System.out.println("angulo calculado  : " + this.anguloCalculado);
+//        System.out.println("contador de angulo: " + (this.contadorAngulo * MathUtils.radiansToDegrees));
+//        System.out.println("angulo corredor   : " + getAnguloCorredor_Graus());
+//    }
 
     class RotacaoSemColisao implements HelperUmaAcao{
 
@@ -148,16 +149,16 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
             torque = corredor.getInertia() * velocidadeAngularEsperada / (1 / fps);
             corredor.applyTorque(torque, true);
 
-            System.out.print("-fps " + fps);
-            System.out.print(" -proxAngulo " + proxAngulo);
-            System.out.print(" -angCor " + getAnguloCorredor_Graus());
-            System.out.print(" -corrAngVel " + corredor.getAngularVelocity());
-            System.out.print(" -difAngulo " + diferencaAngulo);
-            System.out.print(" -angCalc " + anguloCalculado);
-            System.out.print(" -velEsp " + velocidadeAngularEsperada);
-            System.out.print(" -torque " + torque);
-            System.out.print(" -inercia " + corredor.getInertia());
-            System.out.println();
+//            System.out.print("-fps " + String.format("%.5f", fps));
+//            System.out.print(" -proxAngulo " + String.format("%.5f", proxAngulo));
+//            System.out.print(" -angCor " + getAnguloCorredor_Graus());
+//            System.out.print(" -corrAngVel " + String.format("%.5f", corredor.getAngularVelocity()));
+//            System.out.print(" -difAngulo " + String.format("%.5f", diferencaAngulo));
+//            System.out.print(" -angCalc " + String.format("%.5f", anguloCalculado));
+//            System.out.print(" -velEsp " + String.format("%.5f", velocidadeAngularEsperada));
+//            System.out.print(" -torque " + String.format("%.5f", torque));
+//            System.out.print(" -inercia " + String.format("%.5f", corredor.getInertia()));
+//            System.out.println();
         }
     }
 

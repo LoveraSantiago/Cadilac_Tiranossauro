@@ -53,6 +53,10 @@ public final class Pontos {
         return this.listaX.size();
     }
 
+    public Vector2 getProximoPonto(){
+        return this.pontoTemp.set(this.listaX.get(0), this.listaY.get(0));
+    }
+
     public void prepararPontos(){
         this.otimizador.otimizarPontos();
         this.rotacionador.rotacionarPontos();
