@@ -52,6 +52,10 @@ final class Colisao implements ContactListener {
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
+        if(contactTemCorredor(contact) && this.faseManager2.isFaseAtual(Fase2.TELA_VOLTANDO)){
+            this.corredor.setLinearVelocity(0,0);
+            this.corredor.setAngularVelocity(0);
+        }
     }
 
     @Override
