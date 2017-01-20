@@ -68,7 +68,8 @@ public final class ArrastarEntrada2 extends Entrada2 {
     }
 
     private boolean isPtValidos(){
-        return this.ptToqueProjetado.y < this.corredor.getPosicaoJogo().y;
+        return this.ptToqueProjetado.y < this.corredor.getPosicaoJogo().y &&
+               Math.abs(this.corredor.getPosicaoJogo().x - this.ptToqueProjetado.x) > 1;
     }
 
     @Override
