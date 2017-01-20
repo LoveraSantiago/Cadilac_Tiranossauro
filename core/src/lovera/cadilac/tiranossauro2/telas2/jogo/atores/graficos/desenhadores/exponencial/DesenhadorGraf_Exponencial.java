@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Arredondador;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado.DirecaoEnum;
@@ -32,10 +32,10 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposa
     private final EquacaoExponencial2 eqExponencial;
     private final Entrada2 entrada2;
     private final InformacaoManager informacao;
-    private final Arredondador arredondador;
     private final CameraManager cameraManager;
     private final ProjetorPt_Exponencial projetorPt;
     private final Corredor2 corredorP;
+    private final Rotacionador rotacionador;
 
     private final Vector2 ptToque;
     private final Vector2 posicaoCorredor;
@@ -46,11 +46,11 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposa
     public DesenhadorGraf_Exponencial(Entrada2 entrada2) {
         this.entrada2 = entrada2;
         this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
-        this.arredondador = new Arredondador();
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
         this.cameraManager = CameraUnico.getCameraManager();
         this.matrizCameraProjecao = this.cameraManager.getCamera_CamProj().combined;
+        this.rotacionador = new Rotacionador();
 
         this.shapeRenderer = new ShapeRenderer();
 
@@ -113,7 +113,9 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposa
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-        this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.eqExponencial, 1, this.posicaoCorredor));//8 valor ajustado olhometro
+        this.rotacionador.atualizarAnguloDoJogo();
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.eqExponencial, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
     private void procedimentoAEsquerda() {
@@ -133,7 +135,9 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposa
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-        this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.eqExponencial, 1, this.posicaoCorredor));
+        this.rotacionador.atualizarAnguloDoJogo();
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.eqExponencial, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
     private float getProporcaoDoGraficoPeloToque(){

@@ -46,6 +46,10 @@ public final class Rotacionador {
         rotacionar(pt1x, pt1y, pt2.x, pt2.y);
     }
 
+    public void rotacionar(Vector2 pt1, Vector2 pt2){
+        rotacionar(pt1.x, pt1.y, pt2.x, pt2.y);
+    }
+
     public float getResultX() {
         return resultX;
     }
