@@ -142,6 +142,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 
         @Override
         public void realizarAcao() {
+            normatizarComponentes();
             setFps();
             proxAngulo = corredor.getAngle() + corredor.getAngularVelocity() / fps;
             diferencaAngulo = anguloCalculado * MathUtils.degreesToRadians - proxAngulo;
