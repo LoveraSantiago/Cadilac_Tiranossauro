@@ -128,7 +128,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 //        System.out.println("angulo corredor   : " + getAnguloCorredor_Graus());
 //    }
 
-    class RotacaoSemColisao implements HelperUmaAcao{
+    private class RotacaoSemColisao implements HelperUmaAcao{
 
         @Override
         public void realizarAcao() {
@@ -136,7 +136,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         }
     }
 
-    class RotacaoComColisao implements HelperUmaAcao{
+    private class RotacaoComColisao implements HelperUmaAcao{
 
         @Override
         public void realizarAcao() {
