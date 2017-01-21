@@ -14,15 +14,10 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
     //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
     private float anguloCorredorGraus;
     private float anguloCalculado;
-    private float contadorAngulo;
 
     //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
     private float anguloNorte;
     private float fps;
-    private float proxAngulo;
-    private float diferencaAngulo;
-    private float velocidadeAngularEsperada;
-    private float torque;
 
     private final Body corredor;
 
@@ -39,7 +34,6 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         resetAngulo();
 
         this.normatizador = new NormatizadorDeAngulos();
-        this.contadorAngulo = this.corredor.getAngle();
 
         this.rotacaoComColisao = new RotacaoComColisao();
         this.rotacaoSemColisao = new RotacaoSemColisao();
@@ -91,7 +85,6 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         this.anguloCalculado = (float) (Math.atan2(ptFuturoY - this.corredor.getPosition().y, ptFuturoX - this.corredor.getPosition().x)) * MathUtils.radiansToDegrees;
         this.anguloCalculado = Math.round(this.anguloCalculado);
 
-        this.contadorAngulo = this.corredor.getAngle();
 //        printagemDbg("CALCULAR ANGULO FIM");
         normatizarComponentes();
     }
@@ -142,24 +135,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 
         @Override
         public void realizarAcao() {
-            normatizarComponentes();
-            setFps();
-            proxAngulo = corredor.getAngle() + corredor.getAngularVelocity() / fps;
-            diferencaAngulo = anguloCalculado * MathUtils.degreesToRadians - proxAngulo;
-            velocidadeAngularEsperada = diferencaAngulo * fps;
-            torque = corredor.getInertia() * velocidadeAngularEsperada / (1 / fps);
-            corredor.applyTorque(torque, true);
-
-//            System.out.print("-fps " + String.format("%.5f", fps));
-//            System.out.print(" -proxAngulo " + String.format("%.5f", proxAngulo));
-//            System.out.print(" -angCor " + getAnguloCorredor_Graus());
-//            System.out.print(" -corrAngVel " + String.format("%.5f", corredor.getAngularVelocity()));
-//            System.out.print(" -difAngulo " + String.format("%.5f", diferencaAngulo));
-//            System.out.print(" -angCalc " + String.format("%.5f", anguloCalculado));
-//            System.out.print(" -velEsp " + String.format("%.5f", velocidadeAngularEsperada));
-//            System.out.print(" -torque " + String.format("%.5f", torque));
-//            System.out.print(" -inercia " + String.format("%.5f", corredor.getInertia()));
-//            System.out.println();
+            rotacionarParado();
         }
     }
 
