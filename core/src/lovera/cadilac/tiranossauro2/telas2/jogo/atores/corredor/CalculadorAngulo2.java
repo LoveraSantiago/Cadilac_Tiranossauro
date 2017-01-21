@@ -1,6 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -17,7 +16,6 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 
     //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
     private float anguloNorte;
-    private float fps;
 
     private final Body corredor;
 
@@ -60,6 +58,10 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
     }
 
     public void rotacionarParado() {
+        rotacionar();
+    }
+
+    private void rotacionar(){
 //        printagemDbg("ROTACIONAR PARADO INICIO");
         normatizarComponentes();
         if(isMesmoAngulo()){
@@ -117,11 +119,6 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         return this.normatizador.normatizar(Math.round(this.anguloCalculado)) == this.normatizador.normatizar(this.anguloCorredorGraus);
     }
 
-    private void setFps(){
-        this.fps = Gdx.graphics.getFramesPerSecond();
-        this.fps = this.fps < 60 ? 60 : this.fps;
-    }
-
     //TODO: Apagar qdo tiver seguranca que esta funcionando normalmente
 //    private void printagemDbg(String texto){
 //        System.out.println("*****" + texto + "*****");
@@ -135,7 +132,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 
         @Override
         public void realizarAcao() {
-            rotacionarParado();
+            rotacionar();
         }
     }
 
