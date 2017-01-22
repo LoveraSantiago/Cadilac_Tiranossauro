@@ -10,7 +10,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.ArrastarEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
@@ -20,8 +19,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoU
 
 //LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
 public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
-
-    private DirecaoEnum lado;
 
     private float helperContador;
     private float contador;
@@ -64,7 +61,6 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
     @Override
     public void meDesenhar(Object objeto) {
         resetarComponentes();
-        definirDirecao();
         desenharExponencial();
     }
 
@@ -73,10 +69,6 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
 
         this.ptToque.set(this.entrada2.getPtToque());
 //        this.ptToque.set(15.851f, 1.333f);
-    }
-
-    private void definirDirecao() {
-        this.lado = this.posicaoCorredor.x < this.ptToque.x ? DirecaoEnum.DIREITA : DirecaoEnum.ESQUERDA;
     }
 
     private void desenharExponencial() {
@@ -89,7 +81,7 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
         this.eqExponencial.setB(this.posicaoCorredor.y - this.ptToque.y);
         this.pt1Desenho.set(this.posicaoCorredor);
 
-        if(this.lado == DirecaoEnum.DIREITA){
+        if(this.posicaoCorredor.x < this.ptToque.x){
             procedimentoADireita();
         }
         else{
