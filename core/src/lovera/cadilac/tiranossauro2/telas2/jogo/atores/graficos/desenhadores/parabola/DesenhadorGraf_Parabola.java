@@ -6,17 +6,19 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado.DirecaoEnum;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
-public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable{
+public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
 
     private DirecaoEnum lado;
 
@@ -40,8 +42,8 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     private final Vector2 pt2Desenho;
 
 
-    public DesenhadorGraf_Parabola(Entrada2 entrada2) {
-        this.entrada = entrada2;
+    public DesenhadorGraf_Parabola() {
+        this.entrada = new PincaEntrada2();
 
         this.quadratica = new EquacaoQuadratica2();
         this.projetorPt = new ProjetorPt_Parabola();
@@ -162,5 +164,10 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhavel, Disposable
     @Override
     public void dispose() {
         this.shapeRenderer.dispose();
+    }
+
+    @Override
+    public Entrada2 getEntrada() {
+        return entrada;
     }
 }

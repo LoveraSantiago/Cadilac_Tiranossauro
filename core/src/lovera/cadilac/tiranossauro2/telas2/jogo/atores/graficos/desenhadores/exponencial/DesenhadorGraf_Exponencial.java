@@ -4,14 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Disposable;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.lado.DirecaoEnum;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.ArrastarEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
@@ -19,7 +19,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUni
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 //LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
-public final class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposable{
+public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
 
     private DirecaoEnum lado;
 
@@ -43,8 +43,8 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposa
     private final Vector2 pt1Desenho;
     private final Vector2 pt2Desenho;
 
-    public DesenhadorGraf_Exponencial(Entrada2 entrada2) {
-        this.entrada2 = entrada2;
+    public DesenhadorGraf_Exponencial() {
+        this.entrada2 = new ArrastarEntrada2();
         this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
@@ -153,5 +153,10 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhavel, Disposa
     @Override
     public void dispose() {
         this.shapeRenderer.dispose();
+    }
+
+    @Override
+    public Entrada2 getEntrada() {
+        return entrada2;
     }
 }

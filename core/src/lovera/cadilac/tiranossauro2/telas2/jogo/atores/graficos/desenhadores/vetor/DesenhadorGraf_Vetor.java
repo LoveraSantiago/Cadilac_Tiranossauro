@@ -6,17 +6,19 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 //TODO refatorar com DesenhadorGraf_Parabola informacao da para ser atributo estatico de superclasse
-final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
+public final class DesenhadorGraf_Vetor implements TipoDesenhadorGrafico{
 
     private final ShapeRenderer shapeRenderer;
     private final OrthographicCamera cameraProjecao;
@@ -28,8 +30,8 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
     private final InformacaoManager informacao;
     private final Rotacionador rotacionador;
 
-    public DesenhadorGraf_Vetor(Entrada2 entrada) {
-        this.entrada = entrada;
+    public DesenhadorGraf_Vetor() {
+        this.entrada = new PincaEntrada2();
         this.cameraProjecao = CameraUnico.getCameraManager().getCamera_CamProj();
 
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
@@ -85,5 +87,10 @@ final class DesenhadorGraf_Vetor implements TipoDesenhavel, Disposable{
     @Override
     public void dispose() {
         this.shapeRenderer.dispose();
+    }
+
+    @Override
+    public Entrada2 getEntrada() {
+        return entrada;
     }
 }
