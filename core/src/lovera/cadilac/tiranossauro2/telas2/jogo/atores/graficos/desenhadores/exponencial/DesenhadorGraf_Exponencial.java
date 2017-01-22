@@ -42,18 +42,20 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
 
     public DesenhadorGraf_Exponencial() {
         this.entrada2 = new ArrastarEntrada2();
-        this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
+
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
+
         this.cameraManager = CameraUnico.getCameraManager();
         this.matrizCameraProjecao = this.cameraManager.getCamera_CamProj().combined;
+
+        this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.rotacionador = new Rotacionador();
-
         this.shapeRenderer = new ShapeRenderer();
-
         this.eqExponencial = new EquacaoExponencial2();
         this.projetorPt = new ProjetorPt_Exponencial();
-        this.ptToque = new Vector2();
+
+        this.ptToque    = new Vector2();
         this.pt1Desenho = new Vector2();
         this.pt2Desenho = new Vector2();
     }
@@ -143,12 +145,12 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
     }
 
     @Override
-    public void dispose() {
-        this.shapeRenderer.dispose();
+    public Entrada2 getEntrada() {
+        return entrada2;
     }
 
     @Override
-    public Entrada2 getEntrada() {
-        return entrada2;
+    public void dispose() {
+        this.shapeRenderer.dispose();
     }
 }

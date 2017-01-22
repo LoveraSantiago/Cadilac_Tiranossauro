@@ -32,6 +32,7 @@ final class Logaritmo_Graf extends Arrastar_Grafico {
             super.contador = super.contador + .5f) {
 
             super.pt2Desenho.set(super.corredor.getPosicaoProjX() + super.contador, super.corredor.getPosicaoProjY() + (this.equacaoLog.getY(super.contador)));
+            this.equacaoLog.setB((super.corredor.getPosicaoProjY() - posicaoToque.y),super.corredor.getCameraManipulador().getMaiorPtYDaCameraProjecao() - super.corredor.getPosicaoProjY());
 
             super.pt2Desenho.x = super.projetorPt.espelharEsquerdaPDireita(super.pt2Desenho.x, super.corredor.getPosicaoProjX());
             super.shapeRenderer.line(super.pt1Desenho.x, super.pt1Desenho.y, super.pt2Desenho.x, super.pt2Desenho.y);
