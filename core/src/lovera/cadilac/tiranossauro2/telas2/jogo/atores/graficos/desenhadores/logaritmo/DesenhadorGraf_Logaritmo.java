@@ -31,6 +31,7 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
     private final CameraManager cameraManager;
     private final Corredor2 corredorP;
     private final Rotacionador rotacionador;
+    private final ProjetorPt_Logaritmo projetorPt;
 
     private final Vector2 ptToque;
     private final Vector2 posicaoCorredor;
@@ -50,7 +51,7 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
         this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.rotacionador = new Rotacionador();
         this.shapeRenderer = new ShapeRenderer();
-
+        this.projetorPt = new ProjetorPt_Logaritmo();
         this.eqLog = new EquacaoLogaritmo2();
 
         this.ptToque = new Vector2();
@@ -111,7 +112,25 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
     }
 
     public void procedimentoAEsquerda(){
+        this.ptToque.x = this.projetorPt.espelharEsquerdaPDireita(this.ptToque.x, this.posicaoCorredor.x);
+        this.helperContador = getProporcaoDoGraficoPeloToque();
 
+        for(this.contador = 1;
+            this.contador <= this.helperContador;
+            this.contador = this.contador + .1f) {
+
+            this.pt2Desenho.set(this.posicaoCorredor.x + this.contador, (this.posicaoCorredor.y + (this.eqLog.getY(this.contador))));
+            this.pt2Desenho.x = this.projetorPt.espelharEsquerdaPDireita(this.pt2Desenho.x, this.posicaoCorredor.x);
+
+            this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+
+            addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+
+            this.pt1Desenho.set(this.pt2Desenho);
+        }
+//        this.rotacionador.atualizarAnguloDoJogo();
+//        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.eqExponencial, 1, this.posicaoCorredor), this.posicaoCorredor);
+//        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
     private float getProporcaoDoGraficoPeloToque(){
