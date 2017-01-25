@@ -17,6 +17,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
+//LINK DE AJUDA: https://www.desmos.com/calculator/auubsajefh
 public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
 
     private float helperContador;
@@ -93,7 +94,8 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
 
     public void procedimentoADireita(){
         this.helperContador = getProporcaoDoGraficoPeloToque();
-
+        System.out.println("proporcao " + helperContador);
+        System.out.println("b: " + eqLog.getB());
         for(this.contador = 1;
             this.contador <= this.helperContador;
             this.contador = this.contador + .1f) {
@@ -114,7 +116,8 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
     public void procedimentoAEsquerda(){
         this.ptToque.x = this.projetorPt.espelharEsquerdaPDireita(this.ptToque.x, this.posicaoCorredor.x);
         this.helperContador = getProporcaoDoGraficoPeloToque();
-
+        System.out.println("proporcao " + helperContador);
+        System.out.println("b: " + eqLog.getB());
         for(this.contador = 1;
             this.contador <= this.helperContador;
             this.contador = this.contador + .1f) {
@@ -134,9 +137,9 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
     }
 
     private float getProporcaoDoGraficoPeloToque(){
-        //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da pela e a posicao y do jogador) /100
+        //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da pela e a posicao y do jogador) /10
         //dessa forma pega o tamanho proporcional
-        return this.eqLog.getX((this.ptToque.x - this.posicaoCorredor.x) * this.eqLog.getAlturaMax()/ 100);
+        return this.eqLog.getX((this.ptToque.x - this.posicaoCorredor.x) * this.eqLog.getAlturaMax()/ 10);
     }
 
     private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){

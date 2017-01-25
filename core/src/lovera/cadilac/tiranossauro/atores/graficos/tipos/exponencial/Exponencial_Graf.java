@@ -64,8 +64,6 @@ final class Exponencial_Graf extends Arrastar_Grafico {
     private float getProporcaoDoGraficoPeloToque(Vector3 posicaoToque){
         //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da pela e a posicao y do jogador) /100
         //dessa forma pega o tamanho proporcional
-        return this.eqExponencial.getX((posicaoToque.x - super.corredor.getPosicaoProjX()) *
-                                       (super.corredor.getCameraManipulador().getMaiorPtYDaCameraProjecao() - super.corredor.getPosicaoProjY())
-                                        / 100);
+        return this.eqExponencial.getX((posicaoToque.x - super.corredor.getPosicaoProjX()) * (super.corredor.getCameraManipulador().getMaiorPtYDaCameraProjecao() - super.corredor.getPosicaoProjY())/ 100);
     }
 }
