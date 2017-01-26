@@ -19,11 +19,13 @@ public class EquacaoLogaritmo2 implements TipoEquacao{
         return this.b;
     }
 
+    //O - 1 e para ajustar de acordo com o ajustador para acertar a origem
     @Override
     public float getX(float y) {
-        return (float) Math.pow(this.b, y);
+        return (float) Math.pow(this.b, y) - 1;
     }
 
+    //O + 1 é um ajustador para que parta da origem
     @Override
     public float getY(float x) {
         return (float) Math.max((Math.log(x + 1) / Math.log(this.b)), 0f);

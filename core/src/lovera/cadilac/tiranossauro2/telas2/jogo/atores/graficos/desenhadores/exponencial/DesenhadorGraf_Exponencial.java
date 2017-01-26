@@ -135,7 +135,7 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
     }
 
     private float getProporcaoDoGraficoPeloToque(){
-        //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da pela e a posicao y do jogador) /100
+        //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da pela e a posicao y do jogador) /10
         //dessa forma pega o tamanho proporcional
         return this.eqExponencial.getX((this.ptToque.x - this.posicaoCorredor.x) * (this.cameraManager.getMaiorPtY_CamProj() - this.posicaoCorredor.y) / 10);
     }
