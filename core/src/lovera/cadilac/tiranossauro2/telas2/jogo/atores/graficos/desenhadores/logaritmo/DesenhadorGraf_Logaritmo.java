@@ -106,9 +106,9 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-//        this.rotacionador.atualizarAnguloDoJogo();
-//        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.eqExponencial, 1, this.posicaoCorredor), this.posicaoCorredor);
-//        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
+        this.rotacionador.atualizarAnguloDoJogo();
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
     public void procedimentoAEsquerda(){
@@ -127,9 +127,9 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-//        this.rotacionador.atualizarAnguloDoJogo();
-//        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.eqExponencial, 1, this.posicaoCorredor), this.posicaoCorredor);
-//        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
+        this.rotacionador.atualizarAnguloDoJogo();
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
     private float getProporcaoDoGraficoPeloToque(){
