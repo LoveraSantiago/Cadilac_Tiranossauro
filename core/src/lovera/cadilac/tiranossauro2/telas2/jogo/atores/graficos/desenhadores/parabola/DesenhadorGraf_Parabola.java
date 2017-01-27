@@ -18,14 +18,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoU
 
 public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
 
-    //TODO remover esse enum
-    enum DirecaoEnum {
-        ESQUERDA,
-        DIREITA;
-    }
-
-    private DirecaoEnum lado;
-
     private float contador;
     private float alturaChegadaTemp;
 
@@ -70,8 +62,6 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
     @Override
     public void meDesenhar(Object objeto) {
         resetarComponentes();
-        definirDirecao();
-        definirEquacaoQuadratica();
         desenharParabola();
     }
 
@@ -81,25 +71,6 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
         this.ptSuperior.set(this.entrada.getPtSuperior());
         this.ptLateral.set(this.entrada.getPtLateral());
         this.alturaChegadaTemp = this.entrada.getPtSuperior().y;
-    }
-
-    private void definirDirecao() {
-        this.lado = this.ptLateral.x > this.posicaoCorredor.x ? DirecaoEnum.DIREITA : DirecaoEnum.ESQUERDA;
-    }
-
-    private void definirEquacaoQuadratica(){
-        this.ptSuperior.x = this.ptSuperior.y -  this.posicaoCorredor.y;
-        this.ptSuperior.y = 0;
-
-        if(this.lado == DirecaoEnum.DIREITA){
-            this.ptLateral.y = this.ptLateral.x -  this.posicaoCorredor.x;
-        }
-        else{
-            this.ptLateral.y =  this.posicaoCorredor.x - this.ptLateral.x;
-        }
-        this.ptLateral.x = this.ptSuperior.x / 2;
-
-        this.quadratica.definirEquacaoQuadratica(this.ptLateral.x, this.ptLateral.y, this.ptSuperior.x, this.ptSuperior.y);
     }
 
     //TODO: configurar o shaperenderer seria necessario apenas uma vez! Testar alguma melhoria. *Obs ver se da problema uma vez q tem q dar end
@@ -112,7 +83,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
         Gdx.gl.glLineWidth(60);
 
         this.pt1Desenho.set(this.posicaoCorredor);
-        if(this.lado == DirecaoEnum.DIREITA){
+        if(this.ptLateral.x > this.posicaoCorredor.x){
             procedimentoADireita();
         }
         else{
@@ -122,6 +93,15 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
     }
 
     private void procedimentoADireita(){
+        this.ptSuperior.x = this.ptSuperior.y -  this.posicaoCorredor.y;
+        this.ptSuperior.y = 0;
+
+        this.ptLateral.y = this.ptLateral.x -  this.posicaoCorredor.x;
+        this.ptLateral.x = this.ptSuperior.x / 2;
+
+        this.quadratica.definirEquacaoQuadratica(this.ptLateral.x, this.ptLateral.y, this.ptSuperior.x, this.ptSuperior.y);
+
+
         for(this.contador = 1; this.contador < this.ptSuperior.x; this.contador = this.contador + .1f){
 
             this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
@@ -145,6 +125,14 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
     }
 
     private void procedimentoAEsquerda(){
+        this.ptSuperior.x = this.ptSuperior.y -  this.posicaoCorredor.y;
+        this.ptSuperior.y = 0;
+
+        this.ptLateral.y =  this.posicaoCorredor.x - this.ptLateral.x;
+        this.ptLateral.x = this.ptSuperior.x / 2;
+
+        this.quadratica.definirEquacaoQuadratica(this.ptLateral.x, this.ptLateral.y, this.ptSuperior.x, this.ptSuperior.y);
+
         for(this.contador = 1; this.contador < this.ptSuperior.x; this.contador = this.contador + .1f){
 
             this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
