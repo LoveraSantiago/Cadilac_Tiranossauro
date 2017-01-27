@@ -11,7 +11,7 @@ final class ProjetorPt_Parabola extends lovera.cadilac.tiranossauro2.telas2.jogo
         super();
     }
 
-    public final Vector2 calcularPtFuturo_HorizontalDireita(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
+    public final Vector2 calcularPtFuturoDireita_Horizontal(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
         contador += Gdx.graphics.getDeltaTime();
 
         super.ptTemp.set(contador, quadratica.getY(contador));
@@ -23,7 +23,7 @@ final class ProjetorPt_Parabola extends lovera.cadilac.tiranossauro2.telas2.jogo
         return super.ptTemp;
     }
 
-    public final Vector2 calcularPtFuturo_HorizontalEsquerda(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
+    public final Vector2 calcularPtFuturoEsquerda_Horizontal(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
         contador += Gdx.graphics.getDeltaTime();
 
         super.ptTemp.set(contador, quadratica.getY(contador));

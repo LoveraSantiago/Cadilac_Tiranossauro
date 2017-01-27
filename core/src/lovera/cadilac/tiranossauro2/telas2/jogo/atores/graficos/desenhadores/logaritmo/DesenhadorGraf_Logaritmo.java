@@ -106,6 +106,8 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
+
+        //todo colocar no final do metodo desenharLogaritmo fazer o mesmo para desenhador_exponencial e parabola
         this.rotacionador.atualizarAnguloDoJogo();
         this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());

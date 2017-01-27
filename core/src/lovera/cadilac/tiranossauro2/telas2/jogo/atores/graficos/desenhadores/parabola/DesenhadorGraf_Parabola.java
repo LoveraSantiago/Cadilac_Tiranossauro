@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
@@ -34,12 +35,13 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
     private final Entrada2 entrada;
     private final Vector2 ptSuperior;
     private final Vector2 ptLateral;
-    private final Vector2 posicaoCorredorP;
+    private final Vector2 posicaoCorredor;
 
     private final Corredor2 corredorP;
     private final ProjetorPt_Parabola projetorPt;
     private final EquacaoQuadratica2 quadratica;
     private final InformacaoManager informacao;
+    private final Rotacionador rotacionador;
 
     private final Vector2 pt1Desenho;
     private final Vector2 pt2Desenho;
@@ -57,11 +59,12 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
         this.ptLateral  = new Vector2();
 
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
-        this.posicaoCorredorP = this.corredorP.getPosicaoJogo();
+        this.posicaoCorredor = this.corredorP.getPosicaoJogo();
 
         this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
 
         this.matrizCameraProjecao = CameraUnico.getCameraManager().getCamera_CamProj().combined;
+        this.rotacionador = new Rotacionador();
     }
 
     @Override
@@ -81,18 +84,18 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
     }
 
     private void definirDirecao() {
-        this.lado = this.ptLateral.x > this.posicaoCorredorP.x ? DirecaoEnum.DIREITA : DirecaoEnum.ESQUERDA;
+        this.lado = this.ptLateral.x > this.posicaoCorredor.x ? DirecaoEnum.DIREITA : DirecaoEnum.ESQUERDA;
     }
 
     private void definirEquacaoQuadratica(){
-        this.ptSuperior.x = this.ptSuperior.y -  this.posicaoCorredorP.y;
+        this.ptSuperior.x = this.ptSuperior.y -  this.posicaoCorredor.y;
         this.ptSuperior.y = 0;
 
         if(this.lado == DirecaoEnum.DIREITA){
-            this.ptLateral.y = this.ptLateral.x -  this.posicaoCorredorP.x;
+            this.ptLateral.y = this.ptLateral.x -  this.posicaoCorredor.x;
         }
         else{
-            this.ptLateral.y =  this.posicaoCorredorP.x - this.ptLateral.x;
+            this.ptLateral.y =  this.posicaoCorredor.x - this.ptLateral.x;
         }
         this.ptLateral.x = this.ptSuperior.x / 2;
 
@@ -108,14 +111,12 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
 
         Gdx.gl.glLineWidth(60);
 
-        this.pt1Desenho.set(this.posicaoCorredorP);
+        this.pt1Desenho.set(this.posicaoCorredor);
         if(this.lado == DirecaoEnum.DIREITA){
             procedimentoADireita();
-            this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalDireita(this.quadratica, 0, this.posicaoCorredorP));
         }
         else{
             procedimentoAEsquerda();
-            this.corredorP.setPtFuturoProj(this.projetorPt.calcularPtFuturo_HorizontalEsquerda(this.quadratica, 0, this.posicaoCorredorP));
         }
         this.shapeRenderer.end();
     }
@@ -125,8 +126,8 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
 
             this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
             this.projetorPt.inverterXYDoVector2(this.pt2Desenho);
-            this.pt2Desenho.x += this.posicaoCorredorP.x;
-            this.pt2Desenho.y += this.posicaoCorredorP.y;
+            this.pt2Desenho.x += this.posicaoCorredor.x;
+            this.pt2Desenho.y += this.posicaoCorredor.y;
 
             this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
@@ -134,9 +135,13 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-        this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
+        this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
-        addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
+        addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
+
+        this.rotacionador.atualizarAnguloDoJogo();
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
     private void procedimentoAEsquerda(){
@@ -144,9 +149,9 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
 
             this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
             this.projetorPt.inverterXYDoVector2(this.pt2Desenho);
-            this.pt2Desenho.x += this.posicaoCorredorP.x;
-            this.pt2Desenho.y += this.posicaoCorredorP.y;
-            this.pt2Desenho.x = this.projetorPt.espelharDireitaPEsquerda(this.pt2Desenho.x, this.posicaoCorredorP.x);
+            this.pt2Desenho.x += this.posicaoCorredor.x;
+            this.pt2Desenho.y += this.posicaoCorredor.y;
+            this.pt2Desenho.x = this.projetorPt.espelharDireitaPEsquerda(this.pt2Desenho.x, this.posicaoCorredor.x);
 
             this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
@@ -154,9 +159,13 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-        this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
+        this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
-        addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredorP.x, this.alturaChegadaTemp);
+        addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
+
+        this.rotacionador.atualizarAnguloDoJogo();
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
     private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){
