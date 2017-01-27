@@ -3,16 +3,16 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.pa
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePonto2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePontoFuturo2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 
-final class ProjetorPt_Parabola extends ProjetorDePonto2 {
+final class ProjetorPt_ParabolaFuturo extends ProjetorDePontoFuturo2 {
 
-    public ProjetorPt_Parabola() {
+    public ProjetorPt_ParabolaFuturo() {
         super();
     }
 
-    public final Vector2 calcularPtFuturoDireita_Horizontal(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
+    public final Vector2 calcularPtFuturoDireita(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
         contador += Gdx.graphics.getDeltaTime();
 
         super.ptTemp.set(contador, quadratica.getY(contador));
@@ -24,7 +24,7 @@ final class ProjetorPt_Parabola extends ProjetorDePonto2 {
         return super.ptTemp;
     }
 
-    public final Vector2 calcularPtFuturoEsquerda_Horizontal(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
+    public final Vector2 calcularPtFuturoEsquerda(EquacaoQuadratica2 quadratica, float contador, Vector2 posicao){
         contador += Gdx.graphics.getDeltaTime();
 
         super.ptTemp.set(contador, quadratica.getY(contador));

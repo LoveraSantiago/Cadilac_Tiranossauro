@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePontoFuturo2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
@@ -30,7 +31,7 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
     private final Entrada2 entrada2;
     private final InformacaoManager informacao;
     private final CameraManager cameraManager;
-    private final ProjetorPt_Exponencial projetorPt;
+    private final ProjetorDePontoFuturo2 projetorPt;
     private final Corredor2 corredorP;
     private final Rotacionador rotacionador;
 
@@ -53,7 +54,7 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
         this.rotacionador = new Rotacionador();
         this.shapeRenderer = new ShapeRenderer();
         this.eqExponencial = new EquacaoExponencial2();
-        this.projetorPt = new ProjetorPt_Exponencial();
+        this.projetorPt = new ProjetorDePontoFuturo2();
 
         this.ptToque    = new Vector2();
         this.pt1Desenho = new Vector2();
@@ -108,7 +109,7 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
             this.pt1Desenho.set(this.pt2Desenho);
         }
         this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.eqExponencial, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita(this.eqExponencial, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
@@ -130,7 +131,7 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
             this.pt1Desenho.set(this.pt2Desenho);
         }
         this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.eqExponencial, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda(this.eqExponencial, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 

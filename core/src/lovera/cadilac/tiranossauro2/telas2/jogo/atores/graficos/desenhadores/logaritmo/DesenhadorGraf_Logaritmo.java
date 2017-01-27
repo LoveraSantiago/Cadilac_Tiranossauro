@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePontoFuturo2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoLogaritmo2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
@@ -32,7 +33,7 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
     private final CameraManager cameraManager;
     private final Corredor2 corredorP;
     private final Rotacionador rotacionador;
-    private final ProjetorPt_Logaritmo projetorPt;
+    private final ProjetorDePontoFuturo2 projetorPt;
 
     private final Vector2 ptToque;
     private final Vector2 posicaoCorredor;
@@ -52,7 +53,7 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
         this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.rotacionador = new Rotacionador();
         this.shapeRenderer = new ShapeRenderer();
-        this.projetorPt = new ProjetorPt_Logaritmo();
+        this.projetorPt = new ProjetorDePontoFuturo2();
         this.eqLog = new EquacaoLogaritmo2();
 
         this.ptToque = new Vector2();
@@ -109,7 +110,7 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
 
         //todo colocar no final do metodo desenharLogaritmo fazer o mesmo para desenhador_exponencial e parabola
         this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
@@ -130,7 +131,7 @@ public final class DesenhadorGraf_Logaritmo implements TipoDesenhadorGrafico{
             this.pt1Desenho.set(this.pt2Desenho);
         }
         this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 

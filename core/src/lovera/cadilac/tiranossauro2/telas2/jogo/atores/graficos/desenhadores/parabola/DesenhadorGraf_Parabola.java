@@ -38,7 +38,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
     private final Vector2 posicaoCorredor;
 
     private final Corredor2 corredorP;
-    private final ProjetorPt_Parabola projetorPt;
+    private final ProjetorPt_ParabolaFuturo projetorPt;
     private final EquacaoQuadratica2 quadratica;
     private final InformacaoManager informacao;
     private final Rotacionador rotacionador;
@@ -50,7 +50,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
         this.entrada = new PincaEntrada2();
 
         this.quadratica = new EquacaoQuadratica2();
-        this.projetorPt = new ProjetorPt_Parabola();
+        this.projetorPt = new ProjetorPt_ParabolaFuturo();
 
         this.shapeRenderer = new ShapeRenderer();
         this.pt1Desenho = new Vector2();
@@ -140,7 +140,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
         addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
         this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita_Horizontal(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
@@ -164,7 +164,7 @@ public final class DesenhadorGraf_Parabola implements TipoDesenhadorGrafico{
         addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
         this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda_Horizontal(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
     }
 
