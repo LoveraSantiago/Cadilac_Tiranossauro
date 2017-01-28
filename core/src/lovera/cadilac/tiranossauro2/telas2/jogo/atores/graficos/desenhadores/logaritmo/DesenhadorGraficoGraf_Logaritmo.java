@@ -1,8 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.logaritmo;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
@@ -23,9 +20,6 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
 
     private float helperContador;
     private float contador;
-
-    private final ShapeRenderer shapeRenderer;
-    private final Matrix4 matrizCameraProjecao;
 
     private final EquacaoLogaritmo2 eqLog;
     private final Entrada2 entrada2;
@@ -48,11 +42,9 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
 
         this.cameraManager = CameraUnico.getCameraManager();
-        this.matrizCameraProjecao = this.cameraManager.getCamera_CamProj().combined;
 
         this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.rotacionador = new Rotacionador();
-        this.shapeRenderer = new ShapeRenderer();
         this.projetorPt = new ProjetorDePontoFuturo2();
         this.eqLog = new EquacaoLogaritmo2();
 
@@ -75,11 +67,7 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
     }
 
     private void desenharLogaritmo(){
-        this.shapeRenderer.setProjectionMatrix(this.matrizCameraProjecao);
-        this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        this.shapeRenderer.setColor(1.0f, 0.4f, 0f, 0f);
-
-        Gdx.gl.glLineWidth(60);
+        super.iniciarShapeRenderer();
 
         this.eqLog.setB(this.posicaoCorredor.y - this.ptToque.y, this.cameraManager.getMaiorPtY_CamProj() - this.posicaoCorredor.y);
         this.pt1Desenho.set(this.posicaoCorredor);
@@ -90,7 +78,7 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
         else{
             procedimentoAEsquerda();
         }
-        this.shapeRenderer.end();
+        super.fecharShapeRenderer();
     }
 
     public void procedimentoADireita(){
@@ -101,14 +89,13 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
 
             this.pt2Desenho.set(this.posicaoCorredor.x + this.contador, this.posicaoCorredor.y + (this.eqLog.getY(this.contador)));
 
-            this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
 
             addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
 
-        //todo colocar no final do metodo desenharLogaritmo fazer o mesmo para desenhador_exponencial e parabola
         this.rotacionador.atualizarAnguloDoJogo();
         this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
@@ -124,7 +111,7 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
             this.pt2Desenho.set(this.posicaoCorredor.x + this.contador, (this.posicaoCorredor.y + (this.eqLog.getY(this.contador))));
             this.pt2Desenho.x = this.projetorPt.espelharEsquerdaPDireita(this.pt2Desenho.x, this.posicaoCorredor.x);
 
-            this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
 
             addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
@@ -152,6 +139,6 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
 
     @Override
     public void dispose() {
-        this.shapeRenderer.dispose();
+        super.dispose();
     }
 }

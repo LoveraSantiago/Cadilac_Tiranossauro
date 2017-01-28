@@ -1,8 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.exponencial;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
@@ -23,9 +20,6 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
 
     private float helperContador;
     private float contador;
-
-    private final ShapeRenderer shapeRenderer;
-    private final Matrix4 matrizCameraProjecao;
 
     private final EquacaoExponencial2 eqExponencial;
     private final Entrada2 entrada2;
@@ -48,11 +42,9 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
 
         this.cameraManager = CameraUnico.getCameraManager();
-        this.matrizCameraProjecao = this.cameraManager.getCamera_CamProj().combined;
 
         this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.rotacionador = new Rotacionador();
-        this.shapeRenderer = new ShapeRenderer();
         this.eqExponencial = new EquacaoExponencial2();
         this.projetorPt = new ProjetorDePontoFuturo2();
 
@@ -75,11 +67,7 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
     }
 
     private void desenharExponencial() {
-        this.shapeRenderer.setProjectionMatrix(this.matrizCameraProjecao);
-        this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        this.shapeRenderer.setColor(1.0f, 0.4f, 0f, 0f);
-
-        Gdx.gl.glLineWidth(60);
+        super.iniciarShapeRenderer();
 
         this.eqExponencial.setB(this.posicaoCorredor.y - this.ptToque.y);
         this.pt1Desenho.set(this.posicaoCorredor);
@@ -90,7 +78,7 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
         else{
             procedimentoAEsquerda();
         }
-        this.shapeRenderer.end();
+        super.fecharShapeRenderer();
     }
 
     private void procedimentoADireita() {
@@ -101,8 +89,7 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
             this.contador = this.contador + .1f) {
 
             this.pt2Desenho.set(this.posicaoCorredor.x + this.contador, this.posicaoCorredor.y + (this.eqExponencial.getY(this.contador)));
-
-            this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
 
             addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
@@ -124,7 +111,7 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
             this.pt2Desenho.set(this.posicaoCorredor.x + this.contador, (this.posicaoCorredor.y + (this.eqExponencial.getY(this.contador))));
             this.pt2Desenho.x = this.projetorPt.espelharEsquerdaPDireita(this.pt2Desenho.x, this.posicaoCorredor.x);
 
-            this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
 
             addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
@@ -146,12 +133,12 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
     }
 
     @Override
-    public Entrada2 getEntrada() {
-        return entrada2;
+    public void dispose() {
+        super.dispose();
     }
 
     @Override
-    public void dispose() {
-        this.shapeRenderer.dispose();
+    public Entrada2 getEntrada() {
+        return entrada2;
     }
 }

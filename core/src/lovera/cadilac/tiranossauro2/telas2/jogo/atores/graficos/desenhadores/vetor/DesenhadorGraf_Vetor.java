@@ -1,8 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.vetor;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
@@ -11,15 +8,11 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Info
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 //TODO refatorar com DesenhadorGraf_Parabola informacao da para ser atributo estatico de superclasse
 public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
-
-    private final ShapeRenderer shapeRenderer;
-    private final OrthographicCamera cameraProjecao;
 
     private final Vector2 posicaoJogadorP;
     private final Corredor2 corredorP;
@@ -30,12 +23,9 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
 
     public DesenhadorGraf_Vetor() {
         this.entrada = new PincaEntrada2();
-        this.cameraProjecao = CameraUnico.getCameraManager().getCamera_CamProj();
 
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoJogadorP = this.corredorP.getPosicaoJogo();
-
-        this.shapeRenderer = new ShapeRenderer();
 
         this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.rotacionador = new Rotacionador();
@@ -49,11 +39,7 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
         this.rotacionador.rotacionar(this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y, this.posicaoJogadorP);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
 
-        this.shapeRenderer.setProjectionMatrix(this.cameraProjecao.combined);
-        this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        this.shapeRenderer.setColor(1.0f, 0.4f, 0f, 0f);
-
-        Gdx.gl.glLineWidth(60);
+        super.iniciarShapeRenderer();
 
 //TODO LEVAR ESSE CARA PARA OS EIXOS CARTESIANOS
 //        this.shapeRenderer.line(this.posicaoJogadorP.x, this.posicaoJogadorP.y - 1,
@@ -68,8 +54,8 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
 //                                    this.posicaoJogadorP.x + 1   , this.posicaoJogadorP.y);
 //        }
 
-        this.shapeRenderer.line(this.posicaoJogadorP.x, this.posicaoJogadorP.y, this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
-        this.shapeRenderer.end();
+        super.addLinhaToShapeRenderer(this.posicaoJogadorP, this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
+        super.fecharShapeRenderer();
 
         addToComponentes(this.posicaoJogadorP.x, this.posicaoJogadorP.y, this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
     }
@@ -83,12 +69,12 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
     }
 
     @Override
-    public void dispose() {
-        this.shapeRenderer.dispose();
+    public Entrada2 getEntrada() {
+        return entrada;
     }
 
     @Override
-    public Entrada2 getEntrada() {
-        return entrada;
+    public void dispose() {
+        super.dispose();
     }
 }

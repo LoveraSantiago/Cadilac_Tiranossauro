@@ -1,8 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.parabola;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
@@ -12,7 +9,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.Info
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
@@ -20,9 +16,6 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
     private float contador;
     private float alturaChegadaTemp;
-
-    private final Matrix4 matrizCameraProjecao;
-    private final ShapeRenderer shapeRenderer;
 
     private final Entrada2 entrada;
     private final Vector2 ptSuperior;
@@ -44,7 +37,6 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
         this.quadratica = new EquacaoQuadratica2();
         this.projetorPt = new ProjetorPt_ParabolaFuturo();
 
-        this.shapeRenderer = new ShapeRenderer();
         this.pt1Desenho = new Vector2();
         this.pt2Desenho = new Vector2();
         this.ptSuperior = new Vector2();
@@ -55,7 +47,6 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
         this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
 
-        this.matrizCameraProjecao = CameraUnico.getCameraManager().getCamera_CamProj().combined;
         this.rotacionador = new Rotacionador();
     }
 
@@ -73,14 +64,9 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
         this.alturaChegadaTemp = this.entrada.getPtSuperior().y;
     }
 
-    //TODO: configurar o shaperenderer seria necessario apenas uma vez! Testar alguma melhoria. *Obs ver se da problema uma vez q tem q dar end
     //LEMBRETE: entradaPtSuperior vira o ponto X e entradaPtLateral vira o pontovertice
     private void desenharParabola(){
-        this.shapeRenderer.setProjectionMatrix(this.matrizCameraProjecao);
-        this.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-        this.shapeRenderer.setColor(1.0f, 0.4f, 0f, 0f);
-
-        Gdx.gl.glLineWidth(60);
+        super.iniciarShapeRenderer();
 
         this.pt1Desenho.set(this.posicaoCorredor);
         if(this.ptLateral.x > this.posicaoCorredor.x){
@@ -89,7 +75,7 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
         else{
             procedimentoAEsquerda();
         }
-        this.shapeRenderer.end();
+        super.fecharShapeRenderer();
     }
 
     private void procedimentoADireita(){
@@ -109,13 +95,13 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
             this.pt2Desenho.x += this.posicaoCorredor.x;
             this.pt2Desenho.y += this.posicaoCorredor.y;
 
-            this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
 
             addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-        this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
+        super.addLinhaToShapeRenderer(this.pt1Desenho, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
         addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
@@ -141,13 +127,13 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
             this.pt2Desenho.y += this.posicaoCorredor.y;
             this.pt2Desenho.x = this.projetorPt.espelharDireitaPEsquerda(this.pt2Desenho.x, this.posicaoCorredor.x);
 
-            this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
 
             addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
-        this.shapeRenderer.line(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
+        super.addLinhaToShapeRenderer(this.pt1Desenho, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
         addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
@@ -161,12 +147,12 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
     }
 
     @Override
-    public void dispose() {
-        this.shapeRenderer.dispose();
+    public Entrada2 getEntrada() {
+        return entrada;
     }
 
     @Override
-    public Entrada2 getEntrada() {
-        return entrada;
+    public void dispose() {
+        super.dispose();
     }
 }
