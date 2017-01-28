@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePontoFuturo2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoLogaritmo2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.ArrastarEntrada2;
@@ -23,13 +22,13 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
     private final Entrada2 entrada2;
     private final CameraManager cameraManager;
     private final Corredor2 corredorP;
-    private final Rotacionador rotacionador;
     private final ProjetorDePontoFuturo2 projetorPt;
 
     private final Vector2 ptToque;
     private final Vector2 posicaoCorredor;
 
     public DesenhadorGraficoGraf_Logaritmo() {
+        super();
         this.entrada2 = new ArrastarEntrada2();
 
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
@@ -37,7 +36,6 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
 
         this.cameraManager = CameraUnico.getCameraManager();
 
-        this.rotacionador = new Rotacionador();
         this.projetorPt = new ProjetorDePontoFuturo2();
         this.eqLog = new EquacaoLogaritmo2();
 
@@ -86,10 +84,8 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
 
             super.pt1Desenho.set(super.pt2Desenho);
         }
-
-        this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
-        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
+        super.rotacionarEAtualizar(this.projetorPt.calcularPtFuturoDireita(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
     }
 
     public void procedimentoAEsquerda(){
@@ -108,9 +104,8 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
 
             super.pt1Desenho.set(super.pt2Desenho);
         }
-        this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
-        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
+       super.rotacionarEAtualizar(this.projetorPt.calcularPtFuturoEsquerda(this.eqLog, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
     }
 
     private float getProporcaoDoGraficoPeloToque(){

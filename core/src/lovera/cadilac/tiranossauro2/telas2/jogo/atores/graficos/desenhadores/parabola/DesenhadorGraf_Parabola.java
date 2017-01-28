@@ -3,7 +3,6 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.pa
 import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
@@ -23,9 +22,9 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
     private final Corredor2 corredorP;
     private final ProjetorPt_ParabolaFuturo projetorPt;
     private final EquacaoQuadratica2 quadratica;
-    private final Rotacionador rotacionador;
 
     public DesenhadorGraf_Parabola() {
+        super();
         this.entrada = new PincaEntrada2();
 
         this.quadratica = new EquacaoQuadratica2();
@@ -36,8 +35,6 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
-
-        this.rotacionador = new Rotacionador();
     }
 
     @Override
@@ -95,9 +92,8 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
         super.addInformacao(super.pt1Desenho.x, super.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
-        this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
-        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
+        super.rotacionarEAtualizar(this.projetorPt.calcularPtFuturoDireita(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
     }
 
     private void procedimentoAEsquerda(){
@@ -127,9 +123,8 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
         super.addInformacao(super.pt1Desenho.x, super.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
-        this.rotacionador.atualizarAnguloDoJogo();
-        this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
-        this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
+        super.rotacionarEAtualizar(this.projetorPt.calcularPtFuturoEsquerda(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
+        this.corredorP.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
     }
 
     @Override
