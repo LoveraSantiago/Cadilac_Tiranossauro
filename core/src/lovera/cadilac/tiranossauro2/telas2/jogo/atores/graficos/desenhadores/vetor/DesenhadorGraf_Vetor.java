@@ -4,12 +4,10 @@ import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 //TODO refatorar com DesenhadorGraf_Parabola informacao da para ser atributo estatico de superclasse
 public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
@@ -18,7 +16,6 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
     private final Corredor2 corredorP;
 
     private final Entrada2 entrada;
-    private final InformacaoManager informacao;
     private final Rotacionador rotacionador;
 
     public DesenhadorGraf_Vetor() {
@@ -27,7 +24,6 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoJogadorP = this.corredorP.getPosicaoJogo();
 
-        this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.rotacionador = new Rotacionador();
     }
 
@@ -57,15 +53,11 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
         super.addLinhaToShapeRenderer(this.posicaoJogadorP, this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
         super.fecharShapeRenderer();
 
-        addToComponentes(this.posicaoJogadorP.x, this.posicaoJogadorP.y, this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
+        super.addInformacao(this.posicaoJogadorP.x, this.posicaoJogadorP.y, this.entrada.getPtLateral().x, this.entrada.getPtSuperior().y);
     }
 
     private void resetarComponentes(){
-        this.informacao.resetarInformacao();
-    }
-
-    private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){
-        this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
+        super.resetarInformacao();
     }
 
     @Override

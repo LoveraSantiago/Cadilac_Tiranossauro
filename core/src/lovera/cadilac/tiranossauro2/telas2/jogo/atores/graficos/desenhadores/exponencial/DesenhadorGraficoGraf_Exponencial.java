@@ -6,14 +6,12 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePontoFuturo2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.ArrastarEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 //LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
 public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
@@ -23,7 +21,6 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
 
     private final EquacaoExponencial2 eqExponencial;
     private final Entrada2 entrada2;
-    private final InformacaoManager informacao;
     private final CameraManager cameraManager;
     private final ProjetorDePontoFuturo2 projetorPt;
     private final Corredor2 corredorP;
@@ -31,9 +28,6 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
 
     private final Vector2 ptToque;
     private final Vector2 posicaoCorredor;
-
-    private final Vector2 pt1Desenho;
-    private final Vector2 pt2Desenho;
 
     public DesenhadorGraficoGraf_Exponencial() {
         this.entrada2 = new ArrastarEntrada2();
@@ -43,14 +37,11 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
 
         this.cameraManager = CameraUnico.getCameraManager();
 
-        this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         this.rotacionador = new Rotacionador();
         this.eqExponencial = new EquacaoExponencial2();
         this.projetorPt = new ProjetorDePontoFuturo2();
 
         this.ptToque    = new Vector2();
-        this.pt1Desenho = new Vector2();
-        this.pt2Desenho = new Vector2();
     }
 
     @Override
@@ -60,7 +51,7 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
     }
 
     private void resetarComponentes(){
-        this.informacao.resetarInformacao();
+        super.resetarInformacao();
 
         this.ptToque.set(this.entrada2.getPtToque());
 //        this.ptToque.set(15.851f, 1.333f);
@@ -91,7 +82,7 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
             this.pt2Desenho.set(this.posicaoCorredor.x + this.contador, this.posicaoCorredor.y + (this.eqExponencial.getY(this.contador)));
             super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
 
-            addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addInformacao(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
@@ -113,7 +104,7 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
 
             super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
 
-            addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addInformacao(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
 
             this.pt1Desenho.set(this.pt2Desenho);
         }
@@ -126,10 +117,6 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
         //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da pela e a posicao y do jogador) /10
         //dessa forma pega o tamanho proporcional
         return this.eqExponencial.getX((this.ptToque.x - this.posicaoCorredor.x) * (this.cameraManager.getMaiorPtY_CamProj() - this.posicaoCorredor.y) / 10);
-    }
-
-    private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){
-        this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
     }
 
     @Override

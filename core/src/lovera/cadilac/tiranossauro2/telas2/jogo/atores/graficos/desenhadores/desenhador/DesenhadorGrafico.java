@@ -4,20 +4,36 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
 
     private static WraperShapeRenderer wShapeRenderer;
 
+    private static InformacaoManager informacao;
+
+    protected static final Vector2 pt1Desenho;
+    protected static final Vector2 pt2Desenho;
+
+    static{
+        pt1Desenho = new Vector2();
+        pt2Desenho = new Vector2();
+    }
+
     public DesenhadorGrafico() {
         if(wShapeRenderer == null){
             wShapeRenderer = new WraperShapeRenderer();
+        }
+        if(informacao == null){
+            informacao = InformacaoUnico.getInstancia().getInformacaoManager();
         }
     }
 
     public abstract Entrada2 getEntrada();
 
+    //********** PARTE DO SHAPE RENDERER INICIO **********
     protected void iniciarShapeRenderer(){
         wShapeRenderer.iniciarShapeRenderer();
     }
@@ -37,7 +53,17 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
     protected final void fecharShapeRenderer(){
         wShapeRenderer.fecharShapeRenderer();
     }
+    //********** PARTE DO SHAPE RENDERER FIM ************
 
+    //********** PARTE DO INFORMACAO INICIO **********
+    protected void resetarInformacao(){
+        informacao.resetarInformacao();
+    }
+
+    public void addInformacao(float pt1X, float pt1Y, float pt2X, float pt2Y){
+        informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
+    }
+    //********** PARTE DO INFORMACAO FIM *************
     @Override
     public void dispose() {
        wShapeRenderer.dispose();

@@ -5,12 +5,10 @@ import com.badlogic.gdx.math.Vector2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
@@ -25,11 +23,7 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
     private final Corredor2 corredorP;
     private final ProjetorPt_ParabolaFuturo projetorPt;
     private final EquacaoQuadratica2 quadratica;
-    private final InformacaoManager informacao;
     private final Rotacionador rotacionador;
-
-    private final Vector2 pt1Desenho;
-    private final Vector2 pt2Desenho;
 
     public DesenhadorGraf_Parabola() {
         this.entrada = new PincaEntrada2();
@@ -37,15 +31,11 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
         this.quadratica = new EquacaoQuadratica2();
         this.projetorPt = new ProjetorPt_ParabolaFuturo();
 
-        this.pt1Desenho = new Vector2();
-        this.pt2Desenho = new Vector2();
         this.ptSuperior = new Vector2();
         this.ptLateral  = new Vector2();
 
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
-
-        this.informacao = InformacaoUnico.getInstancia().getInformacaoManager();
 
         this.rotacionador = new Rotacionador();
     }
@@ -57,7 +47,7 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
     }
 
     private void resetarComponentes(){
-        this.informacao.resetarInformacao();
+        super.resetarInformacao();
 
         this.ptSuperior.set(this.entrada.getPtSuperior());
         this.ptLateral.set(this.entrada.getPtLateral());
@@ -68,7 +58,7 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
     private void desenharParabola(){
         super.iniciarShapeRenderer();
 
-        this.pt1Desenho.set(this.posicaoCorredor);
+        super.pt1Desenho.set(this.posicaoCorredor);
         if(this.ptLateral.x > this.posicaoCorredor.x){
             procedimentoADireita();
         }
@@ -90,20 +80,20 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
         for(this.contador = 1; this.contador < this.ptSuperior.x; this.contador = this.contador + .1f){
 
-            this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
-            this.projetorPt.inverterXYDoVector2(this.pt2Desenho);
-            this.pt2Desenho.x += this.posicaoCorredor.x;
-            this.pt2Desenho.y += this.posicaoCorredor.y;
+            super.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
+            this.projetorPt.inverterXYDoVector2(super.pt2Desenho);
+            super.pt2Desenho.x += this.posicaoCorredor.x;
+            super.pt2Desenho.y += this.posicaoCorredor.y;
 
-            super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
+            super.addLinhaToShapeRenderer(super.pt1Desenho, super.pt2Desenho);
 
-            addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addInformacao(super.pt1Desenho.x, super.pt1Desenho.y, super.pt2Desenho.x, super.pt2Desenho.y);
 
-            this.pt1Desenho.set(this.pt2Desenho);
+            super.pt1Desenho.set(super.pt2Desenho);
         }
-        super.addLinhaToShapeRenderer(this.pt1Desenho, this.posicaoCorredor.x, this.alturaChegadaTemp);
+        super.addLinhaToShapeRenderer(super.pt1Desenho, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
-        addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
+        super.addInformacao(super.pt1Desenho.x, super.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
         this.rotacionador.atualizarAnguloDoJogo();
         this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoDireita(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
@@ -121,29 +111,25 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
         for(this.contador = 1; this.contador < this.ptSuperior.x; this.contador = this.contador + .1f){
 
-            this.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
-            this.projetorPt.inverterXYDoVector2(this.pt2Desenho);
-            this.pt2Desenho.x += this.posicaoCorredor.x;
-            this.pt2Desenho.y += this.posicaoCorredor.y;
-            this.pt2Desenho.x = this.projetorPt.espelharDireitaPEsquerda(this.pt2Desenho.x, this.posicaoCorredor.x);
+            super.pt2Desenho.set(this.contador, this.quadratica.getY(this.contador));
+            this.projetorPt.inverterXYDoVector2(super.pt2Desenho);
+            super.pt2Desenho.x += this.posicaoCorredor.x;
+            super.pt2Desenho.y += this.posicaoCorredor.y;
+            super.pt2Desenho.x = this.projetorPt.espelharDireitaPEsquerda(super.pt2Desenho.x, this.posicaoCorredor.x);
 
-            super.addLinhaToShapeRenderer(this.pt1Desenho, this.pt2Desenho);
+            super.addLinhaToShapeRenderer(super.pt1Desenho, super.pt2Desenho);
 
-            addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.pt2Desenho.x, this.pt2Desenho.y);
+            super.addInformacao(super.pt1Desenho.x, super.pt1Desenho.y, super.pt2Desenho.x, super.pt2Desenho.y);
 
-            this.pt1Desenho.set(this.pt2Desenho);
+            super.pt1Desenho.set(super.pt2Desenho);
         }
-        super.addLinhaToShapeRenderer(this.pt1Desenho, this.posicaoCorredor.x, this.alturaChegadaTemp);
+        super.addLinhaToShapeRenderer(super.pt1Desenho, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
-        addToComponentes(this.pt1Desenho.x, this.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
+        super.addInformacao(super.pt1Desenho.x, super.pt1Desenho.y, this.posicaoCorredor.x, this.alturaChegadaTemp);
 
         this.rotacionador.atualizarAnguloDoJogo();
         this.rotacionador.rotacionar(this.projetorPt.calcularPtFuturoEsquerda(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(this.rotacionador.getResultX(), this.rotacionador.getResultY());
-    }
-
-    private void addToComponentes(float pt1X, float pt1Y, float pt2X, float pt2Y){
-        this.informacao.addInformacao(pt1X, pt1Y, pt2X, pt2Y);
     }
 
     @Override
