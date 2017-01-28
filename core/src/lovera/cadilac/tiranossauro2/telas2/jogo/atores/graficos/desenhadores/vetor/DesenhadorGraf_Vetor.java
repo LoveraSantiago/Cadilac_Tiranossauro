@@ -4,13 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Disposable;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhadorGrafico;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
@@ -18,7 +16,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUni
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 //TODO refatorar com DesenhadorGraf_Parabola informacao da para ser atributo estatico de superclasse
-public final class DesenhadorGraf_Vetor implements TipoDesenhadorGrafico{
+public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
 
     private final ShapeRenderer shapeRenderer;
     private final OrthographicCamera cameraProjecao;

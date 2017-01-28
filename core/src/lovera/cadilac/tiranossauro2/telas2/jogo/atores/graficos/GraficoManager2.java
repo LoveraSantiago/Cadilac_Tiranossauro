@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.exponencial.DesenhadorGraf_Exponencial;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.logaritmo.DesenhadorGraf_Logaritmo;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.exponencial.DesenhadorGraficoGraf_Exponencial;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.logaritmo.DesenhadorGraficoGraf_Logaritmo;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.parabola.DesenhadorGraf_Parabola;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.vetor.DesenhadorGraf_Vetor;
 
@@ -20,8 +20,8 @@ public final class GraficoManager2 implements TipoDesenhavel, Disposable{
         this.mapaEntradaGraficas = new HashMap<GraficosEnum2, EntradaGrafica>(4);
         this.mapaEntradaGraficas.put(GraficosEnum2.VETOR      , new EntradaGrafica(DesenhadorGraf_Vetor.class));
         this.mapaEntradaGraficas.put(GraficosEnum2.PARABOLOIDE, new EntradaGrafica(DesenhadorGraf_Parabola.class));
-        this.mapaEntradaGraficas.put(GraficosEnum2.EXPONENCIAL, new EntradaGrafica(DesenhadorGraf_Exponencial.class));
-        this.mapaEntradaGraficas.put(GraficosEnum2.LOGARITMO  , new EntradaGrafica(DesenhadorGraf_Logaritmo.class));
+        this.mapaEntradaGraficas.put(GraficosEnum2.EXPONENCIAL, new EntradaGrafica(DesenhadorGraficoGraf_Exponencial.class));
+        this.mapaEntradaGraficas.put(GraficosEnum2.LOGARITMO  , new EntradaGrafica(DesenhadorGraficoGraf_Logaritmo.class));
 
         this.graficoAtual = new EntradaGrafica();
     }

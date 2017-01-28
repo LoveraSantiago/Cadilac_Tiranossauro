@@ -4,9 +4,9 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.areajogavel.AreaJogavel2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
@@ -18,7 +18,7 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
     private static FaseManager2 faseManager2;
 
     private final Entrada2 entrada;
-    private final TipoDesenhadorGrafico desenhador;
+    private final DesenhadorGrafico desenhador;
 
     public EntradaGrafica() {
         inicializarMembrosEstaticos();
@@ -31,7 +31,7 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
         inicializarMembrosEstaticos();
 
         try{
-            this.desenhador = (TipoDesenhadorGrafico) classeDesenhador.newInstance();
+            this.desenhador = (DesenhadorGrafico) classeDesenhador.newInstance();
             this.entrada = desenhador.getEntrada();
         }
         catch (Exception e){

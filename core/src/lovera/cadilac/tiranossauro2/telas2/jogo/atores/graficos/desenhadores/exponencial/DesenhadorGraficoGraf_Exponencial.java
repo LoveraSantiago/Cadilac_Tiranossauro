@@ -5,12 +5,12 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePontoFuturo2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.ArrastarEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
@@ -19,7 +19,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUni
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 //LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
-public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
+public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
 
     private float helperContador;
     private float contador;
@@ -41,7 +41,7 @@ public final class DesenhadorGraf_Exponencial implements TipoDesenhadorGrafico{
     private final Vector2 pt1Desenho;
     private final Vector2 pt2Desenho;
 
-    public DesenhadorGraf_Exponencial() {
+    public DesenhadorGraficoGraf_Exponencial() {
         this.entrada2 = new ArrastarEntrada2();
 
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
