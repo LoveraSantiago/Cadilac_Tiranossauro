@@ -7,7 +7,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePonto
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.ArrastarEntrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
@@ -19,7 +18,6 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
     private float contador;
 
     private final EquacaoExponencial2 eqExponencial;
-    private final Entrada2 entrada2;
     private final CameraManager cameraManager;
     private final ProjetorDePontoFuturo2 projetorPt;
     private final Corredor2 corredorP;
@@ -28,8 +26,7 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
     private final Vector2 posicaoCorredor;
 
     public DesenhadorGraficoGraf_Exponencial() {
-        super();
-        this.entrada2 = new ArrastarEntrada2();
+        super(new ArrastarEntrada2());
 
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
@@ -51,7 +48,7 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
     private void resetarComponentes(){
         super.resetarInformacao();
 
-        this.ptToque.set(this.entrada2.getPtToque());
+        this.ptToque.set(super.entrada.getPtToque());
 //        this.ptToque.set(15.851f, 1.333f);
     }
 
@@ -118,10 +115,5 @@ public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
     @Override
     public void dispose() {
         super.dispose();
-    }
-
-    @Override
-    public Entrada2 getEntrada() {
-        return entrada2;
     }
 }

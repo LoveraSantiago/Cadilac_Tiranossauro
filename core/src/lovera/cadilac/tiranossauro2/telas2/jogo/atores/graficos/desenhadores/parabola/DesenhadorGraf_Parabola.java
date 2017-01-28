@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 
@@ -14,7 +13,6 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
     private float contador;
     private float alturaChegadaTemp;
 
-    private final Entrada2 entrada;
     private final Vector2 ptSuperior;
     private final Vector2 ptLateral;
     private final Vector2 posicaoCorredor;
@@ -24,8 +22,7 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
     private final EquacaoQuadratica2 quadratica;
 
     public DesenhadorGraf_Parabola() {
-        super();
-        this.entrada = new PincaEntrada2();
+        super(new PincaEntrada2());
 
         this.quadratica = new EquacaoQuadratica2();
         this.projetorPt = new ProjetorPt_ParabolaFuturo();
@@ -46,9 +43,9 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
     private void resetarComponentes(){
         super.resetarInformacao();
 
-        this.ptSuperior.set(this.entrada.getPtSuperior());
-        this.ptLateral.set(this.entrada.getPtLateral());
-        this.alturaChegadaTemp = this.entrada.getPtSuperior().y;
+        this.ptSuperior.set(super.entrada.getPtSuperior());
+        this.ptLateral.set(super.entrada.getPtLateral());
+        this.alturaChegadaTemp = super.entrada.getPtSuperior().y;
     }
 
     //LEMBRETE: entradaPtSuperior vira o ponto X e entradaPtLateral vira o pontovertice
@@ -125,11 +122,6 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
         super.rotacionarEAtualizar(this.projetorPt.calcularPtFuturoEsquerda(this.quadratica, 1, this.posicaoCorredor), this.posicaoCorredor);
         this.corredorP.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
-    }
-
-    @Override
-    public Entrada2 getEntrada() {
-        return entrada;
     }
 
     @Override

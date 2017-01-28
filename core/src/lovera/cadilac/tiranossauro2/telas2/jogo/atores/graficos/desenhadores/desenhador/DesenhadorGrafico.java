@@ -18,12 +18,14 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
     protected static final Vector2 pt1Desenho;
     protected static final Vector2 pt2Desenho;
 
+    protected final Entrada2 entrada;
+
     static{
         pt1Desenho = new Vector2();
         pt2Desenho = new Vector2();
     }
 
-    public DesenhadorGrafico() {
+    public DesenhadorGrafico(Entrada2 entrada) {
         if(wShapeRenderer == null){
             wShapeRenderer = new WraperShapeRenderer();
         }
@@ -33,9 +35,8 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         if(rotacionador == null){
             rotacionador = new Rotacionador();
         }
+        this.entrada = entrada;
     }
-
-    public abstract Entrada2 getEntrada();
 
     //********** PARTE DO SHAPE RENDERER INICIO **********
     protected final void iniciarShapeRenderer(){
@@ -87,6 +88,10 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         return rotacionador.getResultY();
     }
     //********** PARTE DO ROTACIONADOR FIM *************
+
+    public final Entrada2 getEntrada() {
+        return this.entrada;
+    }
     @Override
     public void dispose() {
        wShapeRenderer.dispose();

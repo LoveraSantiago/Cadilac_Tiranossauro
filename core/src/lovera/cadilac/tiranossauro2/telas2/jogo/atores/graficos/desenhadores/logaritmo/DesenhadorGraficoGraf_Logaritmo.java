@@ -7,7 +7,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePonto
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoLogaritmo2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.ArrastarEntrada2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
@@ -19,7 +18,6 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
     private float contador;
 
     private final EquacaoLogaritmo2 eqLog;
-    private final Entrada2 entrada2;
     private final CameraManager cameraManager;
     private final Corredor2 corredorP;
     private final ProjetorDePontoFuturo2 projetorPt;
@@ -28,8 +26,7 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
     private final Vector2 posicaoCorredor;
 
     public DesenhadorGraficoGraf_Logaritmo() {
-        super();
-        this.entrada2 = new ArrastarEntrada2();
+        super(new ArrastarEntrada2());
 
         this.corredorP = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
         this.posicaoCorredor = this.corredorP.getPosicaoJogo();
@@ -51,7 +48,7 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
     private void resetarComponentes(){
         super.resetarInformacao();
 
-        this.ptToque.set(this.entrada2.getPtToque());
+        this.ptToque.set(super.entrada.getPtToque());
 //        this.ptToque.set(15.851f, 1.333f);
     }
 
@@ -112,11 +109,6 @@ public final class DesenhadorGraficoGraf_Logaritmo extends DesenhadorGrafico {
         //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da tela e a posicao y do jogador) /10 q e a distancia maxima
         //dessa forma pega o tamanho proporcional
         return this.eqLog.getX((this.ptToque.x - this.posicaoCorredor.x) * this.eqLog.getAlturaMax() / 10);
-    }
-
-    @Override
-    public Entrada2 getEntrada() {
-        return entrada2;
     }
 
     @Override
