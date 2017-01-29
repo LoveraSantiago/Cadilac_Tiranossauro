@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 
-import lovera.cadilac.tiranossauro.telas.menus.MenuUtils;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoParseavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.utils.MenuUtils2;
@@ -48,7 +47,7 @@ final class ParserToTable_MenuGraficos2 implements TipoParseavel, Disposable{
         tableResult.bottom();
         tableResult.setFillParent(true);
 
-        tableResult.add(this.volante).width(MenuUtils.LARGURA_BTN * 4).height(MenuUtils.HALTURA_BTN * 2).colspan(4);
+        tableResult.add(this.volante).width(MenuUtils2.LARGURA_BTN * 4).height(MenuUtils2.HALTURA_BTN * 2).colspan(4);
         tableResult.row();
 
         tableResult.add(btnVetor).width(MenuUtils2.LARGURA_BTN).height(MenuUtils2.HALTURA_BTN).padRight(1).padBottom(5);

@@ -3,7 +3,6 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import lovera.cadilac.tiranossauro.utils.Debugagem;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
@@ -48,9 +47,9 @@ public final class ArrastarEntrada2 extends Entrada2 {
         }
 
         if(isPtValidos()){
-            System.out.println("*****Arrastar finalizado*****");
-            Debugagem.dbgPontoVector2("ptToque:", this.getPtToque());
-            System.out.println("**************************");
+//            System.out.println("*****Arrastar finalizado*****");
+//            Debugagem.dbgPontoVector2("ptToque:", this.getPtToque());
+//            System.out.println("**************************");
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
             faseManager.setFaseAtual(Fase2.ACAO);
             cameraManager.setDiferenca();

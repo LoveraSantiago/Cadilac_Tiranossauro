@@ -10,6 +10,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManag
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 
 //LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
+//TODO: refatorar DesenhadorGraficoGraf_Exponencial com DesenhadorGraficoGraf_Logaritmo classes muito iguais REALIZAR ESSA REFATORACAO SOMENTE APOS AJUSTAR OS GRAFICOS PARA MAIORES ABERTURAS ESTAO MUITO VERTICAIS AMBOS
 public final class DesenhadorGraficoGraf_Exponencial extends DesenhadorGrafico {
 
     private float helperContador;
