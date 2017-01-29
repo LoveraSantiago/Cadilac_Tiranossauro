@@ -21,7 +21,7 @@ public class ProjetorDePontoFuturo2 {
         return posicaoJogadorX - (x - posicaoJogadorX);
     }
 
-    public final Vector2 calcularPtFuturoDireita(TipoEquacao equacao, float contador, Vector2 ptParametro){
+    public Vector2 calcularPtFuturoDireita(TipoEquacao equacao, float contador, Vector2 ptParametro){
         contador += Gdx.graphics.getDeltaTime();
         this.ptTemp.x = ptParametro.x + contador;
         this.ptTemp.y = ptParametro.y + equacao.getY(contador);
@@ -29,7 +29,7 @@ public class ProjetorDePontoFuturo2 {
         return this.ptTemp;
     }
 
-    public final Vector2 calcularPtFuturoEsquerda(TipoEquacao equacao, float contador, Vector2 ptParametro){
+    public Vector2 calcularPtFuturoEsquerda(TipoEquacao equacao, float contador, Vector2 ptParametro){
         contador += Gdx.graphics.getDeltaTime();
         this.ptTemp.x = ptParametro.x + contador;
         this.ptTemp.y = ptParametro.y + equacao.getY(contador);
