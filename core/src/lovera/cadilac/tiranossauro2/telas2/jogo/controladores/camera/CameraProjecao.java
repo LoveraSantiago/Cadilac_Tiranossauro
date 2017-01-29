@@ -53,6 +53,7 @@ final class CameraProjecao implements TipoSubCamera{
         this.spriteBatch.setProjectionMatrix(this.camera.combined);
     }
 
+    //OTIMIZAR
     public float getPtYMaior(){
         this.ptYMaior = -1f;
 
@@ -62,6 +63,17 @@ final class CameraProjecao implements TipoSubCamera{
         return ptYMaior;
     }
 
+    //OTIMIZAR
+    public float getPtXMaior(){
+        this.ptXMaior = -1f;
+
+        for(int i = 0; i < this.camera.frustum.planePoints.length; i++) {
+            this.ptXMaior = Math.max(this.ptXMaior, this.camera.frustum.planePoints[i].x);
+        }
+        return ptXMaior;
+    }
+
+    //OTIMIZAR
     private void getPtsArea(){
         this.ptYMaior = -1f;
         this.ptXMaior = -1f;
