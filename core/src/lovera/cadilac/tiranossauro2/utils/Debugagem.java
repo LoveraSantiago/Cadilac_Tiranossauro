@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro.utils;
+package lovera.cadilac.tiranossauro2.utils;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.StringBuilder;
 
-import lovera.cadilac.tiranossauro.atores.graficos.equacoes.EquacaoDaReta;
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoEquacao;
 
 public class Debugagem {
 
@@ -21,7 +21,7 @@ public class Debugagem {
         System.out.println(nomeAtor + " Y: " + ator.getY());
     }
 
-    public static void dbgEquacaoDaReta(EquacaoDaReta eq, float entrada){
+    public static void dbgEquacaoDaReta(TipoEquacao eq, float entrada){
         System.out.println("Equacao Reta: " + eq + " f(" + entrada + ") x=" + eq.getX(entrada) + " y=" + eq.getY(entrada));
     }
 
