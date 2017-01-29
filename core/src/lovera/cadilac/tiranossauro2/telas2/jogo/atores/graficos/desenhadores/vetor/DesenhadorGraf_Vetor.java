@@ -11,14 +11,10 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
 
     @Override
     public void meDesenhar(Object objeto) {
-        resetarComponentes();
+        super.resetarInformacao();
         desenharVetor();
     }
 
-    private void resetarComponentes(){
-        super.resetarInformacao();
-    }
-    
     public void desenharVetor(){
         super.rotacionarEAtualizar(super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y, super.posicaoCorredor);
         super.corredor.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());

@@ -101,6 +101,7 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
     public final Entrada2 getEntrada() {
         return this.entrada;
     }
+
     @Override
     public void dispose() {
        wShapeRenderer.dispose();
