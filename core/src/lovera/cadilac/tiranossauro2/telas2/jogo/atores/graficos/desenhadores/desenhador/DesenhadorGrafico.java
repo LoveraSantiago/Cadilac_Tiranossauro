@@ -4,9 +4,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
 public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
@@ -19,6 +21,9 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
     protected static final Vector2 pt2Desenho;
 
     protected final Entrada2 entrada;
+
+    protected static Corredor2 corredor;
+    protected static Vector2 posicaoCorredor;
 
     static{
         pt1Desenho = new Vector2();
@@ -34,6 +39,10 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         }
         if(rotacionador == null){
             rotacionador = new Rotacionador();
+        }
+        if(corredor == null){
+            corredor = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
+            posicaoCorredor = corredor.getPosicaoJogo();
         }
         this.entrada = entrada;
     }
