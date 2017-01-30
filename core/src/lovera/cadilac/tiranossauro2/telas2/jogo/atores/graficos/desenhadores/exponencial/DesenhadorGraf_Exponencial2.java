@@ -49,7 +49,7 @@ public final class DesenhadorGraf_Exponencial2 extends DesenhadorGrafico {
     private void desenharExponencial() {
         super.iniciarShapeRenderer();
 
-        this.eqExponencial.setB(super.posicaoCorredor.y - this.ptToque.y, this.cameraManager.getMaiorPtY_CamProj() - super.posicaoCorredor.x, this.cameraManager.getMaiorPtX_CamProj());
+        this.eqExponencial.setB(super.posicaoCorredor.y - this.ptToque.y, this.cameraManager.getMaiorPtY_CamProj() - super.posicaoCorredor.y, this.cameraManager.getMaiorPtX_CamProj() - super.posicaoCorredor.x);
         this.pt1Desenho.set(super.posicaoCorredor);
 
         if(super.posicaoCorredor.x < this.ptToque.x){
@@ -64,7 +64,7 @@ public final class DesenhadorGraf_Exponencial2 extends DesenhadorGrafico {
     private void procedimentoADireita() {
         this.helperContador = getProporcaoDoGraficoPeloToque();
 
-        for(this.contador = 1;
+        for(this.contador = .1f;
             this.contador <= this.helperContador;
             this.contador = this.contador + .1f) {
 
@@ -83,7 +83,7 @@ public final class DesenhadorGraf_Exponencial2 extends DesenhadorGrafico {
         this.ptToque.x = this.projetorPt.espelharEsquerdaPDireita(this.ptToque.x, super.posicaoCorredor.x);
         this.helperContador = getProporcaoDoGraficoPeloToque();
 
-        for(this.contador = 1;
+        for(this.contador = .1f;
             this.contador <= this.helperContador;
             this.contador = this.contador + .1f) {
 
@@ -101,9 +101,9 @@ public final class DesenhadorGraf_Exponencial2 extends DesenhadorGrafico {
     }
 
     private float getProporcaoDoGraficoPeloToque(){
-        //(Tamanho do espaco horizontal entre o toque e a posicao do jogador) * (Tamanho do espaco horizontal entre o topo da pela e a posicao y do jogador) /10
-        //dessa forma pega o tamanho proporcional
-        return this.eqExponencial.getX((this.ptToque.x - super.posicaoCorredor.x) * (this.cameraManager.getMaiorPtY_CamProj() - super.posicaoCorredor.y) / 10);
+        //A largura maxima do grafico é dividida pela diferenca da largura maxima e a posicao do corredor
+        // apos é multiplicado pela diferenca entre o toque e a posicao do corredor
+        return (this.eqExponencial.getLarguraMax() / (this.cameraManager.getMaiorPtX_CamProj() - this.posicaoCorredor.x)) * (this.ptToque.x - this.posicaoCorredor.x);
     }
 
     @Override
