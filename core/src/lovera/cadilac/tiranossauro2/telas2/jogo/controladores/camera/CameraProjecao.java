@@ -53,27 +53,16 @@ final class CameraProjecao implements TipoSubCamera{
         this.spriteBatch.setProjectionMatrix(this.camera.combined);
     }
 
-    //OTIMIZAR
-    public float getPtYMaior(){
-        this.ptYMaior = -1f;
 
-        for(int i = 0; i < this.camera.frustum.planePoints.length; i++) {
-            this.ptYMaior = Math.max(this.ptYMaior, this.camera.frustum.planePoints[i].y);
-        }
+    public float getPtYMaior(){
         return ptYMaior;
     }
 
-    //OTIMIZAR
     public float getPtXMaior(){
-        this.ptXMaior = -1f;
-
-        for(int i = 0; i < this.camera.frustum.planePoints.length; i++) {
-            this.ptXMaior = Math.max(this.ptXMaior, this.camera.frustum.planePoints[i].x);
-        }
         return ptXMaior;
     }
 
-    //OTIMIZAR
+    //Sempre é chamado ao escolher um grafico atualizando todas as posicoes
     private void getPtsArea(){
         this.ptYMaior = -1f;
         this.ptXMaior = -1f;
