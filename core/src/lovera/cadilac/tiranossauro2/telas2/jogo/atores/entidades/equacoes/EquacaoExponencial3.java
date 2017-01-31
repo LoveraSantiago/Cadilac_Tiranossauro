@@ -18,16 +18,19 @@ public final class EquacaoExponencial3 implements TipoEquacao{
     //ptXMax - diferenca entre a posicao do Corredor e ponto x maior da tela
     public void setB(float b, float diferencaAltura, float diferencaLargula){
         this.b = acentuacaoDaCurva(b);
-        setLarguraMax(diferencaAltura, diferencaLargula);
+        setMaximo(diferencaAltura, diferencaLargula);
     }
 
+    //Maximo de Largura
     //Garante que a curva esteja em um maximo da diferenca entre a posicao do corredor e ponto x maior da tela
     //mas escolhe a menor largura que pode vir da diferenca da altura
-    private void setLarguraMax(float diferencaAltura, float diferencaLargula){
-        this.larguraMax = Math.min(getX(diferencaAltura), diferencaLargula);
+    @Override
+    public void setMaximo(float maxAlt, float maxLarg) {
+        this.larguraMax = Math.min(getX(maxAlt), maxLarg);
     }
 
-    public float getLarguraMax() {
+    @Override
+    public float getMaximo() {
         return larguraMax;
     }
 

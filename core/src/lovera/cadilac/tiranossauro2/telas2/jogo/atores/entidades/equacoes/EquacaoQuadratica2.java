@@ -47,6 +47,21 @@ public final class EquacaoQuadratica2 implements TipoEquacao {
         return 0;
     }
 
+    @Override
+    public float getY(float x) {
+        return (float) ((this.a * Math.pow(x, 2)) + (this.b * x));
+    }
+
+    @Override
+    public void setMaximo(float maxAlt, float maxLarg) {
+        throw new UnsupportedOperationException("Equacao quadratica não precisa definir um limite");
+    }
+
+    @Override
+    public float getMaximo() {
+        throw new UnsupportedOperationException("Equacao quadratica não tem um limite maximo");
+    }
+
     public float getXMaior(float y){
         getX(y);
         return Math.max(this.raiz1, this.raiz2);
@@ -59,11 +74,6 @@ public final class EquacaoQuadratica2 implements TipoEquacao {
 
     public boolean isPtAbaixoDoVertice(float contador, float corredorPosY, float posInicialY){
         return contador < this.ptVertice.y && corredorPosY < posInicialY + this.ptVertice.x;
-    }
-
-    @Override
-    public float getY(float x) {
-        return (float) ((this.a * Math.pow(x, 2)) + (this.b * x));
     }
 
     @Override

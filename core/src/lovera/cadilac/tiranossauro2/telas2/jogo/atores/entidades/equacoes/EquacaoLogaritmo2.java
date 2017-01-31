@@ -31,6 +31,16 @@ public class EquacaoLogaritmo2 implements TipoEquacao{
         return (float) Math.max((Math.log(x + 1) / Math.log(this.b)), 0f);
     }
 
+    @Override
+    public void setMaximo(float maxAlt, float maxLarg) {
+
+    }
+
+    @Override
+    public float getMaximo() {
+        return 0;
+    }
+
     private void setAlturaMax(float maximo) {
         this.alturaMax = Math.min(getY(10), maximo);
     }
