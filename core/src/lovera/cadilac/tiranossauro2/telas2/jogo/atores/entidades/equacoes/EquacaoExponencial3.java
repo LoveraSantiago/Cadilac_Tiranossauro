@@ -16,9 +16,9 @@ public final class EquacaoExponencial3 implements TipoEquacao{
 
     //diferencaAltura - diferenca entre a posicao do Corredor e ponto Y mais alto da tela
     //ptXMax - diferenca entre a posicao do Corredor e ponto x maior da tela
-    public void setB(float b, float diferencaAltura, float diferencaLargula){
+    public void setB(float b, float diferencaAltura, float diferencaLargura){
         this.b = acentuacaoDaCurva(b);
-        setMaximo(diferencaAltura, diferencaLargula);
+        setMaximo(diferencaAltura, diferencaLargura);
     }
 
     //Maximo de Largura
