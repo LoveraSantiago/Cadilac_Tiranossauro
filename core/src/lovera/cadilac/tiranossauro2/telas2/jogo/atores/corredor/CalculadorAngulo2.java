@@ -70,12 +70,12 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         else{
             if((this.anguloCalculado - getAnguloCorredor_Graus() + 360) % 360 < 180){
                 if(this.corredor.getAngularVelocity() <= 0){
-                    this.corredor.applyAngularImpulse(10f, true);
+                    this.corredor.applyAngularImpulse(15f, true);
                 }
             }
             else{
                 if(this.corredor.getAngularVelocity() >= 0){
-                    this.corredor.applyAngularImpulse(-10f, true);
+                    this.corredor.applyAngularImpulse(-15f, true);
                 }
             }
         }
