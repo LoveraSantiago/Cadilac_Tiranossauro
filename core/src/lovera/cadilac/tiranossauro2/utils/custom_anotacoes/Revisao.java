@@ -4,6 +4,7 @@ public @interface Revisao {
 
     String dataModificacao();
     String dataRevisao();
+    boolean revisada();
 
     boolean classePublica();
     String justificativa_classePublica();//Justificar casos positivos
@@ -11,7 +12,13 @@ public @interface Revisao {
     boolean classeFinal();
     String justificativa_classeFinal();//Justificar casos negativos
 
-    String[] todos();
+    boolean metodosEncapsulados();
+    boolean atributosEncapsulados();
 
-    //TODO metodos publicos desnecessarios Encapsulamento
+    boolean substituivel();//Se a classe for concreta pode ser utilizada como nested class
+                           //Se for interface pode ser uma classe Abstrata
+                           //Se é uma classe abstrata pode ser uma interface
+    String[] TODOS();
+    String descricao();
+    String[] links();
 }
