@@ -6,12 +6,12 @@ import com.badlogic.gdx.math.Vector3;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
-public final class PincaEntrada2 extends Entrada2 {
+public class PincaEntrada2 extends Entrada2 {
 
     private final Vector3 ptSuperior;
     private final Vector3 ptLateral;
 
-    private final Vector3 ptSuperiorProjetado;
+    protected final Vector3 ptSuperiorProjetado;
     private final Vector3 ptLateralProjetado;
 
     private final Vector2 copiaPtSuperior;
@@ -88,7 +88,7 @@ public final class PincaEntrada2 extends Entrada2 {
         cameraProjecao.unproject(this.ptLateralProjetado);
     }
 
-    private boolean isPtValidos(){
+    protected boolean isPtValidos(){
         return this.ptSuperiorProjetado.y > corredor.getPosicaoJogo().y + 1;
     }
 

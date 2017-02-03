@@ -59,8 +59,11 @@ public final class AreaJogavel2 implements TipoDesenhavel, Disposable {
     public void configurarAreaJogavel(GraficosEnum2 graficoEnum){
         this.areaTemp = this.cameraManager.getArea_CamProj();
 
-        if(graficoEnum == GraficosEnum2.VETOR || graficoEnum == GraficosEnum2.PARABOLOIDE){
+        if(graficoEnum == GraficosEnum2.VETOR){
             setarTamanhoArea(this.areaTemp.getX(), this.posicaoJogador.y, this.areaTemp.getWidth(), this.areaTemp.getHeight() - (this.posicaoJogador.y - this.areaTemp.getY()));
+        }
+        else if(graficoEnum == GraficosEnum2.PARABOLOIDE){
+            setarTamanhoArea(this.areaTemp.getX(), this.posicaoJogador.y + 15, this.areaTemp.getWidth(), this.areaTemp.getHeight() - (this.posicaoJogador.y - this.areaTemp.getY()));
         }
         else{
             setarTamanhoArea(this.areaTemp.getX(), this.areaTemp.getY(), this.areaTemp.getWidth(), this.posicaoJogador.y - this.areaTemp.getY());

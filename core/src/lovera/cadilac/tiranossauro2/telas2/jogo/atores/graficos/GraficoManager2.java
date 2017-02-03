@@ -12,7 +12,8 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.par
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.vetor.DesenhadorGraf_Vetor;
 
 public final class GraficoManager2 implements TipoDesenhavel, Disposable{
-    
+
+    private GraficosEnum2 graficoEnumAtual;
     private EntradaGrafica graficoAtual;
     private final Map<GraficosEnum2, EntradaGrafica> mapaEntradaGraficas;
 
@@ -34,6 +35,7 @@ public final class GraficoManager2 implements TipoDesenhavel, Disposable{
     public void setGraficoEscolhido(GraficosEnum2 graficoEnum){
         this.graficoAtual = this.mapaEntradaGraficas.get(graficoEnum);
         this.graficoAtual.configurarAreaJogavel(graficoEnum);
+        this.graficoEnumAtual = graficoEnum;
     }
 
     public Map<GraficosEnum2, EntradaGrafica> getMapaEntradaGraficas() {
@@ -45,5 +47,13 @@ public final class GraficoManager2 implements TipoDesenhavel, Disposable{
         for(EntradaGrafica entradaGrafica : this.mapaEntradaGraficas.values()){
             entradaGrafica.dispose();
         }
+    }
+
+    public GraficosEnum2 getGraficoEnumAtual() {
+        return graficoEnumAtual;
+    }
+
+    public boolean isGraficoEnumAtual(GraficosEnum2 graficoEnum2){
+        return this.graficoEnumAtual.equals(graficoEnum2);
     }
 }

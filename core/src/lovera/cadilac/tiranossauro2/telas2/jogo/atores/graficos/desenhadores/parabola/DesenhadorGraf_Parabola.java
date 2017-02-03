@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoQuadratica2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntrada2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.PincaEntradaQuadratica;
 
 public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
@@ -18,7 +18,7 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
     private final EquacaoQuadratica2 quadratica;
 
     public DesenhadorGraf_Parabola() {
-        super(new PincaEntrada2());
+        super(new PincaEntradaQuadratica());
 
         this.quadratica = new EquacaoQuadratica2();
         this.projetorPt = new ProjetorPt_ParabolaFuturo();

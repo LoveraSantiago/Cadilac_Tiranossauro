@@ -7,15 +7,17 @@ import lovera.cadilac.tiranossauro2.contratos.helpers.HelperUmaAcao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.NormatizadorDeAngulos;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficoManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.GraficoUnico;
 
 final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 
-    //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
     private float anguloCorredorGraus;
     private float anguloCalculado;
-
-    //VARIAVEIS UTILIZADAS PARA ESTADO PARADO
     private float anguloNorte;
+    private float impulsoAngularPositivo;
+    private float impulsoAngularNegativo;
 
     private final Body corredor;
 
@@ -36,25 +38,12 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         this.rotacaoComColisao = new RotacaoComColisao();
         this.rotacaoSemColisao = new RotacaoSemColisao();
         this.rotacaoMovimentoAtual = this.rotacaoSemColisao;
+
+        resetImpulsosAngulares();
     }
 
     public void rotacionarEmMovimento(){
         this.rotacaoMovimentoAtual.realizarAcao();
-    }
-
-    @Override
-    public void colisaoAconteceu() {
-        this.rotacaoMovimentoAtual = this.rotacaoComColisao;
-    }
-
-    @Override
-    public void setPtFuturoProj(float x, float y) {
-        throw new UnsupportedOperationException("CalculadorAngulo nao seta ponto futuro");
-    }
-
-    @Override
-    public void movimentacaoEncerrada() {
-        this.rotacaoMovimentoAtual = this.rotacaoSemColisao;
     }
 
     public void rotacionarParado() {
@@ -70,16 +59,32 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         else{
             if((this.anguloCalculado - getAnguloCorredor_Graus() + 360) % 360 < 180){
                 if(this.corredor.getAngularVelocity() <= 0){
-                    this.corredor.applyAngularImpulse(15f, true);
+                    this.corredor.applyAngularImpulse(this.impulsoAngularPositivo, true);
                 }
             }
             else{
                 if(this.corredor.getAngularVelocity() >= 0){
-                    this.corredor.applyAngularImpulse(-15f, true);
+                    this.corredor.applyAngularImpulse(this.impulsoAngularNegativo, true);
                 }
             }
         }
 //        printagemDbg("ROTACIONAR PARADO FIM");
+    }
+
+    @Override
+    public void colisaoAconteceu() {
+        this.rotacaoMovimentoAtual = this.rotacaoComColisao;
+    }
+
+    @Override
+    public void setPtFuturoProj(float x, float y) {
+        throw new UnsupportedOperationException("CalculadorAngulo nao seta ponto futuro");
+    }
+
+    @Override
+    public void movimentacaoEncerrada() {
+        this.rotacaoMovimentoAtual = this.rotacaoSemColisao;
+        resetImpulsosAngulares();
     }
 
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
@@ -100,23 +105,43 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
         normatizarComponentes();
     }
 
-    public void normatizarComponentes(){
-        this.corredor.setTransform(this.corredor.getPosition(), this.normatizador.normatizar(getAnguloCorredor_Graus()) * MathUtils.degreesToRadians);
-        this.anguloCalculado = this.normatizador.normatizar(this.anguloCalculado);
-//        printagemDbg("COMPONENTES NORMATIZADOS");
+    public void prepararParaAcao(){
+        normatizarComponentes();
+        definirImpulsosAngulares();
+    }
+
+    private void definirImpulsosAngulares(){
+        if(GraficoUnico.getInstancia().getGraficoManager2().isGraficoEnumAtual(GraficosEnum2.PARABOLOIDE)){
+            this.impulsoAngularNegativo = -25f;
+            this.impulsoAngularPositivo = +25f;
+        }
+        else{
+            resetImpulsosAngulares();
+        }
+    }
+
+    private boolean isMesmoAngulo(){
+        this.anguloCorredorGraus = getAnguloCorredor_Graus();
+        return this.normatizador.normatizar(Math.round(this.anguloCalculado)) == this.normatizador.normatizar(this.anguloCorredorGraus);
+    }
+
+    private void resetImpulsosAngulares(){
+        this.impulsoAngularNegativo = -10f;
+        this.impulsoAngularPositivo = +10f;
     }
 
     public void resetAngulo() {
         this.anguloCalculado = this.anguloNorte;
     }
 
-    private int getAnguloCorredor_Graus(){
-        return Math.round(this.corredor.getAngle() * MathUtils.radiansToDegrees);
+    private void normatizarComponentes(){
+        this.corredor.setTransform(this.corredor.getPosition(), this.normatizador.normatizar(getAnguloCorredor_Graus()) * MathUtils.degreesToRadians);
+        this.anguloCalculado = this.normatizador.normatizar(this.anguloCalculado);
+//        printagemDbg("COMPONENTES NORMATIZADOS");
     }
 
-    private boolean isMesmoAngulo(){
-        this.anguloCorredorGraus = getAnguloCorredor_Graus();
-        return this.normatizador.normatizar(Math.round(this.anguloCalculado)) == this.normatizador.normatizar(this.anguloCorredorGraus);
+    private int getAnguloCorredor_Graus(){
+        return Math.round(this.corredor.getAngle() * MathUtils.radiansToDegrees);
     }
 
     //TODO: Apagar qdo tiver seguranca que esta funcionando normalmente

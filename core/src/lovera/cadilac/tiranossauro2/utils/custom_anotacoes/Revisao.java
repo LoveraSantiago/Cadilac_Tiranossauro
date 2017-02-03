@@ -12,4 +12,6 @@ public @interface Revisao {
     String justificativa_classeFinal();//Justificar casos negativos
 
     String[] todos();
+
+    //TODO metodos publicos desnecessarios Encapsulamento
 }
