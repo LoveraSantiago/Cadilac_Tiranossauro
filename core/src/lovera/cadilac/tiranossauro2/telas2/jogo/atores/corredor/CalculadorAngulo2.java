@@ -41,7 +41,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
     }
 
     public void rotacionarEmMovimento(){
-        this.rotacaoMovimentoAtual.rotacionar();
+        this.rotacaoMovimentoAtual.rotacionando();
     }
 
     public void rotacionarParado() {
@@ -152,19 +152,19 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 //    }
 
     private interface HelperRotacionador{
-        void rotacionar();
+        void rotacionando();
     }
 
     private class RotacaoSemColisao implements HelperRotacionador{
         @Override
-        public void rotacionar() {
+        public void rotacionando() {
             rotacionar();
         }
     }
 
     private class RotacaoComColisao implements HelperRotacionador{
         @Override
-        public void rotacionar() {
+        public void rotacionando() {
         }
     }
 }
