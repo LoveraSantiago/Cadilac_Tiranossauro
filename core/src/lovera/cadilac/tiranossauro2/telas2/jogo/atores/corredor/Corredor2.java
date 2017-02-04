@@ -22,6 +22,8 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
 
     private final FaseManager2 faseManager2;
 
+    private final WrapperPosicaoJogador wposJogador;
+
     public Corredor2(MsgToCorredorManager msgCM) {
         this.faseManager2 = FaseUnico.getInstancia().getFaseManager2();
 
@@ -32,6 +34,8 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
         this.lataria.setCorredor(this.corredor);
         this.movimentador = new Movimentador(this.corredor, msgCM, this, this.calcAngulo);
         new Colisao(this.corredor, this.movimentador, this.calcAngulo);
+
+        this.wposJogador = new WrapperPosicaoJogador(this.corredor.getPosition());
     }
 
     @Override
@@ -85,5 +89,9 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
 
     public Vector2 getPosicaoJogo(){
         return this.corredor.getPosition();
+    }
+
+    public WrapperPosicaoJogador getWrapperPosicaoJogador() {
+        return wposJogador;
     }
 }
