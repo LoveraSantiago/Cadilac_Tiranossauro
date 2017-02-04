@@ -35,16 +35,6 @@ public final class EquacaoLinear implements TipoEquacao{
     }
 
     @Override
-    public void setMaximo(float maxAlt, float maxLarg) {
-        throw new UnsupportedOperationException("Equacao linear não precisa definir um limite");
-    }
-
-    @Override
-    public float getMaximo() {
-        throw new UnsupportedOperationException("Equacao linear não tem um limite maximo");
-    }
-
-    @Override
     public String toString() {
         return "CoefAng:" + this.coefAngular + " Intercep:" + this.intercepto;
     }

@@ -1,8 +1,8 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes;
 
-import lovera.cadilac.tiranossauro2.contratos.tipo.TipoEquacao;
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoEquacao_LOGEXP;
 
-public final class EquacaoExponencial3 implements TipoEquacao{
+public final class EquacaoExponencial3 implements TipoEquacao_LOGEXP{
 
     /*
     Definição da equação exponencial a(b^x)+c

@@ -2,8 +2,10 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.ex
 
 import com.badlogic.gdx.math.Vector2;
 
+import lovera.cadilac.tiranossauro2.contratos.tipo.TipoEquacao_LOGEXP;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.ProjetorDePontoFuturo2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.equacoes.EquacaoExponencial3;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.DesenhadorGraf_LOGEXP;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.ArrastarEntrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
@@ -11,12 +13,12 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico
 
 //LINK DE AJUDA: https://www.desmos.com/calculator/3fisjexbvp
 //TODO: refatorar DesenhadorGraficoGraf_Exponencial com DesenhadorGraficoGraf_Logaritmo classes muito iguais REALIZAR ESSA REFATORACAO SOMENTE APOS AJUSTAR OS GRAFICOS PARA MAIORES ABERTURAS ESTAO MUITO VERTICAIS AMBOS
-public final class DesenhadorGraf_Exponencial2 extends DesenhadorGrafico {
+public final class DesenhadorGraf_Exponencial2 extends DesenhadorGraf_LOGEXP {
 
     private float helperContador;
     private float contador;
 
-    private final EquacaoExponencial3 eqExponencial;
+    private final TipoEquacao_LOGEXP eqExponencial;
     private final CameraManager cameraManager;
     private final ProjetorDePontoFuturo2 projetorPt;
 
