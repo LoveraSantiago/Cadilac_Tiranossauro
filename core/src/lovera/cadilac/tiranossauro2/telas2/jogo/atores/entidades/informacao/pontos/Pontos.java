@@ -2,9 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pon
 
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public final class Pontos {
 
