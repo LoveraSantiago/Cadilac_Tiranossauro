@@ -34,7 +34,6 @@ public final class Corredor2 implements TipoParseavel, TipoDesenhavel, MsgFromMo
         new Colisao(this.corredor, this.movimentador, this.calcAngulo);
     }
 
-    boolean movimentado = false;
     @Override
     public void meDesenhar(Object objeto) {
         if(!this.faseManager2.isFaseAtual(Fase2.ACAO)){
