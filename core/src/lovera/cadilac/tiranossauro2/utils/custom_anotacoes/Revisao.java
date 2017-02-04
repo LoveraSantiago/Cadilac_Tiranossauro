@@ -6,6 +6,8 @@ public @interface Revisao {
     String dataRevisao();
     boolean revisada();
 
+    boolean importsVerificados();
+
     boolean classePublica();
     String justificativa_classePublica();//Justificar casos positivos
 

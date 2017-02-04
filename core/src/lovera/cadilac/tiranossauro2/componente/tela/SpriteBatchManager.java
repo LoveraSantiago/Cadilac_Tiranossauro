@@ -9,6 +9,8 @@ import lovera.cadilac.tiranossauro2.utils.custom_anotacoes.Revisao;
         dataRevisao     = "02/02/2017",
         revisada = true,
 
+        importsVerificados = true,
+
         classePublica = true,
         justificativa_classePublica = "Instancia dessa classe unica, gerenciada por SpriteBatchUnico",
 

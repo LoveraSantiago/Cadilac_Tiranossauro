@@ -3,11 +3,9 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import lovera.cadilac.tiranossauro2.contratos.helpers.HelperUmaAcao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.NormatizadorDeAngulos;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficoManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.GraficoUnico;
 
@@ -23,9 +21,9 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 
     private final NormatizadorDeAngulos normatizador;
 
-    private HelperUmaAcao rotacaoMovimentoAtual;
-    private final HelperUmaAcao rotacaoComColisao;
-    private final HelperUmaAcao rotacaoSemColisao;
+    private HelperRotacionador rotacaoMovimentoAtual;
+    private final HelperRotacionador rotacaoComColisao;
+    private final HelperRotacionador rotacaoSemColisao;
 
     public CalculadorAngulo2(Body corredor) {
         this.corredor = corredor;
@@ -43,7 +41,7 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
     }
 
     public void rotacionarEmMovimento(){
-        this.rotacaoMovimentoAtual.realizarAcao();
+        this.rotacaoMovimentoAtual.rotacionar();
     }
 
     public void rotacionarParado() {
@@ -153,18 +151,20 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
 //        System.out.println("angulo corredor   : " + getAnguloCorredor_Graus());
 //    }
 
-    private class RotacaoSemColisao implements HelperUmaAcao{
+    private interface HelperRotacionador{
+        void rotacionar();
+    }
 
+    private class RotacaoSemColisao implements HelperRotacionador{
         @Override
-        public void realizarAcao() {
+        public void rotacionar() {
             rotacionar();
         }
     }
 
-    private class RotacaoComColisao implements HelperUmaAcao{
-
+    private class RotacaoComColisao implements HelperRotacionador{
         @Override
-        public void realizarAcao() {
+        public void rotacionar() {
         }
     }
 }

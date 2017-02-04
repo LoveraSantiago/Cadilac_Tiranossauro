@@ -3,7 +3,6 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import lovera.cadilac.tiranossauro2.contratos.helpers.HelperUmaAcao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromColisao;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
@@ -28,9 +27,9 @@ final class Movimentador implements TipoAtualizavel, MsgFromColisao {
     private final MsgToCorredorManager msgToCorredorManager;
     private final MsgFromMovimentador msgCalcAngulo;
 
-    private HelperUmaAcao helperAtual;
-    private final HelperUmaAcao helperComColisao;
-    private final HelperUmaAcao helperSemColisao;
+    private HelperMovimentador helperAtual;
+    private final HelperMovimentador helperComColisao;
+    private final HelperMovimentador helperSemColisao;
 
     public Movimentador(Body corredor, MsgToCorredorManager msgToCorredorManager, MsgFromMovimentador msgFromMovimentador, CalculadorAngulo2 calculadorAngulo2) {
         this.corredor = corredor;
@@ -63,7 +62,7 @@ final class Movimentador implements TipoAtualizavel, MsgFromColisao {
 
     @Override
     public void atualizar() {
-        this.helperAtual.realizarAcao();
+        this.helperAtual.movimentar();
     }
 
     @Override
@@ -95,10 +94,13 @@ final class Movimentador implements TipoAtualizavel, MsgFromColisao {
         this.msgToCorredorManager.acaoFinalizada();
     }
 
-    class HelperComColisao implements HelperUmaAcao {
+    private interface HelperMovimentador {
+        void movimentar();
+    }
 
+    private class HelperComColisao implements HelperMovimentador {
         @Override
-        public void realizarAcao() {
+        public void movimentar() {
             if(corredor.getLinearVelocity().x <= 0.5f && corredor.getLinearVelocity().y <= 0.5f){
                 encerrarMovimentacao();
             }
@@ -109,10 +111,9 @@ final class Movimentador implements TipoAtualizavel, MsgFromColisao {
         }
     }
 
-    class HelperSemColisao implements HelperUmaAcao {
-
+    private class HelperSemColisao implements HelperMovimentador {
         @Override
-        public void realizarAcao() {
+        public void movimentar() {
             if(irParaProximoPonto()){
                 if(pontos.temPonto()){
                     proximaPosicao.set(pontos.consumirPonto());
