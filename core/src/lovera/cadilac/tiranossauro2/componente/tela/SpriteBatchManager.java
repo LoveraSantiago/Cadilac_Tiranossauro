@@ -15,15 +15,14 @@ import lovera.cadilac.tiranossauro2.utils.custom_anotacoes.Revisao;
         justificativa_classePublica = "Instancia dessa classe unica, gerenciada por SpriteBatchUnico",
 
         classeFinal = true,
-        justificativa_classeFinal = "",
 
         metodosEncapsulados = true,
         atributosEncapsulados = true,
 
         substituivel = false,
 
-        TODOS = {},
         descricao = "Classe que empacota SpriteBatch da libgdx. Objeto 'caro' deve ter apenas uma instancia. Utilizado em n partes.",
+        utilizadores = {"n"},
         links = {"https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/graphics/g2d/SpriteBatch.html"}
 )
 public final class SpriteBatchManager{
