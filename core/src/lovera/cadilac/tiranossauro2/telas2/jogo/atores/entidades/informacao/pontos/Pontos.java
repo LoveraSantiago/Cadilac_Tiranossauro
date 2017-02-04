@@ -3,21 +3,22 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.pon
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public final class Pontos {
 
     private final Vector2 pontoTemp;
 
-    private final List<Float> listaX;
-    private final List<Float> listaY;
+    private final LinkedList<Float> listaX;
+    private final LinkedList<Float> listaY;
 
     private final Otimizador otimizador;
     private final RotacionadorDePontos rotacionador;
 
     public Pontos() {
-        this.listaX = new ArrayList<Float>();
-        this.listaY = new ArrayList<Float>();
+        this.listaX = new LinkedList<Float>();
+        this.listaY = new LinkedList<Float>();
 
         this.pontoTemp = new Vector2();
         this.otimizador = new Otimizador(this.listaX, this.listaY);
@@ -34,14 +35,8 @@ public final class Pontos {
     }
 
     public Vector2 consumirPonto(){
-        this.pontoTemp.set(this.listaX.get(0), this.listaY.get(0));
-        limparPrimeiraPosicao();
+        this.pontoTemp.set(this.listaX.remove(), this.listaY.remove());
         return this.pontoTemp;
-    }
-
-    private void limparPrimeiraPosicao(){
-        this.listaX.remove(0);
-        this.listaY.remove(0);
     }
 
     public void limparPontos(){
@@ -54,12 +49,11 @@ public final class Pontos {
     }
 
     public Vector2 getProximoPonto(){
-        return this.pontoTemp.set(this.listaX.get(0), this.listaY.get(0));
+        return this.pontoTemp.set(this.listaX.getFirst(), this.listaY.getFirst());
     }
 
     public void prepararPontos(){
         this.otimizador.otimizarPontos();
         this.rotacionador.rotacionarPontos();
     }
-
 }
