@@ -23,6 +23,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.VoltarOrige
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.voltar.VoltarOrigem2;
 
 //TODO revisar todos os disposes acho que ta faltando
+//TODO encontrar forma melhor para gerenciar singletons
 final class SingletonsManager_TelaJogo implements Disposable{
 
     private CameraManager cameraManager;
