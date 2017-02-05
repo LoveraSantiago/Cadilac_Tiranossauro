@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.outras;
+package lovera.cadilac.tiranossauro2.telas2.gerais;
 
 public final class AjustadorDeTela2 {
 

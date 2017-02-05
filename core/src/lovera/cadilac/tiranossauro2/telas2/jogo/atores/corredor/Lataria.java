@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
-import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
+import lovera.cadilac.tiranossauro2.telas2.gerais.AjustadorDeTela2;
 
 final class Lataria implements TipoDesenhavel, TipoAtualizavel{
 

@@ -1,6 +1,6 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos;
 
-import lovera.cadilac.tiranossauro2.componente.tela.SpriteBatchManager;
+import lovera.cadilac.tiranossauro2.telas2.gerais.SpriteBatchManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 
 public final class SpriteBatchUnico implements TipoSingleton{

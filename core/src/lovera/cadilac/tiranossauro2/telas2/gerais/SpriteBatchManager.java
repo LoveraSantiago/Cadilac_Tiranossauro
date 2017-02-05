@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.componente.tela;
+package lovera.cadilac.tiranossauro2.telas2.gerais;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 

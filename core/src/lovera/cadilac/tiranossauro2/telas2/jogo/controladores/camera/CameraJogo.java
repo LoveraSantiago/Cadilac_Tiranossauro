@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSubCamera;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
-import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
+import lovera.cadilac.tiranossauro2.telas2.gerais.AjustadorDeTela2;
 
 //CAMERAJOGO E ROTACIONADA CONTEM AS POSICOES VERDADEIRA DO JOGO
 final class CameraJogo implements TipoSubCamera{

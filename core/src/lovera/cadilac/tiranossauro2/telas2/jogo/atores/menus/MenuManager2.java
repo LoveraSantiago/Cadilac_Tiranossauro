@@ -10,7 +10,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos.MenuG
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_helper.MenuHelper2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
-import lovera.cadilac.tiranossauro2.telas2.outras.AjustadorDeTela2;
+import lovera.cadilac.tiranossauro2.telas2.gerais.AjustadorDeTela2;
 
 public final class MenuManager2 implements TipoDesenhavel, Disposable{
 
