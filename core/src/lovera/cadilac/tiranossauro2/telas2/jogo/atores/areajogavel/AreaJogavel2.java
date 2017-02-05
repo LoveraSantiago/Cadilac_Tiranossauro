@@ -7,16 +7,20 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
+import lovera.cadilac.tiranossauro2.telas2.gerais.NinePatchLeitor;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.WrapperPosicaoJogador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.NinePatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
+import lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch;
+
+import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.AREA;
 
 public final class AreaJogavel2 implements TipoDesenhavel, Disposable {
 
-    private final TextureAtlas textureAtlas;
     private final NinePatch ninePatch;
 
     private final SpriteBatch spriteBatch;
@@ -33,8 +37,8 @@ public final class AreaJogavel2 implements TipoDesenhavel, Disposable {
     private Rectangle areaTemp;
 
     public AreaJogavel2() {
-        this.textureAtlas = new TextureAtlas("ninepatches/ninepatches_areajogavel.atlas");
-        this.ninePatch = this.textureAtlas.createPatch("area_jogavel2");
+        NinePatchLeitor ninePatchLeitor = NinePatchUnico.getInstancia().getNinePatchLeitor();
+        this.ninePatch = ninePatchLeitor.getNinePatch(AREA);
         this.ninePatch.scale(.1f, .1f);
 
         this.spriteBatch = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();

@@ -2,6 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo;
 
 import com.badlogic.gdx.utils.Disposable;
 
+import lovera.cadilac.tiranossauro2.telas2.gerais.NinePatchLeitor;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeCorrida2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficoManager2;
@@ -16,10 +17,12 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.GraficoUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.MenuUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.NinePatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.VoltarOrigemUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.voltar.VoltarOrigem2;
 
+//TODO revisar todos os disposes acho que ta faltando
 final class SingletonsManager_TelaJogo implements Disposable{
 
     private CameraManager cameraManager;
@@ -34,6 +37,8 @@ final class SingletonsManager_TelaJogo implements Disposable{
 
     public void inicializarSingletons(){
         new SpriteBatchUnico().inicializar();
+
+        new NinePatchUnico().inicializar();
 
         new CameraUnico().inicializar();
         this.cameraManager = CameraUnico.getCameraManager();
@@ -89,6 +94,8 @@ final class SingletonsManager_TelaJogo implements Disposable{
     @Override
     public void dispose() {
         SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch().dispose();
+        NinePatchUnico.getInstancia().getNinePatchLeitor().dispose();
+
         this.box2DManager.dispose();
         this.menuManager2.dispose();
     }
