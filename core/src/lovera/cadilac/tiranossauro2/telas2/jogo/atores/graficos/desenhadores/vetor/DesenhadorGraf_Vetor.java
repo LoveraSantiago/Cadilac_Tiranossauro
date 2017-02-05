@@ -20,20 +20,6 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
         super.corredor.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
 
         super.iniciarShapeRenderer();
-
-//TODO LEVAR ESSE CARA PARA OS EIXOS CARTESIANOS
-//        this.shapeRenderer.line(super.posicaoCorredor.x, super.posicaoCorredor.y - 1,
-//                                super.posicaoCorredor.x, super.entrada.getPtSuperior().y);
-//
-//        if(super.entrada.getPtLateral().x >= super.posicaoCorredor.x){
-//            this.shapeRenderer.line(super.posicaoCorredor.x - 1    , super.posicaoCorredor.y,
-//                                    super.entrada.getPtLateral().x , super.posicaoCorredor.y);
-//        }
-//        else{
-//            this.shapeRenderer.line(super.entrada.getPtLateral().x, super.posicaoCorredor.y,
-//                                    super.posicaoCorredor.x + 1   , super.posicaoCorredor.y);
-//        }
-
         super.addLinhaToShapeRenderer(super.posicaoCorredor, super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y);
         super.fecharShapeRenderer();
 
