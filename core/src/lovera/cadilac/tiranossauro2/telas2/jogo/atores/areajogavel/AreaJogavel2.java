@@ -2,9 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.areajogavel;
 
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.gerais.NinePatchLeitor;
@@ -15,7 +13,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.NinePatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
-import lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch;
 
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.AREA;
 
