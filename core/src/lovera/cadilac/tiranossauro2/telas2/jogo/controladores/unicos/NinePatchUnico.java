@@ -3,7 +3,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSingleton;
 import lovera.cadilac.tiranossauro2.telas2.gerais.NinePatchLeitor;
 
-public class NinePatchUnico implements TipoSingleton{
+public final class NinePatchUnico implements TipoSingleton{
 
     private static NinePatchUnico ninePatchUnico;
     private final NinePatchLeitor ninePatchLeitor;
