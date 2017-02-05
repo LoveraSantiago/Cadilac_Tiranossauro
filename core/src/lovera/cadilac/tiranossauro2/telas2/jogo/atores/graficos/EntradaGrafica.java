@@ -72,7 +72,6 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
 
     @Override
     public void dispose() {
-        areaJogavel2.dispose();
         this.desenhador.dispose();
     }
 }
