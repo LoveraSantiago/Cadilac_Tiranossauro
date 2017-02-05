@@ -19,7 +19,7 @@ import lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch;
 
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.AREA;
 
-public final class AreaJogavel2 implements TipoDesenhavel, Disposable {
+public final class AreaJogavel2 implements TipoDesenhavel{
 
     private final NinePatch ninePatch;
 
@@ -72,10 +72,5 @@ public final class AreaJogavel2 implements TipoDesenhavel, Disposable {
         else{
             setarTamanhoArea(this.areaTemp.getX(), this.areaTemp.getY(), this.areaTemp.getWidth(), this.posJogador.getY() - this.areaTemp.getY());
         }
-    }
-
-    @Override
-    public void dispose() {
-        this.textureAtlas.dispose();
     }
 }
