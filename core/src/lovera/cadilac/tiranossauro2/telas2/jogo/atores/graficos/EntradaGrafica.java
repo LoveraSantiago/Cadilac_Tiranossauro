@@ -58,18 +58,19 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
 
     public void configurarAreaJogavel(GraficosEnum2 graficoEnum){
         areaJogavel2.configurarAreaJogavel(graficoEnum);
+        eixoCartesiano.configurarEixo();
     }
 
     @Override
     public void meDesenhar(Object objeto) {
         if(faseManager2.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-            areaJogavel2.meDesenhar(null);
             eixoCartesiano.meDesenhar(null);
+            areaJogavel2.meDesenhar(null);
         }
         else if(faseManager2.isFaseAtual(Fase2.JOGANDO)){
+            eixoCartesiano.meDesenhar(null);
             areaJogavel2.meDesenhar(null);
             this.desenhador.meDesenhar(null);
-            eixoCartesiano.meDesenhar(null);
         }
     }
 
