@@ -6,6 +6,8 @@ public enum Img {
     CARRO_VERMELHO("redcarpeq"),
     SETA_FIXA("setafixa"),
     SETA_MOVEL("setamovel"),
+    TRACO_Y("traco_deitado"),
+    TRACO_X("traco_pe"),
     VOLANTE("meiabussola");
 
     private String nomeImg;

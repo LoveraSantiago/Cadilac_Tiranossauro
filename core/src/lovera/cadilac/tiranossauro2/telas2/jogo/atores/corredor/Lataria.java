@@ -16,7 +16,7 @@ import static lovera.cadilac.tiranossauro2.utils.imagens.Img.CARRO_VERMELHO;
 final class Lataria implements TipoDesenhavel, TipoAtualizavel{
 
     private final Sprite sprite;
-    private final SpriteBatch spriteBatchTemp;
+    private final SpriteBatch spriteBatch;
 
     private Body corredor;
 
@@ -26,15 +26,15 @@ final class Lataria implements TipoDesenhavel, TipoAtualizavel{
                             this.sprite.getHeight()/ AjustadorDeTela2.ESCALA);
         this.sprite.setOriginCenter();
 
-        this.spriteBatchTemp = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
+        this.spriteBatch = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
     }
 
     @Override
     public void meDesenhar(Object objeto) {
         atualizar();
-        this.spriteBatchTemp.begin();
-        this.sprite.draw(this.spriteBatchTemp);
-        this.spriteBatchTemp.end();
+        this.spriteBatch.begin();
+        this.sprite.draw(this.spriteBatch);
+        this.spriteBatch.end();
     }
 
     @Override
