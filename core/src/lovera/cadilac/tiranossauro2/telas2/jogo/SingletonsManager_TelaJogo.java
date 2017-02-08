@@ -15,6 +15,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ControleUni
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.GraficoUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ImgUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.MenuUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.NinePatchUnico;
@@ -40,6 +41,8 @@ final class SingletonsManager_TelaJogo implements Disposable{
         new SpriteBatchUnico().inicializar();
 
         new NinePatchUnico().inicializar();
+
+        new ImgUnico().inicializar();
 
         new CameraUnico().inicializar();
         this.cameraManager = CameraUnico.getCameraManager();
@@ -96,6 +99,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
     public void dispose() {
         SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch().dispose();
         NinePatchUnico.getInstancia().getNinePatchLeitor().dispose();
+        ImgUnico.getInstancia().getImgLeitor().dispose();
 
         this.box2DManager.dispose();
         this.menuManager2.dispose();

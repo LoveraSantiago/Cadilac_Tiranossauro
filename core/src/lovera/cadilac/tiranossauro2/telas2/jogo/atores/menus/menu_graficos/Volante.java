@@ -3,16 +3,21 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.menu_graficos;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Disposable;
+
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ImgUnico;
+import lovera.cadilac.tiranossauro2.utils.imagens.Img;
 
 final class Volante extends Actor implements Disposable{
 
     private final VolanteControle controle;
     private final VolanteListener listener;
 
-    private final Texture meiaBussola;
+//    private final Texture meiaBussola;
+    private final Sprite meiaBussola;
     private final TextureRegion setaFixa;
     private final TextureRegion setaMovel;
 
@@ -22,7 +27,8 @@ final class Volante extends Actor implements Disposable{
 
         this.setaFixa    = new TextureRegion(new Texture(Gdx.files.internal("setafixa.png")));
         this.setaMovel   = new TextureRegion(new Texture(Gdx.files.internal("setamovel.png")));
-        this.meiaBussola = new Texture(Gdx.files.internal("meiabussola.png"));
+//        this.meiaBussola = new Texture(Gdx.files.internal("meiabussola.png"));
+        this.meiaBussola = ImgUnico.getInstancia().getImgLeitor().getImg(Img.VOLANTE);
         addListener(this.listener);
     }
 
@@ -49,7 +55,7 @@ final class Volante extends Actor implements Disposable{
 
     @Override
     public void dispose() {
-        this.meiaBussola.dispose();
+        this.meiaBussola.getTexture().dispose();
         this.setaFixa.getTexture().dispose();
         this.setaMovel.getTexture().dispose();
     }
