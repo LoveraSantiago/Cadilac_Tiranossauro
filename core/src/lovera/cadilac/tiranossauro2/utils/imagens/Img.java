@@ -2,6 +2,8 @@ package lovera.cadilac.tiranossauro2.utils.imagens;
 
 public enum Img {
 
+    BAD_LOGIC("badlogic"),
+    CARRO_VERMELHO("redcarpeq"),
     SETA_FIXA("setafixa"),
     SETA_MOVEL("setamovel"),
     VOLANTE("meiabussola");
