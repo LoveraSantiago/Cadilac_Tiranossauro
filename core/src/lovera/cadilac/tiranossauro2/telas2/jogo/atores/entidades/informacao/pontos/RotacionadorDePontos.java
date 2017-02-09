@@ -24,7 +24,7 @@ final class RotacionadorDePontos {
     }
 
     public void rotacionarPontos(){
-        this.posicaoCorredor = CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getPosicaoJogo();
+        this.posicaoCorredor = CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getWrapperPosicaoJogador().getPosicaoJogador();
         setSenoCosseno();
 
         for(this.contador = 0; this.contador < this.listaX.size(); this.contador++){
