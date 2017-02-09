@@ -15,7 +15,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUni
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ImgUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.NinePatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
-import lovera.cadilac.tiranossauro2.utils.imagens.Img;
 
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img.TRACO_X;
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img.TRACO_Y;
@@ -37,6 +36,9 @@ public final class EixoCartesiano implements TipoDesenhavel{
 
     private Rectangle areaTemp;
 
+    private float posTracoY;
+    private float posTracoX;
+
     public EixoCartesiano() {
         NinePatchLeitor ninePatchLeitor = NinePatchUnico.getInstancia().getNinePatchLeitor();
         this.eixoX = ninePatchLeitor.getNinePatch(EIXO_X);
@@ -47,7 +49,8 @@ public final class EixoCartesiano implements TipoDesenhavel{
 
         ImgLeitor imgLeitor = ImgUnico.getInstancia().getImgLeitor();
         this.tracoX = imgLeitor.getImg(TRACO_X);
-        this.tracoX.scale(.01f);
+
+
         this.tracoY = imgLeitor.getImg(TRACO_Y);
 
         this.spriteBatch = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
@@ -60,14 +63,34 @@ public final class EixoCartesiano implements TipoDesenhavel{
         this.areaTemp = this.cameraManager.getArea_CamProj();
     }
 
-
     @Override
     public void meDesenhar(Object objeto) {
         this.spriteBatch.begin();
-        this.eixoX.draw(this.spriteBatch, this.areaTemp.getX(), this.posJogador.getY() - (this.eixoX.getTotalHeight() / 2), this.areaTemp.getWidth(), 2);
-        this.eixoY.draw(this.spriteBatch, this.posJogador.getX() - (this.eixoY.getTotalWidth() / 2), this.areaTemp.getY(), 2, this.areaTemp.getHeight());
-        this.spriteBatch.draw(this.tracoX, 2, 2);
-        this.spriteBatch.draw(this.tracoX, 10, 10);
+        this.eixoX.draw(this.spriteBatch, this.areaTemp.getX(), this.posJogador.getY() - .5f, this.areaTemp.getWidth(), 1);
+        this.eixoY.draw(this.spriteBatch, this.posJogador.getX() - .5f, this.areaTemp.getY(), 1, this.areaTemp.getHeight());
+
+        this.posTracoY = this.posJogador.getY() - .5f;
+        this.spriteBatch.draw(this.tracoX, this.posJogador.getX() - 7.5f, this.posTracoY, .5f, 1);
+        this.spriteBatch.draw(this.tracoX, this.posJogador.getX() - 5, this.posTracoY, .5f, 1);
+        this.spriteBatch.draw(this.tracoX, this.posJogador.getX() - 2.5f, this.posTracoY, .5f, 1);
+        this.spriteBatch.draw(this.tracoX, this.posJogador.getX() + 2.5f, this.posTracoY, .5f, 1);
+        this.spriteBatch.draw(this.tracoX, this.posJogador.getX() + 5, this.posTracoY, .5f, 1);
+
+        this.posTracoX = this.posJogador.getX() - .5f;
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() - 5, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() - 2.5f, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 2.5f, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 5, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 7.5f, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 10, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 12.5f, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 15, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 17.5f, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 20, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 22.5f, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 25, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 27.5f, 1, .5f);
+        this.spriteBatch.draw(this.tracoY, this.posTracoX, this.posJogador.getY() + 30, 1, .5f);
 
         this.spriteBatch.end();
     }
