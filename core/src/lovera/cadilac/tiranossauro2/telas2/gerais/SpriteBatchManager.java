@@ -22,7 +22,6 @@ import lovera.cadilac.tiranossauro2.utils.custom_anotacoes.Revisao;
         substituivel = false,
 
         descricao = "Classe que empacota SpriteBatch da libgdx. Objeto 'caro' deve ter apenas uma instancia. Utilizado em n partes.",
-        utilizadores = {"n"},
         links = {"https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/graphics/g2d/SpriteBatch.html"}
 )
 public final class SpriteBatchManager{

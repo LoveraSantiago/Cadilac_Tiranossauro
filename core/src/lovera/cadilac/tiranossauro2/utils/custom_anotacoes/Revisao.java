@@ -24,7 +24,7 @@ public @interface Revisao {
 
     String[] TODOS() default {};
     String descricao();
-    String[] utilizadores() default {};
-    String[] implementadores() default {};
+    Class[] utilizadores() default {};
+    Class[] implementadores() default {};
     String[] links() default {};
 }

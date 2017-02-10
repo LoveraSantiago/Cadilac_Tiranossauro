@@ -20,8 +20,8 @@ import lovera.cadilac.tiranossauro2.utils.custom_anotacoes.Revisao;
         substituivel = false,
 
         descricao = "Interface do pacote permite a classe Colisao notifique colisao para as classes que precisarao modificar algum comportamento dentro de si",
-        utilizadores = {"Colisao"},
-        implementadores = {"CalculadorAngulo2", "Movimentador"}
+        utilizadores = {Colisao.class},
+        implementadores = {CalculadorAngulo2.class, Movimentador.class}
 )
 interface MsgFromColisao {
 
