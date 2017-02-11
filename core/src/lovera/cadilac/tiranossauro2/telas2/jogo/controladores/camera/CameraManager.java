@@ -5,7 +5,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoCamera;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Area;
 
 public final class CameraManager implements TipoCamera{
 
@@ -102,8 +101,8 @@ public final class CameraManager implements TipoCamera{
         setPosicao_CamJogo(pt.x, pt.y);
     }
 
-    public Area getArea_CamProj(){
-        return this.cameraProjecao.getArea();
+    public AreaDaCamera getArea_CamProj(){
+        return this.cameraProjecao.getAreaDaCamera();
     }
 
     public Vector2 getDiferenca_CamProj(){

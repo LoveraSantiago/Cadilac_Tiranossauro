@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.AreaDaCamera;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.AreaJogavel2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.EixoCartesiano;
@@ -12,6 +13,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.FillerEi
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 
 
@@ -21,6 +23,8 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
     private static AreaJogavel2 areaJogavel2;
     private static EixoCartesiano eixoCartesiano;
     private static FillerEixoCartesiano filler;
+
+    private AreaDaCamera areaDaCameraTemp;
 
     private static FaseManager2 faseManager2;
 
@@ -56,9 +60,10 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
     }
 
     public void configurarAreaJogavel(GraficosEnum2 graficoEnum){
+        this.areaDaCameraTemp = CameraUnico.getCameraManager().getArea_CamProj();
 
-        areaJogavel2.configurarAreaJogavel(graficoEnum);
-        eixoCartesiano.configurarEixo();
+        areaJogavel2.configurarAreaJogavel(graficoEnum, this.areaDaCameraTemp);
+        eixoCartesiano.configurarEixo(this.areaDaCameraTemp);
     }
 
     @Override

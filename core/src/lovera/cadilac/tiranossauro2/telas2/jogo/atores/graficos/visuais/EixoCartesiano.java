@@ -8,9 +8,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.gerais.ImgLeitor;
 import lovera.cadilac.tiranossauro2.telas2.gerais.NinePatchLeitor;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.WrapperPosicaoJogador;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Area;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.AreaDaCamera;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ImgUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.NinePatchUnico;
@@ -31,10 +29,9 @@ public final class EixoCartesiano implements TipoDesenhavel{
 
     private final SpriteBatch spriteBatch;
 
-    private final CameraManager cameraManager;
     private final WrapperPosicaoJogador posJogador;
 
-    private Area areaTemp;
+    private AreaDaCamera areaDaCameraTemp;
 
     private float posTracoY;
     private float posTracoX;
@@ -55,19 +52,18 @@ public final class EixoCartesiano implements TipoDesenhavel{
 
         this.spriteBatch = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
 
-        this.cameraManager = CameraUnico.getCameraManager();
         this.posJogador = CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getWrapperPosicaoJogador();
     }
 
-    public void configurarEixo(){
-        this.areaTemp = this.cameraManager.getArea_CamProj();
+    public void configurarEixo(AreaDaCamera areaDaCamera){
+        this.areaDaCameraTemp = areaDaCamera;
     }
 
     @Override
     public void meDesenhar(Object objeto) {
         this.spriteBatch.begin();
-        this.eixoX.draw(this.spriteBatch, this.areaTemp.getX(), this.posJogador.getY() - .5f, this.areaTemp.getW(), 1);
-        this.eixoY.draw(this.spriteBatch, this.posJogador.getX() - .5f, this.areaTemp.getY(), 1, this.areaTemp.getH());
+        this.eixoX.draw(this.spriteBatch, this.areaDaCameraTemp.getX(), this.posJogador.getY() - .5f, this.areaDaCameraTemp.getW(), 1);
+        this.eixoY.draw(this.spriteBatch, this.posJogador.getX() - .5f, this.areaDaCameraTemp.getY(), 1, this.areaDaCameraTemp.getH());
 
         this.posTracoY = this.posJogador.getY() - .5f;
         this.spriteBatch.draw(this.tracoX, this.posJogador.getX() - 7.5f, this.posTracoY, .5f, 1);

@@ -6,10 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.gerais.NinePatchLeitor;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.WrapperPosicaoJogador;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Area;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.AreaDaCamera;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.NinePatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
@@ -28,11 +26,9 @@ public final class AreaJogavel2 implements TipoDesenhavel{
     private float w;
     private float h;
 
-    private final CameraManager cameraManager;
-
     private final WrapperPosicaoJogador posJogador;
 
-    private Area areaTemp;
+    private AreaDaCamera areaDaCameraTemp;
 
     public AreaJogavel2() {
         NinePatchLeitor ninePatchLeitor = NinePatchUnico.getInstancia().getNinePatchLeitor();
@@ -40,7 +36,6 @@ public final class AreaJogavel2 implements TipoDesenhavel{
         this.ninePatch.scale(.1f, .1f);
 
         this.spriteBatch = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
-        this.cameraManager = CameraUnico.getCameraManager();
         this.posJogador = CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getWrapperPosicaoJogador();
     }
 
@@ -51,6 +46,8 @@ public final class AreaJogavel2 implements TipoDesenhavel{
         this.spriteBatch.end();
     }
 
+
+    //todo trocar por um segundo objeto area
     private void setarTamanhoArea(float x, float y, float w, float h){
         this.x = x;
         this.y = y;
@@ -58,17 +55,17 @@ public final class AreaJogavel2 implements TipoDesenhavel{
         this.h = h;
     }
 
-    public void configurarAreaJogavel(GraficosEnum2 graficoEnum){
-        this.areaTemp = this.cameraManager.getArea_CamProj();
+    public void configurarAreaJogavel(GraficosEnum2 graficoEnum, AreaDaCamera areaDaCamera){
+        this.areaDaCameraTemp = areaDaCamera;
 
         if(graficoEnum == GraficosEnum2.VETOR){
-            setarTamanhoArea(this.areaTemp.getX(), this.posJogador.getY(), this.areaTemp.getW(), this.areaTemp.getH() - (this.posJogador.getY() - this.areaTemp.getY()));
+            setarTamanhoArea(this.areaDaCameraTemp.getX(), this.posJogador.getY(), this.areaDaCameraTemp.getW(), this.areaDaCameraTemp.getH() - (this.posJogador.getY() - this.areaDaCameraTemp.getY()));
         }
         else if(graficoEnum == GraficosEnum2.PARABOLOIDE){
-            setarTamanhoArea(this.areaTemp.getX(), this.posJogador.getY() + 15, this.areaTemp.getW(), this.areaTemp.getH() - (this.posJogador.getY() - this.areaTemp.getY()));
+            setarTamanhoArea(this.areaDaCameraTemp.getX(), this.posJogador.getY() + 15, this.areaDaCameraTemp.getW(), this.areaDaCameraTemp.getH() - (this.posJogador.getY() - this.areaDaCameraTemp.getY()));
         }
         else{
-            setarTamanhoArea(this.areaTemp.getX(), this.areaTemp.getY(), this.areaTemp.getW(), this.posJogador.getY() - this.areaTemp.getY());
+            setarTamanhoArea(this.areaDaCameraTemp.getX(), this.areaDaCameraTemp.getY(), this.areaDaCameraTemp.getW(), this.posJogador.getY() - this.areaDaCameraTemp.getY());
         }
     }
 }
