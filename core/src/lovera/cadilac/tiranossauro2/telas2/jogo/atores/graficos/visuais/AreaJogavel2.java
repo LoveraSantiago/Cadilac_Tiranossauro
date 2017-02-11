@@ -1,12 +1,12 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.areajogavel;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais;
 
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.gerais.NinePatchLeitor;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.WrapperPosicaoJogador;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Area;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
@@ -32,7 +32,7 @@ public final class AreaJogavel2 implements TipoDesenhavel{
 
     private final WrapperPosicaoJogador posJogador;
 
-    private Rectangle areaTemp;
+    private Area areaTemp;
 
     public AreaJogavel2() {
         NinePatchLeitor ninePatchLeitor = NinePatchUnico.getInstancia().getNinePatchLeitor();
@@ -62,13 +62,13 @@ public final class AreaJogavel2 implements TipoDesenhavel{
         this.areaTemp = this.cameraManager.getArea_CamProj();
 
         if(graficoEnum == GraficosEnum2.VETOR){
-            setarTamanhoArea(this.areaTemp.getX(), this.posJogador.getY(), this.areaTemp.getWidth(), this.areaTemp.getHeight() - (this.posJogador.getY() - this.areaTemp.getY()));
+            setarTamanhoArea(this.areaTemp.getX(), this.posJogador.getY(), this.areaTemp.getW(), this.areaTemp.getH() - (this.posJogador.getY() - this.areaTemp.getY()));
         }
         else if(graficoEnum == GraficosEnum2.PARABOLOIDE){
-            setarTamanhoArea(this.areaTemp.getX(), this.posJogador.getY() + 15, this.areaTemp.getWidth(), this.areaTemp.getHeight() - (this.posJogador.getY() - this.areaTemp.getY()));
+            setarTamanhoArea(this.areaTemp.getX(), this.posJogador.getY() + 15, this.areaTemp.getW(), this.areaTemp.getH() - (this.posJogador.getY() - this.areaTemp.getY()));
         }
         else{
-            setarTamanhoArea(this.areaTemp.getX(), this.areaTemp.getY(), this.areaTemp.getWidth(), this.posJogador.getY() - this.areaTemp.getY());
+            setarTamanhoArea(this.areaTemp.getX(), this.areaTemp.getY(), this.areaTemp.getW(), this.posJogador.getY() - this.areaTemp.getY());
         }
     }
 }

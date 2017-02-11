@@ -1,14 +1,14 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.eixocartesiano;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais;
 
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.gerais.ImgLeitor;
 import lovera.cadilac.tiranossauro2.telas2.gerais.NinePatchLeitor;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.WrapperPosicaoJogador;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Area;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
@@ -34,7 +34,7 @@ public final class EixoCartesiano implements TipoDesenhavel{
     private final CameraManager cameraManager;
     private final WrapperPosicaoJogador posJogador;
 
-    private Rectangle areaTemp;
+    private Area areaTemp;
 
     private float posTracoY;
     private float posTracoX;
@@ -66,8 +66,8 @@ public final class EixoCartesiano implements TipoDesenhavel{
     @Override
     public void meDesenhar(Object objeto) {
         this.spriteBatch.begin();
-        this.eixoX.draw(this.spriteBatch, this.areaTemp.getX(), this.posJogador.getY() - .5f, this.areaTemp.getWidth(), 1);
-        this.eixoY.draw(this.spriteBatch, this.posJogador.getX() - .5f, this.areaTemp.getY(), 1, this.areaTemp.getHeight());
+        this.eixoX.draw(this.spriteBatch, this.areaTemp.getX(), this.posJogador.getY() - .5f, this.areaTemp.getW(), 1);
+        this.eixoY.draw(this.spriteBatch, this.posJogador.getX() - .5f, this.areaTemp.getY(), 1, this.areaTemp.getH());
 
         this.posTracoY = this.posJogador.getY() - .5f;
         this.spriteBatch.draw(this.tracoX, this.posJogador.getX() - 7.5f, this.posTracoY, .5f, 1);

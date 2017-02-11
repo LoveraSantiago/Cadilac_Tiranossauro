@@ -5,9 +5,10 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoControlavel;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.areajogavel.AreaJogavel2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.AreaJogavel2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.eixocartesiano.EixoCartesiano;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.EixoCartesiano;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.FillerEixoCartesiano;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
@@ -19,6 +20,8 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
 
     private static AreaJogavel2 areaJogavel2;
     private static EixoCartesiano eixoCartesiano;
+    private static FillerEixoCartesiano filler;
+
     private static FaseManager2 faseManager2;
 
     private final Entrada2 entrada;
@@ -44,19 +47,16 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
         }
     }
 
+    //TODO procurar por classes que usam membros estaticos e ver se forma de inicializacao deles se contiver ifs trocar por ternarios
     private void inicializarMembrosEstaticos(){
-        if(areaJogavel2 == null){
-            areaJogavel2 = new AreaJogavel2();
-        }
-        if(faseManager2 == null){
-            faseManager2 = FaseUnico.getInstancia().getFaseManager2();
-        }
-        if(eixoCartesiano == null){
-            eixoCartesiano = new EixoCartesiano();
-        }
+        areaJogavel2   = areaJogavel2   == null ? new AreaJogavel2()                         : areaJogavel2;
+        faseManager2   = faseManager2   == null ? FaseUnico.getInstancia().getFaseManager2() : faseManager2;
+        eixoCartesiano = eixoCartesiano == null ? new EixoCartesiano()                       : eixoCartesiano;
+        filler         = filler         == null ? new FillerEixoCartesiano()                 : filler;
     }
 
     public void configurarAreaJogavel(GraficosEnum2 graficoEnum){
+
         areaJogavel2.configurarAreaJogavel(graficoEnum);
         eixoCartesiano.configurarEixo();
     }

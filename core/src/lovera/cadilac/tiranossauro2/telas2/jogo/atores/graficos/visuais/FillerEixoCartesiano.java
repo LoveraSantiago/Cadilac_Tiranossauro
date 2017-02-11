@@ -1,4 +1,4 @@
-package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.eixocartesiano;
+package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais;
 
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 

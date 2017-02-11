@@ -2,15 +2,15 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoSubCamera;
+import lovera.cadilac.tiranossauro2.telas2.gerais.AjustadorDeTela2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Area;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
-import lovera.cadilac.tiranossauro2.telas2.gerais.AjustadorDeTela2;
 
 //TODO refatorar com CameraJogo
 final class CameraProjecao implements TipoSubCamera{
@@ -20,7 +20,7 @@ final class CameraProjecao implements TipoSubCamera{
     private float ptXmenor;
     private float ptXMaior;
 
-    private final Rectangle area;
+    private final Area area;
 
     private final Vector2 diferenca;
     private final Vector2 posicaoTemp;
@@ -40,7 +40,7 @@ final class CameraProjecao implements TipoSubCamera{
 
         this.posicaoTemp = new Vector2();
         this.diferenca = new Vector2();
-        this.area = new Rectangle();
+        this.area = new Area();
     }
 
     @Override
@@ -101,9 +101,9 @@ final class CameraProjecao implements TipoSubCamera{
         this.camera.position.set(x, y, 0);
     }
 
-    public Rectangle getArea(){
+    public Area getArea(){
         getPtsArea();
-        return this.area.set(this.ptXmenor, this.ptYMenor, this.ptXMaior - this.ptXmenor, this.ptYMaior - this.ptYMenor);
+        return this.area.setAll(this.ptXmenor, this.ptYMenor, this.ptXMaior - this.ptXmenor, this.ptYMaior - this.ptYMenor);
     }
 
     @Override
