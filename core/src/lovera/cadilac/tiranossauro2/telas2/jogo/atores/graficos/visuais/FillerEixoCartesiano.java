@@ -23,6 +23,10 @@ public final class FillerEixoCartesiano implements TipoDesenhavel{
         this.fillerV = ninePatchLeitor.getNinePatch(FILLER_VERTICAL);
     }
 
+    public void configurarArea(AreaDaCamera areaDaCamera){
+        this.areaDaCamera = areaDaCamera;
+    }
+
     @Override
     public void meDesenhar(Object objeto) {
 

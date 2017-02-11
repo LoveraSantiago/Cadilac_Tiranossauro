@@ -39,19 +39,15 @@ public final class EixoCartesiano implements TipoDesenhavel{
     public EixoCartesiano() {
         NinePatchLeitor ninePatchLeitor = NinePatchUnico.getInstancia().getNinePatchLeitor();
         this.eixoX = ninePatchLeitor.getNinePatch(EIXO_X);
-        this.eixoX.scale(.1f, .1f);
-
         this.eixoY = ninePatchLeitor.getNinePatch(EIXO_Y);
+        this.eixoX.scale(.1f, .1f);
         this.eixoY.scale(.1f, .1f);
 
         ImgLeitor imgLeitor = ImgUnico.getInstancia().getImgLeitor();
         this.tracoX = imgLeitor.getImg(TRACO_X);
-
-
         this.tracoY = imgLeitor.getImg(TRACO_Y);
 
         this.spriteBatch = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
-
         this.posJogador = CorredorUnico.getInstancia().getCorredorManager().getCorredorP().getWrapperPosicaoJogador();
     }
 

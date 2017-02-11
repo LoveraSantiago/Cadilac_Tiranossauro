@@ -55,6 +55,7 @@ public final class AreaJogavel2 implements TipoDesenhavel{
         this.h = h;
     }
 
+    //TODO talvez quebrar esse metodo em 2 sets e criar interface para visuais ou algo assim
     public void configurarAreaJogavel(GraficosEnum2 graficoEnum, AreaDaCamera areaDaCamera){
         this.areaDaCameraTemp = areaDaCamera;
 

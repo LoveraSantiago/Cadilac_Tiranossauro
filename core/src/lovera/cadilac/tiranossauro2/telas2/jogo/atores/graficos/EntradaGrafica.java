@@ -64,6 +64,7 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
 
         areaJogavel2.configurarAreaJogavel(graficoEnum, this.areaDaCameraTemp);
         eixoCartesiano.configurarEixo(this.areaDaCameraTemp);
+        filler.configurarArea(this.areaDaCameraTemp);
     }
 
     @Override
