@@ -34,7 +34,7 @@ public final class GraficoManager2 implements TipoDesenhavel, Disposable{
 
     public void setGraficoEscolhido(GraficosEnum2 graficoEnum){
         this.graficoAtual = this.mapaEntradaGraficas.get(graficoEnum);
-        this.graficoAtual.configurarAreaJogavel(graficoEnum);
+        this.graficoAtual.updateAreaCamera(graficoEnum);
         this.graficoEnumAtual = graficoEnum;
     }
 

@@ -59,7 +59,7 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
         filler         = filler         == null ? new FillerEixoCartesiano()                 : filler;
     }
 
-    public void configurarAreaJogavel(GraficosEnum2 graficoEnum){
+    public void updateAreaCamera(GraficosEnum2 graficoEnum){
         this.areaDaCameraTemp = CameraUnico.getCameraManager().getArea_CamProj();
 
         areaJogavel2.configurarAreaJogavel(graficoEnum, this.areaDaCameraTemp);
