@@ -39,6 +39,7 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         informacao     = informacao     == null ? InformacaoUnico.getInstancia().getInformacaoManager()            : informacao;
         rotacionador   = rotacionador   == null ? new Rotacionador()                                               : rotacionador;
         corredor       = corredor       == null ? CorredorUnico.getInstancia().getCorredorManager().getCorredorP() : corredor;
+        posicaoCorredor= posicaoCorredor== null ? corredor != null ? corredor.getPosicaoJogo() : posicaoCorredor   : posicaoCorredor;
         filler         = filler         == null ? new FillerEixoCartesiano()                                       : filler;
 
         this.entrada = entrada;
@@ -94,6 +95,12 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         return rotacionador.getResultY();
     }
     //********** PARTE DO ROTACIONADOR FIM *************
+
+    //********** PARTE DO FILLER INICIO **********
+    protected final void desenharFiller(float alturaMax, float largura){
+        filler.set(alturaMax, largura);
+    }
+    //********** PARTE DO FILLER FIM **********
 
     public void updateAreaCamera(AreaDaCamera area){
         filler.configurarArea(area);

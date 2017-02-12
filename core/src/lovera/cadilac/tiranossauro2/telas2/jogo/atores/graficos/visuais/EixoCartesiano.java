@@ -19,6 +19,7 @@ import static lovera.cadilac.tiranossauro2.utils.imagens.Img.TRACO_Y;
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.EIXO_X;
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.EIXO_Y;
 
+//todo analisar que Classe tem muita similaridade com AreaJogavel, EixoCartesino e FillerEixoCartesiano
 public final class EixoCartesiano implements TipoDesenhavel{
 
     private final NinePatch eixoX;

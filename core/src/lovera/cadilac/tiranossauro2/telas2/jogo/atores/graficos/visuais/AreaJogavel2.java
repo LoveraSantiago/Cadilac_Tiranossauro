@@ -15,6 +15,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatch
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.AREA;
 
 //TODO talvez possa ser classe de package
+//todo analisar que Classe tem muita similaridade com AreaJogavel, EixoCartesino e FillerEixoCartesiano
 public final class AreaJogavel2 implements TipoDesenhavel{
 
     private final NinePatch ninePatch;
