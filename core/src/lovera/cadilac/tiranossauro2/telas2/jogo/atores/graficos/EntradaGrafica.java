@@ -31,6 +31,7 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
     private final Entrada2 entrada;
     private final DesenhadorGrafico desenhador;
 
+    //Usado apenas para setar objeto sem comportamento, para evitar checagem de null na classe GraficoManager
     public EntradaGrafica() {
         inicializarMembrosEstaticos();
 

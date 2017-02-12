@@ -31,19 +31,11 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
     }
 
     public DesenhadorGrafico(Entrada2 entrada) {
-        if(wShapeRenderer == null){
-            wShapeRenderer = new WraperShapeRenderer();
-        }
-        if(informacao == null){
-            informacao = InformacaoUnico.getInstancia().getInformacaoManager();
-        }
-        if(rotacionador == null){
-            rotacionador = new Rotacionador();
-        }
-        if(corredor == null){
-            corredor = CorredorUnico.getInstancia().getCorredorManager().getCorredorP();
-            posicaoCorredor = corredor.getPosicaoJogo();
-        }
+        wShapeRenderer = wShapeRenderer == null ? new WraperShapeRenderer()                                        : wShapeRenderer;
+        informacao     = informacao     == null ? InformacaoUnico.getInstancia().getInformacaoManager()            : informacao;
+        rotacionador   = rotacionador   == null ? new Rotacionador()                                               : rotacionador;
+        corredor       = corredor       == null ? CorredorUnico.getInstancia().getCorredorManager().getCorredorP() : corredor;
+
         this.entrada = entrada;
     }
 
