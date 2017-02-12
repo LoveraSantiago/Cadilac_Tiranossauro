@@ -8,6 +8,8 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.FillerEixoCartesiano;
+import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.AreaDaCamera;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
 
@@ -16,6 +18,8 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
     private static WraperShapeRenderer wShapeRenderer;
     private static InformacaoManager informacao;
     private static Rotacionador rotacionador;
+    private static FillerEixoCartesiano filler;
+
 
     protected static final Vector2 pt1Desenho;
     protected static final Vector2 pt2Desenho;
@@ -35,6 +39,7 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         informacao     = informacao     == null ? InformacaoUnico.getInstancia().getInformacaoManager()            : informacao;
         rotacionador   = rotacionador   == null ? new Rotacionador()                                               : rotacionador;
         corredor       = corredor       == null ? CorredorUnico.getInstancia().getCorredorManager().getCorredorP() : corredor;
+        filler         = filler         == null ? new FillerEixoCartesiano()                                       : filler;
 
         this.entrada = entrada;
     }
@@ -89,6 +94,10 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         return rotacionador.getResultY();
     }
     //********** PARTE DO ROTACIONADOR FIM *************
+
+    public void updateAreaCamera(AreaDaCamera area){
+        filler.configurarArea(area);
+    }
 
     public final Entrada2 getEntrada() {
         return this.entrada;
