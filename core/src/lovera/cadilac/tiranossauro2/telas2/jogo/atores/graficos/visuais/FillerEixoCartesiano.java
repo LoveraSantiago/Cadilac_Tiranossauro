@@ -1,5 +1,6 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -10,6 +11,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.AreaDaCamer
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.NinePatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
+import lovera.cadilac.tiranossauro2.utils.Debugagem;
 
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.FILLER_HORIZONTAL;
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.FILLER_VERTICAL;
@@ -50,7 +52,13 @@ public final class FillerEixoCartesiano implements TipoDesenhavel{
     @Override
     public void meDesenhar(Object objeto) {
         this.spriteBatch.begin();
-        this.fillerH.draw(this.spriteBatch, this.posJogador.getX(), this.posJogador.getY() - .5f, this.largura, 1);
+
+        if(this.largura > this.posJogador.getX()){
+            this.fillerH.draw(this.spriteBatch, this.posJogador.getX(), this.posJogador.getY() - .5f, this.largura - this.posJogador.getX(), 1);
+        }
+        else{
+            this.fillerH.draw(this.spriteBatch, this.largura, this.posJogador.getY() - .5f, this.posJogador.getX() - this.largura, 1);
+        }
         this.fillerV.draw(this.spriteBatch, this.posJogador.getX() - .5f, this.areaDaCamera.getY(), 1, altura);
         this.spriteBatch.end();
     }
