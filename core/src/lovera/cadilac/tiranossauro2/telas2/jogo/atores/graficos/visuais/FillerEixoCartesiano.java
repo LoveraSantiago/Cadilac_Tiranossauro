@@ -27,6 +27,9 @@ public final class FillerEixoCartesiano implements TipoDesenhavel{
     private final SpriteBatch spriteBatch;
     private final WrapperPosicaoJogador posJogador;
 
+    private float altura;
+    private float largura;
+
     public FillerEixoCartesiano() {
         NinePatchLeitor ninePatchLeitor = NinePatchUnico.getInstancia().getNinePatchLeitor();
         this.fillerH = ninePatchLeitor.getNinePatch(FILLER_HORIZONTAL);
@@ -46,9 +49,6 @@ public final class FillerEixoCartesiano implements TipoDesenhavel{
         meDesenhar(null);
     }
 
-    float altura;
-    float largura;
-
     @Override
     public void meDesenhar(Object objeto) {
         this.spriteBatch.begin();
@@ -59,6 +59,7 @@ public final class FillerEixoCartesiano implements TipoDesenhavel{
         else{
             this.fillerH.draw(this.spriteBatch, this.largura, this.posJogador.getY() - .5f, this.posJogador.getX() - this.largura, 1);
         }
+
         this.fillerV.draw(this.spriteBatch, this.posJogador.getX() - .5f, this.areaDaCamera.getY(), 1, altura);
         this.spriteBatch.end();
     }

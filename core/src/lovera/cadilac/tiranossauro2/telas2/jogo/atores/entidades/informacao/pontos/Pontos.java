@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.LinkedList;
 
+//TODO colocar Wrapper para setar e recuperar da linkedlist, evitar overhead e garbage collector
 public final class Pontos {
 
     private final Vector2 pontoTemp;
