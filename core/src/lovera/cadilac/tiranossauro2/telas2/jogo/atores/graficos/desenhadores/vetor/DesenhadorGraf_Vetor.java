@@ -12,7 +12,7 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
     @Override
     public void meDesenhar(Object objeto) {
         super.resetarInformacao();
-        desenharFiller(super.entrada.getPtSuperior().y, super.entrada.getPtLateral().x);
+        super.desenharFiller(super.entrada.getPtSuperior().y, super.entrada.getPtLateral().x);
         desenharVetor();
     }
 

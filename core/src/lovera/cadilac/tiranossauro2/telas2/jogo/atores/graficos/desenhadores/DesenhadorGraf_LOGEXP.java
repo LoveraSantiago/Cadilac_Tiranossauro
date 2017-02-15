@@ -43,6 +43,7 @@ public abstract class DesenhadorGraf_LOGEXP extends DesenhadorGrafico{
     public void meDesenhar(Object objeto) {
         resetarComponentes();
         desenharGrafico();
+        super.desenharFiller(super.pt2Desenho.y, this.helperContador);
     }
 
     private void resetarComponentes(){
@@ -81,6 +82,8 @@ public abstract class DesenhadorGraf_LOGEXP extends DesenhadorGrafico{
         }
         super.rotacionarEAtualizar(projetorPt.calcularPtFuturoDireita(this.equacao, 1, super.posicaoCorredor), super.posicaoCorredor);
         super.corredor.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
+
+        helperContador += super.posicaoCorredor.x;
     }
 
     public void procedimentoAEsquerda(){
@@ -102,6 +105,9 @@ public abstract class DesenhadorGraf_LOGEXP extends DesenhadorGrafico{
         }
         super.rotacionarEAtualizar(projetorPt.calcularPtFuturoEsquerda(this.equacao, 1, super.posicaoCorredor), super.posicaoCorredor);
         super.corredor.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
+
+
+        helperContador = super.posicaoCorredor.x - helperContador;
     }
     
     protected abstract float getProporcaoDoGraficoPeloToque();
