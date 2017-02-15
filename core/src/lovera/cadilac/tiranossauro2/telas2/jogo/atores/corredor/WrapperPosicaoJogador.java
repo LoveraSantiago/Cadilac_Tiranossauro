@@ -20,7 +20,7 @@ public final class WrapperPosicaoJogador {
         return this.posicaoJogador.x;
     }
 
-    public Vector2 getPosicaoJogador(){
+    public Vector2 getXY(){
         return this.posicaoJogadorTemp.set(this.posicaoJogador);
     }
 }

@@ -54,10 +54,10 @@ public abstract class DesenhadorGraf_LOGEXP extends DesenhadorGrafico{
     private void desenharGrafico(){
         super.iniciarShapeRenderer();
 
-        this.equacao.setB(super.posicaoCorredor.y - ptToque.y, cameraManager.getMaiorPtY_CamProj() - super.posicaoCorredor.y, cameraManager.getMaiorPtX_CamProj() - super.posicaoCorredor.x);
-        super.pt1Desenho.set(super.posicaoCorredor);
+        this.equacao.setB(super.posJog.getY() - ptToque.y, cameraManager.getMaiorPtY_CamProj() - super.posJog.getY(), cameraManager.getMaiorPtX_CamProj() - super.posJog.getX());
+        super.pt1Desenho.set(super.posJog.getXY());
 
-        if(super.posicaoCorredor.x < ptToque.x){
+        if(super.posJog.getX() < ptToque.x){
             procedimentoADireita();
         }
         else{
@@ -72,7 +72,7 @@ public abstract class DesenhadorGraf_LOGEXP extends DesenhadorGrafico{
             contador <= helperContador;
             contador = contador + .1f) {
 
-            super.pt2Desenho.set(super.posicaoCorredor.x + contador, super.posicaoCorredor.y + (this.equacao.getY(contador)));
+            super.pt2Desenho.set(super.posJog.getX() + contador, super.posJog.getY() + (this.equacao.getY(contador)));
 
             super.addLinhaToShapeRenderer(super.pt1Desenho, super.pt2Desenho);
 
@@ -80,22 +80,22 @@ public abstract class DesenhadorGraf_LOGEXP extends DesenhadorGrafico{
 
             super.pt1Desenho.set(super.pt2Desenho);
         }
-        super.rotacionarEAtualizar(projetorPt.calcularPtFuturoDireita(this.equacao, 1, super.posicaoCorredor), super.posicaoCorredor);
+        super.rotacionarEAtualizar(projetorPt.calcularPtFuturoDireita(this.equacao, 1, super.posJog.getXY()), super.posJog.getXY());
         super.corredor.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
 
-        helperContador += super.posicaoCorredor.x;
+        helperContador += super.posJog.getX();
     }
 
     public void procedimentoAEsquerda(){
-        ptToque.x = projetorPt.espelharEsquerdaPDireita(ptToque.x, super.posicaoCorredor.x);
+        ptToque.x = projetorPt.espelharEsquerdaPDireita(ptToque.x, super.posJog.getX());
         helperContador = getProporcaoDoGraficoPeloToque();
 
         for(contador = .1f;
             contador <= helperContador;
             contador = contador + .1f) {
 
-            super.pt2Desenho.set(super.posicaoCorredor.x + contador, (super.posicaoCorredor.y + (this.equacao.getY(contador))));
-            super.pt2Desenho.x = projetorPt.espelharEsquerdaPDireita(super.pt2Desenho.x, super.posicaoCorredor.x);
+            super.pt2Desenho.set(super.posJog.getX() + contador, (super.posJog.getY() + (this.equacao.getY(contador))));
+            super.pt2Desenho.x = projetorPt.espelharEsquerdaPDireita(super.pt2Desenho.x, super.posJog.getX());
 
             super.addLinhaToShapeRenderer(super.pt1Desenho, super.pt2Desenho);
 
@@ -103,11 +103,11 @@ public abstract class DesenhadorGraf_LOGEXP extends DesenhadorGrafico{
 
             super.pt1Desenho.set(super.pt2Desenho);
         }
-        super.rotacionarEAtualizar(projetorPt.calcularPtFuturoEsquerda(this.equacao, 1, super.posicaoCorredor), super.posicaoCorredor);
+        super.rotacionarEAtualizar(projetorPt.calcularPtFuturoEsquerda(this.equacao, 1, super.posJog.getXY()), super.posJog.getXY());
         super.corredor.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
 
 
-        helperContador = super.posicaoCorredor.x - helperContador;
+        helperContador = super.posJog.getX() - helperContador;
     }
     
     protected abstract float getProporcaoDoGraficoPeloToque();

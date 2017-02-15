@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Disposable;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.Corredor2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.WrapperPosicaoJogador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
@@ -27,7 +28,7 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
     protected final Entrada2 entrada;
 
     protected static Corredor2 corredor;
-    protected static Vector2 posicaoCorredor;
+    protected static WrapperPosicaoJogador posJog;
 
     static{
         pt1Desenho = new Vector2();
@@ -39,7 +40,7 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         informacao     = informacao     == null ? InformacaoUnico.getInstancia().getInformacaoManager()            : informacao;
         rotacionador   = rotacionador   == null ? new Rotacionador()                                               : rotacionador;
         corredor       = corredor       == null ? CorredorUnico.getInstancia().getCorredorManager().getCorredorP() : corredor;
-        posicaoCorredor= posicaoCorredor== null ? corredor != null ? corredor.getPosicaoJogo() : posicaoCorredor   : posicaoCorredor;
+        posJog         = posJog         == null ? corredor != null ? corredor.getWrapperPosicaoJogador() : posJog  : posJog;
         filler         = filler         == null ? new FillerEixoCartesiano()                                       : filler;
 
         this.entrada = entrada;

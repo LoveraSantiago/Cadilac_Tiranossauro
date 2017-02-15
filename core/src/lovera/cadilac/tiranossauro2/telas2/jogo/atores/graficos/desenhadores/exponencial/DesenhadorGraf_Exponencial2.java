@@ -14,6 +14,6 @@ public final class DesenhadorGraf_Exponencial2 extends DesenhadorGraf_LOGEXP {
     protected float getProporcaoDoGraficoPeloToque(){
         //A largura maxima do grafico é dividida pela diferenca da largura maxima e a posicao do corredor
         // apos é multiplicado pela diferenca entre o toque e a posicao do corredor
-        return (super.equacao.getMaximo() / (super.cameraManager.getMaiorPtX_CamProj() - super.posicaoCorredor.x)) * (super.ptToque.x - super.posicaoCorredor.x);
+        return (super.equacao.getMaximo() / (super.cameraManager.getMaiorPtX_CamProj() - super.posJog.getX())) * (super.ptToque.x - super.posJog.getX());
     }
 }

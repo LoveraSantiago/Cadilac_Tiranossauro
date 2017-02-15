@@ -17,14 +17,14 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
     }
 
     public void desenharVetor(){
-        super.rotacionarEAtualizar(super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y, super.posicaoCorredor);
+        super.rotacionarEAtualizar(super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y, super.posJog.getXY());
         super.corredor.setPtFuturoProj(super.getXRotacionado(), super.getYRotacionado());
 
         super.iniciarShapeRenderer();
-        super.addLinhaToShapeRenderer(super.posicaoCorredor, super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y);
+        super.addLinhaToShapeRenderer(super.posJog.getXY(), super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y);
         super.fecharShapeRenderer();
 
-        super.addInformacao(super.posicaoCorredor.x, super.posicaoCorredor.y, super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y);   
+        super.addInformacao(super.posJog.getX(), super.posJog.getY(), super.entrada.getPtLateral().x, super.entrada.getPtSuperior().y);   
     }
 
     @Override
