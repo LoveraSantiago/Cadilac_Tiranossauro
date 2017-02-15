@@ -1,0 +1,51 @@
+
+ninepatches_pasta.png
+size: 128,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+area_jogavel2
+  rotate: false
+  xy: 2, 4
+  size: 45, 48
+  split: 3, 3, 3, 4
+  pad: 3, 3, 3, 3
+  orig: 45, 48
+  offset: 0, 0
+  index: -1
+filler_horizontal
+  rotate: false
+  xy: 89, 14
+  size: 28, 18
+  split: 0, 0, 0, 18
+  pad: 0, 0, -1, -1
+  orig: 28, 18
+  offset: 0, 0
+  index: -1
+filler_vertical
+  rotate: false
+  xy: 69, 4
+  size: 18, 28
+  split: 0, 18, 0, 0
+  pad: -1, -1, 0, 0
+  orig: 18, 28
+  offset: 0, 0
+  index: -1
+seta_x_eixocart
+  rotate: false
+  xy: 69, 34
+  size: 50, 18
+  split: 0, 23, 0, 18
+  pad: 0, 23, -1, -1
+  orig: 50, 18
+  offset: 0, 0
+  index: -1
+seta_y_eixocart
+  rotate: false
+  xy: 49, 2
+  size: 18, 50
+  split: 0, 0, 24, 0
+  pad: -1, -1, 24, 0
+  orig: 18, 50
+  offset: 0, 0
+  index: -1

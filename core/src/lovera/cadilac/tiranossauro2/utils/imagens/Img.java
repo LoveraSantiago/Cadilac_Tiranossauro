@@ -4,11 +4,12 @@ public enum Img {
 
     BAD_LOGIC("badlogic"),
     CARRO_VERMELHO("redcarpeq"),
-    SETA_FIXA("setafixa"),
-    SETA_MOVEL("setamovel"),
-    TRACO_Y("traco_deitado"),
-    TRACO_X("traco_pe"),
-    VOLANTE("meiabussola");
+    DIGITAL       ("digital"),
+    SETA_FIXA     ("setafixa"),
+    SETA_MOVEL    ("setamovel"),
+    TRACO_Y       ("traco_deitado"),
+    TRACO_X       ("traco_pe"),
+    VOLANTE       ("meiabussola");
 
     private String nomeImg;
 

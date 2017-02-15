@@ -1,0 +1,69 @@
+
+img_pasta.png
+size: 512,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+badlogic
+  rotate: false
+  xy: 2, 139
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+digital
+  rotate: false
+  xy: 2, 2
+  size: 35, 40
+  orig: 35, 40
+  offset: 0, 0
+  index: -1
+greencarpeq
+  rotate: false
+  xy: 260, 272
+  size: 33, 28
+  orig: 33, 28
+  offset: 0, 0
+  index: -1
+meiabussola
+  rotate: false
+  xy: 54, 92
+  size: 65, 45
+  orig: 65, 45
+  offset: 0, 0
+  index: -1
+redcarpeq
+  rotate: false
+  xy: 312, 367
+  size: 33, 28
+  orig: 33, 28
+  offset: 0, 0
+  index: -1
+setafixa
+  rotate: false
+  xy: 2, 44
+  size: 50, 93
+  orig: 50, 93
+  offset: 0, 0
+  index: -1
+setamovel
+  rotate: false
+  xy: 260, 302
+  size: 50, 93
+  orig: 50, 93
+  offset: 0, 0
+  index: -1
+traco_deitado
+  rotate: false
+  xy: 54, 84
+  size: 14, 6
+  orig: 14, 6
+  offset: 0, 0
+  index: -1
+traco_pe
+  rotate: false
+  xy: 121, 123
+  size: 6, 14
+  orig: 6, 14
+  offset: 0, 0
+  index: -1
