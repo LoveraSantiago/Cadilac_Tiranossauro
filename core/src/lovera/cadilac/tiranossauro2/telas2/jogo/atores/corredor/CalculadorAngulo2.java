@@ -3,7 +3,6 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.NormatizadorDeAngulos;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficosEnum2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.GraficoUnico;
@@ -48,7 +47,6 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
     }
 
     private void rotacionar(){
-//        printagemDbg("ROTACIONAR PARADO INICIO");
         normatizarComponentes();
         if(isMesmoAngulo()){
             this.corredor.setAngularVelocity(0);
@@ -65,7 +63,6 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
                 }
             }
         }
-//        printagemDbg("ROTACIONAR PARADO FIM");
     }
 
     @Override
@@ -85,20 +82,16 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
     }
 
     public void calcularAngulo(float ptFuturoX, float ptFuturoY){
-//        printagemDbg("CALCULAR ANGULO INICIO");
         this.anguloCalculado = (float) (Math.atan2(ptFuturoY - this.corredor.getPosition().y, ptFuturoX - this.corredor.getPosition().x)) * MathUtils.radiansToDegrees;
         this.anguloCalculado = Math.round(this.anguloCalculado);
 
-//        printagemDbg("CALCULAR ANGULO FIM");
         normatizarComponentes();
     }
 
     public void telaAngulada(float angulo) {
-//        printagemDbg("TELA ANGULADA INICIO");
         this.anguloNorte += angulo;
         this.anguloNorte = this.normatizador.normatizar(this.anguloNorte);
         resetAngulo();
-//        printagemDbg("TELA ANGULADA FIM");
         normatizarComponentes();
     }
 
@@ -134,21 +127,11 @@ final class CalculadorAngulo2 implements MsgFromMovimentador, MsgFromColisao {
     private void normatizarComponentes(){
         this.corredor.setTransform(this.corredor.getPosition(), this.normatizador.normatizar(getAnguloCorredor_Graus()) * MathUtils.degreesToRadians);
         this.anguloCalculado = this.normatizador.normatizar(this.anguloCalculado);
-//        printagemDbg("COMPONENTES NORMATIZADOS");
     }
 
     private int getAnguloCorredor_Graus(){
         return Math.round(this.corredor.getAngle() * MathUtils.radiansToDegrees);
     }
-
-    //TODO: Apagar qdo tiver seguranca que esta funcionando normalmente
-//    private void printagemDbg(String texto){
-//        System.out.println("*****" + texto + "*****");
-//        System.out.println("angulo norte      : " + this.anguloNorte);
-//        System.out.println("angulo calculado  : " + this.anguloCalculado);
-//        System.out.println("contador de angulo: " + (this.contadorAngulo * MathUtils.radiansToDegrees));
-//        System.out.println("angulo corredor   : " + getAnguloCorredor_Graus());
-//    }
 
     private interface HelperRotacionador{
         void rotacionando();

@@ -3,7 +3,6 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
-import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgFromMovimentador;
 import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoAtualizavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
@@ -22,17 +21,19 @@ final class Movimentador implements TipoAtualizavel, MsgFromColisao {
     private final ClassificadorDeQuadrante quadrante;
     private final CalculadorVelocidade calcVelocidade;
 
-    private final MsgFromMovimentador msgFromMovimentador;
-    private final MsgToCorredorManager msgToCorredorManager;
+    private final MsgFromMovimentador msgToCorredor;
     private final MsgFromMovimentador msgCalcAngulo;
+
+    private final MsgToCorredorManager msgToCorredorManager;
 
     private HelperMovimentador helperAtual;
     private final HelperMovimentador helperComColisao;
     private final HelperMovimentador helperSemColisao;
 
-    public Movimentador(Body corredor, MsgToCorredorManager msgToCorredorManager, MsgFromMovimentador msgFromMovimentador, CalculadorAngulo2 calculadorAngulo2) {
+    public Movimentador(Body corredor, MsgToCorredorManager msgToCorredorManager, MsgFromMovimentador msgToCorredor, MsgFromMovimentador msgCalcAngulo) {
         this.corredor = corredor;
-        this.msgFromMovimentador = msgFromMovimentador;
+        this.msgToCorredor = msgToCorredor;
+        this.msgCalcAngulo = msgCalcAngulo;
         this.msgToCorredorManager = msgToCorredorManager;
 
         this.posicaoCorredor = corredor.getPosition();
@@ -45,8 +46,6 @@ final class Movimentador implements TipoAtualizavel, MsgFromColisao {
         this.helperComColisao = new HelperComColisao();
         this.helperSemColisao = new HelperSemColisao();
         this.helperAtual = this.helperSemColisao;
-
-        this.msgCalcAngulo = calculadorAngulo2;
     }
 
     public void prepararParaAcao(InformacaoManager informacao) {
@@ -78,11 +77,11 @@ final class Movimentador implements TipoAtualizavel, MsgFromColisao {
     }
 
     private void setarPtFuturo(){
-        this.msgFromMovimentador.setPtFuturoProj(this.proximaPosicao.x, this.proximaPosicao.y);
+        this.msgToCorredor.setPtFuturoProj(this.proximaPosicao.x, this.proximaPosicao.y);
     }
 
     public void encerrarMovimentacao(){
-        this.msgFromMovimentador.movimentacaoEncerrada();
+        this.msgToCorredor.movimentacaoEncerrada();
         this.msgCalcAngulo.movimentacaoEncerrada();
 
         this.corredor.setLinearVelocity(0, 0);
