@@ -2,7 +2,7 @@ package lovera.cadilac.tiranossauro2.utils.imagens;
 
 public enum Img {
 
-    BAD_LOGIC("badlogic"),
+    BAD_LOGIC     ("badlogic"),
     CARRO_VERMELHO("redcarpeq"),
     DIGITAL       ("digital"),
     SETA_FIXA     ("setafixa"),
