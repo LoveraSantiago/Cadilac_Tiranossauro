@@ -1,10 +1,13 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.Digital;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
+import lovera.cadilac.tiranossauro2.utils.Debugagem;
 
 public class PincaEntrada2 extends Entrada2 {
 
@@ -55,10 +58,6 @@ public class PincaEntrada2 extends Entrada2 {
         }
 
         if(isPtValidos()) {
-//            System.out.println("*****Pinca finalizado*****");
-//            Debugagem.dbgPontoVector2("ptLateral:", this.getPtLateral());
-//            Debugagem.dbgPontoVector2("ptSuperior:", this.getPtSuperior());
-//            System.out.println("**************************");
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
             faseManager.setFaseAtual(Fase2.ACAO);
             cameraManager.setDiferenca();

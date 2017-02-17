@@ -8,6 +8,7 @@ import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.desenhadores.desenhador.DesenhadorGrafico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.AreaJogavel2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.Digital;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.EixoCartesiano;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.AreaDaCamera;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
@@ -16,11 +17,12 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
 
 
-//TODO membros estaticos inicializando em blocos estaticos
+//TODO membros estaticos inicializando em blocos estaticos ver quais podem ser levados para bloco estatico
 public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Disposable {
 
     private static AreaJogavel2 areaJogavel2;
     private static EixoCartesiano eixoCartesiano;
+    private static Digital digital;
 
     private AreaDaCamera areaDaCameraTemp;
 
@@ -55,6 +57,7 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
         areaJogavel2   = areaJogavel2   == null ? new AreaJogavel2()                         : areaJogavel2;
         faseManager2   = faseManager2   == null ? FaseUnico.getInstancia().getFaseManager2() : faseManager2;
         eixoCartesiano = eixoCartesiano == null ? new EixoCartesiano()                       : eixoCartesiano;
+        digital        = digital        == null ? new Digital()                              : digital;
     }
 
     public void updateAreaCamera(GraficosEnum2 graficoEnum){

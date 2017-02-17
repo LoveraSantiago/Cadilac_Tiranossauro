@@ -29,7 +29,6 @@ public final class ArrastarEntrada2 extends Entrada2 {
 
         this.ptToque.set(x, y);
         unProjetarPontos();
-        super.digital.meDesenhar(null);
 
         if(isPtValidos()){
             faseManager.setFaseAtual(Fase2.JOGANDO);

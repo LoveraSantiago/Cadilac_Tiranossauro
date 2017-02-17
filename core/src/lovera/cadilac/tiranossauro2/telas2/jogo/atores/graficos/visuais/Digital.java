@@ -2,6 +2,7 @@ package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
@@ -26,12 +27,14 @@ public class Digital implements TipoDesenhavel{
         this.cameraManager = CameraUnico.getCameraManager();
     }
 
+    Vector2 pt;
     @Override
     public void meDesenhar(Object objeto) {
-        this.cameraManager.updateSpriteBatch_CamJogo();
+        pt = (Vector2) objeto;
+        this.cameraManager.updateSpriteBatch_CamProj();
         this.spriteBatch.begin();
         System.out.println("chamado");
-        this.spriteBatch.draw(this.digital, 1, 1, 35, 50);
+        this.spriteBatch.draw(this.digital, pt.x - 1.5f, pt.y - 2.5f, 3, 5);
         this.spriteBatch.end();
     }
 }

@@ -92,7 +92,7 @@ final class SingletonsManager_TelaJogo implements Disposable{
         this.menuManager2.meDesenhar(null);
 
         //SENDO CHAMADO POR ULTIMO PARA PODER SER VISUALIZADO POR CIMA DA TELA
-        this.box2DManager.meDesenhar(null);
+//        this.box2DManager.meDesenhar(null);
         this.voltarOrigem2.meDesenhar(null);
     }
 
