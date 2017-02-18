@@ -98,6 +98,7 @@ public class PincaEntrada2 extends Entrada2 {
         if(isPtValidos()) {
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
             super.setJogadaValida(true);
+            faseManager.setFaseAtual(Fase2.ACAO);
             cameraManager.setDiferenca();
         }
         else{
