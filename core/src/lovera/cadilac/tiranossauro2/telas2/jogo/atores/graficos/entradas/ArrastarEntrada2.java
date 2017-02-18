@@ -21,6 +21,26 @@ public final class ArrastarEntrada2 extends Entrada2 {
         this.ptToqueProjetado = new Vector3();
     }
 
+//    @Override
+//    public boolean pan(float x, float y, float deltaX, float deltaY) {
+//        if(!faseManager.isFaseAtual(Fase2.JOGANDO) && !faseManager.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
+//            return true;
+//        }
+//
+//        this.ptToque.set(x, y);
+//        unProjetarPontos();
+//
+//        if(isPtValidos()){
+//            faseManager.setFaseAtual(Fase2.JOGANDO);
+//        }
+//        else{
+//            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
+//            corredor.movimentacaoEncerrada();
+//        }
+//        return true;
+//    }
+
+    //NOVA TENTATIVA
     @Override
     public boolean pan(float x, float y, float deltaX, float deltaY) {
         if(!faseManager.isFaseAtual(Fase2.JOGANDO) && !faseManager.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
@@ -31,15 +51,34 @@ public final class ArrastarEntrada2 extends Entrada2 {
         unProjetarPontos();
 
         if(isPtValidos()){
-            faseManager.setFaseAtual(Fase2.JOGANDO);
+            super.setJogadaValida(true);
         }
         else{
-            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
+            super.setJogadaValida(false);
             corredor.movimentacaoEncerrada();
         }
         return true;
     }
 
+//    @Override
+//    public boolean panStop(float x, float y, int pointer, int button) {
+//        if(!faseManager.isFaseAtual(Fase2.JOGANDO)){
+//            return true;
+//        }
+//
+//        if(isPtValidos()){
+//            corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
+//            faseManager.setFaseAtual(Fase2.ACAO);
+//            cameraManager.setDiferenca();
+//        }
+//        else{
+//            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
+//            corredor.movimentacaoEncerrada();
+//        }
+//        return true;
+//    }
+
+    //NOVA TENTATIVA
     @Override
     public boolean panStop(float x, float y, int pointer, int button) {
         if(!faseManager.isFaseAtual(Fase2.JOGANDO)){
@@ -47,15 +86,12 @@ public final class ArrastarEntrada2 extends Entrada2 {
         }
 
         if(isPtValidos()){
-//            System.out.println("*****Arrastar finalizado*****");
-//            Debugagem.dbgPontoVector2("ptToque:", this.getPtToque());
-//            System.out.println("**************************");
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
-            faseManager.setFaseAtual(Fase2.ACAO);
+            super.setJogadaValida(true);
             cameraManager.setDiferenca();
         }
         else{
-            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
+            super.setJogadaValida(false);
             corredor.movimentacaoEncerrada();
         }
         return true;

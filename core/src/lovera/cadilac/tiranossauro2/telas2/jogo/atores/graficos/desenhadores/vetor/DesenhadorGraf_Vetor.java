@@ -12,7 +12,7 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
     public DesenhadorGraf_Vetor() {
         super(new PincaEntrada2());
     }
-    Digital digital = new Digital();
+
     @Override
     public void meDesenhar(Object objeto) {
         Debugagem.desenharPontoNaTela(Color.RED, super.entrada.getPtSuperior(), true);
@@ -20,7 +20,6 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
         super.resetarInformacao();
         super.desenharFiller(super.entrada.getPtSuperior().y, super.entrada.getPtLateral().x);
         desenharVetor();
-        digital.meDesenhar(super.entrada.getPtSuperior());
     }
 
     public void desenharVetor(){

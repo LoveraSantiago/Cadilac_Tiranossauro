@@ -69,16 +69,32 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
         this.desenhador.updateAreaCamera(this.areaDaCameraTemp);
     }
 
+//    @Override
+//    public void meDesenhar(Object objeto) {
+//        if(faseManager2.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
+//            eixoCartesiano.meDesenhar(null);
+//            areaJogavel2.meDesenhar(null);
+//            digital.meDesenhar(this.entrada.getPtSuperior());
+//        }
+//        else if(faseManager2.isFaseAtual(Fase2.JOGANDO)){
+//            eixoCartesiano.meDesenhar(null);
+//            areaJogavel2.meDesenhar(null);
+//            this.desenhador.meDesenhar(null);
+//            digital.meDesenhar(this.entrada.getPtSuperior());
+//        }
+//    }
+
+    //NOVA TENTATIVA
     @Override
     public void meDesenhar(Object objeto) {
-        if(faseManager2.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-            eixoCartesiano.meDesenhar(null);
-            areaJogavel2.meDesenhar(null);
-        }
-        else if(faseManager2.isFaseAtual(Fase2.JOGANDO)){
+        if(this.entrada.isJogadaValida()) {
             eixoCartesiano.meDesenhar(null);
             areaJogavel2.meDesenhar(null);
             this.desenhador.meDesenhar(null);
+        }
+        else{
+            eixoCartesiano.meDesenhar(null);
+            areaJogavel2.meDesenhar(null);
         }
     }
 
