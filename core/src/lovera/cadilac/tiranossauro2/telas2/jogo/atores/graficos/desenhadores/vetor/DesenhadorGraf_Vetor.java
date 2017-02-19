@@ -13,6 +13,7 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
     public void meDesenhar(Object objeto) {
         super.resetarInformacao();
         super.desenharFiller(super.entrada.getPtSuperior().y, super.entrada.getPtLateral().x);
+        super.digitais.desenharDigitais(super.entrada.getPtSuperior(), super.entrada.getPtLateral());
         desenharVetor();
     }
 

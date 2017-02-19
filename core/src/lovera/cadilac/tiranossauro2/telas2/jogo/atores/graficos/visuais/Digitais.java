@@ -19,12 +19,16 @@ public final class Digitais implements TipoDesenhavel{
     public void desenharDigital(Vector2 pt1){
         desenharDigitalHum(pt1);
         this.qtd = QTD.HUM;
+
+        meDesenhar(null);
     }
 
     public void desenharDigitais(Vector2 pt1, Vector2 pt2){
         desenharDigitalHum(pt1);
         desenharDigitalDois(pt2);
         this.qtd = QTD.DOIS;
+
+        meDesenhar(null);
     }
 
     private void desenharDigitalHum(Vector2 pt1){
