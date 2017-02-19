@@ -43,10 +43,6 @@ public final class ArrastarEntrada2 extends Entrada2 {
     //NOVA TENTATIVA
     @Override
     public boolean pan(float x, float y, float deltaX, float deltaY) {
-        if(!faseManager.isFaseAtual(Fase2.JOGANDO) && !faseManager.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-            return true;
-        }
-
         this.ptToque.set(x, y);
         unProjetarPontos();
 
@@ -81,10 +77,6 @@ public final class ArrastarEntrada2 extends Entrada2 {
     //NOVA TENTATIVA
     @Override
     public boolean panStop(float x, float y, int pointer, int button) {
-        if(!faseManager.isFaseAtual(Fase2.JOGANDO)){
-            return true;
-        }
-
         if(isPtValidos()){
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
             super.setJogadaValida(true);

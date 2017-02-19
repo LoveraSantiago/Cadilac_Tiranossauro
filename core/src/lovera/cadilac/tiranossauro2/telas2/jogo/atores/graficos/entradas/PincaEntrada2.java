@@ -51,10 +51,6 @@ public class PincaEntrada2 extends Entrada2 {
     //NOVA TENTATIVA
     @Override
     public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
-        if(!faseManager.isFaseAtual(Fase2.JOGANDO) && !faseManager.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-            return true;
-        }
-
         determinarPontosMaximos(pointer1, pointer2);
         unProjetarPontos();
 
@@ -88,10 +84,6 @@ public class PincaEntrada2 extends Entrada2 {
     //NOVA TENTATIVA
     @Override
     public void pinchStop() {
-        if(!faseManager.isFaseAtual(Fase2.JOGANDO)){
-            return;
-        }
-
         if(isPtValidos()) {
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
             super.setJogadaValida(true);
