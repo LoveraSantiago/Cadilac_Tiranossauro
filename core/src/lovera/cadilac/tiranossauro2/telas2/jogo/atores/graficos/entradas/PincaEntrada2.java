@@ -1,13 +1,10 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.Digital;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.Fase2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.InformacaoUnico;
-import lovera.cadilac.tiranossauro2.utils.Debugagem;
 
 public class PincaEntrada2 extends Entrada2 {
 

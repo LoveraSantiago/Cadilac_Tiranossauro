@@ -1,6 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -11,7 +10,6 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.AreaDaCamer
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.NinePatchUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
-import lovera.cadilac.tiranossauro2.utils.Debugagem;
 
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.FILLER_HORIZONTAL;
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img9Patch.FILLER_VERTICAL;
