@@ -38,12 +38,6 @@ public final class GraficoManager2 implements TipoDesenhavel, Disposable{
         this.faseManager2 = FaseUnico.getInstancia().getFaseManager2();
     }
 
-//    @Override
-//    public void meDesenhar(Object objeto) {
-//           this.graficoAtual.meDesenhar(null);
-//    }
-
-    //NOVA TENTATIVA
     @Override
     public void meDesenhar(Object objeto) {
         if(faseManager2.isUmaDasFaseAtual(ACEITAR_ENTRADA, JOGANDO)){

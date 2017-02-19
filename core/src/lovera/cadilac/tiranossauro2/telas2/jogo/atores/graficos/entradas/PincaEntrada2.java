@@ -29,26 +29,6 @@ public class PincaEntrada2 extends Entrada2 {
         this.copiaPtLateral      = new Vector2();
     }
 
-//    @Override
-//    public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
-//        if(!faseManager.isFaseAtual(Fase2.JOGANDO) && !faseManager.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-//            return true;
-//        }
-//
-//        determinarPontosMaximos(pointer1, pointer2);
-//        unProjetarPontos();
-//
-//        if(isPtValidos()){
-//            faseManager.setFaseAtual(Fase2.JOGANDO);
-//        }
-//        else{
-//            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-//            corredor.movimentacaoEncerrada();
-//        }
-//        return false;
-//    }
-
-    //NOVA TENTATIVA
     @Override
     public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
         determinarPontosMaximos(pointer1, pointer2);
@@ -64,24 +44,6 @@ public class PincaEntrada2 extends Entrada2 {
         return false;
     }
 
-//    @Override
-//    public void pinchStop() {
-//        if(!faseManager.isFaseAtual(Fase2.JOGANDO)){
-//            return;
-//        }
-//
-//        if(isPtValidos()) {
-//            corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
-//            faseManager.setFaseAtual(Fase2.ACAO);
-//            cameraManager.setDiferenca();
-//        }
-//        else{
-//            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-//            corredor.movimentacaoEncerrada();
-//        }
-//    }
-
-    //NOVA TENTATIVA
     @Override
     public void pinchStop() {
         if(isPtValidos()) {

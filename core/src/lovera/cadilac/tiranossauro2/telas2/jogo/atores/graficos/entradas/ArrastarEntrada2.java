@@ -21,26 +21,6 @@ public final class ArrastarEntrada2 extends Entrada2 {
         this.ptToqueProjetado = new Vector3();
     }
 
-//    @Override
-//    public boolean pan(float x, float y, float deltaX, float deltaY) {
-//        if(!faseManager.isFaseAtual(Fase2.JOGANDO) && !faseManager.isFaseAtual(Fase2.ACEITAR_ENTRADA)){
-//            return true;
-//        }
-//
-//        this.ptToque.set(x, y);
-//        unProjetarPontos();
-//
-//        if(isPtValidos()){
-//            faseManager.setFaseAtual(Fase2.JOGANDO);
-//        }
-//        else{
-//            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-//            corredor.movimentacaoEncerrada();
-//        }
-//        return true;
-//    }
-
-    //NOVA TENTATIVA
     @Override
     public boolean pan(float x, float y, float deltaX, float deltaY) {
         this.ptToque.set(x, y);
@@ -56,25 +36,6 @@ public final class ArrastarEntrada2 extends Entrada2 {
         return true;
     }
 
-//    @Override
-//    public boolean panStop(float x, float y, int pointer, int button) {
-//        if(!faseManager.isFaseAtual(Fase2.JOGANDO)){
-//            return true;
-//        }
-//
-//        if(isPtValidos()){
-//            corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
-//            faseManager.setFaseAtual(Fase2.ACAO);
-//            cameraManager.setDiferenca();
-//        }
-//        else{
-//            faseManager.setFaseAtual(Fase2.ACEITAR_ENTRADA);
-//            corredor.movimentacaoEncerrada();
-//        }
-//        return true;
-//    }
-
-    //NOVA TENTATIVA
     @Override
     public boolean panStop(float x, float y, int pointer, int button) {
         if(isPtValidos()){
