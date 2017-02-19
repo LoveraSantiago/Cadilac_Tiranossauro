@@ -2,12 +2,10 @@ package lovera.cadilac.tiranossauro2.telas2.jogo;
 
 import com.badlogic.gdx.utils.Disposable;
 
-import lovera.cadilac.tiranossauro2.telas2.gerais.NinePatchLeitor;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.CorredorManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.Digital;
-import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeCorrida2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.GraficoManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.menus.MenuManager2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.pista_de_corrida.PistaDeCorrida2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.box2d.Box2DManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.Box2DUnico;

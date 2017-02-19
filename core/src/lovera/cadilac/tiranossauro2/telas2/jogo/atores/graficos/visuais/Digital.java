@@ -5,36 +5,33 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.CameraManager;
-import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CameraUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.ImgUnico;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.SpriteBatchUnico;
 
 import static lovera.cadilac.tiranossauro2.utils.imagens.Img.DIGITAL;
 
-public class Digital implements TipoDesenhavel{
+class Digital implements TipoDesenhavel{
 
     private final Sprite digital;
-
     private final SpriteBatch spriteBatch;
 
-    private final CameraManager cameraManager;
+    private final Vector2 posicao;
 
     public Digital() {
         this.digital = ImgUnico.getInstancia().getImgLeitor().getImg(DIGITAL);
-
         this.spriteBatch = SpriteBatchUnico.getInstancia().getSpriteBatchManager().getSpriteBatch();
-        this.cameraManager = CameraUnico.getCameraManager();
+
+        this.posicao = new Vector2();
     }
 
-    Vector2 pt;
+    public void setPosicao(Vector2 posicao){
+        this.posicao.set(posicao);
+    }
+
     @Override
     public void meDesenhar(Object objeto) {
-        pt = (Vector2) objeto;
-        this.cameraManager.updateSpriteBatch_CamProj();
         this.spriteBatch.begin();
-        System.out.println("chamado");
-        this.spriteBatch.draw(this.digital, pt.x - 1.5f, pt.y - 2.5f, 3, 5);
+        this.spriteBatch.draw(this.digital, this.posicao.x - 1.5f, this.posicao.y - 2.5f, 3, 5);
         this.spriteBatch.end();
     }
 }

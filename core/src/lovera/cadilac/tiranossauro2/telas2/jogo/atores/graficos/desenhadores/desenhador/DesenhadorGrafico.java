@@ -9,6 +9,7 @@ import lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor.WrapperPosicaoJo
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.Rotacionador;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.entidades.informacao.InformacaoManager;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.entradas.Entrada2;
+import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.Digitais;
 import lovera.cadilac.tiranossauro2.telas2.jogo.atores.graficos.visuais.FillerEixoCartesiano;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.camera.AreaDaCamera;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.CorredorUnico;
@@ -20,7 +21,7 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
     private static InformacaoManager informacao;
     private static Rotacionador rotacionador;
     private static FillerEixoCartesiano filler;
-
+    protected static Digitais digitais;
 
     protected static final Vector2 pt1Desenho;
     protected static final Vector2 pt2Desenho;
@@ -42,6 +43,7 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         corredor       = corredor       == null ? CorredorUnico.getInstancia().getCorredorManager().getCorredorP() : corredor;
         posJog         = posJog         == null ? corredor != null ? corredor.getWrapperPosicaoJogador() : posJog  : posJog;
         filler         = filler         == null ? new FillerEixoCartesiano()                                       : filler;
+        digitais       = digitais       == null ? new Digitais()                                                  : digitais;
 
         this.entrada = entrada;
     }
