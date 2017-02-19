@@ -41,9 +41,11 @@ public abstract class DesenhadorGraf_LOGEXP extends DesenhadorGrafico{
 
     @Override
     public void meDesenhar(Object objeto) {
-        resetarComponentes();
-        desenharGrafico();
-        super.desenharFiller(super.pt2Desenho.y, this.helperContador);
+        if(this.entrada.isJogadaValida()){
+            resetarComponentes();
+            desenharGrafico();
+            super.desenharFiller(super.pt2Desenho.y, this.helperContador);
+        }
     }
 
     private void resetarComponentes(){

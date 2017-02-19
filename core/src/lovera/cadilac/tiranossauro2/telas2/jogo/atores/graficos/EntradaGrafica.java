@@ -67,15 +67,9 @@ public final class EntradaGrafica implements TipoControlavel, TipoDesenhavel, Di
 
     @Override
     public void meDesenhar(Object objeto) {
-        if(this.entrada.isJogadaValida()) {
-            eixoCartesiano.meDesenhar(null);
-            areaJogavel2.meDesenhar(null);
-            this.desenhador.meDesenhar(null);
-        }
-        else{
-            eixoCartesiano.meDesenhar(null);
-            areaJogavel2.meDesenhar(null);
-        }
+        eixoCartesiano.meDesenhar(null);
+        areaJogavel2.meDesenhar(null);
+        this.desenhador.meDesenhar(null);
     }
 
     @Override

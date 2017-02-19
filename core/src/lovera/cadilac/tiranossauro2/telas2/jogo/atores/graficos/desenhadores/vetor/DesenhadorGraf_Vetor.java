@@ -11,10 +11,13 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
 
     @Override
     public void meDesenhar(Object objeto) {
-        super.resetarInformacao();
-        super.desenharFiller(super.entrada.getPtSuperior().y, super.entrada.getPtLateral().x);
         super.digitais.desenharDigitais(super.entrada.getPtSuperior(), super.entrada.getPtLateral());
-        desenharVetor();
+
+        if(this.entrada.isJogadaValida()){
+            super.resetarInformacao();
+            super.desenharFiller(super.entrada.getPtSuperior().y, super.entrada.getPtLateral().x);
+            desenharVetor();
+        }
     }
 
     public void desenharVetor(){
