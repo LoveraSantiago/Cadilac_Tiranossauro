@@ -40,15 +40,14 @@ public final class ArrastarEntrada2 extends Entrada2 {
     @Override
     public boolean panStop(float x, float y, int pointer, int button) {
         super.setToqueAcontecendo(false);
+        super.setJogadaValida(false);
 
         if(isPtValidos()){
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
-            super.setJogadaValida(true);
             faseManager.setFaseAtual(Fase2.ACAO);
             cameraManager.setDiferenca();
         }
         else{
-            super.setJogadaValida(false);
             corredor.movimentacaoEncerrada();
         }
         return true;

@@ -48,14 +48,14 @@ public class PincaEntrada2 extends Entrada2 {
     @Override
     public void pinchStop() {
         super.setToqueAcontecendo(false);
+        super.setJogadaValida(false);
+
         if(isPtValidos()) {
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
-            super.setJogadaValida(true);
             faseManager.setFaseAtual(Fase2.ACAO);
             cameraManager.setDiferenca();
         }
         else{
-            super.setJogadaValida(false);
             corredor.movimentacaoEncerrada();
         }
     }
