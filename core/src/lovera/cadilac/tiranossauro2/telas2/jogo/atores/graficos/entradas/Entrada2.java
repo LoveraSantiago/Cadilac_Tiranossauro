@@ -25,6 +25,7 @@ public abstract class Entrada2  extends GestureDetector.GestureAdapter implement
     private final GestureDetector gestureDetector;
 
     private static boolean jogadaValida;
+    private static boolean toqueAcontecendo;
 
     static{
         faseManager = FaseUnico.getInstancia().getFaseManager2();
@@ -41,12 +42,20 @@ public abstract class Entrada2  extends GestureDetector.GestureAdapter implement
     public abstract Vector2 getPtSuperior();
     public abstract Vector2 getPtLateral();
 
-    protected  void setJogadaValida(boolean validade){
+    protected void setJogadaValida(boolean validade){
         jogadaValida = validade;
     }
 
     public boolean isJogadaValida() {
         return jogadaValida;
+    }
+
+    protected void setToqueAcontecendo(boolean toque){
+        toqueAcontecendo = toque;
+    }
+
+    public boolean isToqueAcontecendo(){
+        return toqueAcontecendo;
     }
 
     @Override

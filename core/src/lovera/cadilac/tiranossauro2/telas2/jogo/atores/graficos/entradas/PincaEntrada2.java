@@ -33,6 +33,7 @@ public class PincaEntrada2 extends Entrada2 {
     public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
         determinarPontosMaximos(pointer1, pointer2);
         unProjetarPontos();
+        super.setToqueAcontecendo(true);
 
         if(isPtValidos()){
             super.setJogadaValida(true);
@@ -46,6 +47,7 @@ public class PincaEntrada2 extends Entrada2 {
 
     @Override
     public void pinchStop() {
+        super.setToqueAcontecendo(false);
         if(isPtValidos()) {
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
             super.setJogadaValida(true);

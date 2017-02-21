@@ -11,7 +11,7 @@ public final class DesenhadorGraf_Vetor extends DesenhadorGrafico{
 
     @Override
     public void meDesenhar(Object objeto) {
-        super.digitais.desenharDigitais(super.entrada.getPtSuperior(), super.entrada.getPtLateral());
+        super.desenharDigitais();
 
         if(this.entrada.isJogadaValida()){
             super.resetarInformacao();

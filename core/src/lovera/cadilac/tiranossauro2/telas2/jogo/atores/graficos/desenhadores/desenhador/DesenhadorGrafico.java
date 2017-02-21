@@ -21,7 +21,7 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
     private static InformacaoManager informacao;
     private static Rotacionador rotacionador;
     private static FillerEixoCartesiano filler;
-    protected static Digitais digitais;
+    private static Digitais digitais;
 
     protected static final Vector2 pt1Desenho;
     protected static final Vector2 pt2Desenho;
@@ -104,6 +104,18 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
         filler.set(alturaMax, largura);
     }
     //********** PARTE DO FILLER FIM **********
+
+    //********** PARTE DAS DIGITAIS INICIO **********
+    protected void desenharDigital(){
+
+    }
+
+    protected void desenharDigitais(){
+        if(this.entrada.isToqueAcontecendo()){
+            digitais.desenharDigitais(this.entrada.getPtSuperior(), this.entrada.getPtLateral());
+        }
+    }
+    //********** PARTE DAS DIGITAIS FIM **********
 
     public void updateAreaCamera(AreaDaCamera area){
         filler.configurarArea(area);
