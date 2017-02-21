@@ -107,7 +107,9 @@ public abstract class DesenhadorGrafico implements TipoDesenhavel, Disposable{
 
     //********** PARTE DAS DIGITAIS INICIO **********
     protected void desenharDigital(){
-
+        if(this.entrada.isToqueAcontecendo()){
+            digitais.desenharDigital(this.entrada.getPtToque());
+        }
     }
 
     protected void desenharDigitais(){

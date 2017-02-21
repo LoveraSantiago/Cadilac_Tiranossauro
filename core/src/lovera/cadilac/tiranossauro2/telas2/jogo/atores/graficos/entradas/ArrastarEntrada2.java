@@ -25,6 +25,7 @@ public final class ArrastarEntrada2 extends Entrada2 {
     public boolean pan(float x, float y, float deltaX, float deltaY) {
         this.ptToque.set(x, y);
         unProjetarPontos();
+        super.setToqueAcontecendo(true);
 
         if(isPtValidos()){
             super.setJogadaValida(true);
@@ -38,6 +39,8 @@ public final class ArrastarEntrada2 extends Entrada2 {
 
     @Override
     public boolean panStop(float x, float y, int pointer, int button) {
+        super.setToqueAcontecendo(false);
+
         if(isPtValidos()){
             corredor.prepararParaAcao(InformacaoUnico.getInstancia().getInformacaoManager());
             super.setJogadaValida(true);
