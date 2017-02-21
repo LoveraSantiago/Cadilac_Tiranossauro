@@ -1,6 +1,5 @@
 package lovera.cadilac.tiranossauro2.telas2.jogo.atores.corredor;
 
-import lovera.cadilac.tiranossauro2.contratos.mensagens.MsgToCorredorManager;
 import lovera.cadilac.tiranossauro2.contratos.tipo.TipoDesenhavel;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.fase.FaseManager2;
 import lovera.cadilac.tiranossauro2.telas2.jogo.controladores.unicos.FaseUnico;
