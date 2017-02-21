@@ -42,6 +42,7 @@ public final class FillerEixoCartesiano implements TipoDesenhavel{
     }
 
     public void set(float altura, float largura){
+        //(diferenca entre posicao inferior da camera e posicao do jogador) + (diferenca da altura do toque mais posicao do jogador)
         this.altura = (this.posJogador.getY()- this.areaDaCamera.getY()) + (altura - this.posJogador.getY());
         this.largura = largura;
         meDesenhar(null);
