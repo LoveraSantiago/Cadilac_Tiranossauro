@@ -29,6 +29,8 @@ public final class DesenhadorGraf_Parabola extends DesenhadorGrafico{
 
     @Override
     public void meDesenhar(Object objeto) {
+        super.desenharDigitais();
+
         if(super.entrada.isJogadaValida()){
             resetarComponentes();
             super.desenharFiller(super.entrada.getPtSuperior().y, super.entrada.getPtLateral().x);
