@@ -80,7 +80,7 @@ public class PincaEntrada2 extends Entrada2 {
     }
 
     protected boolean isPtValidos(){
-        return this.ptSuperiorProjetado.y > corredor.getPosicaoJogo().y + 1;
+        return this.ptSuperiorProjetado.y > super.wPosJogador.getY() + 1;
     }
 
     @Override
